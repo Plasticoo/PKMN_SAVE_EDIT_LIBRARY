@@ -62,5 +62,4 @@
 #define PC_BOX_12_POKEMON_LIST 0x75EA
 #define PC_BOX_12_POKEMON_SIZE 1122
 
-
 #endif
