@@ -3,6 +3,31 @@
 
 #include <inttypes.h>
 
+struct gen1_pkmn_data_struct {
+    uint8_t *index;
+    uint8_t *hp;
+    uint8_t *level;
+    uint8_t *status;
+    uint8_t *type[2];
+    uint8_t *catch_item;
+    uint8_t *moves[4];
+    uint8_t *trainer_id;
+    uint8_t *xp;
+    uint8_t *hp_ev;
+    uint8_t *atk_ev;
+    uint8_t *def_ev;
+    uint8_t *speed_ev;
+    uint8_t *special_ev;
+    uint8_t *iv;
+    uint8_t *moves_pp[4];
+    uint8_t *level_opt;
+    uint8_t *max_hp;
+    uint8_t *atk;
+    uint8_t *def;
+    uint8_t *speed;
+    uint8_t *special;
+};
+
 // TODO Change uint8_t for the
 // respective structure
 struct gen1_pkmn_file_struct {
