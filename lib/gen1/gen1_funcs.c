@@ -3,6 +3,15 @@
 #define CHECKSUM_INIT_OFFSET 0x2598
 #define CHECKSUM_END_OFFSET  0x3522
 
+long get_file_size(FILE* f) {
+    long _s;
+
+    fseek(f, 0L, SEEK_END);
+    _s = ftell(f);
+
+    return _s;
+}
+
 FILE* _fopen(char* file_name) {
     FILE* f;
 
