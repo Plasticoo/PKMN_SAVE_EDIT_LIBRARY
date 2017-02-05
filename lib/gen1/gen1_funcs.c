@@ -3,6 +3,19 @@
 #define CHECKSUM_INIT_OFFSET 0x2598
 #define CHECKSUM_END_OFFSET  0x3522
 
+FILE* _fopen(char* file_name) {
+    FILE* f;
+
+    if ((f = fopen(file_name, "r")) == NULL) {
+        return NULL;
+    }
+
+    // TODO check file-size
+
+    return f;
+}
+
+// TODO change 'file_name'
 uint8_t gen1_checksum(FILE* file_name) {
     int i;
 
