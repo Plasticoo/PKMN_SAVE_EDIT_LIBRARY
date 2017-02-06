@@ -6,5 +6,6 @@
 #include <stdio.h>
 
 uint8_t gen1_checksum(FILE* file_name);
+FILE* _fopen(char* file_name, int* errn);
 
 #endif
