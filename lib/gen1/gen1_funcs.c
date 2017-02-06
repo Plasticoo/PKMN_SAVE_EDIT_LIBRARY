@@ -6,6 +6,10 @@
 #define FILE_OPEN_ERR 1
 #define FILE_SIZE_ERR 2
 
+#define FILE_SIZE 32768
+#define FILE_CONTENTS_SIZE 0x54B4
+#define FILE_INIT_ADDRESS 0x2598
+
 // TODO move to general purpose c file
 // that works for any gen
 long get_file_size(FILE* f) {
@@ -50,4 +54,15 @@ uint8_t gen1_checksum(FILE* file_name) {
     }
 
     return ~checksum;
+}
+
+// TODO Create function to print hex of file contents
+uint8_t gen1_load_file(struct gen1_pkmn_file_struct* file_struct, FILE* f) {
+    int i;
+
+    uint8_t file_map[FILE_SIZE];
+
+    for (i = 0; i < FILE_SIZE; i++) {
+        fread(&file_map[i], 1, 1, f);
+    }
 }
