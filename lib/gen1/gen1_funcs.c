@@ -68,7 +68,7 @@ void load_file(FILE* f, uint8_t *file_map) {
 }
 
 // TODO Create function to print hex of file contents
-uint8_t gen1_load_file(struct gen1_pkmn_file_struct* file_struct, uint8_t *file_map) {
+void gen1_load_file(struct gen1_pkmn_file_struct* file_struct, uint8_t *file_map) {
     file_struct->player_name = &file_map[PLAYER_NAME_ADDRESS];
     file_struct->pokedex_owned = &file_map[POKEDEX_OWNED_ADDRESS];
     file_struct->pokedex_seen = &file_map[POKEDEX_SEEN_ADDRESS];
