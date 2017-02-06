@@ -56,13 +56,23 @@ uint8_t gen1_checksum(FILE* file_name) {
     return ~checksum;
 }
 
-// TODO Create function to print hex of file contents
-uint8_t gen1_load_file(struct gen1_pkmn_file_struct* file_struct, FILE* f) {
+void load_file(FILE* f, uint8_t *file_map) {
     int i;
-
-    uint8_t file_map[FILE_SIZE];
 
     for (i = 0; i < FILE_SIZE; i++) {
         fread(&file_map[i], 1, 1, f);
     }
 }
+
+// TODO Create function to print hex of file contents
+/* uint8_t gen1_load_file(struct gen1_pkmn_file_struct* file_struct, FILE* f) { */
+/*     int i; */
+
+/*     uint8_t file_map[FILE_SIZE]; */
+
+/*     for (i = 0; i < FILE_SIZE; i++) { */
+/*         fread(&file_map[i], 1, 1, f); */
+/*     } */
+
+/*     file_struct */
+/* } */

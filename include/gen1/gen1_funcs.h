@@ -9,6 +9,7 @@ FILE* _fopen(char* file_name, int* errn);
 
 
 uint8_t gen1_checksum(FILE* file_name);
-uint8_t gen1_load_file(struct gen1_pkmn_file_struct* file_struct, FILE* f);
+void load_file(FILE* f, uint8_t *file_map);
+//uint8_t gen1_load_file(struct gen1_pkmn_file_struct *file_struct, FILE* file);
 
 #endif
