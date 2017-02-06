@@ -3,6 +3,9 @@
 #define CHECKSUM_INIT_OFFSET 0x2598
 #define CHECKSUM_END_OFFSET  0x3522
 
+#define FILE_OPEN_ERR 1
+#define FILE_SIZE_ERR 2
+
 // TODO move to general purpose c file
 // that works for any gen
 long get_file_size(FILE* f) {
@@ -14,15 +17,16 @@ long get_file_size(FILE* f) {
     return _s;
 }
 
-// TODO add pointer to value for error check
-FILE* _fopen(char* file_name) {
+FILE* _fopen(char* file_name, int* errn) {
     FILE* f;
 
     if ((f = fopen(file_name, "r")) == NULL) {
+        *errn = FILE_OPEN_ERR;
         return NULL;
     }
 
     if (get_file_size(f) != 32768) {
+        *errn = FILE_SIZE_ERR;
         return NULL;
     }
 
