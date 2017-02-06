@@ -26,6 +26,8 @@ FILE* _fopen(char* file_name, int* errn) {
     }
 
     if (get_file_size(f) != 32768) {
+        fclose(f);
+
         *errn = FILE_SIZE_ERR;
         return NULL;
     }
