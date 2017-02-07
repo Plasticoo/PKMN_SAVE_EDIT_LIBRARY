@@ -20,6 +20,7 @@ long get_file_size(FILE* f) {
 
     fseek(f, 0L, SEEK_END);
     _s = ftell(f);
+    fseek(f, 0L, SEEK_END);
 
     return _s;
 }
