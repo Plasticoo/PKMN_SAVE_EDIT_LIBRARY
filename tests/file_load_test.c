@@ -19,5 +19,7 @@ int main(int argc, char *argv[])
 	load_file(f, f_map);
 	gen1_load_file(&a, f_map);
 
+	fclose(f);
+
     return 0;
 }

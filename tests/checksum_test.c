@@ -22,6 +22,8 @@ int main(int argc, char *argv[])
 
     printf("Read from file: %u\n", val);
 
+	fclose(f);
+
     return 0;
 }
 
