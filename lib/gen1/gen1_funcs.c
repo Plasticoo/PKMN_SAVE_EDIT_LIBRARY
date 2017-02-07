@@ -1,6 +1,8 @@
 #include "../../include/gen1/gen1_funcs.h"
 #include "../../include/gen1/gen1_defines.h"
 
+#include <stdlib.h>
+
 #define CHECKSUM_INIT_OFFSET 0x2598
 #define CHECKSUM_END_OFFSET  0x3522
 
@@ -57,14 +59,16 @@ uint8_t gen1_checksum(FILE* file_name) {
     return ~checksum;
 }
 
-// TODO Make it so the user can do something like
-// file_map = load_file(f);
-void load_file(FILE* f, uint8_t *file_map) {
+uint8_t* load_file(FILE* f) {
     int i;
+
+    uint8_t* file_map = malloc(sizeof(char) * FILE_SIZE);
 
     for (i = 0; i < FILE_SIZE; i++) {
         fread(&file_map[i], 1, 1, f);
     }
+
+    return file_map;
 }
 
 // TODO Create function to print hex of file contents
