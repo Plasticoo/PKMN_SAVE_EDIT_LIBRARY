@@ -9,10 +9,12 @@ void print_hexmap(uint8_t* array, int size) {
 
     for (i = 0; i < size; i+=16) {
 
-        printf("%4X: ", i);
+        printf("%04X: ", i);
 
         for (j = 0; j < 16; j++) {
-            printf("%2X", array[j]);
+            printf("%02X ", array[j]);
         }
+
+        putchar('\n');
     }
 }
