@@ -4,6 +4,14 @@
 #include <inttypes.h>
 #include <stdio.h>
 
+void print_consecutive_bytes(uint8_t* array, int size) {
+    int i;
+
+    for(i = 0; i < size; i++) {
+        printf("%02X", array[i]);
+    }
+}
+
 void print_hexmap(uint8_t* array, int size) {
 	int i;
 
