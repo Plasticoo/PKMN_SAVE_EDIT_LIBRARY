@@ -51,4 +51,7 @@ struct gen1_pkmn_file_struct {
     uint8_t *pc_box[12];
 };
 
+// functions to get properties of the struct
+char* gen1_get_player_name(uint8_t *player_name);
+
 #endif
