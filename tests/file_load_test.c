@@ -21,7 +21,6 @@ int main(int argc, char *argv[])
 	gen1_load_file(&a, f_map);
 
 	printf("Casino coins: %d\n", a.casino_coins[0]);
-    print_hexmap(f_map, 32768);
 
 	fclose(f);
     free(f_map);
