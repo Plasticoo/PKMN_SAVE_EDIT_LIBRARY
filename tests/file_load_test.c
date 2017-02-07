@@ -7,7 +7,7 @@
 int main(int argc, char *argv[])
 {
 	int errn;
-	uint8_t f_map[32768];
+	uint8_t* f_map;
 
 	FILE* f;
     struct gen1_pkmn_file_struct a;
@@ -17,13 +17,14 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 
-	load_file(f, f_map);
+	f_map = load_file(f);
 	gen1_load_file(&a, f_map);
 
 	printf("Casino coins: %d\n", a.casino_coins[0]);
     print_hexmap(f_map, 32768);
 
 	fclose(f);
+    free(f_map);
 
     return 0;
 }
