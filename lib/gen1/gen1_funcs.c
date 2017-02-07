@@ -64,6 +64,8 @@ uint8_t* load_file(FILE* f) {
 
     uint8_t* file_map = malloc(sizeof(uint8_t) * FILE_SIZE);
 
+    fseek(f, 0L, SEEK_SET);
+
     for (i = 0; i < FILE_SIZE; i++) {
         fread(&file_map[i], 1, 1, f);
     }
