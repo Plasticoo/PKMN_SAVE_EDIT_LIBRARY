@@ -3,6 +3,6 @@
 
 #include <inttypes.h>
 
-void print_hexmap(uint8_t* file_map);
+void print_hexmap(uint8_t* array, int size);
 
 #endif
