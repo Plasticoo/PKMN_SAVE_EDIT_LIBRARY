@@ -43,18 +43,29 @@ FILE* _fopen(char* file_name, int* errn) {
     return f;
 }
 
-// TODO change 'file_name'
-uint8_t gen1_checksum(FILE* file_name) {
+uint8_t gen1_checksum_file(FILE* f) {
     int i;
 
     uint8_t checksum = 0;
     uint8_t byte;
 
-    fseek(file_name, CHECKSUM_INIT_OFFSET, SEEK_SET);
+    fseek(f, CHECKSUM_INIT_OFFSET, SEEK_SET);
 
     for (i = 0; i <= CHECKSUM_END_OFFSET - CHECKSUM_INIT_OFFSET; i++) {
-        fread(&byte, 1, 1, file_name);
+        fread(&byte, 1, 1, f);
         checksum += byte;
+    }
+
+    return ~checksum;
+}
+
+uint8_t gen1_checksum_map(uint8_t *file_map) {
+    int i;
+
+    uint8_t checksum = 0;
+
+    for (i = CHECKSUM_INIT_OFFSET; i <= CHECKSUM_END_OFFSET; i++) {
+        checksum += file_map[i];
     }
 
     return ~checksum;

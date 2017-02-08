@@ -8,7 +8,8 @@
 FILE* _fopen(char* file_name, int* errn);
 
 
-uint8_t gen1_checksum(FILE* file_name);
+uint8_t gen1_checksum_file(FILE* f);
+uint8_t gen1_checksum_map(uint8_t* file_map);
 
 // TODO give different names
 uint8_t* load_file(FILE* f);
