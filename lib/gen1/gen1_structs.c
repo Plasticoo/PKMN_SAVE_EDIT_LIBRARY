@@ -38,3 +38,15 @@ char* gen1_get_player_name(uint8_t *player_name) {
 
     return name;
 }
+
+void gen1_set_player_name(struct gen1_pkmn_file_struct *file_struct, char* player_name, int size) {
+    int i, _s = size;
+
+    if (size >= 11) {
+        _s = 11;
+    }
+
+    for (i = 0; i < _s; i++) {
+        file_struct->player_name[i] = player_name[i];
+    }
+}

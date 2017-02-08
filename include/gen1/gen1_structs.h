@@ -54,4 +54,7 @@ struct gen1_pkmn_file_struct {
 // functions to get properties of the struct
 char* gen1_get_player_name(uint8_t *player_name);
 
+// functions to set properties of the struct
+void gen1_set_player_name(struct gen1_pkmn_file_struct *file_struct, char* player_name, int size);
+
 #endif
