@@ -63,7 +63,7 @@ uint8_t gen1_checksum(FILE* file_name) {
 uint8_t* load_file(FILE* f) {
     int i;
 
-    uint8_t* file_map = malloc(sizeof(uint8_t) * FILE_SIZE);
+    uint8_t* file_map = calloc(FILE_SIZE, sizeof(uint8_t));
 
     fseek(f, 0L, SEEK_SET);
 

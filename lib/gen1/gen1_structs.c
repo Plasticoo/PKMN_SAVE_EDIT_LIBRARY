@@ -42,8 +42,7 @@ int get_character_code(char c) {
 char* gen1_get_player_name(uint8_t *player_name) {
     int i;
 
-    // TODO replace malloc with calloc for better security and other reasons.
-    char *name = malloc(sizeof(char) * PLAYER_NAME_SIZE);
+    char *name = calloc(PLAYER_NAME_SIZE, sizeof(char));
 
     for (i = 0; i < PLAYER_NAME_SIZE; i++) {
         if(player_name[i] == 'P') break;
