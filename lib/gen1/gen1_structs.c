@@ -2,6 +2,8 @@
 #include "../../include/gen1/gen1_defines.h"
 #include "../../include/gen1/gen1_structs.h"
 
+#include <stdlib.h>
+
 // character map
 // TODO check characters
 const char fonts[] =
@@ -25,10 +27,8 @@ const char fonts[] =
 char* gen1_get_player_name(uint8_t *player_name) {
     int i;
 
-    // TODO bytes = 11 text = 1..7
-    // which one?
-    // TODO is static really the solution?
-    static char name[PLAYER_NAME_SIZE];
+    // TODO bytes = 11 text = 1..7 which one?
+    char *name = malloc(sizeof(char) * PLAYER_NAME_SIZE);
 
     for (i = 0; i < PLAYER_NAME_SIZE; i++) {
         if(player_name[i] == 'P') break;
