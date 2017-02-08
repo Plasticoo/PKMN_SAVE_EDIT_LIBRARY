@@ -53,6 +53,8 @@ int gen1_save_changes(char* file_name, uint8_t *file_map) {
     }
 
     fclose(_f);
+
+    return 0;
 }
 
 char* gen1_get_player_name(uint8_t *player_name) {
