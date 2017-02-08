@@ -27,7 +27,6 @@ const char fonts[] =
 char* gen1_get_player_name(uint8_t *player_name) {
     int i;
 
-    // TODO bytes = 11 text = 1..7 which one?
     char *name = malloc(sizeof(char) * PLAYER_NAME_SIZE);
 
     for (i = 0; i < PLAYER_NAME_SIZE; i++) {
@@ -35,7 +34,7 @@ char* gen1_get_player_name(uint8_t *player_name) {
         name[i] = fonts[player_name[i]];
     }
 
-    name[i - 1] = '\0';
+    name[i] = '\0';
 
     return name;
 }
