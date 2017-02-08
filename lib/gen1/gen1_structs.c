@@ -42,6 +42,7 @@ int get_character_code(char c) {
 char* gen1_get_player_name(uint8_t *player_name) {
     int i;
 
+    // TODO replace malloc with calloc for better security and other reasons.
     char *name = malloc(sizeof(char) * PLAYER_NAME_SIZE);
 
     for (i = 0; i < PLAYER_NAME_SIZE; i++) {
@@ -54,11 +55,12 @@ char* gen1_get_player_name(uint8_t *player_name) {
     return name;
 }
 
+// TODO handling of the 'P' character that is needed for string termination
 void gen1_set_player_name(struct gen1_pkmn_file_struct *file_struct, char* player_name, int size) {
     int i, _s = size;
 
-    if (size >= 11) {
-        _s = 11;
+    if (size >= 7) {
+        _s = 7;
     }
 
     for (i = 0; i < _s; i++) {
