@@ -52,6 +52,7 @@ struct gen1_pkmn_file_struct {
 };
 
 int gen1_save_changes(char* file_name, uint8_t *file_map);
+void gen1_set_checksum(struct gen1_pkmn_file_struct *file_struct, uint8_t *file_map);
 
 // functions to get properties of the struct
 char* gen1_get_player_name(uint8_t *player_name);

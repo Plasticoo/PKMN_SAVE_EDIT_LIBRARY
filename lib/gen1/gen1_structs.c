@@ -57,6 +57,11 @@ int gen1_save_changes(char* file_name, uint8_t *file_map) {
     return 0;
 }
 
+void gen1_set_checksum(struct gen1_pkmn_file_struct *file_struct, uint8_t *file_map) {
+    uint8_t checksum = gen1_checksum_map(file_map);
+    file_struct->checksum[0] = checksum;
+}
+
 char* gen1_get_player_name(uint8_t *player_name) {
     int i;
 

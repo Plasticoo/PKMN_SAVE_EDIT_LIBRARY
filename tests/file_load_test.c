@@ -27,8 +27,8 @@ int main(int argc, char *argv[])
     player_name = gen1_get_player_name(a.player_name);
     printf("Player name: %s\n", player_name);
 
-    gen1_set_player_name(&a, "test", 4);
-    a.checksum[0] = gen1_checksum_map(f_map);
+    gen1_set_player_name(&a, "testopkekt", 10);
+    gen1_set_checksum(&a, f_map);
     gen1_save_changes("saved_changes.sav", f_map);
 
 	fclose(f);
