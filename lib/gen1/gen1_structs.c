@@ -35,7 +35,8 @@ int gen1_get_character_code(char c) {
         }
     }
 
-    return -1;
+    // return space code, as in, invalid character
+    return 0x7F;
 }
 
 char* gen1_get_player_name(uint8_t *player_name) {
