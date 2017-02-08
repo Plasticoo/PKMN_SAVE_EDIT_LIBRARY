@@ -1,3 +1,4 @@
 tests/checksum_test
 tests/file_load_test
 tests/.gdb_history
+tests/saved_changes.sav
