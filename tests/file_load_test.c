@@ -23,11 +23,16 @@ int main(int argc, char *argv[])
 	f_map = load_file(f);
 	gen1_load_file(&a, f_map);
 
+    // name tests
+    printf("Going to test player name modifications...\n");
     player_name = gen1_get_player_name(a.player_name);
-
     printf("Player name: %s\n", player_name);
+    /* char* new_name = "test"; */
+    /* gen1_set_player_name(&a, new_name, 4); */
+    /* printf("Modified player name: %s\n", player_name); */
 
 	fclose(f);
+
     free(f_map);
     free(player_name);
 

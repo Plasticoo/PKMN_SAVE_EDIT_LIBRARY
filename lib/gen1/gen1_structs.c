@@ -5,6 +5,7 @@
 #include <stdlib.h>
 
 #define FONT_SIZE 256
+#define FILE_SIZE 32768
 
 // character map
 // TODO check characters
@@ -37,6 +38,21 @@ int get_character_code(char c) {
 
     // return space code, as in, invalid character
     return 0x7F;
+}
+
+int gen1_save_changes(char* file_name, uint8_t *file_map) {
+    int i;
+    FILE* _f;
+
+    if((_f = fopen(file_name, "wb")) == NULL) {
+        return -1;
+    }
+
+    for (i = 0; i < FILE_SIZE; i++) {
+        fwrite(&file_map[i], 1, 1, _f);
+    }
+
+    fclose(_f);
 }
 
 char* gen1_get_player_name(uint8_t *player_name) {
