@@ -26,7 +26,7 @@ const char fonts[] =
  '?','?','?','?','?','?','?','?','?','?','?','?','?','?','?','?',   // E
  '?','?','.','/',',','?','0','1','2','3','4','5','6','7','8','9'};  // F
 
-int gen1_get_character_code(char c) {
+int get_character_code(char c) {
     int i;
 
     for (i = 0; i < FONT_SIZE; i++) {
@@ -62,6 +62,6 @@ void gen1_set_player_name(struct gen1_pkmn_file_struct *file_struct, char* playe
     }
 
     for (i = 0; i < _s; i++) {
-        file_struct->player_name[i] = player_name[i];
+        file_struct->player_name[i] = get_character_code(player_name[i]);
     }
 }
