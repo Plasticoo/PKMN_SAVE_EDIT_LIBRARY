@@ -4,6 +4,8 @@
 
 #include <stdlib.h>
 
+#define FONT_SIZE 256
+
 // character map
 // TODO check characters
 const char fonts[] =
@@ -23,6 +25,18 @@ const char fonts[] =
  '?','?','?','?','?','?','?','?','?','?','?','?','?','?','?','?',   // D
  '?','?','?','?','?','?','?','?','?','?','?','?','?','?','?','?',   // E
  '?','?','.','/',',','?','0','1','2','3','4','5','6','7','8','9'};  // F
+
+int gen1_get_character_code(char c) {
+    int i;
+
+    for (i = 0; i < FONT_SIZE; i++) {
+        if (c == fonts[i]) {
+            return i;
+        }
+    }
+
+    return -1;
+}
 
 char* gen1_get_player_name(uint8_t *player_name) {
     int i;
