@@ -123,7 +123,6 @@ uint8_t gen1_get_pokedex_seen(struct gen1_pkmn_file_struct *file_struct, int nat
     return file_struct->pokedex_seen[national_pokedex_index >> 3] >> (national_pokedex_index & 7) & 1;
 }
 
-// TODO I cant find anything that specifices the differences between pokedex seend and pokedex owned...
 uint8_t gen1_get_pokedex_owned(struct gen1_pkmn_file_struct *file_struct, int national_pokedex_index) {
-    return file_struct->pokedex_seen[national_pokedex_index >> 3] >> (national_pokedex_index & 7) & 1;
+    return file_struct->pokedex_owned[national_pokedex_index >> 3] >> (national_pokedex_index & 7) & 1;
 }
