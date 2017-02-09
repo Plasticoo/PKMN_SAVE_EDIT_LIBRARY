@@ -3,6 +3,7 @@
 #include "../../include/gen1/gen1_structs.h"
 
 #include <stdlib.h>
+#include <stdbool.h>
 
 #define FONT_SIZE 256
 #define FILE_SIZE 32768
@@ -116,4 +117,13 @@ void gen1_set_rival_name(struct gen1_pkmn_file_struct *file_struct, char* rival_
     for (i = 0; i < _s; i++) {
         file_struct->rival_name[i] = get_character_code(rival_name[i]);
     }
+}
+
+uint8_t gen1_get_pokedex_seen(struct gen1_pkmn_file_struct *file_struct, int national_pokedex_index) {
+    return file_struct->pokedex_seen[national_pokedex_index >> 3] >> (national_pokedex_index & 7) & 1;
+}
+
+// TODO I cant find anything that specifices the differences between pokedex seend and pokedex owned...
+uint8_t gen1_get_pokedex_owned(struct gen1_pkmn_file_struct *file_struct, int national_pokedex_index) {
+    return file_struct->pokedex_seen[national_pokedex_index >> 3] >> (national_pokedex_index & 7) & 1;
 }

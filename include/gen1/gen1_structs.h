@@ -57,6 +57,8 @@ void gen1_set_checksum(struct gen1_pkmn_file_struct *file_struct, uint8_t *file_
 // functions to get properties of the struct
 char* gen1_get_player_name(uint8_t *player_name);
 char* gen1_get_rival_name(uint8_t *rival_name);
+uint8_t gen1_get_pokedex_seen(struct gen1_pkmn_file_struct *file_struct, int national_pokedex_index);
+uint8_t gen1_get_pokedex_owned(struct gen1_pkmn_file_struct *file_struct, int national_pokedex_index);
 
 // functions to set properties of the struct
 void gen1_set_player_name(struct gen1_pkmn_file_struct *file_struct, char* rival_name, int size);
