@@ -56,8 +56,10 @@ void gen1_set_checksum(struct gen1_pkmn_file_struct *file_struct, uint8_t *file_
 
 // functions to get properties of the struct
 char* gen1_get_player_name(uint8_t *player_name);
+char* gen1_get_rival_name(uint8_t *rival_name);
 
 // functions to set properties of the struct
-void gen1_set_player_name(struct gen1_pkmn_file_struct *file_struct, char* player_name, int size);
+void gen1_set_player_name(struct gen1_pkmn_file_struct *file_struct, char* rival_name, int size);
+void gen1_set_rival_name(struct gen1_pkmn_file_struct *file_struct, char* rival_name, int size);
 
 #endif
