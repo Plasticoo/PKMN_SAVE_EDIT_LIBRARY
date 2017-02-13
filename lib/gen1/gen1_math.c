@@ -1,3 +1,5 @@
+#include "../../include/gen1/gen1_math.h"
+
 #include <inttypes.h>
 
 uint8_t __bcd_to_dec(uint8_t _bcd) {
