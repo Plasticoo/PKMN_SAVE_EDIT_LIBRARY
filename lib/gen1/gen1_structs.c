@@ -118,3 +118,16 @@ void gen1_set_money(struct gen1_pkmn_file_struct *file_struct, uint32_t value) {
     file_struct->money[1] = buffer[1];
     file_struct->money[2] = buffer[2];
 }
+
+uint16_t gen1_get_casino_coins(struct gen1_pkmn_file_struct *file_struct) {
+    return __bcd_to_dec(file_struct->casino_coins, CASINO_COINS_SIZE);
+}
+
+void gen1_set_casino_coins(struct gen1_pkmn_file_struct *file_struct, uint16_t value) {
+    uint8_t buffer[CASINO_COINS_SIZE];
+
+    __dec_to_bcd(value, buffer);
+
+    file_struct->casino_coins[0] = buffer[0];
+    file_struct->casino_coins[1] = buffer[1];
+}

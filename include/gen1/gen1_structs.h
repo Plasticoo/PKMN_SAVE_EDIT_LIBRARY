@@ -62,11 +62,13 @@ void gen1_set_checksum(struct gen1_pkmn_file_struct *file_struct);
 char* gen1_get_name(uint8_t *name);
 uint8_t gen1_get_pokedex(uint8_t *pokedex, uint8_t index);
 uint32_t gen1_get_money(struct gen1_pkmn_file_struct *file_struct);
+uint16_t gen1_get_casino_coins(struct gen1_pkmn_file_struct *file_struct);
 
 // functions to set properties of the struct
 void gen1_set_name(uint8_t* name, char* new_name, size_t size);
 void gen1_set_pokedex(uint8_t *pokedex, uint8_t index);
 void gen1_unset_pokedex(uint8_t *pokedex, uint8_t index);
 void gen1_set_money(struct gen1_pkmn_file_struct *file_struct, uint32_t value);
+void gen1_set_casino_coins(struct gen1_pkmn_file_struct *file_struct, uint16_t value);
 
 #endif
