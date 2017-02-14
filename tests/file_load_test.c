@@ -20,20 +20,20 @@ int main(int argc, char *argv[])
         exit(EXIT_FAILURE);
     }
 
-	f_map = load_file(f);
-	gen1_load_file(&a, f_map);
+	a.file_map = load_file(f);
+	gen1_load_file(&a);
 
     // name tests
     player_name = gen1_get_player_name(a.player_name);
     printf("Player name: %s\n", player_name);
 
-    gen1_set_player_name(&a, "testopkekt", 10);
-    gen1_set_checksum(&a, f_map);
-    gen1_save_changes("saved_changes.sav", f_map);
+    gen1_set_player_name(&a, "trololo", 10);
+    gen1_set_checksum(&a);
+    gen1_save_changes(&a, "saved_changes.sav");
 
 	fclose(f);
 
-    free(f_map);
+    free(a.file_map);
     free(player_name);
 
     return 0;

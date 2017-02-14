@@ -3,6 +3,8 @@
 
 #include <inttypes.h>
 
+#define FILE_SIZE 0x8000
+
 struct gen1_pkmn_data_struct {
     uint8_t *index;
     uint8_t *hp;
@@ -49,10 +51,11 @@ struct gen1_pkmn_file_struct {
     uint8_t *current_box_list;
     uint8_t *checksum;
     uint8_t *pc_box[12];
+    uint8_t *file_map;
 };
 
-int gen1_save_changes(char* file_name, uint8_t *file_map);
-void gen1_set_checksum(struct gen1_pkmn_file_struct *file_struct, uint8_t *file_map);
+int gen1_save_changes(struct gen1_pkmn_file_struct *file_struct, char* file_name);
+void gen1_set_checksum(struct gen1_pkmn_file_struct *file_struct);
 
 // functions to get properties of the struct
 char* gen1_get_player_name(uint8_t *player_name);

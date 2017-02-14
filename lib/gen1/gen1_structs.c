@@ -7,7 +7,7 @@
 #include <stdbool.h>
 
 #define FONT_SIZE 256
-#define FILE_SIZE 32768
+#define FILE_SIZE 0x8000
 
 // character map
 // TODO check characters
@@ -42,7 +42,7 @@ int get_character_code(char c) {
     return 0x7F;
 }
 
-int gen1_save_changes(char* file_name, uint8_t *file_map) {
+int gen1_save_changes(struct gen1_pkmn_file_struct *file_struct, char* file_name) {
     int i;
     FILE* _f;
 
@@ -51,7 +51,7 @@ int gen1_save_changes(char* file_name, uint8_t *file_map) {
     }
 
     for (i = 0; i < FILE_SIZE; i++) {
-        fwrite(&file_map[i], 1, 1, _f);
+        fwrite(&file_struct->file_map[i], 1, 1, _f);
     }
 
     fclose(_f);
@@ -59,8 +59,8 @@ int gen1_save_changes(char* file_name, uint8_t *file_map) {
     return 0;
 }
 
-void gen1_set_checksum(struct gen1_pkmn_file_struct *file_struct, uint8_t *file_map) {
-    uint8_t checksum = gen1_checksum_map(file_map);
+void gen1_set_checksum(struct gen1_pkmn_file_struct *file_struct) {
+    uint8_t checksum = gen1_checksum_map(file_struct->file_map);
     file_struct->checksum[0] = checksum;
 }
 
