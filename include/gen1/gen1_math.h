@@ -5,5 +5,6 @@
 
 uint8_t __bcd_to_dec(uint8_t _bcd);
 uint8_t __dec_to_bcd(uint8_t _dec);
+uint32_t __int_concat(uint32_t x, uint32_t y);
 
 #endif
