@@ -93,20 +93,16 @@ void gen1_set_name(uint8_t* name, char* new_name, size_t size) {
     }
 }
 
-uint8_t gen1_get_pokedex_seen(struct gen1_pkmn_file_struct *file_struct, int national_pokedex_index) {
-    return file_struct->pokedex_seen[national_pokedex_index >> 3] >> (national_pokedex_index & 7) & 1;
+uint8_t gen1_get_pokedex(uint8_t *pokedex, uint8_t index) {
+    return pokedex[index >> 3] >> (index & 7) & 1;
 }
 
-void gen1_set_pokedex_seen(struct gen1_pkmn_file_struct *file_struct, int national_pokedex_index) {
-    file_struct->pokedex_seen[national_pokedex_index >> 3] |= 1 << (national_pokedex_index & 7);
+void gen1_set_pokedex(uint8_t *pokedex, uint8_t index) {
+    pokedex[index >> 3] |= 1 << (index & 7);
 }
 
-uint8_t gen1_get_pokedex_owned(struct gen1_pkmn_file_struct *file_struct, int national_pokedex_index) {
-    return file_struct->pokedex_owned[national_pokedex_index >> 3] >> (national_pokedex_index & 7) & 1;
-}
-
-void gen1_set_pokedex_owned(struct gen1_pkmn_file_struct *file_struct, int national_pokedex_index) {
-    file_struct->pokedex_owned[national_pokedex_index >> 3] |= 1 << (national_pokedex_index & 7);
+void gen1_unset_pokedex(uint8_t *pokedex, uint8_t index) {
+    pokedex[index >> 3] &= ~(1 << (index & 7));
 }
 
 uint32_t gen1_get_money(struct gen1_pkmn_file_struct *file_struct) {
