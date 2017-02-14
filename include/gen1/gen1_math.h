@@ -3,8 +3,10 @@
 
 #include <inttypes.h>
 
-uint8_t __bcd_to_dec(uint8_t _bcd);
-uint8_t __dec_to_bcd(uint8_t _dec);
+#include <sys/types.h>
+
+uint32_t __bcd_to_dec(const uint8_t* buffer, size_t num_bytes);
+void __dec_to_bcd(uint32_t num, uint8_t* buffer_out);
 uint32_t __int_concat(uint32_t x, uint32_t y);
 
 #endif
