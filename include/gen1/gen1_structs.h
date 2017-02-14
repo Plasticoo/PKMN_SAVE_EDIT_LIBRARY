@@ -67,6 +67,8 @@ uint32_t gen1_get_money(struct gen1_pkmn_file_struct *file_struct);
 // functions to set properties of the struct
 void gen1_set_player_name(struct gen1_pkmn_file_struct *file_struct, char* rival_name, int size);
 void gen1_set_rival_name(struct gen1_pkmn_file_struct *file_struct, char* rival_name, int size);
+void gen1_set_pokedex_seen(struct gen1_pkmn_file_struct *file_struct, int national_pokedex_index);
+void gen1_set_pokedex_owned(struct gen1_pkmn_file_struct *file_struct, int national_pokedex_index);
 void gen1_set_money(struct gen1_pkmn_file_struct *file_struct, uint32_t value);
 
 #endif
