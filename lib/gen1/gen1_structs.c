@@ -64,59 +64,32 @@ void gen1_set_checksum(struct gen1_pkmn_file_struct *file_struct) {
     file_struct->checksum[0] = checksum;
 }
 
-char* gen1_get_player_name(uint8_t *player_name) {
+char* gen1_get_name(uint8_t *name) {
     int i;
 
-    char *name = calloc(PLAYER_NAME_SIZE, sizeof(char));
+    char *_name = calloc(PLAYER_NAME_SIZE, sizeof(char));
 
     for (i = 0; i < PLAYER_NAME_SIZE; i++) {
-        if(player_name[i] == 'P') break;
-        name[i] = fonts[player_name[i]];
+        if(name[i] == 'P') break;
+        _name[i] = fonts[name[i]];
     }
 
-    name[i] = '\0';
+    _name[i] = '\0';
 
-    return name;
+    return _name;
 }
 
 // TODO handling of the 'P' character that is needed for string termination
-void gen1_set_player_name(struct gen1_pkmn_file_struct *file_struct, char* player_name, int size) {
-    int i, _s = size;
+void gen1_set_name(uint8_t* name, char* new_name, size_t size) {
+    size_t i;
+    size_t _s = size;
 
     if (size >= 7) {
         _s = 7;
     }
 
     for (i = 0; i < _s; i++) {
-        file_struct->player_name[i] = get_character_code(player_name[i]);
-    }
-}
-
-char* gen1_get_rival_name(uint8_t *rival_name) {
-    int i;
-
-    char *name = calloc(PLAYER_NAME_SIZE, sizeof(char));
-
-    for (i = 0; i < PLAYER_NAME_SIZE; i++) {
-        if(rival_name[i] == 'P') break;
-        name[i] = fonts[rival_name[i]];
-    }
-
-    name[i] = '\0';
-
-    return name;
-}
-
-// TODO handling of the 'P' character that is needed for string termination
-void gen1_set_rival_name(struct gen1_pkmn_file_struct *file_struct, char* rival_name, int size) {
-    int i, _s = size;
-
-    if (size >= 7) {
-        _s = 7;
-    }
-
-    for (i = 0; i < _s; i++) {
-        file_struct->rival_name[i] = get_character_code(rival_name[i]);
+        name[i] = get_character_code(new_name[i]);
     }
 }
 

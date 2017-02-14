@@ -2,6 +2,7 @@
 #define __GEN1_STRUCTS_H_
 
 #include <inttypes.h>
+#include <sys/types.h>
 
 #define FILE_SIZE 0x8000
 
@@ -58,15 +59,13 @@ int gen1_save_changes(struct gen1_pkmn_file_struct *file_struct, char* file_name
 void gen1_set_checksum(struct gen1_pkmn_file_struct *file_struct);
 
 // functions to get properties of the struct
-char* gen1_get_player_name(uint8_t *player_name);
-char* gen1_get_rival_name(uint8_t *rival_name);
+char* gen1_get_name(uint8_t *name);
 uint8_t gen1_get_pokedex_seen(struct gen1_pkmn_file_struct *file_struct, int national_pokedex_index);
 uint8_t gen1_get_pokedex_owned(struct gen1_pkmn_file_struct *file_struct, int national_pokedex_index);
 uint32_t gen1_get_money(struct gen1_pkmn_file_struct *file_struct);
 
 // functions to set properties of the struct
-void gen1_set_player_name(struct gen1_pkmn_file_struct *file_struct, char* rival_name, int size);
-void gen1_set_rival_name(struct gen1_pkmn_file_struct *file_struct, char* rival_name, int size);
+void gen1_set_name(uint8_t* name, char* new_name, size_t size);
 void gen1_set_pokedex_seen(struct gen1_pkmn_file_struct *file_struct, int national_pokedex_index);
 void gen1_set_pokedex_owned(struct gen1_pkmn_file_struct *file_struct, int national_pokedex_index);
 void gen1_set_money(struct gen1_pkmn_file_struct *file_struct, uint32_t value);
