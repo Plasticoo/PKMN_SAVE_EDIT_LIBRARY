@@ -1,6 +1,7 @@
 #include "../../include/gen1/gen1_funcs.h"
 #include "../../include/gen1/gen1_defines.h"
 #include "../../include/gen1/gen1_structs.h"
+#include "../../include/gen1/gen1_math.h"
 
 #include <stdlib.h>
 #include <stdbool.h>
@@ -125,4 +126,18 @@ uint8_t gen1_get_pokedex_seen(struct gen1_pkmn_file_struct *file_struct, int nat
 
 uint8_t gen1_get_pokedex_owned(struct gen1_pkmn_file_struct *file_struct, int national_pokedex_index) {
     return file_struct->pokedex_owned[national_pokedex_index >> 3] >> (national_pokedex_index & 7) & 1;
+}
+
+uint32_t gen1_get_money(struct gen1_pkmn_file_struct *file_struct) {
+    return __bcd_to_dec(file_struct->money, MONEY_SIZE);
+}
+
+void gen1_set_money(struct gen1_pkmn_file_struct *file_struct, uint32_t value) {
+    uint8_t buffer[MONEY_SIZE];
+
+    __dec_to_bcd(value, buffer);
+
+    file_struct->money[0] = buffer[0];
+    file_struct->money[1] = buffer[1];
+    file_struct->money[2] = buffer[2];
 }
