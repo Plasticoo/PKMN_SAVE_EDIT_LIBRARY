@@ -9,6 +9,11 @@
 #define FONT_SIZE 256
 #define FILE_SIZE 0x8000
 
+#define OPTION_TEXT_SPEED_MASK 7
+#define OPTION_SOUND_MASK 8
+#define OPTION_BATTLE_STYLE_MASK 64
+#define OPTION_BATTLE_EFFECTS_MASK 128
+
 // character map
 // TODO check characters
 const char fonts[] =
@@ -75,7 +80,6 @@ char* gen1_get_name(uint8_t *name) {
     }
 
     _name[i] = '\0';
-
     return _name;
 }
 
@@ -130,4 +134,25 @@ void gen1_set_casino_coins(struct gen1_pkmn_file_struct *file_struct, uint16_t v
 
     file_struct->casino_coins[0] = buffer[0];
     file_struct->casino_coins[1] = buffer[1];
+}
+
+uint8_t gen1_get_option(struct gen1_pkmn_file_struct *file_struct, enum options option) {
+    uint8_t result;
+
+    switch(option) {
+    case OPTION_TEXT_SPEED:
+        result = file_struct->options[0] & 7;
+        break;
+    case OPTION_SOUND:
+        result = file_struct->options[0] & 8;
+        break;
+    case OPTION_BATTLE_STYLE:
+        result = file_struct->options[0] & 64;
+        break;
+    case OPTION_BATTLE_EFFECTS:
+        result = file_struct->options[0] & 128;
+        break;
+    }
+
+    return result;
 }
