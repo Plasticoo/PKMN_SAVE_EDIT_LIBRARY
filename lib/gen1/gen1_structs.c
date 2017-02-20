@@ -189,3 +189,8 @@ uint8_t gen1_get_badge(struct gen1_pkmn_file_struct *file_struct, enum badges ba
 {
     return file_struct->badges[0] & (1 << badge);
 }
+
+void gen1_set_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge)
+{
+    file_struct->badges[0] ^= badge;
+}
