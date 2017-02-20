@@ -19,6 +19,12 @@ enum options {
     OPTION_BATTLE_EFFECTS
 };
 
+struct gen1_pkmn_time {
+    uint32_t hours;
+    uint32_t minutes;
+    uint32_t seconds;
+};
+
 struct gen1_pkmn_data_struct {
     uint8_t *index;
     uint8_t *hp;
@@ -77,6 +83,7 @@ uint8_t gen1_get_pokedex(uint8_t *pokedex, uint8_t index);
 uint32_t gen1_get_money(struct gen1_pkmn_file_struct *file_struct);
 uint16_t gen1_get_casino_coins(struct gen1_pkmn_file_struct *file_struct);
 uint8_t gen1_get_option(struct gen1_pkmn_file_struct *file_struct, enum options option);
+void gen1_get_time_played(struct gen1_pkmn_file_struct *file_struct, struct gen1_pkmn_time *time);
 
 // functions to set properties of the struct
 void gen1_set_name(uint8_t* name, char* new_name, size_t size);
