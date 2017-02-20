@@ -6,14 +6,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define FONT_SIZE 256
-#define FILE_SIZE 0x8000
-
-#define OPTION_TEXT_SPEED_MASK 7
-#define OPTION_SOUND_MASK 8
-#define OPTION_BATTLE_STYLE_MASK 64
-#define OPTION_BATTLE_EFFECTS_MASK 128
-
 // character map
 // TODO check characters
 const char fonts[] =
@@ -142,16 +134,16 @@ uint8_t gen1_get_option(struct gen1_pkmn_file_struct *file_struct, enum options 
 
     switch(option) {
     case OPTION_TEXT_SPEED:
-        result = file_struct->options[0] & 7;
+        result = file_struct->options[0] & OPTION_TEXT_SPEED_MASK;
         break;
     case OPTION_SOUND:
-        result = file_struct->options[0] & 16;
+        result = file_struct->options[0] & OPTION_SOUND_MASK;
         break;
     case OPTION_BATTLE_STYLE:
-        result = file_struct->options[0] & 64;
+        result = file_struct->options[0] & OPTION_BATTLE_STYLE_MASK;
         break;
     case OPTION_BATTLE_EFFECTS:
-        result = file_struct->options[0] & 128;
+        result = file_struct->options[0] & OPTION_BATTLE_EFFECTS_MASK;
         break;
     }
 
@@ -167,13 +159,13 @@ void gen1_set_option(struct gen1_pkmn_file_struct *file_struct, enum options opt
         file_struct->options[0] ^= 0;
         break;
     case OPTION_SOUND:
-        file_struct->options[0] ^= 16;
+        file_struct->options[0] ^= OPTION_SOUND_MASK;
         break;
     case OPTION_BATTLE_STYLE:
-        file_struct->options[0] ^= 64;
+        file_struct->options[0] ^= OPTION_BATTLE_STYLE_MASK;
         break;
     case OPTION_BATTLE_EFFECTS:
-        file_struct->options[0] ^= 128;
+        file_struct->options[0] ^= OPTION_BATTLE_EFFECTS_MASK;
         break;
     }
 }
