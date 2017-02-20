@@ -145,7 +145,7 @@ uint8_t gen1_get_option(struct gen1_pkmn_file_struct *file_struct, enum options 
         result = file_struct->options[0] & 7;
         break;
     case OPTION_SOUND:
-        result = file_struct->options[0] & 8;
+        result = file_struct->options[0] & 16;
         break;
     case OPTION_BATTLE_STYLE:
         result = file_struct->options[0] & 64;
