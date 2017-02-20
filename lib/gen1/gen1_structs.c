@@ -176,3 +176,11 @@ void gen1_get_time_played(struct gen1_pkmn_file_struct *file_struct, struct gen1
     time->minutes = file_struct->time_played[2];
     time->seconds = file_struct->time_played[3];
 }
+
+void gen1_set_time_played(struct gen1_pkmn_file_struct *file_struct, struct gen1_pkmn_time *time)
+{
+    file_struct->time_played[0] = time->hours  & 0xFF;
+    file_struct->time_played[1] = (time->hours >> 8) & 0xFF;
+    file_struct->time_played[2] = time->minutes;
+    file_struct->time_played[3] = time->seconds;
+}
