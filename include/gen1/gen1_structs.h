@@ -19,6 +19,17 @@ enum options {
     OPTION_BATTLE_EFFECTS
 };
 
+enum badges {
+    BOULDER_BADGE,
+    CASCADE_BADGE,
+    THUNDER_BADGE,
+    RAINBOW_BADGE,
+    SOUL_BADGE,
+    MARSH_BADGE,
+    VOLCANO_BADGE,
+    EARTH_BADGE
+};
+
 struct gen1_pkmn_time {
     uint32_t hours;
     uint32_t minutes;
@@ -84,6 +95,7 @@ uint32_t gen1_get_money(struct gen1_pkmn_file_struct *file_struct);
 uint16_t gen1_get_casino_coins(struct gen1_pkmn_file_struct *file_struct);
 uint8_t gen1_get_option(struct gen1_pkmn_file_struct *file_struct, enum options option);
 void gen1_get_time_played(struct gen1_pkmn_file_struct *file_struct, struct gen1_pkmn_time *time);
+uint8_t gen1_get_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge);
 
 // functions to set properties of the struct
 void gen1_set_name(uint8_t* name, char* new_name, size_t size);

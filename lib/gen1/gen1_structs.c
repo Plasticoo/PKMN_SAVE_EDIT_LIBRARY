@@ -184,3 +184,8 @@ void gen1_set_time_played(struct gen1_pkmn_file_struct *file_struct, struct gen1
     file_struct->time_played[2] = time->minutes;
     file_struct->time_played[3] = time->seconds;
 }
+
+uint8_t gen1_get_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge)
+{
+    return file_struct->badges[0] & (1 << badge);
+}
