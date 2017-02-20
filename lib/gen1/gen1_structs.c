@@ -136,6 +136,7 @@ void gen1_set_casino_coins(struct gen1_pkmn_file_struct *file_struct, uint16_t v
     file_struct->casino_coins[1] = buffer[1];
 }
 
+// TODO take care of pokemon yellow options (1 extra)
 uint8_t gen1_get_option(struct gen1_pkmn_file_struct *file_struct, enum options option) {
     uint8_t result;
 
@@ -155,4 +156,24 @@ uint8_t gen1_get_option(struct gen1_pkmn_file_struct *file_struct, enum options 
     }
 
     return result;
+}
+
+// TODO take care of pokemon yellow options
+// TODO take care of text speed!
+void gen1_set_option(struct gen1_pkmn_file_struct *file_struct, enum options option)
+{
+    switch(option) {
+    case OPTION_TEXT_SPEED:
+        file_struct->options[0] ^= 0;
+        break;
+    case OPTION_SOUND:
+        file_struct->options[0] ^= 16;
+        break;
+    case OPTION_BATTLE_STYLE:
+        file_struct->options[0] ^= 64;
+        break;
+    case OPTION_BATTLE_EFFECTS:
+        file_struct->options[0] ^= 128;
+        break;
+    }
 }
