@@ -4,13 +4,13 @@
 #include <inttypes.h>
 #include <sys/types.h>
 
-#define FONT_SIZE 256
+#define FONT_SIZE 0x100
 #define FILE_SIZE 0x8000
 
-#define OPTION_TEXT_SPEED_MASK 7
-#define OPTION_SOUND_MASK 16
-#define OPTION_BATTLE_STYLE_MASK 64
-#define OPTION_BATTLE_EFFECTS_MASK 128
+#define OPTION_TEXT_SPEED_MASK 0x7
+#define OPTION_SOUND_MASK 0x10
+#define OPTION_BATTLE_STYLE_MASK 0x40
+#define OPTION_BATTLE_EFFECTS_MASK 0x80
 
 enum options {
     OPTION_TEXT_SPEED,
