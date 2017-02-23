@@ -30,6 +30,7 @@ enum badges {
     EARTH_BADGE
 };
 
+// TODO change number of bytes
 struct gen1_pkmn_time {
     uint32_t hours;
     uint32_t minutes;
@@ -96,6 +97,7 @@ uint16_t gen1_get_casino_coins(struct gen1_pkmn_file_struct *file_struct);
 uint8_t gen1_get_option(struct gen1_pkmn_file_struct *file_struct, enum options option);
 void gen1_get_time_played(struct gen1_pkmn_file_struct *file_struct, struct gen1_pkmn_time *time);
 uint8_t gen1_get_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge);
+uint8_t gen1_get_current_pc_box(struct gen1_pkmn_file_struct *file_struct);
 
 // functions to set properties of the struct
 void gen1_set_name(uint8_t* name, char* new_name, size_t size);

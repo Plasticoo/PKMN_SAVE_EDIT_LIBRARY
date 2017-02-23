@@ -194,3 +194,8 @@ void gen1_set_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge
 {
     file_struct->badges[0] ^= badge;
 }
+
+uint8_t gen1_get_current_pc_box(struct gen1_pkmn_file_struct *file_struct)
+{
+    return file_struct->current_pc_box[0] + 1;
+}
