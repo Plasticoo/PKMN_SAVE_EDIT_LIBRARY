@@ -38,6 +38,8 @@ struct gen1_pkmn_time {
 };
 
 struct gen1_pkmn_data_struct {
+    uint8_t *name;
+    uint8_t *ot_name;
     uint8_t *index;
     uint8_t *hp;
     uint8_t *level;
@@ -79,7 +81,7 @@ struct gen1_pkmn_file_struct {
     uint8_t *current_pc_box;
     uint8_t *casino_coins;
     uint8_t *time_played;
-    uint8_t *team_pokemon_list;
+    struct gen1_pkmn_data_struct *team_pokemon_list[6];
     uint8_t *current_box_list;
     uint8_t *checksum;
     uint8_t *pc_box[12];

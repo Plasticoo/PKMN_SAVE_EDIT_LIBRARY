@@ -87,6 +87,11 @@ uint8_t* load_file(FILE* f) {
 
 // TODO Create function to print hex of file contents
 void gen1_load_file(struct gen1_pkmn_file_struct* file_struct) {
+    uint8_t  i;
+    uint32_t pokemon_list_offset = TEAM_POKEMON_LIST_ADDRESS;
+    uint32_t pokemon_ot_name_offset = 0x0110;
+    uint32_t pokemon_name_offset = 0x0152;
+
     file_struct->player_name = &file_struct->file_map[PLAYER_NAME_ADDRESS];
     file_struct->pokedex_owned = &file_struct->file_map[POKEDEX_OWNED_ADDRESS];
     file_struct->pokedex_seen = &file_struct->file_map[POKEDEX_SEEN_ADDRESS];
@@ -101,9 +106,37 @@ void gen1_load_file(struct gen1_pkmn_file_struct* file_struct) {
     file_struct->current_pc_box = &file_struct->file_map[CURRENT_PC_BOX_ADDRESS];
     file_struct->casino_coins = &file_struct->file_map[CASINO_COINS_ADDRESS];
     file_struct->time_played = &file_struct->file_map[TIME_PLAYED_ADDRESS];
-    file_struct->team_pokemon_list = &file_struct->file_map[TEAM_POKEMON_LIST_ADDRESS];
     file_struct->current_box_list = &file_struct->file_map[CURRENT_BOX_POKEMON_LIST_ADDRESS];
     file_struct->checksum = &file_struct->file_map[CHECKSUM_ADDRESS];
 	// TODO Fix PC_BOX_1_POKEMON_LIST name (add ADDRESS)
     // TODO file_struct->pc_box = &file_map[PC_BOX_1_POKEMON_LIST];
+
+    // load pokemon party
+    for (i = 0; i < 6; i++) {
+        file_struct->team_pokemon_list[i] = calloc(1, sizeof(struct gen1_pkmn_data_struct));
+        file_struct->team_pokemon_list[i]->name = &file_struct->file_map[pokemon_list_offset + pokemon_name_offset];
+        file_struct->team_pokemon_list[i]->ot_name = &file_struct->file_map[pokemon_list_offset + pokemon_ot_name_offset];
+        file_struct->team_pokemon_list[i]->index;
+        file_struct->team_pokemon_list[i]->hp;
+        file_struct->team_pokemon_list[i]->level;
+        file_struct->team_pokemon_list[i]->status;
+        file_struct->team_pokemon_list[i]->type[2];
+        file_struct->team_pokemon_list[i]->catch_item;
+        file_struct->team_pokemon_list[i]->moves[4];
+        file_struct->team_pokemon_list[i]->trainer_id;
+        file_struct->team_pokemon_list[i]->xp;
+        file_struct->team_pokemon_list[i]->hp_ev;
+        file_struct->team_pokemon_list[i]->atk_ev;
+        file_struct->team_pokemon_list[i]->def_ev;
+        file_struct->team_pokemon_list[i]->speed_ev;
+        file_struct->team_pokemon_list[i]->special_ev;
+        file_struct->team_pokemon_list[i]->iv;
+        file_struct->team_pokemon_list[i]->moves_pp[4];
+        file_struct->team_pokemon_list[i]->level_opt;
+        file_struct->team_pokemon_list[i]->max_hp;
+        file_struct->team_pokemon_list[i]->atk;
+        file_struct->team_pokemon_list[i]->def;
+        file_struct->team_pokemon_list[i]->speed;
+        file_struct->team_pokemon_list[i]->special;
+    }
 }
