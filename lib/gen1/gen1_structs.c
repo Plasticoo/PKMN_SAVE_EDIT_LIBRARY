@@ -199,3 +199,16 @@ uint8_t gen1_get_current_pc_box(struct gen1_pkmn_file_struct *file_struct)
 {
     return file_struct->current_pc_box[0] + 1;
 }
+
+void gen1_set_current_pc_box(struct gen1_pkmn_file_struct *file_struct, uint8_t index)
+{
+    uint8_t idx;
+
+    if(index == 0) {
+        idx = 0;
+    } else {
+        idx = index - 1;
+    }
+
+    file_struct->current_pc_box[0] = idx;
+}

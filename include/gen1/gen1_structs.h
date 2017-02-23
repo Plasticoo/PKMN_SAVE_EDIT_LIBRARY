@@ -108,5 +108,6 @@ void gen1_set_casino_coins(struct gen1_pkmn_file_struct *file_struct, uint16_t v
 void gen1_set_option(struct gen1_pkmn_file_struct *file_struct, enum options option);
 void gen1_set_time_played(struct gen1_pkmn_file_struct *file_struct, struct gen1_pkmn_time *time);
 void gen1_set_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge);
+void gen1_set_current_pc_box(struct gen1_pkmn_file_struct *file_struct, uint8_t index);
 
 #endif
