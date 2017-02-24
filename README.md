@@ -19,7 +19,7 @@ Features
 - [ ] Badges
 - [ ] Pikachu Friendship (Yellow Version)
 - [ ] PC Item List
-- [ ] Current PC Box
+- [x] Current PC Box
 - [ ] Time Played
 - [ ] Team Pokemon List
 - [ ] PC Box Pokemon Lists
