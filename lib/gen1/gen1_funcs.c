@@ -13,6 +13,8 @@
 #define FILE_CONTENTS_SIZE 0x54B4
 #define FILE_INIT_ADDRESS 0x2598
 
+#define POKEMON_PARTY_SIZE 6
+
 // TODO move to general purpose c file
 // that works for any gen
 long get_file_size(FILE* f) {
@@ -113,7 +115,7 @@ void gen1_load_file(struct gen1_pkmn_file_struct* file_struct) {
     // TODO file_struct->pc_box = &file_map[PC_BOX_1_POKEMON_LIST];
 
     // load pokemon party
-    for (i = 0; i < 6; i++) {
+    for (i = 0; i < POKEMON_PARTY_SIZE; i++) {
         file_struct->team_pokemon_list[i]              = calloc(1, sizeof(struct gen1_pkmn_data_struct));
 
         file_struct->team_pokemon_list[i]->name        = &file_struct->file_map[pokemon_list_offset + pokemon_name_offset];
@@ -147,5 +149,8 @@ void gen1_load_file(struct gen1_pkmn_file_struct* file_struct) {
         file_struct->team_pokemon_list[i]->def         = &file_struct->file_map[pokemon_list_offset + pokemon_list_data_offset + DEFENSE_OFFSET];
         file_struct->team_pokemon_list[i]->speed       = &file_struct->file_map[pokemon_list_offset + pokemon_list_data_offset + SPEED_OFFSET];
         file_struct->team_pokemon_list[i]->special     = &file_struct->file_map[pokemon_list_offset + pokemon_list_data_offset + SPECIAL_OFFSET];
+
+        pokemon_list_offset += TEAM_POKEMON_LIST_ADDRESS;
+        pokemon_list_data_offset += TEAM_POKEMON_LIST_ADDRESS;
     }
 }
