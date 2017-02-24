@@ -112,4 +112,7 @@ void gen1_set_time_played(struct gen1_pkmn_file_struct *file_struct, struct gen1
 void gen1_set_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge);
 void gen1_set_current_pc_box(struct gen1_pkmn_file_struct *file_struct, uint8_t index);
 
+// others
+uint8_t gen1_get_number_pkmn_party(struct gen1_pkmn_file_struct *file_struct);
+
 #endif

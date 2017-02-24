@@ -212,3 +212,9 @@ void gen1_set_current_pc_box(struct gen1_pkmn_file_struct *file_struct, uint8_t 
 
     file_struct->current_pc_box[0] = idx;
 }
+
+// others
+uint8_t gen1_get_number_pkmn_party(struct gen1_pkmn_file_struct *file_struct)
+{
+    return file_struct->file_map[TEAM_POKEMON_LIST_ADDRESS];
+}
