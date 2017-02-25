@@ -113,6 +113,9 @@ void gen1_set_option(struct gen1_pkmn_file_struct *file_struct, enum options opt
 void gen1_set_time_played(struct gen1_pkmn_file_struct *file_struct, struct gen1_pkmn_time *time);
 void gen1_set_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge);
 void gen1_set_current_pc_box(struct gen1_pkmn_file_struct *file_struct, uint8_t index);
+void gen1_set_pokemon_in_party(struct gen1_pkmn_file_struct *file_struct,
+                               struct gen1_pkmn_data_struct *pkmn_data,
+                               uint8_t index);
 
 // others
 uint8_t gen1_get_number_pkmn_party(struct gen1_pkmn_file_struct *file_struct);
