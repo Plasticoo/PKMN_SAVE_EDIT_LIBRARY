@@ -21,7 +21,7 @@ Features
 - [ ] PC Item List
 - [x] Current PC Box
 - [ ] Time Played
-- [ ] Team Pokemon List
+- [x] Team Pokemon List
 - [ ] PC Box Pokemon Lists
 - [x] Checksum
 
