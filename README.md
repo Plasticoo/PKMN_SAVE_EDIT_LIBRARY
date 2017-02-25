@@ -15,12 +15,12 @@ Features
 - [ ] Pocket Item List
 - [x] Money
 - [x] Casino Coins
-- [ ] Options
-- [ ] Badges
+- [x] Options
+- [x] Badges
 - [ ] Pikachu Friendship (Yellow Version)
 - [ ] PC Item List
 - [x] Current PC Box
-- [ ] Time Played
+- [x] Time Played
 - [x] Team Pokemon List
 - [ ] PC Box Pokemon Lists
 - [x] Checksum
