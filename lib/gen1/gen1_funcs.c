@@ -150,7 +150,7 @@ void gen1_load_file(struct gen1_pkmn_file_struct* file_struct) {
         file_struct->team_pokemon_list[i]->speed       = &file_struct->file_map[pokemon_list_offset + pokemon_list_data_offset + SPEED_OFFSET];
         file_struct->team_pokemon_list[i]->special     = &file_struct->file_map[pokemon_list_offset + pokemon_list_data_offset + SPECIAL_OFFSET];
 
-        pokemon_list_offset += TEAM_POKEMON_LIST_ADDRESS;
+        pokemon_list_offset += 44;
         pokemon_list_data_offset += TEAM_POKEMON_LIST_ADDRESS;
     }
 }
