@@ -8,4 +8,4 @@ set(CMAKE_C_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall -Wextra -pipe -march
 include_directories(include/gen1)
 file(GLOB gen1_sources "lib/gen1/*.c")
 
-add_library(pkmn_save_edit_lib SHARED ${gen1_sources})
+add_library(pkmnsav SHARED ${gen1_sources})
