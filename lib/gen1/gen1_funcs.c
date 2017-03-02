@@ -17,7 +17,8 @@
 
 // TODO move to general purpose c file
 // that works for any gen
-long get_file_size(FILE* f) {
+long get_file_size(FILE* f)
+{
     long _s;
 
     fseek(f, 0L, SEEK_END);
@@ -27,7 +28,8 @@ long get_file_size(FILE* f) {
     return _s;
 }
 
-FILE* _fopen(char* file_name, int* errn) {
+FILE* _fopen(char* file_name, int* errn)
+{
     FILE* f;
 
     if ((f = fopen(file_name, "r")) == NULL) {
@@ -45,7 +47,8 @@ FILE* _fopen(char* file_name, int* errn) {
     return f;
 }
 
-uint8_t gen1_checksum_file(FILE* f) {
+uint8_t gen1_checksum_file(FILE* f)
+{
     int i;
 
     uint8_t checksum = 0;
@@ -61,7 +64,8 @@ uint8_t gen1_checksum_file(FILE* f) {
     return ~checksum;
 }
 
-uint8_t gen1_checksum_map(uint8_t *file_map) {
+uint8_t gen1_checksum_map(uint8_t *file_map)
+{
     int i;
 
     uint8_t checksum = 0;
@@ -73,7 +77,8 @@ uint8_t gen1_checksum_map(uint8_t *file_map) {
     return ~checksum;
 }
 
-uint8_t* load_file(FILE* f) {
+uint8_t* load_file(FILE* f)
+{
     int i;
 
     uint8_t* file_map = calloc(FILE_SIZE, sizeof(uint8_t));
@@ -88,7 +93,8 @@ uint8_t* load_file(FILE* f) {
 }
 
 // TODO Create function to print hex of file contents
-void gen1_load_file(struct gen1_pkmn_file_struct* file_struct) {
+void gen1_load_file(struct gen1_pkmn_file_struct* file_struct)
+{
     uint8_t  i;
     uint32_t pokemon_list_offset = TEAM_POKEMON_LIST_ADDRESS;
     uint32_t pokemon_list_data_offset = TEAM_POKEMON_LIST_ADDRESS + 0x8;

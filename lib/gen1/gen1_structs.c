@@ -26,7 +26,8 @@ const char fonts[] =
  '?','?','?','?','?','?','?','?','?','?','?','?','?','?','?','?',   // E
  '?','?','.','/',',','?','0','1','2','3','4','5','6','7','8','9'};  // F
 
-int get_character_code(char c) {
+int get_character_code(char c)
+{
     int i;
 
     for (i = 0; i < FONT_SIZE; i++) {
@@ -39,7 +40,8 @@ int get_character_code(char c) {
     return 0x7F;
 }
 
-int gen1_save_changes(struct gen1_pkmn_file_struct *file_struct, char* file_name) {
+int gen1_save_changes(struct gen1_pkmn_file_struct *file_struct, char* file_name)
+{
     int i;
     FILE* _f;
 
@@ -56,12 +58,14 @@ int gen1_save_changes(struct gen1_pkmn_file_struct *file_struct, char* file_name
     return 0;
 }
 
-void gen1_set_checksum(struct gen1_pkmn_file_struct *file_struct) {
+void gen1_set_checksum(struct gen1_pkmn_file_struct *file_struct)
+{
     uint8_t checksum = gen1_checksum_map(file_struct->file_map);
     file_struct->checksum[0] = checksum;
 }
 
-char* gen1_get_name(uint8_t *name) {
+char* gen1_get_name(uint8_t *name)
+{
     int i;
 
     char *_name = calloc(PLAYER_NAME_SIZE, sizeof(char));
@@ -76,7 +80,8 @@ char* gen1_get_name(uint8_t *name) {
 }
 
 // TODO handling of the 'P' character that is needed for string termination
-void gen1_set_name(uint8_t* name, char* new_name, size_t size) {
+void gen1_set_name(uint8_t* name, char* new_name, size_t size)
+{
     size_t i;
     size_t _s = size;
 
@@ -89,23 +94,28 @@ void gen1_set_name(uint8_t* name, char* new_name, size_t size) {
     }
 }
 
-uint8_t gen1_get_pokedex(uint8_t *pokedex, uint8_t index) {
+uint8_t gen1_get_pokedex(uint8_t *pokedex, uint8_t index)
+{
     return pokedex[index >> 3] >> (index & 7) & 1;
 }
 
-void gen1_set_pokedex(uint8_t *pokedex, uint8_t index) {
+void gen1_set_pokedex(uint8_t *pokedex, uint8_t index)
+{
     pokedex[index >> 3] |= 1 << (index & 7);
 }
 
-void gen1_unset_pokedex(uint8_t *pokedex, uint8_t index) {
+void gen1_unset_pokedex(uint8_t *pokedex, uint8_t index)
+{
     pokedex[index >> 3] &= ~(1 << (index & 7));
 }
 
-uint32_t gen1_get_money(struct gen1_pkmn_file_struct *file_struct) {
+uint32_t gen1_get_money(struct gen1_pkmn_file_struct *file_struct)
+{
     return __bcd_to_dec(file_struct->money, MONEY_SIZE);
 }
 
-void gen1_set_money(struct gen1_pkmn_file_struct *file_struct, uint32_t value) {
+void gen1_set_money(struct gen1_pkmn_file_struct *file_struct, uint32_t value)
+{
     uint8_t buffer[MONEY_SIZE];
 
     __dec_to_bcd(value, buffer);
@@ -115,11 +125,13 @@ void gen1_set_money(struct gen1_pkmn_file_struct *file_struct, uint32_t value) {
     file_struct->money[2] = buffer[2];
 }
 
-uint16_t gen1_get_casino_coins(struct gen1_pkmn_file_struct *file_struct) {
+uint16_t gen1_get_casino_coins(struct gen1_pkmn_file_struct *file_struct)
+{
     return __bcd_to_dec(file_struct->casino_coins, CASINO_COINS_SIZE);
 }
 
-void gen1_set_casino_coins(struct gen1_pkmn_file_struct *file_struct, uint16_t value) {
+void gen1_set_casino_coins(struct gen1_pkmn_file_struct *file_struct, uint16_t value)
+{
     uint8_t buffer[CASINO_COINS_SIZE];
 
     __dec_to_bcd(value, buffer);
@@ -129,7 +141,8 @@ void gen1_set_casino_coins(struct gen1_pkmn_file_struct *file_struct, uint16_t v
 }
 
 // TODO take care of pokemon yellow options (1 extra)
-uint8_t gen1_get_option(struct gen1_pkmn_file_struct *file_struct, enum options option) {
+uint8_t gen1_get_option(struct gen1_pkmn_file_struct *file_struct, enum options option)
+{
     uint8_t result;
 
     switch(option) {
