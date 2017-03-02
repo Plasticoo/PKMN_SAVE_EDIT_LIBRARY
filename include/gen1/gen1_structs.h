@@ -8,6 +8,8 @@
 #define FONT_SIZE 0x100
 #define FILE_SIZE 0x8000
 
+#define BOX_SIZE 20
+
 #define OPTION_TEXT_SPEED_MASK 0x7
 #define OPTION_SOUND_MASK 0x10
 #define OPTION_BATTLE_STYLE_MASK 0x40
@@ -65,6 +67,10 @@ struct gen1_pkmn_data_struct {
     uint8_t *special;
 };
 
+struct gen1_pkmn_box {
+    struct gen1_pkmn_data_struct *pokemon_list[BOX_SIZE];
+};
+
 // TODO Change uint8_t for the
 // respective structure
 struct gen1_pkmn_file_struct {
@@ -85,7 +91,7 @@ struct gen1_pkmn_file_struct {
     struct gen1_pkmn_data_struct *team_pokemon_list[6];
     uint8_t *current_box_list;
     uint8_t *checksum;
-    uint8_t *pc_box[12];
+    struct gen1_pkmn_box *pc_box[12];
     uint8_t *file_map;
 };
 
