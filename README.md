@@ -22,7 +22,7 @@ Features
 - [x] Current PC Box
 - [x] Time Played
 - [x] Team Pokemon List
-- [ ] PC Box Pokemon Lists
+- [x] PC Box Pokemon Lists
 - [x] Checksum
 
 ### Generation 2
