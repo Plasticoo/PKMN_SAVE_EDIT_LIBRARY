@@ -279,7 +279,11 @@ uint8_t gen1_get_number_pkmn_party(struct gen1_pkmn_file_struct *file_struct)
 
 struct gen1_pkmn_data_struct *gen1_get_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct, uint8_t box_index, uint8_t pkmn_index)
 {
-    return 0;
+    if(box_index > 0 && box_index < 12 && pkmn_index > 0 && pkmn_index < 20) {
+        return file_struct->pc_box[box_index]->pokemon_list[pkmn_index];
+    }
+
+    return NULL;
 }
 
 void gen1_set_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct,
