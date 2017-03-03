@@ -276,3 +276,48 @@ uint8_t gen1_get_number_pkmn_party(struct gen1_pkmn_file_struct *file_struct)
 {
     return file_struct->file_map[TEAM_POKEMON_LIST_ADDRESS];
 }
+
+struct gen1_pkmn_data_struct *gen1_get_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct, uint8_t box_index, uint8_t pkmn_index)
+{
+    return 0;
+}
+
+void gen1_set_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct,
+                             struct gen1_pkmn_data_struct pkmn_data,
+                             uint8_t box_index,
+                             uint8_t pkmn_index)
+{
+    if(box_index > 0 && box_index < 12 && pkmn_index > 0 && pkmn_index < 20) {
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->name        = pkmn_data.name;
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->ot_name     = pkmn_data.ot_name;
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->index       = pkmn_data.index;
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->hp          = pkmn_data.hp;
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->level       = pkmn_data.level;
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->status      = pkmn_data.status;
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->type[0]     = pkmn_data.type[0];
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->type[1]     = pkmn_data.type[1];
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->catch_item  = pkmn_data.catch_item;
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->moves[0]    = pkmn_data.moves[0];
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->moves[1]    = pkmn_data.moves[1];
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->moves[2]    = pkmn_data.moves[2];
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->moves[3]    = pkmn_data.moves[3];
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->trainer_id  = pkmn_data.trainer_id;
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->xp          = pkmn_data.xp;
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->hp_ev       = pkmn_data.hp_ev;
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->atk_ev      = pkmn_data.atk_ev;
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->def_ev      = pkmn_data.def_ev;
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->speed_ev    = pkmn_data.speed_ev;
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->special_ev  = pkmn_data.special_ev;
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->iv          = pkmn_data.iv;
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->moves_pp[0] = pkmn_data.moves_pp[0];
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->moves_pp[1] = pkmn_data.moves_pp[1];
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->moves_pp[2] = pkmn_data.moves_pp[2];
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->moves_pp[3] = pkmn_data.moves_pp[3];
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->level_opt   = pkmn_data.level_opt;
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->max_hp      = pkmn_data.max_hp;
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->atk         = pkmn_data.atk;
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->def         = pkmn_data.def;
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->speed       = pkmn_data.speed;
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->special     = pkmn_data.special;
+    }
+}

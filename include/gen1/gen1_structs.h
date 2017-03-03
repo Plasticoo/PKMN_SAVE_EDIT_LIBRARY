@@ -108,6 +108,7 @@ void gen1_get_time_played(struct gen1_pkmn_file_struct *file_struct, struct gen1
 uint8_t gen1_get_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge);
 uint8_t gen1_get_current_pc_box(struct gen1_pkmn_file_struct *file_struct);
 struct gen1_pkmn_data_struct *gen1_get_pokemon_in_party(struct gen1_pkmn_file_struct *file_struct, uint8_t index);
+struct gen1_pkmn_data_struct *gen1_get_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct, uint8_t box_index, uint8_t pkmn_index);
 
 // functions to set properties of the struct
 void gen1_set_name(uint8_t* name, char* new_name, size_t size);
@@ -122,7 +123,10 @@ void gen1_set_current_pc_box(struct gen1_pkmn_file_struct *file_struct, uint8_t 
 void gen1_set_pokemon_in_party(struct gen1_pkmn_file_struct *file_struct,
                                struct gen1_pkmn_data_struct pkmn_data,
                                uint8_t index);
-
+void gen1_set_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct,
+                               struct gen1_pkmn_data_struct pkmn_data,
+                               uint8_t box_index,
+                               uint8_t pkmn_index);
 // others
 uint8_t gen1_get_number_pkmn_party(struct gen1_pkmn_file_struct *file_struct);
 
