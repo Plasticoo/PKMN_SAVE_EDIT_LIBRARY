@@ -33,6 +33,14 @@ enum badges {
     EARTH_BADGE
 };
 
+enum {
+    STATUS_ASLEEP = 0x04,
+    STATUS_POISONED = 0x08,
+    STATUS_BURNED = 0x10,
+    STATUS_FROZEN = 0x20,
+    STATUS_PARALYZED = 0x40,
+};
+
 // TODO change number of bytes
 struct gen1_pkmn_time {
     uint32_t hours;

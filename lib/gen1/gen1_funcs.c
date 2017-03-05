@@ -200,8 +200,9 @@ void gen1_load_file(struct gen1_pkmn_file_struct* file_struct)
             file_struct->pc_box[i]->pokemon_list[j]->moves_pp[1] = &file_struct->file_map[pokemon_list_offset + pokemon_list_data_offset + MOVE_2_PP_OFFSET];
             file_struct->pc_box[i]->pokemon_list[j]->moves_pp[2] = &file_struct->file_map[pokemon_list_offset + pokemon_list_data_offset + MOVE_3_PP_OFFSET];
             file_struct->pc_box[i]->pokemon_list[j]->moves_pp[3] = &file_struct->file_map[pokemon_list_offset + pokemon_list_data_offset + MOVE_4_PP_OFFSET];
-            file_struct->pc_box[i]->pokemon_list[j]->level_opt   = NULL;
-            file_struct->pc_box[i]->pokemon_list[j]->max_hp      = NULL;
+
+            file_struct->pc_box[i]->pokemon_list[j]->level_opt   = file_struct->pc_box[i]->pokemon_list[j]->level;
+            file_struct->pc_box[i]->pokemon_list[j]->max_hp      = file_struct->pc_box[i]->pokemon_list[j]->hp;
             file_struct->pc_box[i]->pokemon_list[j]->atk         = NULL;
             file_struct->pc_box[i]->pokemon_list[j]->def         = NULL;
             file_struct->pc_box[i]->pokemon_list[j]->speed       = NULL;
