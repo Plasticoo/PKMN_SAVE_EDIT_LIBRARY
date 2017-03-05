@@ -97,6 +97,11 @@ struct gen1_pkmn_box {
     struct gen1_pkmn_data_struct *pokemon_list[BOX_SIZE];
 };
 
+struct gen1_item {
+    uint8_t index;
+    uint8_t count;
+};
+
 // TODO Change uint8_t for the
 // respective structure
 struct gen1_pkmn_file_struct {
