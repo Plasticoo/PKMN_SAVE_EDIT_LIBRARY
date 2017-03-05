@@ -41,7 +41,25 @@ enum {
     STATUS_PARALYZED = 0x40,
 };
 
-// TODO change number of bytes
+enum {
+    TYPE_NORMAL = 0x00,
+    TYPE_FIGHTING = 0x01,
+    TYPE_FLYING = 0x02,
+    TYPE_POISON = 0x03,
+    TYPE_GROUND = 0x04,
+    TYPE_ROCK = 0x05,
+    TYPE_BUG = 0x07,
+    TYPE_GHOST = 0x08,
+    TYPE_FIRE = 0x14,
+    TYPE_WATER = 0x15,
+    TYPE_GRASS = 0x16,
+    TYPE_ELECTRIC = 0x17,
+    TYPE_PSYCHIC = 0x18,
+    TYPE_ICE = 0x19,
+    TYPE_DRAGON = 0x1A,
+};
+
+// Todo change number of bytes
 struct gen1_pkmn_time {
     uint32_t hours;
     uint32_t minutes;
