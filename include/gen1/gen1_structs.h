@@ -108,7 +108,7 @@ struct gen1_pkmn_file_struct {
     uint8_t *player_name;
     uint8_t *pokedex_owned;
     uint8_t *pokedex_seen;
-    uint8_t *pocket_item_list;
+    struct gen1_item *pocket_item_list[20];
     uint8_t *money;
     uint8_t *rival_name;
     uint8_t *options;
