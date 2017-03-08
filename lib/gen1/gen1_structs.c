@@ -325,3 +325,13 @@ void gen1_set_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct,
         file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->special     = pkmn_data.special;
     }
 }
+
+uint8_t gen1_get_pikachu_friendship(struct gen1_pkmn_file_struct *file_struct)
+{
+    return file_struct->pikachu_friendship[0];
+}
+
+void gen1_set_pikachu_friendship(struct gen1_pkmn_file_struct *file_struct, uint8_t value)
+{
+    file_struct->pikachu_friendship[0] = value;
+}

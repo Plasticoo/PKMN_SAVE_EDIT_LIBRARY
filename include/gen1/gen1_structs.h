@@ -97,6 +97,7 @@ uint8_t gen1_get_badge(struct gen1_pkmn_file_struct *file_struct, enum badges ba
 uint8_t gen1_get_current_pc_box(struct gen1_pkmn_file_struct *file_struct);
 struct gen1_pkmn_data_struct *gen1_get_pokemon_in_party(struct gen1_pkmn_file_struct *file_struct, uint8_t index);
 struct gen1_pkmn_data_struct *gen1_get_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct, uint8_t box_index, uint8_t pkmn_index);
+uint8_t gen1_get_pikachu_friendship(struct gen1_pkmn_file_struct *file_struct);
 
 
 // functions to set properties of the struct
@@ -116,6 +117,8 @@ void gen1_set_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct,
                                struct gen1_pkmn_data_struct pkmn_data,
                                uint8_t box_index,
                                uint8_t pkmn_index);
+void gen1_set_pikachu_friendship(struct gen1_pkmn_file_struct *file_struct, uint8_t value);
+
 // others
 uint8_t gen1_get_number_pkmn_party(struct gen1_pkmn_file_struct *file_struct);
 // TODO create function body
