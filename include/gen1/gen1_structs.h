@@ -75,6 +75,7 @@ struct gen1_pkmn_file_struct {
     uint8_t *current_pc_box;
     uint8_t *casino_coins;
     uint8_t *time_played;
+    uint8_t *item_count;
     struct gen1_pkmn_data_struct *team_pokemon_list[6];
     uint8_t *current_box_list;
     uint8_t *checksum;
@@ -97,6 +98,7 @@ uint8_t gen1_get_current_pc_box(struct gen1_pkmn_file_struct *file_struct);
 struct gen1_pkmn_data_struct *gen1_get_pokemon_in_party(struct gen1_pkmn_file_struct *file_struct, uint8_t index);
 struct gen1_pkmn_data_struct *gen1_get_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct, uint8_t box_index, uint8_t pkmn_index);
 
+
 // functions to set properties of the struct
 void gen1_set_name(uint8_t* name, char* new_name, size_t size);
 void gen1_set_pokedex(uint8_t *pokedex, uint8_t index);
@@ -116,5 +118,7 @@ void gen1_set_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct,
                                uint8_t pkmn_index);
 // others
 uint8_t gen1_get_number_pkmn_party(struct gen1_pkmn_file_struct *file_struct);
+// TODO create function body
+void gen1_add_item(struct gen1_pkmn_file_struct *file_struct, uint8_t item, uint8_t count);
 
 #endif
