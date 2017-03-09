@@ -17,36 +17,36 @@
 
 // Todo change number of bytes
 struct gen1_pkmn_time {
-    uint32_t hours;
-    uint32_t minutes;
-    uint32_t seconds;
+    u32 hours;
+    u32 minutes;
+    u32 seconds;
 };
 
 struct gen1_pkmn_data_struct {
-    uint8_t *name;
-    uint8_t *ot_name;
-    uint8_t *index;
-    uint8_t *hp;
-    uint8_t *level;
-    uint8_t *status;
-    uint8_t *type[2];
-    uint8_t *catch_item;
-    uint8_t *moves[4];
-    uint8_t *trainer_id;
-    uint8_t *xp;
-    uint8_t *hp_ev;
-    uint8_t *atk_ev;
-    uint8_t *def_ev;
-    uint8_t *speed_ev;
-    uint8_t *special_ev;
-    uint8_t *iv;
-    uint8_t *moves_pp[4];
-    uint8_t *level_opt;
-    uint8_t *max_hp;
-    uint8_t *atk;
-    uint8_t *def;
-    uint8_t *speed;
-    uint8_t *special;
+    u8 *name;
+    u8 *ot_name;
+    u8 *index;
+    u8 *hp;
+    u8 *level;
+    u8 *status;
+    u8 *type[2];
+    u8 *catch_item;
+    u8 *moves[4];
+    u8 *trainer_id;
+    u8 *xp;
+    u8 *hp_ev;
+    u8 *atk_ev;
+    u8 *def_ev;
+    u8 *speed_ev;
+    u8 *special_ev;
+    u8 *iv;
+    u8 *moves_pp[4];
+    u8 *level_opt;
+    u8 *max_hp;
+    u8 *atk;
+    u8 *def;
+    u8 *speed;
+    u8 *special;
 };
 
 struct gen1_pkmn_box {
@@ -54,74 +54,74 @@ struct gen1_pkmn_box {
 };
 
 struct gen1_item {
-    uint8_t index;
-    uint8_t count;
+    u8 index;
+    u8 count;
 };
 
-// TODO Change uint8_t for the
+// TODO Change u8 for the
 // respective structure
 struct gen1_pkmn_file_struct {
-    uint8_t *player_name;
-    uint8_t *pokedex_owned;
-    uint8_t *pokedex_seen;
+    u8 *player_name;
+    u8 *pokedex_owned;
+    u8 *pokedex_seen;
     struct gen1_item *pocket_item_list[20];
-    uint8_t *money;
-    uint8_t *rival_name;
-    uint8_t *options;
-    uint8_t *badges;
-    uint8_t *player_trainer_id;
-    uint8_t *pikachu_friendship;
-    uint8_t *pc_item_list;
-    uint8_t *current_pc_box;
-    uint8_t *casino_coins;
-    uint8_t *time_played;
-    uint8_t *item_count;
+    u8 *money;
+    u8 *rival_name;
+    u8 *options;
+    u8 *badges;
+    u8 *player_trainer_id;
+    u8 *pikachu_friendship;
+    u8 *pc_item_list;
+    u8 *current_pc_box;
+    u8 *casino_coins;
+    u8 *time_played;
+    u8 *item_count;
     struct gen1_pkmn_data_struct *team_pokemon_list[6];
-    uint8_t *current_box_list;
-    uint8_t *checksum;
+    u8 *current_box_list;
+    u8 *checksum;
     struct gen1_pkmn_box *pc_box[12];
-    uint8_t *file_map;
+    u8 *file_map;
 };
 
 int gen1_save_changes(struct gen1_pkmn_file_struct *file_struct, char* file_name);
 void gen1_set_checksum(struct gen1_pkmn_file_struct *file_struct);
 
 // functions to get properties of the struct
-char* gen1_get_name(uint8_t *name);
-uint8_t gen1_get_pokedex(uint8_t *pokedex, uint8_t index);
-uint32_t gen1_get_money(struct gen1_pkmn_file_struct *file_struct);
-uint16_t gen1_get_casino_coins(struct gen1_pkmn_file_struct *file_struct);
-uint8_t gen1_get_option(struct gen1_pkmn_file_struct *file_struct, enum options option);
+char* gen1_get_name(u8 *name);
+u8 gen1_get_pokedex(u8 *pokedex, u8 index);
+u32 gen1_get_money(struct gen1_pkmn_file_struct *file_struct);
+u16 gen1_get_casino_coins(struct gen1_pkmn_file_struct *file_struct);
+u8 gen1_get_option(struct gen1_pkmn_file_struct *file_struct, enum options option);
 void gen1_get_time_played(struct gen1_pkmn_file_struct *file_struct, struct gen1_pkmn_time *time);
-uint8_t gen1_get_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge);
-uint8_t gen1_get_current_pc_box(struct gen1_pkmn_file_struct *file_struct);
-struct gen1_pkmn_data_struct *gen1_get_pokemon_in_party(struct gen1_pkmn_file_struct *file_struct, uint8_t index);
-struct gen1_pkmn_data_struct *gen1_get_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct, uint8_t box_index, uint8_t pkmn_index);
-uint8_t gen1_get_pikachu_friendship(struct gen1_pkmn_file_struct *file_struct);
+u8 gen1_get_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge);
+u8 gen1_get_current_pc_box(struct gen1_pkmn_file_struct *file_struct);
+struct gen1_pkmn_data_struct *gen1_get_pokemon_in_party(struct gen1_pkmn_file_struct *file_struct, u8 index);
+struct gen1_pkmn_data_struct *gen1_get_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct, u8 box_index, u8 pkmn_index);
+u8 gen1_get_pikachu_friendship(struct gen1_pkmn_file_struct *file_struct);
 
 
 // functions to set properties of the struct
-void gen1_set_name(uint8_t* name, char* new_name, size_t size);
-void gen1_set_pokedex(uint8_t *pokedex, uint8_t index);
-void gen1_unset_pokedex(uint8_t *pokedex, uint8_t index);
-void gen1_set_money(struct gen1_pkmn_file_struct *file_struct, uint32_t value);
-void gen1_set_casino_coins(struct gen1_pkmn_file_struct *file_struct, uint16_t value);
+void gen1_set_name(u8* name, char* new_name, size_t size);
+void gen1_set_pokedex(u8 *pokedex, u8 index);
+void gen1_unset_pokedex(u8 *pokedex, u8 index);
+void gen1_set_money(struct gen1_pkmn_file_struct *file_struct, u32 value);
+void gen1_set_casino_coins(struct gen1_pkmn_file_struct *file_struct, u16 value);
 void gen1_set_option(struct gen1_pkmn_file_struct *file_struct, enum options option);
 void gen1_set_time_played(struct gen1_pkmn_file_struct *file_struct, struct gen1_pkmn_time *time);
 void gen1_set_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge);
-void gen1_set_current_pc_box(struct gen1_pkmn_file_struct *file_struct, uint8_t index);
+void gen1_set_current_pc_box(struct gen1_pkmn_file_struct *file_struct, u8 index);
 void gen1_set_pokemon_in_party(struct gen1_pkmn_file_struct *file_struct,
                                struct gen1_pkmn_data_struct pkmn_data,
-                               uint8_t index);
+                               u8 index);
 void gen1_set_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct,
                                struct gen1_pkmn_data_struct pkmn_data,
-                               uint8_t box_index,
-                               uint8_t pkmn_index);
-void gen1_set_pikachu_friendship(struct gen1_pkmn_file_struct *file_struct, uint8_t value);
+                               u8 box_index,
+                               u8 pkmn_index);
+void gen1_set_pikachu_friendship(struct gen1_pkmn_file_struct *file_struct, u8 value);
 
 // others
-uint8_t gen1_get_number_pkmn_party(struct gen1_pkmn_file_struct *file_struct);
+u8 gen1_get_number_pkmn_party(struct gen1_pkmn_file_struct *file_struct);
 // TODO create function body
-void gen1_add_item(struct gen1_pkmn_file_struct *file_struct, uint8_t item, uint8_t count);
+void gen1_add_item(struct gen1_pkmn_file_struct *file_struct, u8 item, u8 count);
 
 #endif

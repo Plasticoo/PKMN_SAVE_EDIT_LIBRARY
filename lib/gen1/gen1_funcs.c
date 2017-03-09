@@ -49,12 +49,12 @@ FILE* _fopen(char* file_name, int* errn)
     return f;
 }
 
-uint8_t gen1_checksum_file(FILE* f)
+u8 gen1_checksum_file(FILE* f)
 {
     int i;
 
-    uint8_t checksum = 0;
-    uint8_t byte;
+    u8 checksum = 0;
+    u8 byte;
 
     fseek(f, CHECKSUM_INIT_OFFSET, SEEK_SET);
 
@@ -66,11 +66,11 @@ uint8_t gen1_checksum_file(FILE* f)
     return ~checksum;
 }
 
-uint8_t gen1_checksum_map(uint8_t *file_map)
+u8 gen1_checksum_map(u8 *file_map)
 {
     int i;
 
-    uint8_t checksum = 0;
+    u8 checksum = 0;
 
     for (i = CHECKSUM_INIT_OFFSET; i <= CHECKSUM_END_OFFSET; i++) {
         checksum += file_map[i];
@@ -79,11 +79,11 @@ uint8_t gen1_checksum_map(uint8_t *file_map)
     return ~checksum;
 }
 
-uint8_t* load_file(FILE* f)
+u8* load_file(FILE* f)
 {
     int i;
 
-    uint8_t* file_map = calloc(FILE_SIZE, sizeof(uint8_t));
+    u8* file_map = calloc(FILE_SIZE, sizeof(u8));
 
     fseek(f, 0L, SEEK_SET);
 
@@ -97,16 +97,16 @@ uint8_t* load_file(FILE* f)
 // TODO Create function to print hex of file contents
 void gen1_load_file(struct gen1_pkmn_file_struct* file_struct)
 {
-    uint8_t  i, j;
-    uint32_t pokemon_list_offset = TEAM_POKEMON_LIST_ADDRESS;
-    uint32_t pokemon_list_data_offset = TEAM_POKEMON_LIST_ADDRESS + 0x8;
+    u8  i, j;
+    u32 pokemon_list_offset = TEAM_POKEMON_LIST_ADDRESS;
+    u32 pokemon_list_data_offset = TEAM_POKEMON_LIST_ADDRESS + 0x8;
 
-    uint32_t pc_box_offset;
-    uint32_t pc_box_data_offset;
+    u32 pc_box_offset;
+    u32 pc_box_data_offset;
 
     // TODO convert to defines
-    uint32_t pokemon_ot_name_offset = 0x0110;
-    uint32_t pokemon_name_offset = 0x0152;
+    u32 pokemon_ot_name_offset = 0x0110;
+    u32 pokemon_name_offset = 0x0152;
 
     file_struct->player_name = &file_struct->file_map[PLAYER_NAME_ADDRESS];
     file_struct->pokedex_owned = &file_struct->file_map[POKEDEX_OWNED_ADDRESS];

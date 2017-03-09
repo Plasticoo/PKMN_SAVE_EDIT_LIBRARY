@@ -60,11 +60,11 @@ int gen1_save_changes(struct gen1_pkmn_file_struct *file_struct, char* file_name
 
 void gen1_set_checksum(struct gen1_pkmn_file_struct *file_struct)
 {
-    uint8_t checksum = gen1_checksum_map(file_struct->file_map);
+    u8 checksum = gen1_checksum_map(file_struct->file_map);
     file_struct->checksum[0] = checksum;
 }
 
-char* gen1_get_name(uint8_t *name)
+char* gen1_get_name(u8 *name)
 {
     int i;
 
@@ -80,7 +80,7 @@ char* gen1_get_name(uint8_t *name)
 }
 
 // TODO handling of the 'P' character that is needed for string termination
-void gen1_set_name(uint8_t* name, char* new_name, size_t size)
+void gen1_set_name(u8* name, char* new_name, size_t size)
 {
     size_t i;
     size_t _s = size;
@@ -94,29 +94,29 @@ void gen1_set_name(uint8_t* name, char* new_name, size_t size)
     }
 }
 
-uint8_t gen1_get_pokedex(uint8_t *pokedex, uint8_t index)
+u8 gen1_get_pokedex(u8 *pokedex, u8 index)
 {
     return pokedex[index >> 3] >> (index & 7) & 1;
 }
 
-void gen1_set_pokedex(uint8_t *pokedex, uint8_t index)
+void gen1_set_pokedex(u8 *pokedex, u8 index)
 {
     pokedex[index >> 3] |= 1 << (index & 7);
 }
 
-void gen1_unset_pokedex(uint8_t *pokedex, uint8_t index)
+void gen1_unset_pokedex(u8 *pokedex, u8 index)
 {
     pokedex[index >> 3] &= ~(1 << (index & 7));
 }
 
-uint32_t gen1_get_money(struct gen1_pkmn_file_struct *file_struct)
+u32 gen1_get_money(struct gen1_pkmn_file_struct *file_struct)
 {
     return __bcd_to_dec(file_struct->money, MONEY_SIZE);
 }
 
-void gen1_set_money(struct gen1_pkmn_file_struct *file_struct, uint32_t value)
+void gen1_set_money(struct gen1_pkmn_file_struct *file_struct, u32 value)
 {
-    uint8_t buffer[MONEY_SIZE];
+    u8 buffer[MONEY_SIZE];
 
     __dec_to_bcd(value, buffer);
 
@@ -125,14 +125,14 @@ void gen1_set_money(struct gen1_pkmn_file_struct *file_struct, uint32_t value)
     file_struct->money[2] = buffer[2];
 }
 
-uint16_t gen1_get_casino_coins(struct gen1_pkmn_file_struct *file_struct)
+u16 gen1_get_casino_coins(struct gen1_pkmn_file_struct *file_struct)
 {
     return __bcd_to_dec(file_struct->casino_coins, CASINO_COINS_SIZE);
 }
 
-void gen1_set_casino_coins(struct gen1_pkmn_file_struct *file_struct, uint16_t value)
+void gen1_set_casino_coins(struct gen1_pkmn_file_struct *file_struct, u16 value)
 {
-    uint8_t buffer[CASINO_COINS_SIZE];
+    u8 buffer[CASINO_COINS_SIZE];
 
     __dec_to_bcd(value, buffer);
 
@@ -141,9 +141,9 @@ void gen1_set_casino_coins(struct gen1_pkmn_file_struct *file_struct, uint16_t v
 }
 
 // TODO take care of pokemon yellow options (1 extra)
-uint8_t gen1_get_option(struct gen1_pkmn_file_struct *file_struct, enum options option)
+u8 gen1_get_option(struct gen1_pkmn_file_struct *file_struct, enum options option)
 {
-    uint8_t result;
+    u8 result;
 
     switch(option) {
     case OPTION_TEXT_SPEED:
@@ -198,7 +198,7 @@ void gen1_set_time_played(struct gen1_pkmn_file_struct *file_struct, struct gen1
     file_struct->time_played[3] = time->seconds;
 }
 
-uint8_t gen1_get_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge)
+u8 gen1_get_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge)
 {
     return file_struct->badges[0] & (1 << badge);
 }
@@ -208,14 +208,14 @@ void gen1_set_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge
     file_struct->badges[0] ^= badge;
 }
 
-uint8_t gen1_get_current_pc_box(struct gen1_pkmn_file_struct *file_struct)
+u8 gen1_get_current_pc_box(struct gen1_pkmn_file_struct *file_struct)
 {
     return file_struct->current_pc_box[0] + 1;
 }
 
-void gen1_set_current_pc_box(struct gen1_pkmn_file_struct *file_struct, uint8_t index)
+void gen1_set_current_pc_box(struct gen1_pkmn_file_struct *file_struct, u8 index)
 {
-    uint8_t idx;
+    u8 idx;
 
     if(index == 0) {
         idx = 0;
@@ -226,14 +226,14 @@ void gen1_set_current_pc_box(struct gen1_pkmn_file_struct *file_struct, uint8_t 
     file_struct->current_pc_box[0] = idx;
 }
 
-struct gen1_pkmn_data_struct *gen1_get_pokemon_in_party(struct gen1_pkmn_file_struct *file_struct, uint8_t index)
+struct gen1_pkmn_data_struct *gen1_get_pokemon_in_party(struct gen1_pkmn_file_struct *file_struct, u8 index)
 {
     return file_struct->team_pokemon_list[index];
 }
 
 void gen1_set_pokemon_in_party(struct gen1_pkmn_file_struct *file_struct,
                                struct gen1_pkmn_data_struct pkmn_data,
-                               uint8_t index)
+                               u8 index)
 {
     // index 0 - 5
     if (index >= 0 || index < 6) {
@@ -272,12 +272,12 @@ void gen1_set_pokemon_in_party(struct gen1_pkmn_file_struct *file_struct,
 }
 
 // others
-uint8_t gen1_get_number_pkmn_party(struct gen1_pkmn_file_struct *file_struct)
+u8 gen1_get_number_pkmn_party(struct gen1_pkmn_file_struct *file_struct)
 {
     return file_struct->file_map[TEAM_POKEMON_LIST_ADDRESS];
 }
 
-struct gen1_pkmn_data_struct *gen1_get_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct, uint8_t box_index, uint8_t pkmn_index)
+struct gen1_pkmn_data_struct *gen1_get_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct, u8 box_index, u8 pkmn_index)
 {
     if(box_index > 0 && box_index < 12 && pkmn_index > 0 && pkmn_index < 20) {
         return file_struct->pc_box[box_index]->pokemon_list[pkmn_index];
@@ -288,8 +288,8 @@ struct gen1_pkmn_data_struct *gen1_get_pokemon_in_box(struct gen1_pkmn_file_stru
 
 void gen1_set_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct,
                              struct gen1_pkmn_data_struct pkmn_data,
-                             uint8_t box_index,
-                             uint8_t pkmn_index)
+                             u8 box_index,
+                             u8 pkmn_index)
 {
     if(box_index > 0 && box_index < 12 && pkmn_index > 0 && pkmn_index < 20) {
         file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->name        = pkmn_data.name;
@@ -326,12 +326,12 @@ void gen1_set_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct,
     }
 }
 
-uint8_t gen1_get_pikachu_friendship(struct gen1_pkmn_file_struct *file_struct)
+u8 gen1_get_pikachu_friendship(struct gen1_pkmn_file_struct *file_struct)
 {
     return file_struct->pikachu_friendship[0];
 }
 
-void gen1_set_pikachu_friendship(struct gen1_pkmn_file_struct *file_struct, uint8_t value)
+void gen1_set_pikachu_friendship(struct gen1_pkmn_file_struct *file_struct, u8 value)
 {
     file_struct->pikachu_friendship[0] = value;
 }

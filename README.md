@@ -17,7 +17,7 @@ Features
 - [x] Casino Coins
 - [x] Options
 - [x] Badges
-- [ ] Pikachu Friendship (Yellow Version)
+- [x] Pikachu Friendship (Yellow Version)
 - [ ] PC Item List
 - [x] Current PC Box
 - [x] Time Played

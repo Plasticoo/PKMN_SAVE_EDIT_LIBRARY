@@ -6,9 +6,9 @@
 
 #include <sys/types.h>
 
-uint32_t __int_concat(uint32_t x, uint32_t y)
+u32 __int_concat(u32 x, u32 y)
 {
-    uint32_t _p = 10;
+    u32 _p = 10;
 
     while(y >= _p) {
         _p *= 10;
@@ -17,11 +17,11 @@ uint32_t __int_concat(uint32_t x, uint32_t y)
     return x * _p + y;
 }
 
-uint32_t __bcd_to_dec(const uint8_t* buffer, size_t num_bytes)
+u32 __bcd_to_dec(const u8* buffer, size_t num_bytes)
 {
     ssize_t i;
-    uint32_t res;
-    uint32_t mult = 100;
+    u32 res;
+    u32 mult = 100;
 
     res = (buffer[num_bytes-1] & 0x0F) + ((buffer[num_bytes-1] >> 4) * 10);
 
@@ -36,14 +36,14 @@ uint32_t __bcd_to_dec(const uint8_t* buffer, size_t num_bytes)
 }
 
 // TODO modify return type
-void __dec_to_bcd(uint32_t num, uint8_t* buffer_out)
+void __dec_to_bcd(u32 num, u8* buffer_out)
 {
     size_t n_bytes;
     size_t mult = 100;
-    uint32_t log10_res;
+    u32 log10_res;
 
     // Find the number of needed bytes
-    log10_res = (uint32_t)log10((double)num);
+    log10_res = (u32)log10((double)num);
     n_bytes = (size_t)((log10_res + 1) / 2);
     if(log10_res % 2 == 0) {
         ++n_bytes;
@@ -53,7 +53,7 @@ void __dec_to_bcd(uint32_t num, uint8_t* buffer_out)
 
     buffer_out[n_bytes-1] = (((num % 100) / 10) << 4) | (num % 10);
     for(ssize_t i = (ssize_t)(n_bytes - 2); i >= 0; i--) {
-        buffer_out[i] = (uint8_t)((((num % (mult*100)) / (mult*10)) << 4) |
+        buffer_out[i] = (u8)((((num % (mult*100)) / (mult*10)) << 4) |
                                   ((num % (mult*10)) / mult));
         mult *= 100;
     }

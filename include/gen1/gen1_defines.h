@@ -91,4 +91,9 @@
 #define PC_BOX_12_POKEMON_LIST 0x75EA
 #define PC_BOX_12_POKEMON_SIZE 1122
 
+#define uint8_t  u8
+#define uint16_t u16
+#define uint32_t u32
+#define uint64_t u64
+
 #endif

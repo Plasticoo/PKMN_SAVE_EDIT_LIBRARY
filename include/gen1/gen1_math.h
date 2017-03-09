@@ -5,8 +5,8 @@
 
 #include <sys/types.h>
 
-uint32_t __bcd_to_dec(const uint8_t* buffer, size_t num_bytes);
-void __dec_to_bcd(uint32_t num, uint8_t* buffer_out);
-uint32_t __int_concat(uint32_t x, uint32_t y);
+u32 __bcd_to_dec(const u8* buffer, size_t num_bytes);
+void __dec_to_bcd(u32 num, u8* buffer_out);
+u32 __int_concat(u32 x, u32 y);
 
 #endif

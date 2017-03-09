@@ -8,11 +8,11 @@
 FILE* _fopen(char* file_name, int* errn);
 
 
-uint8_t gen1_checksum_file(FILE* f);
-uint8_t gen1_checksum_map(uint8_t* file_map);
+u8 gen1_checksum_file(FILE* f);
+u8 gen1_checksum_map(u8* file_map);
 
 // TODO give different names
-uint8_t* load_file(FILE* f);
+u8* load_file(FILE* f);
 void gen1_load_file(struct gen1_pkmn_file_struct *file_struct);
 
 #endif

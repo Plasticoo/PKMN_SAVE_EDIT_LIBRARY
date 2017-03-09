@@ -4,7 +4,7 @@
 #include <inttypes.h>
 #include <stdio.h>
 
-void print_hexmap(uint8_t* array, int size)
+void print_hexmap(u8* array, int size)
 {
 	int i;
 
