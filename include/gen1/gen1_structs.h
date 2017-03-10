@@ -1,6 +1,7 @@
-
 #ifndef __GEN1_STRUCTS_H_
 #define __GEN1_STRUCTS_H_
+
+#include "gen1_defines.h"
 
 #include <inttypes.h>
 #include <sys/types.h>
@@ -15,13 +16,19 @@
 #define OPTION_BATTLE_STYLE_MASK 0x40
 #define OPTION_BATTLE_EFFECTS_MASK 0x80
 
-// Todo change number of bytes
+// TODO FILE include unions
+// to enable the possibility of
+// changing the bits easier
+
+// TODO change number of bytes
 struct gen1_pkmn_time {
     u32 hours;
     u32 minutes;
     u32 seconds;
 };
 
+// TODO change data types for some
+// fields.
 struct gen1_pkmn_data_struct {
     u8 *name;
     u8 *ot_name;
