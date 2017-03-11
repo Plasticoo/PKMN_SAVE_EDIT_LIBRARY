@@ -22,9 +22,9 @@
 
 // TODO change number of bytes
 struct gen1_pkmn_time {
-    u32 hours;
-    u32 minutes;
-    u32 seconds;
+    u16 hours;
+    u8 minutes;
+    u8 seconds;
 };
 
 // TODO change data types for some

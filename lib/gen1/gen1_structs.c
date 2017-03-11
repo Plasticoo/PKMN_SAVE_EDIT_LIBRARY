@@ -225,7 +225,10 @@ void gen1_set_current_pc_box(struct gen1_pkmn_file_struct *file_struct, u8 index
         }
 
         file_struct->current_pc_box[0] = idx;
+        return;
     }
+
+    PDEBUG("Index invalid!");
 }
 
 struct gen1_pkmn_data_struct *gen1_get_pokemon_in_party(struct gen1_pkmn_file_struct *file_struct, u8 index)
