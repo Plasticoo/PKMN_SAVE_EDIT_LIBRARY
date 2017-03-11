@@ -268,7 +268,11 @@ void gen1_set_pokemon_in_party(struct gen1_pkmn_file_struct *file_struct,
         file_struct->team_pokemon_list[index]->def         = pkmn_data.def;
         file_struct->team_pokemon_list[index]->speed       = pkmn_data.speed;
         file_struct->team_pokemon_list[index]->special     = pkmn_data.special;
+
+        return;
     }
+
+    PDEBUG("Index not valid!");
 }
 
 // others
@@ -283,6 +287,7 @@ struct gen1_pkmn_data_struct *gen1_get_pokemon_in_box(struct gen1_pkmn_file_stru
         return file_struct->pc_box[box_index]->pokemon_list[pkmn_index];
     }
 
+    PDEBUG("Indexes not valid!");
     return NULL;
 }
 
@@ -323,7 +328,11 @@ void gen1_set_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct,
         file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->def         = pkmn_data.def;
         file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->speed       = pkmn_data.speed;
         file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->special     = pkmn_data.special;
+
+        return;
     }
+
+    PDEBUG("Indexes not valid!");
 }
 
 u8 gen1_get_pikachu_friendship(struct gen1_pkmn_file_struct *file_struct)
