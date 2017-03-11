@@ -217,13 +217,15 @@ void gen1_set_current_pc_box(struct gen1_pkmn_file_struct *file_struct, u8 index
 {
     u8 idx;
 
-    if(index == 0) {
-        idx = 0;
-    } else {
-        idx = index - 1;
-    }
+    if(index >= 0 && index <= 20) {
+        if(index == 0) {
+            idx = 0;
+        } else {
+            idx = index - 1;
+        }
 
-    file_struct->current_pc_box[0] = idx;
+        file_struct->current_pc_box[0] = idx;
+    }
 }
 
 struct gen1_pkmn_data_struct *gen1_get_pokemon_in_party(struct gen1_pkmn_file_struct *file_struct, u8 index)
