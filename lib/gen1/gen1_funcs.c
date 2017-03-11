@@ -116,7 +116,7 @@ void gen1_load_file(struct gen1_pkmn_file_struct* file_struct)
     file_struct->rival_name = &file_struct->file_map[RIVAL_NAME_ADDRESS];
     file_struct->options = &file_struct->file_map[OPTIONS_ADDRESS];
     file_struct->badges = &file_struct->file_map[BADGES_ADDRESS];
-    file_struct->player_trainer_id = &file_struct->file_map[PLAYER_TRAINER_ID_ADDRESS];
+    file_struct->player_trainer_id = (u16*)&file_struct->file_map[PLAYER_TRAINER_ID_ADDRESS];
     file_struct->pikachu_friendship = &file_struct->file_map[PIKACHU_FRIENDSHIP_ADDRESS];
     file_struct->pc_item_list = &file_struct->file_map[PC_ITEM_LIST_ADDRESS];
     file_struct->current_pc_box = &file_struct->file_map[CURRENT_PC_BOX_ADDRESS];

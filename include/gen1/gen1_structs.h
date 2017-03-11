@@ -76,7 +76,7 @@ struct gen1_pkmn_file_struct {
     u8 *rival_name;
     u8 *options;
     u8 *badges;
-    u8 *player_trainer_id;
+    u16 *player_trainer_id;
     u8 *pikachu_friendship;
     u8 *pc_item_list;
     u8 *current_pc_box;
