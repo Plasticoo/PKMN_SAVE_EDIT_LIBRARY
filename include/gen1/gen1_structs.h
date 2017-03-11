@@ -27,33 +27,33 @@ struct gen1_pkmn_time {
     u8 seconds;
 };
 
-// TODO change data types for some
-// fields.
+// TODO apply unions for PPs.
 struct gen1_pkmn_data_struct {
     u8 *name;
     u8 *ot_name;
     u8 *index;
-    u8 *hp;
+    u16 *hp;
     u8 *level;
     u8 *status;
     u8 *type[2];
     u8 *catch_item;
     u8 *moves[4];
-    u8 *trainer_id;
-    u8 *xp;
-    u8 *hp_ev;
-    u8 *atk_ev;
-    u8 *def_ev;
-    u8 *speed_ev;
-    u8 *special_ev;
-    u8 *iv;
+    u16 *trainer_id;
+    u8 *xp[3];
+    u16 *hp_ev;
+    u16 *atk_ev;
+    u16 *def_ev;
+    u16 *speed_ev;
+    u16 *special_ev;
+    u16 *iv;
     u8 *moves_pp[4];
+    // these are not exactly needed.. ?
     u8 *level_opt;
-    u8 *max_hp;
-    u8 *atk;
-    u8 *def;
-    u8 *speed;
-    u8 *special;
+    u16 *max_hp;
+    u16 *atk;
+    u16 *def;
+    u16 *speed;
+    u16 *special;
 };
 
 struct gen1_pkmn_box {
