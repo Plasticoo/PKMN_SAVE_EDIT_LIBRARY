@@ -2,6 +2,7 @@
 #include "../../include/gen1/gen1_defines.h"
 #include "../../include/gen1/gen1_structs.h"
 #include "../../include/gen1/gen1_math.h"
+#include "../../include/gen1/gen1_enums.h"
 
 #include <stdlib.h>
 #include <stdbool.h>

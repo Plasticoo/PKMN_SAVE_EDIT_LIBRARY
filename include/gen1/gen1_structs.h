@@ -2,6 +2,7 @@
 #define __GEN1_STRUCTS_H_
 
 #include "gen1_defines.h"
+#include "gen1_enums.h"
 
 #include <inttypes.h>
 #include <sys/types.h>
