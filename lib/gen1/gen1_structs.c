@@ -159,6 +159,8 @@ u8 gen1_get_option(struct gen1_pkmn_file_struct *file_struct, enum options optio
     case OPTION_BATTLE_EFFECTS:
         result = file_struct->options[0] & OPTION_BATTLE_EFFECTS_MASK;
         break;
+    default:
+        PDEBUG("Option couldn't be retrieved.");
     }
 
     return result;
@@ -181,6 +183,8 @@ void gen1_set_option(struct gen1_pkmn_file_struct *file_struct, enum options opt
     case OPTION_BATTLE_EFFECTS:
         file_struct->options[0] ^= OPTION_BATTLE_EFFECTS_MASK;
         break;
+    default:
+        PDEBUG("Option couldnt be set!");
     }
 }
 
