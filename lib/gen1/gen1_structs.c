@@ -142,22 +142,49 @@ void gen1_set_casino_coins(struct gen1_pkmn_file_struct *file_struct, u16 value)
 }
 
 // TODO take care of pokemon yellow options (1 extra)
-u8 gen1_get_option(struct gen1_pkmn_file_struct *file_struct, enum options option)
+u8 gen1_get_option(struct gen1_pkmn_file_struct *file_struct, u8 option)
 {
-    u8 result;
+    u8 result = 0;
 
     switch(option) {
-    case OPTION_TEXT_SPEED:
-        result = file_struct->options[0] & OPTION_TEXT_SPEED_MASK;
+    case OPTION_TEXT_SPEED_FAST:
+        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_FAST];
         break;
-    case OPTION_SOUND:
-        result = file_struct->options[0] & OPTION_SOUND_MASK;
+    case OPTION_TEXT_SPEED_NORMAL:
+        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_NORMAL];
         break;
-    case OPTION_BATTLE_STYLE:
-        result = file_struct->options[0] & OPTION_BATTLE_STYLE_MASK;
+    case OPTION_TEXT_SPEED_SLOW:
+        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_SLOW];
         break;
-    case OPTION_BATTLE_EFFECTS:
-        result = file_struct->options[0] & OPTION_BATTLE_EFFECTS_MASK;
+    case OPTION_SOUND_MONO:
+        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_SOUND_MONO];
+        break;
+    case OPTION_SOUND_MONO_Y:
+        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_SOUND_MONO_Y];
+        break;
+    case OPTION_SOUND_STEREO:
+        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_SOUND_STEREO];
+        break;
+    case OPTION_SOUND_EARPHONE1:
+        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE1];
+        break;
+    case OPTION_SOUND_EARPHONE2:
+        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE2];
+        break;
+    case OPTION_SOUND_EARPHONE3:
+        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE3];
+        break;
+    case OPTION_BATTLE_STYLE_SWITCH:
+        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_STYLE_SWITCH];
+        break;
+    case OPTION_BATTLE_STYLE_SET:
+        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_STYLE_SET];
+        break;
+    case OPTION_BATTLE_EFFECTS_ON:
+        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_EFFECTS_ON];
+        break;
+    case OPTION_BATTLE_EFFECTS_OFF:
+        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_EFFECTS_OFF];
         break;
     default:
         PDEBUG("Option couldn't be retrieved.");
@@ -168,7 +195,7 @@ u8 gen1_get_option(struct gen1_pkmn_file_struct *file_struct, enum options optio
 
 // TODO take care of pokemon yellow options
 // TODO take care of text speed!
-void gen1_set_option(struct gen1_pkmn_file_struct *file_struct, enum options option)
+void gen1_set_option(struct gen1_pkmn_file_struct *file_struct, u8 option)
 {
     switch(option) {
     case OPTION_TEXT_SPEED:

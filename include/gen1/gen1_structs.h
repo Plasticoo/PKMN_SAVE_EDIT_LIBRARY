@@ -21,7 +21,10 @@
 // to enable the possibility of
 // changing the bits easier
 
-// TODO change number of bytes
+static const u8 OPTIONS_LOOKUP_TABLE[] = {0x1, 0x2, 0x5, 0x0, 0x0, 0x10, 0x10,
+                                          0x20, 0x30, 0x0, 0x40, 0x0, 0x80  };
+
+// TODO change number of bytesi
 struct gen1_pkmn_time {
     u16 hours;
     u8 minutes;
@@ -99,7 +102,7 @@ char* gen1_get_name(u8 *name);
 u8 gen1_get_pokedex(u8 *pokedex, u8 index);
 u32 gen1_get_money(struct gen1_pkmn_file_struct *file_struct);
 u16 gen1_get_casino_coins(struct gen1_pkmn_file_struct *file_struct);
-u8 gen1_get_option(struct gen1_pkmn_file_struct *file_struct, enum options option);
+u8 gen1_get_option(struct gen1_pkmn_file_struct *file_struct, u8 option);
 void gen1_get_time_played(struct gen1_pkmn_file_struct *file_struct, struct gen1_pkmn_time *time);
 u8 gen1_get_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge);
 u8 gen1_get_current_pc_box(struct gen1_pkmn_file_struct *file_struct);
@@ -114,7 +117,7 @@ void gen1_set_pokedex(u8 *pokedex, u8 index);
 void gen1_unset_pokedex(u8 *pokedex, u8 index);
 void gen1_set_money(struct gen1_pkmn_file_struct *file_struct, u32 value);
 void gen1_set_casino_coins(struct gen1_pkmn_file_struct *file_struct, u16 value);
-void gen1_set_option(struct gen1_pkmn_file_struct *file_struct, enum options option);
+void gen1_set_option(struct gen1_pkmn_file_struct *file_struct, u8 option);
 void gen1_set_time_played(struct gen1_pkmn_file_struct *file_struct, struct gen1_pkmn_time *time);
 void gen1_set_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge);
 void gen1_set_current_pc_box(struct gen1_pkmn_file_struct *file_struct, u8 index);
