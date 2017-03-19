@@ -141,7 +141,6 @@ void gen1_set_casino_coins(struct gen1_pkmn_file_struct *file_struct, u16 value)
     file_struct->casino_coins[1] = buffer[1];
 }
 
-// TODO take care of pokemon yellow options (1 extra)
 u8 gen1_get_option(struct gen1_pkmn_file_struct *file_struct, u8 option)
 {
     u8 result = 0;
@@ -193,22 +192,47 @@ u8 gen1_get_option(struct gen1_pkmn_file_struct *file_struct, u8 option)
     return result;
 }
 
-// TODO take care of pokemon yellow options
-// TODO take care of text speed!
 void gen1_set_option(struct gen1_pkmn_file_struct *file_struct, u8 option)
 {
     switch(option) {
-    case OPTION_TEXT_SPEED:
-        file_struct->options[0] ^= 0;
+    case OPTION_TEXT_SPEED_FAST:
+        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_FAST];
         break;
-    case OPTION_SOUND:
-        file_struct->options[0] ^= OPTION_SOUND_MASK;
+    case OPTION_TEXT_SPEED_NORMAL:
+        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_NORMAL];
         break;
-    case OPTION_BATTLE_STYLE:
-        file_struct->options[0] ^= OPTION_BATTLE_STYLE_MASK;
+    case OPTION_TEXT_SPEED_SLOW:
+        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_SLOW];
         break;
-    case OPTION_BATTLE_EFFECTS:
-        file_struct->options[0] ^= OPTION_BATTLE_EFFECTS_MASK;
+    case OPTION_SOUND_MONO:
+        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_SOUND_MONO];
+        break;
+    case OPTION_SOUND_MONO_Y:
+        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_SOUND_MONO_Y];
+        break;
+    case OPTION_SOUND_STEREO:
+        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_SOUND_STEREO];
+        break;
+    case OPTION_SOUND_EARPHONE1:
+        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE1];
+        break;
+    case OPTION_SOUND_EARPHONE2:
+        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE2];
+        break;
+    case OPTION_SOUND_EARPHONE3:
+        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE3];
+        break;
+    case OPTION_BATTLE_STYLE_SWITCH:
+        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_STYLE_SWITCH];
+        break;
+    case OPTION_BATTLE_STYLE_SET:
+        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_STYLE_SET];
+        break;
+    case OPTION_BATTLE_EFFECTS_ON:
+        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_EFFECTS_ON];
+        break;
+    case OPTION_BATTLE_EFFECTS_OFF:
+        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_EFFECTS_OFF];
         break;
     default:
         PDEBUG("Option couldnt be set!");
