@@ -27,6 +27,16 @@ const char fonts[] =
  '?','?','?','?','?','?','?','?','?','?','?','?','?','?','?','?',   // E
  '?','?','.','/',',','?','0','1','2','3','4','5','6','7','8','9'};  // F
 
+static inline void set_bit(uint8_t *x, uint8_t n)
+{
+    *x |= (1 << n);
+}
+
+static inline void clear_bit(uint8_t *x, uint8_t n)
+{
+    *x &= ~(1 << n);
+}
+
 int get_character_code(char c)
 {
     int i;
