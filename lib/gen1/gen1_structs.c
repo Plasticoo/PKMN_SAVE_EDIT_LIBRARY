@@ -27,14 +27,19 @@ const char fonts[] =
  '?','?','?','?','?','?','?','?','?','?','?','?','?','?','?','?',   // E
  '?','?','.','/',',','?','0','1','2','3','4','5','6','7','8','9'};  // F
 
-static inline void set_bit(uint8_t *x, uint8_t n)
+static inline void set_bit(u8 *x, u8 n)
 {
     *x |= (1 << n);
 }
 
-static inline void clear_bit(uint8_t *x, uint8_t n)
+static inline void clear_bit(u8 *x, u8 n)
 {
     *x &= ~(1 << n);
+}
+
+static inline void set_clear_bit(u8 *x, u8 n)
+{
+    *x = (*x & ~(1 << n)) | (1 << n);
 }
 
 int get_character_code(char c)
@@ -206,7 +211,8 @@ void gen1_set_option(struct gen1_pkmn_file_struct *file_struct, u8 option)
 {
     switch(option) {
     case OPTION_TEXT_SPEED_FAST:
-        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_FAST];
+        clear_bit(&file_struct->options[0], 1);
+        set_bit(&file_struct->options[0], 1);
         break;
     case OPTION_TEXT_SPEED_NORMAL:
         file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_NORMAL];
