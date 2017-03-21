@@ -42,6 +42,11 @@ static inline void set_clear_bit(u8 *x, u8 n)
     *x = (*x & ~(1 << n)) | (1 << n);
 }
 
+static inline void set_clear_bits(u8 *x, u8 n)
+{
+    *x = (*x & n) | n;
+}
+
 int get_character_code(char c)
 {
     int i;
@@ -211,44 +216,43 @@ void gen1_set_option(struct gen1_pkmn_file_struct *file_struct, u8 option)
 {
     switch(option) {
     case OPTION_TEXT_SPEED_FAST:
-        clear_bit(&file_struct->options[0], 1);
-        set_bit(&file_struct->options[0], 1);
+        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_FAST]);
         break;
     case OPTION_TEXT_SPEED_NORMAL:
-        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_NORMAL];
+        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_NORMAL]);
         break;
     case OPTION_TEXT_SPEED_SLOW:
-        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_SLOW];
+        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_SLOW]);
         break;
     case OPTION_SOUND_MONO:
-        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_SOUND_MONO];
+        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_MONO]);
         break;
     case OPTION_SOUND_MONO_Y:
-        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_SOUND_MONO_Y];
+        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_MONO_Y]);
         break;
     case OPTION_SOUND_STEREO:
-        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_SOUND_STEREO];
+        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_STEREO]);
         break;
     case OPTION_SOUND_EARPHONE1:
-        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE1];
+        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE1]);
         break;
     case OPTION_SOUND_EARPHONE2:
-        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE2];
+        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE2]);
         break;
     case OPTION_SOUND_EARPHONE3:
-        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE3];
+        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE3]);
         break;
     case OPTION_BATTLE_STYLE_SWITCH:
-        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_STYLE_SWITCH];
+        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_STYLE_SWITCH]);
         break;
     case OPTION_BATTLE_STYLE_SET:
-        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_STYLE_SET];
+        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_STYLE_SET]);
         break;
     case OPTION_BATTLE_EFFECTS_ON:
-        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_EFFECTS_ON];
+        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_EFFECTS_ON]);
         break;
     case OPTION_BATTLE_EFFECTS_OFF:
-        file_struct->options[0] ^ OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_EFFECTS_OFF];
+        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_EFFECTS_OFF]);
         break;
     default:
         PDEBUG("Option couldnt be set!");
