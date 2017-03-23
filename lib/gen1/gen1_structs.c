@@ -230,7 +230,7 @@ void gen1_set_option(struct gen1_pkmn_file_struct *file_struct, u8 option)
     case OPTION_SOUND_MONO_Y:
         set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_MONO_Y]);
         break;
-    case OPTION_SOUND_STEREO:
+    case OPTION_SOUND_STEREO:q
         set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_STEREO]);
         break;
     case OPTION_SOUND_EARPHONE1:
@@ -392,7 +392,9 @@ void gen1_set_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct,
         file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->moves[2]    = pkmn_data.moves[2];
         file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->moves[3]    = pkmn_data.moves[3];
         file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->trainer_id  = pkmn_data.trainer_id;
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->xp          = pkmn_data.xp;
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->xp[0]       = pkmn_data.xp[0];
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->xp[1]       = pkmn_data.xp[1];
+        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->xp[2]       = pkmn_data.xp[2];
         file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->hp_ev       = pkmn_data.hp_ev;
         file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->atk_ev      = pkmn_data.atk_ev;
         file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->def_ev      = pkmn_data.def_ev;
