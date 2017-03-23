@@ -1,13 +1,9 @@
-#include "../../include/gen1/gen1_funcs.h"
-#include "../../include/gen1/gen1_defines.h"
-#include "../../include/gen1/gen1_structs.h"
-#include "../../include/gen1/gen1_math.h"
-#include "../../include/gen1/gen1_enums.h"
+#include "../../include/gen1/gen1.h"
+#include "../../include/utils.h"
 
 #include <stdlib.h>
-#include <stdbool.h>
 
-int get_character_code(char c)
+int get_character_code(u8 c)
 {
     int i;
 
@@ -190,7 +186,7 @@ void gen1_set_option(struct gen1_pkmn_file_struct *file_struct, u8 option)
     case OPTION_SOUND_MONO_Y:
         set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_MONO_Y]);
         break;
-    case OPTION_SOUND_STEREO:q
+    case OPTION_SOUND_STEREO:
         set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_STEREO]);
         break;
     case OPTION_SOUND_EARPHONE1:
@@ -292,7 +288,9 @@ void gen1_set_pokemon_in_party(struct gen1_pkmn_file_struct *file_struct,
         file_struct->team_pokemon_list[index]->moves[2]    = pkmn_data.moves[2];
         file_struct->team_pokemon_list[index]->moves[3]    = pkmn_data.moves[3];
         file_struct->team_pokemon_list[index]->trainer_id  = pkmn_data.trainer_id;
-        file_struct->team_pokemon_list[index]->xp          = pkmn_data.xp;
+        file_struct->team_pokemon_list[index]->xp[0]       = pkmn_data.xp[0];
+        file_struct->team_pokemon_list[index]->xp[1]       = pkmn_data.xp[1];
+        file_struct->team_pokemon_list[index]->xp[2]       = pkmn_data.xp[2];
         file_struct->team_pokemon_list[index]->hp_ev       = pkmn_data.hp_ev;
         file_struct->team_pokemon_list[index]->atk_ev      = pkmn_data.atk_ev;
         file_struct->team_pokemon_list[index]->def_ev      = pkmn_data.def_ev;

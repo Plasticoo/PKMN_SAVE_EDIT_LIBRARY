@@ -1,6 +1,8 @@
 #ifndef __GEN1_STRUCTS_H_
 #define __GEN1_STRUCTS_H_
 
+#include "../defines.h"
+
 #include "gen1_defines.h"
 #include "gen1_enums.h"
 

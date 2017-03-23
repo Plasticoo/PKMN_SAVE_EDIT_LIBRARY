@@ -1,5 +1,4 @@
-#include "../../include/gen1/gen1_funcs.h"
-#include "../../include/gen1/gen1_defines.h"
+#include "../../include/gen1/gen1.h"
 
 #include <stdlib.h>
 

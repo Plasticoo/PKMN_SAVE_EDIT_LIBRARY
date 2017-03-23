@@ -211,4 +211,4 @@ enum {
     ITEM_TM55 = 0xFF,
 };
 
-#endif __GEN1_ENUMS_H_
+#endif

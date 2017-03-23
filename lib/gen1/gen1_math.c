@@ -1,4 +1,4 @@
-#include "../../include/gen1/gen1_math.h"
+#include "../../include/gen1/gen1.h"
 
 #include <math.h>
 #include <inttypes.h>
