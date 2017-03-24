@@ -1,5 +1,7 @@
 #include "../include/utils.h"
 
+#include <stdio.h>
+
 static inline void set_bit(u8 *x, u8 n)
 {
     *x |= (1 << n);

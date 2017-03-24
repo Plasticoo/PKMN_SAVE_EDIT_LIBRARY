@@ -385,3 +385,13 @@ void gen1_set_pikachu_friendship(struct gen1_pkmn_file_struct *file_struct, u8 v
 {
     file_struct->pikachu_friendship[0] = value;
 }
+
+u8 gen1_get_item_pocket_count(struct gen1_pkmn_file_struct *file_struct)
+{
+    return file_struct->file_map[POCKET_ITEM_LIST_ADDRESS];
+}
+
+u8 gen1_get_item_box_count(struct gen1_pkmn_file_struct *file_struct)
+{
+    return file_struct->file_map[PC_ITEM_LIST_ADDRESS];
+}
