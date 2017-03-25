@@ -5,9 +5,6 @@
 #define CHECKSUM_INIT_OFFSET 0x2598
 #define CHECKSUM_END_OFFSET  0x3522
 
-#define FILE_OPEN_ERR 1
-#define FILE_SIZE_ERR 2
-
 #define FILE_SIZE 0x8000
 #define FILE_CONTENTS_SIZE 0x54B4
 #define FILE_INIT_ADDRESS 0x2598
@@ -61,7 +58,6 @@ u8* load_file(FILE* f)
     return file_map;
 }
 
-// TODO Create function to print hex of file contents
 void gen1_load_file(struct gen1_pkmn_file_struct* file_struct)
 {
     u8  i, j;
@@ -70,10 +66,6 @@ void gen1_load_file(struct gen1_pkmn_file_struct* file_struct)
 
     u32 pc_box_offset;
     u32 pc_box_data_offset;
-
-    // TODO convert to defines
-    u32 pokemon_ot_name_offset = 0x0110;
-    u32 pokemon_name_offset = 0x0152;
 
     file_struct->player_name = &file_struct->file_map[PLAYER_NAME_ADDRESS];
     file_struct->pokedex_owned = &file_struct->file_map[POKEDEX_OWNED_ADDRESS];
@@ -98,8 +90,8 @@ void gen1_load_file(struct gen1_pkmn_file_struct* file_struct)
     for (i = 0; i < POKEMON_PARTY_SIZE; i++) {
         file_struct->team_pokemon_list[i]              = calloc(1, sizeof(struct gen1_pkmn_data_struct));
 
-        file_struct->team_pokemon_list[i]->name        = &file_struct->file_map[pokemon_list_offset + pokemon_name_offset];
-        file_struct->team_pokemon_list[i]->ot_name     = &file_struct->file_map[pokemon_list_offset + pokemon_ot_name_offset];
+        file_struct->team_pokemon_list[i]->name        = &file_struct->file_map[pokemon_list_offset + POKEMON_NAME_OFFSET];
+        file_struct->team_pokemon_list[i]->ot_name     = &file_struct->file_map[pokemon_list_offset + POKEMON_OT_NAME_OFFSET];
         file_struct->team_pokemon_list[i]->index       = &file_struct->file_map[pokemon_list_offset + pokemon_list_data_offset + INDEX_NR_SPECIES_OFFSET];
         file_struct->team_pokemon_list[i]->hp          = &file_struct->file_map[pokemon_list_offset + pokemon_list_data_offset + CURRENT_HP_OFFSET];
         file_struct->team_pokemon_list[i]->level       = &file_struct->file_map[pokemon_list_offset + pokemon_list_data_offset + LEVEL_OFFSET];
@@ -142,8 +134,8 @@ void gen1_load_file(struct gen1_pkmn_file_struct* file_struct)
         for (j = 0; j < PC_BOX_SIZE; j++) {
             file_struct->pc_box[i]->pokemon_list[j]              = calloc(1, sizeof(struct gen1_pkmn_data_struct));
 
-            file_struct->pc_box[i]->pokemon_list[j]->name        = &file_struct->file_map[pokemon_list_offset + pokemon_name_offset];
-            file_struct->pc_box[i]->pokemon_list[j]->ot_name     = &file_struct->file_map[pokemon_list_offset + pokemon_ot_name_offset];
+            file_struct->pc_box[i]->pokemon_list[j]->name        = &file_struct->file_map[pokemon_list_offset + POKEMON_NAME_OFFSET];
+            file_struct->pc_box[i]->pokemon_list[j]->ot_name     = &file_struct->file_map[pokemon_list_offset + POKEMON_OT_NAME_OFFSET];
             file_struct->pc_box[i]->pokemon_list[j]->index       = &file_struct->file_map[pokemon_list_offset + pokemon_list_data_offset + INDEX_NR_SPECIES_OFFSET];
             file_struct->pc_box[i]->pokemon_list[j]->hp          = &file_struct->file_map[pokemon_list_offset + pokemon_list_data_offset + CURRENT_HP_OFFSET];
             file_struct->pc_box[i]->pokemon_list[j]->level       = &file_struct->file_map[pokemon_list_offset + pokemon_list_data_offset + LEVEL_OFFSET];

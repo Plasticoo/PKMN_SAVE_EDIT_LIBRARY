@@ -6,6 +6,9 @@
 #define uint32_t u32
 #define uint64_t u64
 
+#define FILE_OPEN_ERR 1
+#define FILE_SIZE_ERR 2
+
 #ifdef DEBUG
 #define DEBUG_TEST 1
 #else
