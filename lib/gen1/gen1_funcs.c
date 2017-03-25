@@ -16,38 +16,6 @@
 #define PC_BOX_NUMBER 12
 #define PC_BOX_SIZE 20
 
-// TODO move to general purpose c file
-// that works for any gen
-long get_file_size(FILE* f)
-{
-    long _s;
-
-    fseek(f, 0L, SEEK_END);
-    _s = ftell(f);
-    fseek(f, 0L, SEEK_END);
-
-    return _s;
-}
-
-FILE* _fopen(char* file_name, int* errn)
-{
-    FILE* f;
-
-    if ((f = fopen(file_name, "r")) == NULL) {
-        *errn = FILE_OPEN_ERR;
-        return NULL;
-    }
-
-    if (get_file_size(f) != 32768) {
-        fclose(f);
-
-        *errn = FILE_SIZE_ERR;
-        return NULL;
-    }
-
-    return f;
-}
-
 u8 gen1_checksum_file(FILE* f)
 {
     int i;

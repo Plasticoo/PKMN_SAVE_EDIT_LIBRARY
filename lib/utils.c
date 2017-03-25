@@ -2,6 +2,36 @@
 
 #include <stdio.h>
 
+long get_file_size(FILE* f)
+{
+    long _s;
+
+    fseek(f, 0L, SEEK_END);
+    _s = ftell(f);
+    fseek(f, 0L, SEEK_END);
+
+    return _s;
+}
+
+FILE* _fopen(char* file_name, u32 fsize, int* errn)
+{
+    FILE* f;
+
+    if ((f = fopen(file_name, "r")) == NULL) {
+        *errn = FILE_OPEN_ERR;
+        return NULL;
+    }
+
+    if (get_file_size(f) != fsize) {
+        fclose(f);
+
+        *errn = FILE_SIZE_ERR;
+        return NULL;
+    }
+
+    return f;
+}
+
 static inline void set_bit(u8 *x, u8 n)
 {
     *x |= (1 << n);
