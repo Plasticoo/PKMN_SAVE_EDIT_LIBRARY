@@ -56,7 +56,6 @@ char* gen1_get_name(u8 *name)
     return _name;
 }
 
-// TODO handling of the 'P' character that is needed for string termination
 void gen1_set_name(u8* name, char* new_name, size_t size)
 {
     size_t i;
@@ -68,6 +67,12 @@ void gen1_set_name(u8* name, char* new_name, size_t size)
 
     for (i = 0; i < _s; i++) {
         name[i] = get_character_code(new_name[i]);
+    }
+
+    name[++i] = 'P';
+
+    while(i < 11) {
+        name[++i] = 0x0;
     }
 }
 

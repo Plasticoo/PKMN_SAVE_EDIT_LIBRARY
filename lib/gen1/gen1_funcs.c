@@ -2,17 +2,6 @@
 
 #include <stdlib.h>
 
-#define CHECKSUM_INIT_OFFSET 0x2598
-#define CHECKSUM_END_OFFSET  0x3522
-
-#define FILE_SIZE 0x8000
-#define FILE_CONTENTS_SIZE 0x54B4
-#define FILE_INIT_ADDRESS 0x2598
-
-#define POKEMON_PARTY_SIZE 6
-#define PC_BOX_NUMBER 12
-#define PC_BOX_SIZE 20
-
 u8 gen1_checksum_file(FILE* f)
 {
     int i;
