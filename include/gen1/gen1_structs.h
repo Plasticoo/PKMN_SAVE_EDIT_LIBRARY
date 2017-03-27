@@ -90,13 +90,17 @@ struct gen1_item {
     u8 count;
 };
 
+struct gen1_pocket_item_list {
+    struct gen1_item *item[20];
+};
+
 // TODO Change u8 for the
 // respective structure
 struct gen1_pkmn_file_struct {
     u8 *player_name;
     u8 *pokedex_owned;
     u8 *pokedex_seen;
-    struct gen1_item *pocket_item_list[20];
+    struct gen1_pocket_item_list *pocket_items;
     u8 *money;
     u8 *rival_name;
     u8 *options;

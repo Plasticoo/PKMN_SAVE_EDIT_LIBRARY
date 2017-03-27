@@ -59,7 +59,7 @@ void gen1_load_file(struct gen1_pkmn_file_struct* file_struct)
     file_struct->player_name = &file_struct->file_map[PLAYER_NAME_ADDRESS];
     file_struct->pokedex_owned = &file_struct->file_map[POKEDEX_OWNED_ADDRESS];
     file_struct->pokedex_seen = &file_struct->file_map[POKEDEX_SEEN_ADDRESS];
-    file_struct->pocket_item_list = &file_struct->file_map[POCKET_ITEM_LIST_ADDRESS];
+    file_struct->pocket_items = (struct gen1_pocket_item_list*)&file_struct->file_map[POCKET_ITEM_LIST_ADDRESS];
     file_struct->money = &file_struct->file_map[MONEY_ADDRESS];
     file_struct->rival_name = &file_struct->file_map[RIVAL_NAME_ADDRESS];
     file_struct->options = &file_struct->file_map[OPTIONS_ADDRESS];
