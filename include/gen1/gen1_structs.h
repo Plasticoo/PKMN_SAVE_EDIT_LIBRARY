@@ -54,31 +54,31 @@ struct gen1_pkmn_time {
 
 // TODO apply unions for PPs.
 struct gen1_pkmn_data_struct {
-    u8 *name;
-    u8 *ot_name;
-    u8 *index;
-    u16 *hp;
-    u8 *level;
-    u8 *status;
-    u8 *type[2];
-    u8 *catch_item;
-    u8 *moves[4];
-    u16 *trainer_id;
-    u8 *xp[3];
-    u16 *hp_ev;
-    u16 *atk_ev;
-    u16 *def_ev;
-    u16 *speed_ev;
-    u16 *special_ev;
-    u16 *iv;
-    u8 *moves_pp[4];
+    u8 name;
+    u8 ot_name;
+    u8 index;
+    u16 hp;
+    u8 level;
+    u8 status;
+    u8 type[2];
+    u8 catch_item;
+    u8 moves[4];
+    u16 trainer_id;
+    u8 xp[3];
+    u16 hp_ev;
+    u16 atk_ev;
+    u16 def_ev;
+    u16 speed_ev;
+    u16 special_ev;
+    u16 iv;
+    u8 moves_pp[4];
     // these are not exactly needed.. ?
-    u8 *level_opt;
-    u16 *max_hp;
-    u16 *atk;
-    u16 *def;
-    u16 *speed;
-    u16 *special;
+    u8 level_opt;
+    u16 max_hp;
+    u16 atk;
+    u16 def;
+    u16 speed;
+    u16 special;
 };
 
 struct gen1_pkmn_box {
@@ -112,7 +112,7 @@ struct gen1_pkmn_file_struct {
     u8 *casino_coins;
     u8 *time_played;
     u8 *item_count;
-    struct gen1_pkmn_data_struct *team_pokemon_list[6];
+    struct gen1_pkmn_data_struct *team_pokemon_list;
     u8 *current_box_list;
     u8 *checksum;
     struct gen1_pkmn_box *pc_box[12];
