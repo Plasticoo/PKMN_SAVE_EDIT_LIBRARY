@@ -105,4 +105,6 @@
 #define PC_BOX_NUMBER 12
 #define PC_BOX_SIZE 20
 
+#define POKEDEX_SIZE 151
+
 #endif

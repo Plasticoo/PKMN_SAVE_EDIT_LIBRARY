@@ -400,3 +400,17 @@ u8 gen1_get_item_box_count(struct gen1_pkmn_file_struct *file_struct)
 {
     return file_struct->file_map[PC_ITEM_LIST_ADDRESS];
 }
+
+u8 gen1_get_pokedex_numbers(u8 *pokedex)
+{
+    u8 i;
+    u8 count = 0;
+
+    for(i = 0; i < POKEDEX_SIZE; i++) {
+        if(gen1_get_pokedex(pokedex, i)) {
+            count++;
+        }
+    }
+
+    return count;
+}
