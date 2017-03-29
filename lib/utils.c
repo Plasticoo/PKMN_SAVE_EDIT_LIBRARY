@@ -1,6 +1,7 @@
 #include "../include/utils.h"
 
 #include <stdio.h>
+#include <string.h>
 
 long get_file_size(FILE* f)
 {
