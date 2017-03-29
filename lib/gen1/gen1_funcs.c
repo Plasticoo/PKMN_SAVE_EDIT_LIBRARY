@@ -69,7 +69,7 @@ void gen1_load_file(struct gen1_pkmn_file_struct* file_struct)
     file_struct->pc_item_list = &file_struct->file_map[PC_ITEM_LIST_ADDRESS];
     file_struct->current_pc_box = &file_struct->file_map[CURRENT_PC_BOX_ADDRESS];
     file_struct->casino_coins = &file_struct->file_map[CASINO_COINS_ADDRESS];
-    file_struct->time_played = &file_struct->file_map[TIME_PLAYED_ADDRESS];
+    file_struct->time_played = (struct gen1_pkmn_time*)&file_struct->file_map[TIME_PLAYED_ADDRESS];
     file_struct->current_box_list = &file_struct->file_map[CURRENT_BOX_POKEMON_LIST_ADDRESS];
     file_struct->checksum = &file_struct->file_map[CHECKSUM_ADDRESS];
 

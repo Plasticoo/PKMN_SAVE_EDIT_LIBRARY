@@ -45,7 +45,6 @@ static const u8 FONT[] =
  '?','?','.','/',',','?','0','1','2','3','4','5','6','7','8','9'};  // F
 
 
-// TODO change number of bytesi
 struct gen1_pkmn_time {
     u16 hours;
     u8 minutes;
@@ -94,8 +93,6 @@ struct gen1_pocket_item_list {
     struct gen1_item *item[20];
 };
 
-// TODO Change u8 for the
-// respective structure
 struct gen1_pkmn_file_struct {
     u8 *player_name;
     u8 *pokedex_owned;
@@ -110,7 +107,7 @@ struct gen1_pkmn_file_struct {
     u8 *pc_item_list;
     u8 *current_pc_box;
     u8 *casino_coins;
-    u8 *time_played;
+    struct gen1_pkmn_time *time_played;
     u8 *item_count;
     struct gen1_pkmn_data_struct *team_pokemon_list;
     u8 *current_box_list;
