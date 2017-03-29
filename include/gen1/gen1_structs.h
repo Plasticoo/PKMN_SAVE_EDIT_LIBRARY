@@ -131,7 +131,7 @@ u8 gen1_get_option(struct gen1_pkmn_file_struct *file_struct, u8 option);
 void gen1_get_time_played(struct gen1_pkmn_file_struct *file_struct, struct gen1_pkmn_time *time);
 u8 gen1_get_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge);
 u8 gen1_get_current_pc_box(struct gen1_pkmn_file_struct *file_struct);
-struct gen1_pkmn_data_struct *gen1_get_pokemon_in_party(struct gen1_pkmn_file_struct *file_struct, u8 index);
+struct gen1_pkmn_data_struct gen1_get_pokemon_in_party(struct gen1_pkmn_file_struct *file_struct, u8 index);
 struct gen1_pkmn_data_struct *gen1_get_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct, u8 box_index, u8 pkmn_index);
 u8 gen1_get_pikachu_friendship(struct gen1_pkmn_file_struct *file_struct);
 
