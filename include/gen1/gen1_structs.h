@@ -140,7 +140,7 @@ void gen1_unset_pokedex(u8 *pokedex, u8 index);
 void gen1_set_money(struct gen1_pkmn_file_struct *file_struct, u32 value);
 void gen1_set_casino_coins(struct gen1_pkmn_file_struct *file_struct, u16 value);
 void gen1_set_option(struct gen1_pkmn_file_struct *file_struct, u8 option);
-void gen1_set_time_played(struct gen1_pkmn_file_struct *file_struct, struct gen1_pkmn_time *time);
+void gen1_set_time_played(struct gen1_pkmn_time *time, u16 hours, u8 minutes, u8 seconds);
 void gen1_set_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge);
 void gen1_set_current_pc_box(struct gen1_pkmn_file_struct *file_struct, u8 index);
 void gen1_set_pokemon_in_party(struct gen1_pkmn_file_struct *file_struct,

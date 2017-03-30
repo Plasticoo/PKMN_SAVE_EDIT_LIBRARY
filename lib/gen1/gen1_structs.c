@@ -220,19 +220,19 @@ void gen1_set_option(struct gen1_pkmn_file_struct *file_struct, u8 option)
     }
 }
 
-void gen1_get_time_played(struct gen1_pkmn_file_struct *file_struct, struct gen1_pkmn_time *time)
+void gen1_set_time_played(struct gen1_pkmn_time *time, u16 hours, u8 minutes, u8 seconds)
 {
-    time->hours = file_struct->time_played[1] << 8 | file_struct->time_played[0];
-    time->minutes = file_struct->time_played[2];
-    time->seconds = file_struct->time_played[3];
-}
+    if(hours < 1000 && hours >= 0 &&
+       minutes < 100 && minutes >= 0 &&
+       seconds < 100 && seconds >= 0) {
+        time->seconds = seconds;
+        time->minutes = minutes;
+        time->hours = hours;
 
-void gen1_set_time_played(struct gen1_pkmn_file_struct *file_struct, struct gen1_pkmn_time *time)
-{
-    file_struct->time_played[0] = time->hours  & 0xFF;
-    file_struct->time_played[1] = (time->hours >> 8) & 0xFF;
-    file_struct->time_played[2] = time->minutes;
-    file_struct->time_played[3] = time->seconds;
+        return;
+    }
+
+    PDEBUG("Could not set time!");
 }
 
 u8 gen1_get_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge)
