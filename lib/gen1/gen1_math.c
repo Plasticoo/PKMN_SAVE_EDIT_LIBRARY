@@ -35,7 +35,6 @@ u32 __bcd_to_dec(const u8* buffer, size_t num_bytes)
     return res;
 }
 
-// TODO modify return type
 void __dec_to_bcd(u32 num, u8* buffer_out)
 {
     size_t n_bytes;
