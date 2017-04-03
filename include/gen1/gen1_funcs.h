@@ -5,7 +5,7 @@
 
 #include <stdio.h>
 
-FILE* _fopen(char* file_name, int* errn);
+FILE* _fopen(char* file_name, u32 fsize, int* errn);
 
 
 u8 gen1_checksum_file(FILE* f);
