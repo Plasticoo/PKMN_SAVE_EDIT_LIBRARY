@@ -222,9 +222,9 @@ void gen1_set_option(struct gen1_pkmn_file_struct *file_struct, u8 option)
 
 void gen1_set_time_played(struct gen1_pkmn_time *time, u16 hours, u8 minutes, u8 seconds)
 {
-    if(hours < 1000 && hours >= 0 &&
-       minutes < 100 && minutes >= 0 &&
-       seconds < 100 && seconds >= 0) {
+    if(hours < 1000 &&
+       minutes < 100 &&
+       seconds < 100) {
         time->seconds = seconds;
         time->minutes = minutes;
         time->hours = hours;
@@ -254,7 +254,7 @@ void gen1_set_current_pc_box(struct gen1_pkmn_file_struct *file_struct, u8 index
 {
     u8 idx;
 
-    if(index >= 0 && index <= 20) {
+    if(index <= 20) {
         if(index == 0) {
             idx = 0;
         } else {
