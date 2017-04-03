@@ -2,14 +2,30 @@
 #define __UTILS_H_
 
 #include "defines.h"
+
 #include <inttypes.h>
 #include <stdio.h>
 
 // bit operations
-inline void set_bit(u8 *x, u8 n);
-inline void clear_bit(u8 *x, u8 n);
-inline void set_clear_bit(u8 *x, u8 n);
-inline void set_clear_bits(u8 *x, u8 n);
+static inline void set_bit(u8 *x, u8 n)
+{
+    *x |= (1 << n);
+}
+
+static inline void clear_bit(u8 *x, u8 n)
+{
+    *x &= ~(1 << n);
+}
+
+static inline void set_clear_bit(u8 *x, u8 n)
+{
+    *x = (*x & ~(1 << n)) | (1 << n);
+}
+
+static inline void set_clear_bits(u8 *x, u8 n)
+{
+    *x = (*x & n) | n;
+}
 
 // prints
 void print_hexmap(u8* array, int size);

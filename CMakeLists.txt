@@ -4,8 +4,8 @@ project(PKMN_SAVE_EDIT_LIBRARY)
 
 set(CMAKE_C_COMPILER "/bin/clang")
 
-set(CMAKE_C_FLAGS_DEBUG   "${CMAKE_CXX_FLAGS_DEBUG}   -Wall -Wextra -Weverything -pipe -fPIC -march=native -O0 -ggdb")
-set(CMAKE_C_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall -Wextra -pipe -fPIC -march=native -O2")
+set(CMAKE_C_FLAGS_DEBUG   "${CMAKE_CXX_FLAGS_DEBUG}   -Wall -Wextra -Weverything -pipe -fPIC -march=native -O0 -ggdb -Iinclude")
+set(CMAKE_C_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -Wall -Wextra -pipe -fPIC -march=native -O2 -Iinclude")
 
 file(GLOB sources "lib/*.c")
 

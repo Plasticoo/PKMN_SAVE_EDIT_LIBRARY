@@ -1,7 +1,7 @@
 #ifndef __GEN1_MATH_H_
 #define __GEN1_MATH_H_
 
-#include "../defines.h"
+#include "defines.h"
 
 #include <inttypes.h>
 

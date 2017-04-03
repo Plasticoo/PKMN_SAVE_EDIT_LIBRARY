@@ -1,5 +1,5 @@
-#include "../../include/gen1/gen1.h"
-#include "../../include/utils.h"
+#include "gen1/gen1.h"
+#include "utils.h"
 
 #include <stdlib.h>
 
@@ -52,7 +52,7 @@ char* gen1_get_name(u8 *name)
         _name[i] = FONT[name[i]];
     }
 
-    _name[i] = '\0';
+    _name[i - 1] = '\0';
     return _name;
 }
 

@@ -13,6 +13,6 @@ u8 gen1_checksum_map(u8* file_map);
 
 // TODO give different names
 u8* load_file(FILE* f);
-void gen1_load_file(struct gen1_pkmn_file_struct *file_struct);
+void gen1_load_file(struct gen1_pkmn_file_struct *file_struct, FILE* f);
 
 #endif

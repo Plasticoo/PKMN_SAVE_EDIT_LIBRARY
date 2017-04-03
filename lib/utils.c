@@ -1,4 +1,4 @@
-#include "../include/utils.h"
+#include "utils.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -31,26 +31,6 @@ FILE* _fopen(char* file_name, u32 fsize, int* errn)
     }
 
     return f;
-}
-
-inline void set_bit(u8 *x, u8 n)
-{
-    *x |= (1 << n);
-}
-
-inline void clear_bit(u8 *x, u8 n)
-{
-    *x &= ~(1 << n);
-}
-
-inline void set_clear_bit(u8 *x, u8 n)
-{
-    *x = (*x & ~(1 << n)) | (1 << n);
-}
-
-inline void set_clear_bits(u8 *x, u8 n)
-{
-    *x = (*x & n) | n;
 }
 
 void print_hexmap(u8* array, int size)

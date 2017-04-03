@@ -1,4 +1,4 @@
-#include "../../include/gen1/gen1.h"
+#include "gen1/gen1.h"
 
 #include <stdlib.h>
 
@@ -47,9 +47,11 @@ u8* load_file(FILE* f)
     return file_map;
 }
 
-void gen1_load_file(struct gen1_pkmn_file_struct* file_struct)
+void gen1_load_file(struct gen1_pkmn_file_struct* file_struct, FILE* f)
 {
     u8 i;
+
+    file_struct->file_map = load_file(f);
 
     file_struct->player_name = &file_struct->file_map[PLAYER_NAME_ADDRESS];
     file_struct->pokedex_owned = &file_struct->file_map[POKEDEX_OWNED_ADDRESS];

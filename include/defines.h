@@ -1,10 +1,19 @@
 #ifndef __DEFINES_H_
 #define __DEFINES_H_
 
+/*
 #define uint8_t  u8
 #define uint16_t u16
 #define uint32_t u32
 #define uint64_t u64
+*/
+
+#include <inttypes.h>
+
+typedef uint8_t  u8;
+typedef uint16_t u16;
+typedef uint32_t u32;
+typedef uint64_t u64;
 
 #define FILE_OPEN_ERR 1
 #define FILE_SIZE_ERR 2
