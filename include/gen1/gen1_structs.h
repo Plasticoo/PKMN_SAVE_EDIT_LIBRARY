@@ -155,6 +155,8 @@ void gen1_set_pikachu_friendship(struct gen1_pkmn_file_struct *file_struct, u8 v
 // others
 u8 gen1_get_number_pkmn_party(struct gen1_pkmn_file_struct *file_struct);
 u8 gen1_get_pokedex_numbers(u8 *pokedex);
+u8 gen1_get_item_pocket_count(struct gen1_pkmn_file_struct *file_struct);
+u8 gen1_get_item_box_count(struct gen1_pkmn_file_struct *file_struct);
 
 // TODO create function body
 void gen1_add_item(struct gen1_pkmn_file_struct *file_struct, u8 item, u8 count);

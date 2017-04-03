@@ -278,7 +278,7 @@ void gen1_set_pokemon_in_party(struct gen1_pkmn_file_struct *file_struct,
                                u8 index)
 {
     // index 0 - 5
-    if (index >= 0 || index < 6) {
+    if (index < 6) {
         file_struct->team_pokemon_list[index] = pkmn_data;
         return;
     }
