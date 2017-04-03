@@ -16,7 +16,11 @@ char *player_name = "teste";
 
 void test_player_name(void)
 {
-    TEST_ASSERT_EQUAL_STRING(player_name, gen1_get_name(save.player_name));
+    char* save_name = gen1_get_name(save.player_name);
+
+    TEST_ASSERT_EQUAL_STRING(player_name, save_name);
+
+    free(save_name);
 }
 
 void write_to_save(struct gen1_pkmn_file_struct *sav)
@@ -33,13 +37,13 @@ int main(int argc, char** argv)
         return EXIT_FAILURE;
     }
 
-    if((f = _fopen(argv[1], 32768, &errn)) == NULL) {
-        PDEBUG("error opening file.");
+    if((f = gen1_fopen(argv[1], &save, &errn)) == NULL) {
+        PDEBUG("error opening file: %d\n", errn);
         return EXIT_FAILURE;
     }
 
-    gen1_load_file(&save, f);
     printf("File loaded.\n");
+
     write_to_save(&save);
     printf("Wrote to save.\n");
     gen1_set_checksum(&save);
