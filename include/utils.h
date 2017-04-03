@@ -17,4 +17,5 @@ void print_hexmap(u8* array, int size);
 // file operations
 long get_file_size(FILE* f);
 FILE* _fopen(char* file_name, u32 fsize, int* errn);
+
 #endif
