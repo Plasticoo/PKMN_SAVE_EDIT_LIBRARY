@@ -96,15 +96,15 @@ u32 gen1_get_money(u8 *money)
     return __bcd_to_dec(money, MONEY_SIZE);
 }
 
-void gen1_set_money(struct gen1_pkmn_file_struct *file_struct, u32 value)
+void gen1_set_money(u8 *money, u32 value)
 {
     u8 buffer[MONEY_SIZE];
 
     __dec_to_bcd(value, buffer);
 
-    file_struct->money[0] = buffer[0];
-    file_struct->money[1] = buffer[1];
-    file_struct->money[2] = buffer[2];
+    money[0] = buffer[0];
+    money[1] = buffer[1];
+    money[2] = buffer[2];
 }
 
 u16 gen1_get_casino_coins(u8 *casino_coins)
@@ -112,14 +112,14 @@ u16 gen1_get_casino_coins(u8 *casino_coins)
     return __bcd_to_dec(casino_coins, CASINO_COINS_SIZE);
 }
 
-void gen1_set_casino_coins(struct gen1_pkmn_file_struct *file_struct, u16 value)
+void gen1_set_casino_coins(u8 *casino_coins, u16 value)
 {
     u8 buffer[CASINO_COINS_SIZE];
 
     __dec_to_bcd(value, buffer);
 
-    file_struct->casino_coins[0] = buffer[0];
-    file_struct->casino_coins[1] = buffer[1];
+    casino_coins[0] = buffer[0];
+    casino_coins[1] = buffer[1];
 }
 
 u8 gen1_get_option(u8 *options, u8 flag)
@@ -173,47 +173,47 @@ u8 gen1_get_option(u8 *options, u8 flag)
     return result;
 }
 
-void gen1_set_option(struct gen1_pkmn_file_struct *file_struct, u8 option)
+void gen1_set_option(u8 *options, u8 flag)
 {
-    switch(option) {
+    switch(flag) {
     case OPTION_TEXT_SPEED_FAST:
-        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_FAST]);
+        set_clear_bits(&options[0], OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_FAST]);
         break;
     case OPTION_TEXT_SPEED_NORMAL:
-        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_NORMAL]);
+        set_clear_bits(&options[0], OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_NORMAL]);
         break;
     case OPTION_TEXT_SPEED_SLOW:
-        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_SLOW]);
+        set_clear_bits(&options[0], OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_SLOW]);
         break;
     case OPTION_SOUND_MONO:
-        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_MONO]);
+        set_clear_bits(&options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_MONO]);
         break;
     case OPTION_SOUND_MONO_Y:
-        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_MONO_Y]);
+        set_clear_bits(&options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_MONO_Y]);
         break;
     case OPTION_SOUND_STEREO:
-        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_STEREO]);
+        set_clear_bits(&options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_STEREO]);
         break;
     case OPTION_SOUND_EARPHONE1:
-        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE1]);
+        set_clear_bits(&options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE1]);
         break;
     case OPTION_SOUND_EARPHONE2:
-        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE2]);
+        set_clear_bits(&options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE2]);
         break;
     case OPTION_SOUND_EARPHONE3:
-        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE3]);
+        set_clear_bits(&options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE3]);
         break;
     case OPTION_BATTLE_STYLE_SWITCH:
-        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_STYLE_SWITCH]);
+        set_clear_bits(&options[0], OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_STYLE_SWITCH]);
         break;
     case OPTION_BATTLE_STYLE_SET:
-        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_STYLE_SET]);
+        set_clear_bits(&options[0], OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_STYLE_SET]);
         break;
     case OPTION_BATTLE_EFFECTS_ON:
-        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_EFFECTS_ON]);
+        set_clear_bits(&options[0], OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_EFFECTS_ON]);
         break;
     case OPTION_BATTLE_EFFECTS_OFF:
-        set_clear_bits(&file_struct->options[0], OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_EFFECTS_OFF]);
+        set_clear_bits(&options[0], OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_EFFECTS_OFF]);
         break;
     default:
         PDEBUG("Option couldnt be set!");
