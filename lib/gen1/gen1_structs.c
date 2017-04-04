@@ -107,9 +107,9 @@ void gen1_set_money(struct gen1_pkmn_file_struct *file_struct, u32 value)
     file_struct->money[2] = buffer[2];
 }
 
-u16 gen1_get_casino_coins(struct gen1_pkmn_file_struct *file_struct)
+u16 gen1_get_casino_coins(u8 *casino_coins)
 {
-    return __bcd_to_dec(file_struct->casino_coins, CASINO_COINS_SIZE);
+    return __bcd_to_dec(casino_coins, CASINO_COINS_SIZE);
 }
 
 void gen1_set_casino_coins(struct gen1_pkmn_file_struct *file_struct, u16 value)
@@ -122,49 +122,49 @@ void gen1_set_casino_coins(struct gen1_pkmn_file_struct *file_struct, u16 value)
     file_struct->casino_coins[1] = buffer[1];
 }
 
-u8 gen1_get_option(struct gen1_pkmn_file_struct *file_struct, u8 option)
+u8 gen1_get_option(u8 *options, u8 flag)
 {
     u8 result = 0;
 
-    switch(option) {
+    switch(flag) {
     case OPTION_TEXT_SPEED_FAST:
-        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_FAST];
+        result = options[0] & OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_FAST];
         break;
     case OPTION_TEXT_SPEED_NORMAL:
-        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_NORMAL];
+        result = options[0] & OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_NORMAL];
         break;
     case OPTION_TEXT_SPEED_SLOW:
-        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_SLOW];
+        result = options[0] & OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_SLOW];
         break;
     case OPTION_SOUND_MONO:
-        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_SOUND_MONO];
+        result = options[0] & OPTIONS_LOOKUP_TABLE[OPTION_SOUND_MONO];
         break;
     case OPTION_SOUND_MONO_Y:
-        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_SOUND_MONO_Y];
+        result = options[0] & OPTIONS_LOOKUP_TABLE[OPTION_SOUND_MONO_Y];
         break;
     case OPTION_SOUND_STEREO:
-        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_SOUND_STEREO];
+        result = options[0] & OPTIONS_LOOKUP_TABLE[OPTION_SOUND_STEREO];
         break;
     case OPTION_SOUND_EARPHONE1:
-        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE1];
+        result = options[0] & OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE1];
         break;
     case OPTION_SOUND_EARPHONE2:
-        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE2];
+        result = options[0] & OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE2];
         break;
     case OPTION_SOUND_EARPHONE3:
-        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE3];
+        result = options[0] & OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE3];
         break;
     case OPTION_BATTLE_STYLE_SWITCH:
-        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_STYLE_SWITCH];
+        result = options[0] & OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_STYLE_SWITCH];
         break;
     case OPTION_BATTLE_STYLE_SET:
-        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_STYLE_SET];
+        result = options[0] & OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_STYLE_SET];
         break;
     case OPTION_BATTLE_EFFECTS_ON:
-        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_EFFECTS_ON];
+        result = options[0] & OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_EFFECTS_ON];
         break;
     case OPTION_BATTLE_EFFECTS_OFF:
-        result = file_struct->options[0] & OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_EFFECTS_OFF];
+        result = options[0] & OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_EFFECTS_OFF];
         break;
     default:
         PDEBUG("Option couldn't be retrieved.");
@@ -220,6 +220,13 @@ void gen1_set_option(struct gen1_pkmn_file_struct *file_struct, u8 option)
     }
 }
 
+void gen1_get_time_played(struct gen1_pkmn_time *time, struct gen1_pkmn_time *dest)
+{
+    time->seconds = dest->seconds;
+    time->minutes = dest->minutes;
+    time->hours   = dest->hours;
+}
+
 void gen1_set_time_played(struct gen1_pkmn_time *time, u16 hours, u8 minutes, u8 seconds)
 {
     if(hours < 1000 &&
@@ -235,9 +242,9 @@ void gen1_set_time_played(struct gen1_pkmn_time *time, u16 hours, u8 minutes, u8
     PDEBUG("Could not set time!");
 }
 
-u8 gen1_get_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge)
+u8 gen1_get_badge(u8 *badges, enum badges badge)
 {
-    return file_struct->badges[0] & (1 << badge);
+    return badges[0] & (1 << badge);
 }
 
 void gen1_set_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge)
@@ -245,9 +252,9 @@ void gen1_set_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge
     file_struct->badges[0] ^= badge;
 }
 
-u8 gen1_get_current_pc_box(struct gen1_pkmn_file_struct *file_struct)
+u8 gen1_get_current_pc_box(u8 *current_pc_box)
 {
-    return file_struct->current_pc_box[0] + 1;
+    return current_pc_box[0] + 1;
 }
 
 void gen1_set_current_pc_box(struct gen1_pkmn_file_struct *file_struct, u8 index)
@@ -268,9 +275,9 @@ void gen1_set_current_pc_box(struct gen1_pkmn_file_struct *file_struct, u8 index
     PDEBUG("Index invalid!");
 }
 
-struct gen1_pkmn_data_struct gen1_get_pokemon_in_party(struct gen1_pkmn_file_struct *file_struct, u8 index)
+struct gen1_pkmn_data_struct gen1_get_pokemon_in_party(struct gen1_pkmn_data_struct *pokemon_party, u8 index)
 {
-    return file_struct->team_pokemon_list[index];
+    return pokemon_party[index];
 }
 
 void gen1_set_pokemon_in_party(struct gen1_pkmn_file_struct *file_struct,
@@ -292,10 +299,10 @@ u8 gen1_get_number_pkmn_party(struct gen1_pkmn_file_struct *file_struct)
     return file_struct->file_map[TEAM_POKEMON_LIST_ADDRESS];
 }
 
-struct gen1_pkmn_data_struct *gen1_get_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct, u8 box_index, u8 pkmn_index)
+struct gen1_pkmn_data_struct *gen1_get_pokemon_in_box(struct gen1_pkmn_box *pc_box[], u8 box_index, u8 pkmn_index)
 {
     if(box_index > 0 && box_index < 12 && pkmn_index > 0 && pkmn_index < 20) {
-        return file_struct->pc_box[box_index]->pokemon_list[pkmn_index];
+        return pc_box[box_index]->pokemon_list[pkmn_index];
     }
 
     PDEBUG("Indexes not valid!");
@@ -348,9 +355,9 @@ void gen1_set_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct,
     PDEBUG("Indexes not valid!");
 }
 
-u8 gen1_get_pikachu_friendship(struct gen1_pkmn_file_struct *file_struct)
+u8 gen1_get_pikachu_friendship(u8 *pikachu_friendship)
 {
-    return file_struct->pikachu_friendship[0];
+    return pikachu_friendship[0];
 }
 
 void gen1_set_pikachu_friendship(struct gen1_pkmn_file_struct *file_struct, u8 value)

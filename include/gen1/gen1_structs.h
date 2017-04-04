@@ -123,14 +123,14 @@ void gen1_set_checksum(struct gen1_pkmn_file_struct *file_struct);
 char* gen1_get_name(u8 *name);
 u8 gen1_get_pokedex(u8 *pokedex, u8 index);
 u32 gen1_get_money(u8 *money);
-u16 gen1_get_casino_coins(struct gen1_pkmn_file_struct *file_struct);
-u8 gen1_get_option(struct gen1_pkmn_file_struct *file_struct, u8 option);
-void gen1_get_time_played(struct gen1_pkmn_file_struct *file_struct, struct gen1_pkmn_time *time);
-u8 gen1_get_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge);
-u8 gen1_get_current_pc_box(struct gen1_pkmn_file_struct *file_struct);
-struct gen1_pkmn_data_struct gen1_get_pokemon_in_party(struct gen1_pkmn_file_struct *file_struct, u8 index);
-struct gen1_pkmn_data_struct *gen1_get_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct, u8 box_index, u8 pkmn_index);
-u8 gen1_get_pikachu_friendship(struct gen1_pkmn_file_struct *file_struct);
+u16 gen1_get_casino_coins(u8 *casino_coins);
+u8 gen1_get_option(u8 *options, u8 flag);
+void gen1_get_time_played(struct gen1_pkmn_time *time, struct gen1_pkmn_time *dest);
+u8 gen1_get_badge(u8 *badges, enum badges badge);
+u8 gen1_get_current_pc_box(u8 *current_pc_box);
+struct gen1_pkmn_data_struct gen1_get_pokemon_in_party(struct gen1_pkmn_data_struct *pokemon_party, u8 index);
+struct gen1_pkmn_data_struct *gen1_get_pokemon_in_box(struct gen1_pkmn_box *pc_box[], u8 box_index, u8 pkmn_index);
+u8 gen1_get_pikachu_friendship(u8 *pikachu_friendship);
 
 
 // functions to set properties of the struct
