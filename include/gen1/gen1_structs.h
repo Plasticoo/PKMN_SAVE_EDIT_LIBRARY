@@ -122,7 +122,7 @@ void gen1_set_checksum(struct gen1_pkmn_file_struct *file_struct);
 // functions to get properties of the struct
 char* gen1_get_name(u8 *name);
 u8 gen1_get_pokedex(u8 *pokedex, u8 index);
-u32 gen1_get_money(struct gen1_pkmn_file_struct *file_struct);
+u32 gen1_get_money(u8 *money);
 u16 gen1_get_casino_coins(struct gen1_pkmn_file_struct *file_struct);
 u8 gen1_get_option(struct gen1_pkmn_file_struct *file_struct, u8 option);
 void gen1_get_time_played(struct gen1_pkmn_file_struct *file_struct, struct gen1_pkmn_time *time);

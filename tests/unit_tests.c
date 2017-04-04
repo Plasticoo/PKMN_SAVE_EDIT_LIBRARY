@@ -13,6 +13,7 @@ FILE* f;
 struct gen1_pkmn_file_struct save;
 
 char *player_name = "teste";
+u32 player_money = 999;
 
 void test_player_name(void)
 {
@@ -21,6 +22,13 @@ void test_player_name(void)
     TEST_ASSERT_EQUAL_STRING(player_name, save_name);
 
     free(save_name);
+}
+
+void test_money(void)
+{
+    u8 save_money = gen1_get_money(save.money);
+
+    TEST_ASSERT_EQUAL_INT32(player_money, save_money);
 }
 
 void write_to_save(struct gen1_pkmn_file_struct *sav)

@@ -91,9 +91,9 @@ void gen1_unset_pokedex(u8 *pokedex, u8 index)
     pokedex[index >> 3] &= ~(1 << (index & 7));
 }
 
-u32 gen1_get_money(struct gen1_pkmn_file_struct *file_struct)
+u32 gen1_get_money(u8 *money)
 {
-    return __bcd_to_dec(file_struct->money, MONEY_SIZE);
+    return __bcd_to_dec(money, MONEY_SIZE);
 }
 
 void gen1_set_money(struct gen1_pkmn_file_struct *file_struct, u32 value)
