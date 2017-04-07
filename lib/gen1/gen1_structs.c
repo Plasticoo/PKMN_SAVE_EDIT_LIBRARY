@@ -257,7 +257,7 @@ u8 gen1_get_current_pc_box(u8 *current_pc_box)
     return current_pc_box[0] + 1;
 }
 
-void gen1_set_current_pc_box(struct gen1_pkmn_file_struct *file_struct, u8 index)
+void gen1_set_current_pc_box(u8 *current_pc_box, u8 index)
 {
     u8 idx;
 
@@ -268,7 +268,7 @@ void gen1_set_current_pc_box(struct gen1_pkmn_file_struct *file_struct, u8 index
             idx = index - 1;
         }
 
-        file_struct->current_pc_box[0] = idx;
+        current_pc_box[0] = idx;
         return;
     }
 
@@ -281,9 +281,9 @@ struct gen1_pkmn_data_struct gen1_get_pokemon_in_party(struct gen1_pkmn_data_str
 }
 
 // others
-u8 gen1_get_number_pkmn_party(struct gen1_pkmn_file_struct *file_struct)
+u8 gen1_get_number_pkmn_party(u8 *file_map)
 {
-    return file_struct->file_map[TEAM_POKEMON_LIST_ADDRESS];
+    return file_map[TEAM_POKEMON_LIST_ADDRESS];
 }
 
 struct gen1_pkmn_data_struct *gen1_get_pokemon_in_box(struct gen1_pkmn_box *pc_box[], u8 box_index, u8 pkmn_index)
@@ -314,14 +314,14 @@ void gen1_set_pikachu_friendship(u8 *pikachu_friendship, u8 value)
     pikachu_friendship[0] = value;
 }
 
-u8 gen1_get_item_pocket_count(struct gen1_pkmn_file_struct *file_struct)
+u8 gen1_get_item_pocket_count(u8 *file_map)
 {
-    return file_struct->file_map[POCKET_ITEM_LIST_ADDRESS];
+    return file_map[POCKET_ITEM_LIST_ADDRESS];
 }
 
-u8 gen1_get_item_box_count(struct gen1_pkmn_file_struct *file_struct)
+u8 gen1_get_item_box_count(u8 *file_map)
 {
-    return file_struct->file_map[PC_ITEM_LIST_ADDRESS];
+    return file_map[PC_ITEM_LIST_ADDRESS];
 }
 
 u8 gen1_get_pokedex_numbers(u8 *pokedex)

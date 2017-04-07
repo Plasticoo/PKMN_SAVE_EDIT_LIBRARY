@@ -142,17 +142,17 @@ void gen1_set_casino_coins(u8 *casino_coins, u16 value);
 void gen1_set_option(u8 *options, u8 option);
 void gen1_set_time_played(struct gen1_pkmn_time *time, u16 hours, u8 minutes, u8 seconds);
 void gen1_set_badge(u8 *badges, enum badges badge);
-void gen1_set_current_pc_box(struct gen1_pkmn_file_struct *file_struct, u8 index);
+void gen1_set_current_pc_box(u8 *current_pc_box, u8 index);
 void gen1_set_pokemon(struct gen1_pkmn_data_struct *pkmn_data,
                       struct gen1_pkmn_data_struct pkmn_new);
 
 void gen1_set_pikachu_friendship(u8 *pikachu_friendship, u8 value);
 
 // others
-u8 gen1_get_number_pkmn_party(struct gen1_pkmn_file_struct *file_struct);
+u8 gen1_get_number_pkmn_party(u8 *file_map);
 u8 gen1_get_pokedex_numbers(u8 *pokedex);
-u8 gen1_get_item_pocket_count(struct gen1_pkmn_file_struct *file_struct);
-u8 gen1_get_item_box_count(struct gen1_pkmn_file_struct *file_struct);
+u8 gen1_get_item_pocket_count(u8 *file_map);
+u8 gen1_get_item_box_count(u8 *file_map);
 
 // TODO create function body
 void gen1_add_item(struct gen1_pkmn_file_struct *file_struct, u8 item, u8 count);
