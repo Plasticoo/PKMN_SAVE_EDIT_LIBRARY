@@ -280,19 +280,6 @@ struct gen1_pkmn_data_struct gen1_get_pokemon_in_party(struct gen1_pkmn_data_str
     return pokemon_party[index];
 }
 
-void gen1_set_pokemon_in_party(struct gen1_pkmn_file_struct *file_struct,
-                               struct gen1_pkmn_data_struct pkmn_data,
-                               u8 index)
-{
-    // index 0 - 5
-    if (index < 6) {
-        file_struct->team_pokemon_list[index] = pkmn_data;
-        return;
-    }
-
-    PDEBUG("Index not valid!");
-}
-
 // others
 u8 gen1_get_number_pkmn_party(struct gen1_pkmn_file_struct *file_struct)
 {
@@ -309,50 +296,10 @@ struct gen1_pkmn_data_struct *gen1_get_pokemon_in_box(struct gen1_pkmn_box *pc_b
     return NULL;
 }
 
-void gen1_set_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct,
-                             struct gen1_pkmn_data_struct pkmn_data,
-                             u8 box_index,
-                             u8 pkmn_index)
+void gen1_set_pokemon(struct gen1_pkmn_data_struct *pkmn_data,
+                      struct gen1_pkmn_data_struct pkmn_new)
 {
-    if(box_index > 0 && box_index < 12 && pkmn_index > 0 && pkmn_index < 20) {
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->name        = pkmn_data.name;
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->ot_name     = pkmn_data.ot_name;
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->index       = pkmn_data.index;
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->hp          = pkmn_data.hp;
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->level       = pkmn_data.level;
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->status      = pkmn_data.status;
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->type[0]     = pkmn_data.type[0];
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->type[1]     = pkmn_data.type[1];
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->catch_item  = pkmn_data.catch_item;
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->moves[0]    = pkmn_data.moves[0];
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->moves[1]    = pkmn_data.moves[1];
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->moves[2]    = pkmn_data.moves[2];
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->moves[3]    = pkmn_data.moves[3];
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->trainer_id  = pkmn_data.trainer_id;
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->xp[0]       = pkmn_data.xp[0];
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->xp[1]       = pkmn_data.xp[1];
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->xp[2]       = pkmn_data.xp[2];
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->hp_ev       = pkmn_data.hp_ev;
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->atk_ev      = pkmn_data.atk_ev;
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->def_ev      = pkmn_data.def_ev;
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->speed_ev    = pkmn_data.speed_ev;
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->special_ev  = pkmn_data.special_ev;
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->iv          = pkmn_data.iv;
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->moves_pp[0] = pkmn_data.moves_pp[0];
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->moves_pp[1] = pkmn_data.moves_pp[1];
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->moves_pp[2] = pkmn_data.moves_pp[2];
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->moves_pp[3] = pkmn_data.moves_pp[3];
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->level_opt   = pkmn_data.level_opt;
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->max_hp      = pkmn_data.max_hp;
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->atk         = pkmn_data.atk;
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->def         = pkmn_data.def;
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->speed       = pkmn_data.speed;
-        file_struct->pc_box[box_index]->pokemon_list[pkmn_index]->special     = pkmn_data.special;
-
-        return;
-    }
-
-    PDEBUG("Indexes not valid!");
+    *pkmn_data = pkmn_new;
 }
 
 u8 gen1_get_pikachu_friendship(u8 *pikachu_friendship)

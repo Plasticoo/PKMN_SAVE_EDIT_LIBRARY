@@ -143,13 +143,10 @@ void gen1_set_option(u8 *options, u8 option);
 void gen1_set_time_played(struct gen1_pkmn_time *time, u16 hours, u8 minutes, u8 seconds);
 void gen1_set_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge);
 void gen1_set_current_pc_box(struct gen1_pkmn_file_struct *file_struct, u8 index);
-void gen1_set_pokemon_in_party(struct gen1_pkmn_file_struct *file_struct,
-                               struct gen1_pkmn_data_struct pkmn_data,
-                               u8 index);
-void gen1_set_pokemon_in_box(struct gen1_pkmn_file_struct *file_struct,
-                               struct gen1_pkmn_data_struct pkmn_data,
-                               u8 box_index,
-                               u8 pkmn_index);
+
+void gen1_set_pokemon(struct gen1_pkmn_data_struct *pkmn_data,
+                      struct gen1_pkmn_data_struct pkmn_new);
+
 void gen1_set_pikachu_friendship(struct gen1_pkmn_file_struct *file_struct, u8 value);
 
 // others
