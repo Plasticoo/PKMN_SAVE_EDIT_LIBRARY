@@ -2,6 +2,7 @@
 #include "utils.h"
 
 #include <stdlib.h>
+#include <string.h>
 
 int get_character_code(u8 c)
 {
@@ -102,9 +103,7 @@ void gen1_set_money(u8 *money, u32 value)
 
     __dec_to_bcd(value, buffer);
 
-    money[0] = buffer[0];
-    money[1] = buffer[1];
-    money[2] = buffer[2];
+    memcpy(money, buffer, MONEY_SIZE);
 }
 
 u16 gen1_get_casino_coins(u8 *casino_coins)

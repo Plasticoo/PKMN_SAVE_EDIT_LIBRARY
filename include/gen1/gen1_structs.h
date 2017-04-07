@@ -132,7 +132,6 @@ struct gen1_pkmn_data_struct gen1_get_pokemon_in_party(struct gen1_pkmn_data_str
 struct gen1_pkmn_data_struct *gen1_get_pokemon_in_box(struct gen1_pkmn_box *pc_box[], u8 box_index, u8 pkmn_index);
 u8 gen1_get_pikachu_friendship(u8 *pikachu_friendship);
 
-
 // functions to set properties of the struct
 void gen1_set_name(u8* name, char* new_name, size_t size);
 void gen1_set_pokedex(u8 *pokedex, u8 index);
