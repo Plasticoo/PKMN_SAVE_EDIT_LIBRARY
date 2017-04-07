@@ -247,9 +247,9 @@ u8 gen1_get_badge(u8 *badges, enum badges badge)
     return badges[0] & (1 << badge);
 }
 
-void gen1_set_badge(struct gen1_pkmn_file_struct *file_struct, enum badges badge)
+void gen1_set_badge(u8 *badges, enum badges badge)
 {
-    file_struct->badges[0] ^= badge;
+    badges[0] ^= badge;
 }
 
 u8 gen1_get_current_pc_box(u8 *current_pc_box)
@@ -299,7 +299,9 @@ struct gen1_pkmn_data_struct *gen1_get_pokemon_in_box(struct gen1_pkmn_box *pc_b
 void gen1_set_pokemon(struct gen1_pkmn_data_struct *pkmn_data,
                       struct gen1_pkmn_data_struct pkmn_new)
 {
-    *pkmn_data = pkmn_new;
+    if(pkmn_data != NULL) {
+        *pkmn_data = pkmn_new;
+    }
 }
 
 u8 gen1_get_pikachu_friendship(u8 *pikachu_friendship)
@@ -307,9 +309,9 @@ u8 gen1_get_pikachu_friendship(u8 *pikachu_friendship)
     return pikachu_friendship[0];
 }
 
-void gen1_set_pikachu_friendship(struct gen1_pkmn_file_struct *file_struct, u8 value)
+void gen1_set_pikachu_friendship(u8 *pikachu_friendship, u8 value)
 {
-    file_struct->pikachu_friendship[0] = value;
+    pikachu_friendship[0] = value;
 }
 
 u8 gen1_get_item_pocket_count(struct gen1_pkmn_file_struct *file_struct)
