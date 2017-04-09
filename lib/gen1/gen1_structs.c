@@ -4,6 +4,17 @@
 #include <stdlib.h>
 #include <string.h>
 
+static inline u8 n_digits(u32 n) {
+    u8 count = 0;
+
+    while(n != 0) {
+        n /= 10;
+        count++;
+    }
+
+    return count;
+}
+
 int get_character_code(u8 c)
 {
     int i;
@@ -94,6 +105,12 @@ void gen1_unset_pokedex(u8 *pokedex, u8 index)
 
 u32 gen1_get_money(u8 *money)
 {
+    if(money[1] == 0 && money[2] == 0) {
+        return __bcd_to_dec(money, 1);
+    } else if(money[1] != 0 && money[2] == 0) {
+        return __bcd_to_dec(money, 2);
+    }
+
     return __bcd_to_dec(money, MONEY_SIZE);
 }
 
@@ -108,6 +125,10 @@ void gen1_set_money(u8 *money, u32 value)
 
 u16 gen1_get_casino_coins(u8 *casino_coins)
 {
+    if(casino_coins[1] == 0) {
+        return __bcd_to_dec(casino_coins, 1);
+    }
+
     return __bcd_to_dec(casino_coins, CASINO_COINS_SIZE);
 }
 
@@ -116,6 +137,13 @@ void gen1_set_casino_coins(u8 *casino_coins, u16 value)
     u8 buffer[CASINO_COINS_SIZE];
 
     __dec_to_bcd(value, buffer);
+
+    if(n_digits(value) == 1 || n_digits(value) == 2) {
+        casino_coins[0] = buffer[0];
+        casino_coins[1] = 0;
+
+        return;
+    }
 
     memcpy(casino_coins, buffer, CASINO_COINS_SIZE);
 }

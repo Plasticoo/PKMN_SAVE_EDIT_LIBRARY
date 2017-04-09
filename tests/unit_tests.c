@@ -13,8 +13,8 @@ FILE* f;
 struct gen1_pkmn_file_struct save;
 
 char *player_name = "teste";
-u32 player_money = 12345;
-u16 player_casino_coins = 3044;
+u32 player_money = 543354;
+u16 player_casino_coins = 504;
 
 void test_player_name(void)
 {
