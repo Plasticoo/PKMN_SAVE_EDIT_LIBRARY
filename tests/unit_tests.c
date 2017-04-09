@@ -14,7 +14,7 @@ struct gen1_pkmn_file_struct save;
 
 char *player_name = "teste";
 u32 player_money = 12345;
-u32 player_casino_coins = 50;
+u16 player_casino_coins = 50;
 
 void test_player_name(void)
 {
@@ -27,22 +27,23 @@ void test_player_name(void)
 
 void test_money(void)
 {
-    u8 save_money = gen1_get_money(save.money);
+    u32 save_money = gen1_get_money(save.money);
 
     TEST_ASSERT_EQUAL_UINT32(player_money, save_money);
 }
 
 void test_casino_coins()
 {
-    u8 save_casino_coins = gen1_get_casino_coins(save.casino_coins);
+    u16 save_casino_coins = gen1_get_casino_coins(save.casino_coins);
 
-    TEST_ASSERT_EQUAL_UINT32(player_casino_coins, save_casino_coins);
+    TEST_ASSERT_EQUAL_UINT16(player_casino_coins, save_casino_coins);
 }
 
 void write_to_save(struct gen1_pkmn_file_struct *sav)
 {
     gen1_set_name(sav->player_name, player_name, strlen(player_name));
     gen1_set_money(sav->money, player_money);
+    gen1_set_casino_coins(sav->casino_coins, player_casino_coins);
 }
 
 int main(int argc, char** argv)
