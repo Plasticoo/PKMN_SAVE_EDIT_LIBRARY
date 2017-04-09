@@ -14,7 +14,7 @@ struct gen1_pkmn_file_struct save;
 
 char *player_name = "teste";
 u32 player_money = 12345;
-u16 player_casino_coins = 50;
+u16 player_casino_coins = 3044;
 
 void test_player_name(void)
 {

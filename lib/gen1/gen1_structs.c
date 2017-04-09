@@ -117,8 +117,7 @@ void gen1_set_casino_coins(u8 *casino_coins, u16 value)
 
     __dec_to_bcd(value, buffer);
 
-    casino_coins[0] = buffer[0];
-    casino_coins[1] = buffer[1];
+    memcpy(casino_coins, buffer, CASINO_COINS_SIZE);
 }
 
 u8 gen1_get_option(u8 *options, u8 flag)
