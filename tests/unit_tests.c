@@ -13,16 +13,37 @@ FILE* f;
 struct gen1_pkmn_file_struct save;
 
 char *player_name = "teste";
+
+u8 player_pokedex_owned_index = 43;
+u8 player_pokedex_owned_res = 1;
+
+u8 player_pokedex_seen_index = 46;
+u8 player_pokedex_seen_res = 1;
+
 u32 player_money = 543354;
 u16 player_casino_coins = 504;
 
-void test_player_name(void)
+void test_player_name()
 {
     char* save_name = gen1_get_name(save.player_name);
 
     TEST_ASSERT_EQUAL_STRING(player_name, save_name);
 
     free(save_name);
+}
+
+void test_pokedex_owned()
+{
+    u8 save_pokedex_owned = gen1_get_pokedex(save.pokedex_owned, player_pokedex_owned_index);
+
+    TEST_ASSERT_EQUAL_UINT8(player_pokedex_owned_res, save_pokedex_owned);
+}
+
+void test_pokedex_seen()
+{
+    u8 save_pokedex_seen = gen1_get_pokedex(save.pokedex_seen, player_pokedex_seen_index);
+
+    TEST_ASSERT_EQUAL_UINT8(player_pokedex_seen_res, save_pokedex_seen);
 }
 
 void test_money(void)
@@ -42,6 +63,8 @@ void test_casino_coins()
 void write_to_save(struct gen1_pkmn_file_struct *sav)
 {
     gen1_set_name(sav->player_name, player_name, strlen(player_name));
+    gen1_set_pokedex(sav->pokedex_owned, player_pokedex_owned_index);
+    gen1_set_pokedex(sav->pokedex_seen, player_pokedex_seen_index);
     gen1_set_money(sav->money, player_money);
     gen1_set_casino_coins(sav->casino_coins, player_casino_coins);
 }
@@ -71,6 +94,8 @@ int main(int argc, char** argv)
     UNITY_BEGIN();
 
     RUN_TEST(test_player_name);
+    RUN_TEST(test_pokedex_owned);
+    RUN_TEST(test_pokedex_seen);
     RUN_TEST(test_money);
     RUN_TEST(test_casino_coins);
 
