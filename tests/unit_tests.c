@@ -46,7 +46,7 @@ void test_pokedex_seen()
     TEST_ASSERT_EQUAL_UINT8(player_pokedex_seen_res, save_pokedex_seen);
 }
 
-void test_money(void)
+void test_money()
 {
     u32 save_money = gen1_get_money(save.money);
 
