@@ -90,7 +90,11 @@ void gen1_set_name(u8* name, char* new_name, size_t size)
 
 u8 gen1_get_pokedex(u8 *pokedex, u8 index)
 {
-    return pokedex[index >> 3] >> (index & 7) & 1;
+    if(pokedex && index < 152) {
+        return pokedex[index >> 3] >> (index & 7) & 1;
+    }
+
+    return 0;
 }
 
 void gen1_set_pokedex(u8 *pokedex, u8 index)
@@ -125,6 +129,11 @@ void gen1_set_money(u8 *money, u32 value)
 
 u16 gen1_get_casino_coins(u8 *casino_coins)
 {
+    if(!casino_coins) {
+        PDEBUG("Could not get casino coins.\n");
+        return 0;
+    }
+
     if(casino_coins[1] == 0) {
         return __bcd_to_dec(casino_coins, 1);
     }
@@ -134,6 +143,11 @@ u16 gen1_get_casino_coins(u8 *casino_coins)
 
 void gen1_set_casino_coins(u8 *casino_coins, u16 value)
 {
+    if(!casino_coins) {
+        PDEBUG("Could not set casino coins.\n");
+        return;
+    }
+
     u8 buffer[CASINO_COINS_SIZE];
 
     __dec_to_bcd(value, buffer);
@@ -150,6 +164,11 @@ void gen1_set_casino_coins(u8 *casino_coins, u16 value)
 
 u8 gen1_get_option(u8 *options, u8 flag)
 {
+    if (!options) {
+        PDEBUG("Could not get option.\n");
+        return 0;
+    }
+
     u8 result = 0;
 
     switch(flag) {
@@ -201,6 +220,11 @@ u8 gen1_get_option(u8 *options, u8 flag)
 
 void gen1_set_option(u8 *options, u8 flag)
 {
+    if(!options) {
+        PDEBUG("Could not set option.\n");
+        return;
+    }
+
     switch(flag) {
     case OPTION_TEXT_SPEED_FAST:
         set_clear_bits(&options[0], OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_FAST]);
@@ -242,22 +266,27 @@ void gen1_set_option(u8 *options, u8 flag)
         set_clear_bits(&options[0], OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_EFFECTS_OFF]);
         break;
     default:
-        PDEBUG("Option couldnt be set!");
+        PDEBUG("Option couldnt be set!\n");
     }
 }
 
 void gen1_get_time_played(struct gen1_pkmn_time *time, struct gen1_pkmn_time *dest)
 {
-    time->seconds = dest->seconds;
-    time->minutes = dest->minutes;
-    time->hours   = dest->hours;
+    if(time && dest) {
+        time->seconds = dest->seconds;
+        time->minutes = dest->minutes;
+        time->hours   = dest->hours;
+    }
+
+    PDEBUG("Could not get time.\n");
 }
 
 void gen1_set_time_played(struct gen1_pkmn_time *time, u16 hours, u8 minutes, u8 seconds)
 {
     if(hours < 1000 &&
        minutes < 100 &&
-       seconds < 100) {
+       seconds < 100 &&
+        time) {
         time->seconds = seconds;
         time->minutes = minutes;
         time->hours = hours;
@@ -265,7 +294,7 @@ void gen1_set_time_played(struct gen1_pkmn_time *time, u16 hours, u8 minutes, u8
         return;
     }
 
-    PDEBUG("Could not set time!");
+    PDEBUG("Could not set time!\n");
 }
 
 u8 gen1_get_badge(u8 *badges, enum badges badge)
