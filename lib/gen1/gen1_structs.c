@@ -34,7 +34,13 @@ int gen1_save_changes(struct gen1_pkmn_file_struct *file_struct, char* file_name
     int i;
     FILE* _f;
 
+    if(!file_struct) {
+        PDEBUG("Could not save changes.\n");
+        return -1;
+    }
+
     if((_f = fopen(file_name, "wb")) == NULL) {
+        PDEBUG("Could not save changes.\n");
         return -1;
     }
 
@@ -49,13 +55,23 @@ int gen1_save_changes(struct gen1_pkmn_file_struct *file_struct, char* file_name
 
 void gen1_set_checksum(struct gen1_pkmn_file_struct *file_struct)
 {
-    u8 checksum = gen1_checksum_map(file_struct->file_map);
-    file_struct->checksum[0] = checksum;
+    if(file_struct) {
+        u8 checksum = gen1_checksum_map(file_struct->file_map);
+        file_struct->checksum[0] = checksum;
+        return;
+    }
+
+    PDEBUG("Could not set checksum.\n");
 }
 
 char* gen1_get_name(u8 *name)
 {
     int i;
+
+    if(!name) {
+        PDEBUG("Could not get name.\n");
+        return NULL;
+    }
 
     char *_name = calloc(PLAYER_NAME_SIZE, sizeof(char));
 
@@ -433,18 +449,33 @@ void gen1_set_pikachu_friendship(u8 *pikachu_friendship, u8 value)
 
 u8 gen1_get_item_pocket_count(u8 *file_map)
 {
-    return file_map[POCKET_ITEM_LIST_ADDRESS];
+    if(file_map) {
+        return file_map[POCKET_ITEM_LIST_ADDRESS];
+    }
+
+    PDEBUG("Could not get item pocket count.\n");
+    return 0;
 }
 
 u8 gen1_get_item_box_count(u8 *file_map)
 {
-    return file_map[PC_ITEM_LIST_ADDRESS];
+    if(file_map) {
+        return file_map[PC_ITEM_LIST_ADDRESS];
+    }
+
+    PDEBUG("Could not get item box count.\n");
+    return 0;
 }
 
 u8 gen1_get_pokedex_numbers(u8 *pokedex)
 {
     u8 i;
     u8 count = 0;
+
+    if(!pokedex) {
+        PDEBUG("Could not get pokedex numbers.\n");
+        return 0;
+    }
 
     for(i = 0; i < POKEDEX_SIZE; i++) {
         if(gen1_get_pokedex(pokedex, i)) {
