@@ -299,24 +299,40 @@ void gen1_set_time_played(struct gen1_pkmn_time *time, u16 hours, u8 minutes, u8
 
 u8 gen1_get_badge(u8 *badges, enum badges badge)
 {
-    return badges[0] & (1 << badge);
+    if(badges) {
+        return badges[0] & (1 << badge);
+    }
+
+    PDEBUG("Could not get badge.\n");
+    return 0;
 }
 
 void gen1_set_badge(u8 *badges, enum badges badge)
 {
-    badges[0] ^= badge;
+    if(badges) {
+        badges[0] ^= badge;
+        return;
+    }
+
+    PDEBUG("Could not set badge.\n");
 }
 
 u8 gen1_get_current_pc_box(u8 *current_pc_box)
 {
-    return current_pc_box[0] + 1;
+    if(current_pc_box) {
+        return current_pc_box[0] + 1;
+    }
+
+
+    PDEBUG("Could not get current pc box.\n");
+    return 0;
 }
 
 void gen1_set_current_pc_box(u8 *current_pc_box, u8 index)
 {
     u8 idx;
 
-    if(index <= 20) {
+    if(current_pc_box && index <= 20) {
         if(index == 0) {
             idx = 0;
         } else {
@@ -327,23 +343,33 @@ void gen1_set_current_pc_box(u8 *current_pc_box, u8 index)
         return;
     }
 
-    PDEBUG("Index invalid!");
+    PDEBUG("Could not set current pc box.\n");
 }
 
-struct gen1_pkmn_data_struct gen1_get_pokemon_in_party(struct gen1_pkmn_data_struct *pokemon_party, u8 index)
+struct gen1_pkmn_data_struct* gen1_get_pokemon_in_party(struct gen1_pkmn_data_struct *pokemon_party, u8 index)
 {
-    return pokemon_party[index];
+    if(pokemon_party) {
+        return &pokemon_party[index];
+    }
+
+    PDEBUG();
+    return NULL;
 }
 
 // others
 u8 gen1_get_number_pkmn_party(u8 *file_map)
 {
-    return file_map[TEAM_POKEMON_LIST_ADDRESS];
+    if(file_map) {
+        return file_map[TEAM_POKEMON_LIST_ADDRESS];
+    }
+
+    PDEBUG("Could not get number of pkmn in party.\n");
+    return 0;
 }
 
 struct gen1_pkmn_data_struct *gen1_get_pokemon_in_box(struct gen1_pkmn_box *pc_box[], u8 box_index, u8 pkmn_index)
 {
-    if(box_index > 0 && box_index < 12 && pkmn_index > 0 && pkmn_index < 20) {
+    if(pc_box && box_index < 12 && pkmn_index < 20) {
         return pc_box[box_index]->pokemon_list[pkmn_index];
     }
 
@@ -361,12 +387,22 @@ void gen1_set_pokemon(struct gen1_pkmn_data_struct *pkmn_data,
 
 u8 gen1_get_pikachu_friendship(u8 *pikachu_friendship)
 {
-    return pikachu_friendship[0];
+    if(pikachu_friendship) {
+        return pikachu_friendship[0];
+    }
+
+    PDEBUG("Could not get pikachu friendship.\n");
+    return 0;
 }
 
 void gen1_set_pikachu_friendship(u8 *pikachu_friendship, u8 value)
 {
-    pikachu_friendship[0] = value;
+    if(pikachu_friendship) {
+        pikachu_friendship[0] = value;
+        return;
+    }
+
+    PDEBUG("Could not set pikachu friendship.\n");
 }
 
 u8 gen1_get_item_pocket_count(u8 *file_map)
