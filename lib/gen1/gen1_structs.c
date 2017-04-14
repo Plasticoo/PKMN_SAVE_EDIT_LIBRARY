@@ -73,6 +73,11 @@ void gen1_set_name(u8* name, char* new_name, size_t size)
     size_t i;
     size_t _s = size;
 
+    if(!name || !new_name) {
+        PDEBUG("Could not set name.\n");
+        return;
+    }
+
     if (size >= 7) {
         _s = 7;
     }
@@ -99,16 +104,32 @@ u8 gen1_get_pokedex(u8 *pokedex, u8 index)
 
 void gen1_set_pokedex(u8 *pokedex, u8 index)
 {
-    pokedex[index >> 3] |= 1 << (index & 7);
+    if(pokedex) {
+        pokedex[index >> 3] |= 1 << (index & 7);
+        return;
+    }
+
+    PDEBUG("Could not set pokedex.\n");
 }
 
 void gen1_unset_pokedex(u8 *pokedex, u8 index)
 {
-    pokedex[index >> 3] &= ~(1 << (index & 7));
+    if(pokedex) {
+        pokedex[index >> 3] &= ~(1 << (index & 7));
+        return;
+    }
+
+    PDEBUG("Could not unset pokedex.\n");
 }
 
+// TODO  return proper things
 u32 gen1_get_money(u8 *money)
 {
+    if(!money) {
+        PDEBUG("Could not get money.\n");
+        return 0x7FFFFFFF;
+    }
+
     if(money[1] == 0 && money[2] == 0) {
         return __bcd_to_dec(money, 1);
     } else if(money[1] != 0 && money[2] == 0) {
@@ -120,6 +141,11 @@ u32 gen1_get_money(u8 *money)
 
 void gen1_set_money(u8 *money, u32 value)
 {
+    if(!money) {
+        PDEBUG("Could not set money.\n");
+        return;
+    }
+
     u8 buffer[MONEY_SIZE];
 
     __dec_to_bcd(value, buffer);
