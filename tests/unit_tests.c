@@ -23,6 +23,9 @@ u8 player_pokedex_seen_res = 1;
 u32 player_money = 543354;
 u16 player_casino_coins = 504;
 
+u8 player_badge = 1;
+u8 player_option = 1;
+
 void test_player_name()
 {
     char* save_name = gen1_get_name(save.player_name);
@@ -60,6 +63,20 @@ void test_casino_coins()
     TEST_ASSERT_EQUAL_UINT16(player_casino_coins, save_casino_coins);
 }
 
+void test_badge()
+{
+	u8 save_badge = gen1_get_badge(save.badges, BADGE_EARTH);
+
+	TEST_ASSERT_EQUAL_UINT8(player_badge, save_badge);
+}
+
+void test_options()
+{
+	u8 save_option = gen1_get_option(save.options, OPTION_TEXT_SPEED_FAST);
+
+	TEST_ASSERT_EQUAL_UINT8(player_option, save_option);
+}
+
 void write_to_save(struct gen1_pkmn_file_struct *sav)
 {
     gen1_set_name(sav->player_name, player_name, strlen(player_name));
@@ -67,6 +84,8 @@ void write_to_save(struct gen1_pkmn_file_struct *sav)
     gen1_set_pokedex(sav->pokedex_seen, player_pokedex_seen_index);
     gen1_set_money(sav->money, player_money);
     gen1_set_casino_coins(sav->casino_coins, player_casino_coins);
+	gen1_set_badge(sav->badges, BADGE_EARTH);
+	gen1_set_option(sav->options, OPTION_TEXT_SPEED_FAST);
 }
 
 int main(int argc, char** argv)
@@ -97,7 +116,9 @@ int main(int argc, char** argv)
     RUN_TEST(test_pokedex_owned);
     RUN_TEST(test_pokedex_seen);
     RUN_TEST(test_money);
-    RUN_TEST(test_casino_coins);
+	RUN_TEST(test_badge);
+	RUN_TEST(test_casino_coins);
+	RUN_TEST(test_options);
 
     return UNITY_END();
 }

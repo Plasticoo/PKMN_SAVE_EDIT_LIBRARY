@@ -7,11 +7,11 @@ long get_file_size(FILE* f)
 {
     long _s;
 
-    fseek(f, 0L, SEEK_END);
+	fseek(f, 0L, SEEK_END);
     _s = ftell(f);
     fseek(f, 0L, SEEK_END);
 
-    return _s;
+	return _s;
 }
 
 FILE* _fopen(char* file_name, u32 fsize, int* errn)
