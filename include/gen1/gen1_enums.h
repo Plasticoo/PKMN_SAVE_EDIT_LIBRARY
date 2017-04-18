@@ -28,7 +28,7 @@ enum {
 };
 
 enum badges {
-	BADGE_BOULDER,
+	BADGE_BOULDER = 0,
 	BADGE_CASCADE,
 	BADGE_THUNDER,
 	BADGE_RAINBOW,

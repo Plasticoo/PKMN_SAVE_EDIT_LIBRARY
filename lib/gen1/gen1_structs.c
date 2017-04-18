@@ -342,7 +342,7 @@ void gen1_set_time_played(struct gen1_pkmn_time *time, u16 hours, u8 minutes, u8
 u8 gen1_get_badge(u8 *badges, enum badges badge)
 {
     if(badges) {
-        return badges[0] & (1 << badge);
+        return (badges[0] & (1 << badge)) >> badge;
     }
 
     PDEBUG("Could not get badge.\n");
@@ -352,7 +352,7 @@ u8 gen1_get_badge(u8 *badges, enum badges badge)
 void gen1_set_badge(u8 *badges, enum badges badge)
 {
     if(badges) {
-        badges[0] ^= badge;
+        badges[0] ^= (1 << badge);
         return;
     }
 
@@ -364,7 +364,6 @@ u8 gen1_get_current_pc_box(u8 *current_pc_box)
     if(current_pc_box) {
         return current_pc_box[0] + 1;
     }
-
 
     PDEBUG("Could not get current pc box.\n");
     return 0;

@@ -9,10 +9,22 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define BYTE_TO_BINARY_PATTERN "%c%c%c%c%c%c%c%c"
+#define BYTE_TO_BINARY(byte)  \
+  (byte & 0x80 ? '1' : '0'), \
+  (byte & 0x40 ? '1' : '0'), \
+  (byte & 0x20 ? '1' : '0'), \
+  (byte & 0x10 ? '1' : '0'), \
+  (byte & 0x08 ? '1' : '0'), \
+  (byte & 0x04 ? '1' : '0'), \
+  (byte & 0x02 ? '1' : '0'), \
+  (byte & 0x01 ? '1' : '0')
+
 FILE* f;
 struct gen1_pkmn_file_struct save;
 
 char *player_name = "teste";
+char *rival_name = "topkek";
 
 u8 player_pokedex_owned_index = 43;
 u8 player_pokedex_owned_res = 1;
@@ -33,6 +45,15 @@ void test_player_name()
     TEST_ASSERT_EQUAL_STRING(player_name, save_name);
 
     free(save_name);
+}
+
+void test_rival_name()
+{
+	char* save_name = gen1_get_name(save.rival_name);
+
+	TEST_ASSERT_EQUAL_STRING(rival_name, save_name);
+
+	free(save_name);
 }
 
 void test_pokedex_owned()
@@ -67,6 +88,13 @@ void test_badge()
 {
 	u8 save_badge = gen1_get_badge(save.badges, BADGE_EARTH);
 
+
+	printf("player_badge: "BYTE_TO_BINARY_PATTERN, BYTE_TO_BINARY(player_badge));
+	putchar('\n');
+
+	printf("Save_badge: "BYTE_TO_BINARY_PATTERN, BYTE_TO_BINARY(save_badge));
+	putchar('\n');
+
 	TEST_ASSERT_EQUAL_UINT8(player_badge, save_badge);
 }
 
@@ -80,12 +108,13 @@ void test_options()
 void write_to_save(struct gen1_pkmn_file_struct *sav)
 {
     gen1_set_name(sav->player_name, player_name, strlen(player_name));
+    gen1_set_name(sav->rival_name, rival_name, strlen(rival_name));
     gen1_set_pokedex(sav->pokedex_owned, player_pokedex_owned_index);
     gen1_set_pokedex(sav->pokedex_seen, player_pokedex_seen_index);
     gen1_set_money(sav->money, player_money);
     gen1_set_casino_coins(sav->casino_coins, player_casino_coins);
-	gen1_set_badge(sav->badges, BADGE_EARTH);
 	gen1_set_option(sav->options, OPTION_TEXT_SPEED_FAST);
+	gen1_set_badge(sav->badges, BADGE_EARTH);
 }
 
 int main(int argc, char** argv)
@@ -113,6 +142,7 @@ int main(int argc, char** argv)
     UNITY_BEGIN();
 
     RUN_TEST(test_player_name);
+	RUN_TEST(test_rival_name);
     RUN_TEST(test_pokedex_owned);
     RUN_TEST(test_pokedex_seen);
     RUN_TEST(test_money);
