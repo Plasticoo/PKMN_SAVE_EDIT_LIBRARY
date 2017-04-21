@@ -38,6 +38,12 @@ u16 player_casino_coins = 504;
 u8 player_badge = 1;
 u8 player_option = 1;
 
+u8 current_pc_box = 13;
+
+u16 hours = 867;
+u8 minutes = 34;
+u8 seconds = 54;
+
 void test_player_name()
 {
     char* save_name = gen1_get_name(save.player_name);
@@ -88,13 +94,6 @@ void test_badge()
 {
 	u8 save_badge = gen1_get_badge(save.badges, BADGE_EARTH);
 
-
-	printf("player_badge: "BYTE_TO_BINARY_PATTERN, BYTE_TO_BINARY(player_badge));
-	putchar('\n');
-
-	printf("Save_badge: "BYTE_TO_BINARY_PATTERN, BYTE_TO_BINARY(save_badge));
-	putchar('\n');
-
 	TEST_ASSERT_EQUAL_UINT8(player_badge, save_badge);
 }
 
@@ -103,6 +102,13 @@ void test_options()
 	u8 save_option = gen1_get_option(save.options, OPTION_TEXT_SPEED_FAST);
 
 	TEST_ASSERT_EQUAL_UINT8(player_option, save_option);
+}
+
+void test_current_pc_box()
+{
+	u8 save_current_pc_box = gen1_get_current_pc_box(save.current_pc_box);
+
+	TEST_ASSERT_EQUAL_UINT8(current_pc_box, save_current_pc_box);
 }
 
 void write_to_save(struct gen1_pkmn_file_struct *sav)
@@ -115,6 +121,9 @@ void write_to_save(struct gen1_pkmn_file_struct *sav)
     gen1_set_casino_coins(sav->casino_coins, player_casino_coins);
 	gen1_set_option(sav->options, OPTION_TEXT_SPEED_FAST);
 	gen1_set_badge(sav->badges, BADGE_EARTH);
+	//gen1_set_pikachu_friendship(sav->pikachu_friendship, 36);
+	gen1_set_current_pc_box(sav->current_pc_box, current_pc_box);
+	gen1_set_time_played(sav->time_played, u16 hours, u8 minutes, u8 seconds)
 }
 
 int main(int argc, char** argv)
@@ -149,6 +158,7 @@ int main(int argc, char** argv)
 	RUN_TEST(test_badge);
 	RUN_TEST(test_casino_coins);
 	RUN_TEST(test_options);
+	RUN_TEST(test_current_pc_box);
 
     return UNITY_END();
 }
