@@ -111,6 +111,17 @@ void test_current_pc_box()
 	TEST_ASSERT_EQUAL_UINT8(current_pc_box, save_current_pc_box);
 }
 
+void test_time()
+{
+	struct gen1_pkmn_time _t = {.hours = 0, .minutes = 0, .seconds = 0};
+
+	gen1_get_time_played(save.time_played, &_t);
+
+	TEST_ASSERT_EQUAL_UINT16(hours, _t.hours);
+	TEST_ASSERT_EQUAL_UINT8(minutes, _t.minutes);
+	TEST_ASSERT_EQUAL_UINT8(seconds, _t.seconds);
+}
+
 void write_to_save(struct gen1_pkmn_file_struct *sav)
 {
     gen1_set_name(sav->player_name, player_name, strlen(player_name));
@@ -123,7 +134,7 @@ void write_to_save(struct gen1_pkmn_file_struct *sav)
 	gen1_set_badge(sav->badges, BADGE_EARTH);
 	//gen1_set_pikachu_friendship(sav->pikachu_friendship, 36);
 	gen1_set_current_pc_box(sav->current_pc_box, current_pc_box);
-	gen1_set_time_played(sav->time_played, u16 hours, u8 minutes, u8 seconds)
+	gen1_set_time_played(sav->time_played, hours,  minutes,  seconds);
 }
 
 int main(int argc, char** argv)
@@ -159,6 +170,7 @@ int main(int argc, char** argv)
 	RUN_TEST(test_casino_coins);
 	RUN_TEST(test_options);
 	RUN_TEST(test_current_pc_box);
+	RUN_TEST(test_time);
 
     return UNITY_END();
 }

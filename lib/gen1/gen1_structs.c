@@ -315,9 +315,11 @@ void gen1_set_option(u8 *options, u8 flag)
 void gen1_get_time_played(struct gen1_pkmn_time *time, struct gen1_pkmn_time *dest)
 {
     if(time && dest) {
-        time->seconds = dest->seconds;
-        time->minutes = dest->minutes;
-        time->hours   = dest->hours;
+		dest->hours = time->hours;
+		dest->minutes = time->minutes;
+		dest->seconds = time->seconds;
+
+		return;
     }
 
     PDEBUG("Could not get time.\n");
