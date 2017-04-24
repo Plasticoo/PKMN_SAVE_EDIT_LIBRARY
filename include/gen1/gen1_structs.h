@@ -89,22 +89,30 @@ struct gen1_item {
     u8 count;
 };
 
-struct gen1_pocket_item_list {
-    struct gen1_item *item[20];
+struct gen1_items_bag {
+	u8 count;
+	struct gen1_item item[20];
+	u8 terminator;
+};
+
+struct gen1_items_pc {
+	u8 count;
+	struct gen1_item item[50];
+	u8 terminator;
 };
 
 struct gen1_pkmn_file_struct {
     u8 *player_name;
     u8 *pokedex_owned;
     u8 *pokedex_seen;
-    struct gen1_pocket_item_list *pocket_items;
+    struct gen1_items_bag *pocket_items;
     u8 *money;
     u8 *rival_name;
     u8 *options;
     u8 *badges;
     u16 *player_trainer_id;
     u8 *pikachu_friendship;
-    u8 *pc_item_list;
+	struct gen1_items_pc *pc_item_list;
     u8 *current_pc_box;
     u8 *casino_coins;
     struct gen1_pkmn_time *time_played;

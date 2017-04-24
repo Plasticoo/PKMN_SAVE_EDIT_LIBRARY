@@ -5,7 +5,7 @@
 
 long get_file_size(FILE* f)
 {
-    long _s;
+	long _s;
 
 	fseek(f, 0L, SEEK_END);
     _s = ftell(f);

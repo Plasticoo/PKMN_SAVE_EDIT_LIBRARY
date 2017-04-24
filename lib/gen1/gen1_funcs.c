@@ -70,14 +70,14 @@ void gen1_load_file(struct gen1_pkmn_file_struct* file_struct, FILE* f)
     file_struct->player_name = &file_struct->file_map[PLAYER_NAME_ADDRESS];
     file_struct->pokedex_owned = &file_struct->file_map[POKEDEX_OWNED_ADDRESS];
     file_struct->pokedex_seen = &file_struct->file_map[POKEDEX_SEEN_ADDRESS];
-    file_struct->pocket_items = (struct gen1_pocket_item_list*)&file_struct->file_map[POCKET_ITEM_LIST_ADDRESS];
+    file_struct->pocket_items = (struct gen1_items_bag*)&file_struct->file_map[POCKET_ITEM_LIST_ADDRESS];
     file_struct->money = &file_struct->file_map[MONEY_ADDRESS];
     file_struct->rival_name = &file_struct->file_map[RIVAL_NAME_ADDRESS];
     file_struct->options = &file_struct->file_map[OPTIONS_ADDRESS];
     file_struct->badges = &file_struct->file_map[BADGES_ADDRESS];
     file_struct->player_trainer_id = (u16*)&file_struct->file_map[PLAYER_TRAINER_ID_ADDRESS];
     file_struct->pikachu_friendship = &file_struct->file_map[PIKACHU_FRIENDSHIP_ADDRESS];
-    file_struct->pc_item_list = &file_struct->file_map[PC_ITEM_LIST_ADDRESS];
+    file_struct->pc_item_list = (struct gen1_items_pc*)&file_struct->file_map[PC_ITEM_LIST_ADDRESS];
     file_struct->current_pc_box = &file_struct->file_map[CURRENT_PC_BOX_ADDRESS];
     file_struct->casino_coins = &file_struct->file_map[CASINO_COINS_ADDRESS];
     file_struct->time_played = (struct gen1_pkmn_time*)&file_struct->file_map[TIME_PLAYED_ADDRESS];
