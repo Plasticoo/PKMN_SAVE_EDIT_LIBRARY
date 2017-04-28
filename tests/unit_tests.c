@@ -44,6 +44,8 @@ u16 hours = 867;
 u8 minutes = 34;
 u8 seconds = 54;
 
+u8 pocket_item = ITEM_MAX_POTION;
+
 void test_player_name()
 {
     char* save_name = gen1_get_name(save.player_name);
@@ -122,6 +124,13 @@ void test_time()
 	TEST_ASSERT_EQUAL_UINT8(seconds, _t.seconds);
 }
 
+void test_pocket_items()
+{
+	struct gen1_item item = save.pocket_items->item[1];
+
+	TEST_ASSERT_EQUAL_UINT8(1, 1);
+}
+
 void write_to_save(struct gen1_pkmn_file_struct *sav)
 {
     gen1_set_name(sav->player_name, player_name, strlen(player_name));
@@ -171,6 +180,7 @@ int main(int argc, char** argv)
 	RUN_TEST(test_options);
 	RUN_TEST(test_current_pc_box);
 	RUN_TEST(test_time);
+	RUN_TEST(test_pocket_items);
 
     return UNITY_END();
 }

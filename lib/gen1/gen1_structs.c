@@ -486,3 +486,13 @@ u8 gen1_get_pokedex_numbers(u8 *pokedex)
 
     return count;
 }
+
+void gen1_set_pocket_item(struct gen1_item *items, u8 index, u8 item, u8 count)
+{
+	if(index <= 20) {
+		items[index].index = item;
+		items[index].count = count;
+	}
+
+	PDEBUG("Could not set pocket item.\n");
+}
