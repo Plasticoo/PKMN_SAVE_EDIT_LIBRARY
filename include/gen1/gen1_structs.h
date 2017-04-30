@@ -160,7 +160,10 @@ u8 gen1_get_pokedex_numbers(u8 *pokedex);
 u8 gen1_get_item_pocket_count(u8 *file_map);
 u8 gen1_get_item_box_count(u8 *file_map);
 
-// TODO create function body
-void gen1_set_item(struct gen1_item *items, u8 index, u8 item, u8 count);
+// items
+struct gen1_item *gen1_get_item_bag(struct gen1_items_bag *bag, u8 index);
+struct gen1_item *gen1_get_item_pc(struct gen1_items_pc *pc, u8 index);
+void gen1_set_item_bag(struct gen1_item *items, u8 index, u8 item, u8 count);
+void gen1_set_item_pc(struct gen1_item *items, u8 index, u8 item, u8 count);
 
 #endif

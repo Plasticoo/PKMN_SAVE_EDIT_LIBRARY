@@ -507,12 +507,22 @@ struct gen1_item *gen1_get_item_pc(struct gen1_items_pc *pc, u8 index)
 	return NULL;
 }
 
-void gen1_set_item(struct gen1_item *items, u8 index, u8 item, u8 count)
+void gen1_set_item_bag(struct gen1_item *items, u8 index, u8 item, u8 count)
 {
-	if(index <= 20) {
+	if(index <= BAG_ITEM_SIZE) {
 		items[index].index = item;
 		items[index].count = count;
 	}
 
 	PDEBUG("Could not set pocket item.\n");
+}
+
+void gen1_set_item_pc(struct gen1_item *items, u8 index, u8 item, u8 count)
+{
+	if(index <= PC_ITEM_SIZE) {
+		items[index].index = item;
+		items[index].count = count;
+	}
+
+	PDEBUG("Could not set pc item.\n");
 }
