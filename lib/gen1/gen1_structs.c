@@ -512,6 +512,8 @@ void gen1_set_item_bag(struct gen1_item *items, u8 index, u8 item, u8 count)
 	if(index <= BAG_ITEM_SIZE) {
 		items[index].index = item;
 		items[index].count = count;
+
+		return;
 	}
 
 	PDEBUG("Could not set pocket item.\n");
@@ -522,6 +524,8 @@ void gen1_set_item_pc(struct gen1_item *items, u8 index, u8 item, u8 count)
 	if(index <= PC_ITEM_SIZE) {
 		items[index].index = item;
 		items[index].count = count;
+
+		return;
 	}
 
 	PDEBUG("Could not set pc item.\n");

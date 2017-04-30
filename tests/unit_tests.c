@@ -146,7 +146,7 @@ void write_to_save(struct gen1_pkmn_file_struct *sav)
 	//gen1_set_pikachu_friendship(sav->pikachu_friendship, 36);
 	gen1_set_current_pc_box(sav->current_pc_box, current_pc_box);
 	gen1_set_time_played(sav->time_played, hours,  minutes,  seconds);
-	gen1_set_item(sav->pocket_items->item, 1, pocket_item, pocket_item_count);
+	gen1_set_item_bag(sav->pocket_items->item, 1, pocket_item, pocket_item_count);
 }
 
 int main(int argc, char** argv)
