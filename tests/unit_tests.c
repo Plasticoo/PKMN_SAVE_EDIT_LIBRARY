@@ -45,6 +45,7 @@ u8 minutes = 34;
 u8 seconds = 54;
 
 u8 pocket_item = ITEM_MAX_POTION;
+u8 pocket_item_count = 10;
 
 void test_player_name()
 {
@@ -128,7 +129,8 @@ void test_pocket_items()
 {
 	struct gen1_item item = save.pocket_items->item[1];
 
-	TEST_ASSERT_EQUAL_UINT8(1, 1);
+	TEST_ASSERT_EQUAL_UINT8(item.count, pocket_item_count);
+	TEST_ASSERT_EQUAL_UINT8(item.index, pocket_item);
 }
 
 void write_to_save(struct gen1_pkmn_file_struct *sav)
@@ -144,6 +146,7 @@ void write_to_save(struct gen1_pkmn_file_struct *sav)
 	//gen1_set_pikachu_friendship(sav->pikachu_friendship, 36);
 	gen1_set_current_pc_box(sav->current_pc_box, current_pc_box);
 	gen1_set_time_played(sav->time_played, hours,  minutes,  seconds);
+	gen1_set_item(sav->pocket_items->item, 1, pocket_item, pocket_item_count);
 }
 
 int main(int argc, char** argv)

@@ -161,6 +161,6 @@ u8 gen1_get_item_pocket_count(u8 *file_map);
 u8 gen1_get_item_box_count(u8 *file_map);
 
 // TODO create function body
-void gen1_set_item(struct gen1_item, u8 item, u8 count);
+void gen1_set_item(struct gen1_item *items, u8 index, u8 item, u8 count);
 
 #endif
