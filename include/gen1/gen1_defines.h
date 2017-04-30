@@ -107,4 +107,7 @@
 
 #define POKEDEX_SIZE 151
 
+#define BAG_ITEM_SIZE 20
+#define PC_ITEM_SIZE 50
+
 #endif

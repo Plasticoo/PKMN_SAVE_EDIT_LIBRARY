@@ -488,10 +488,9 @@ u8 gen1_get_pokedex_numbers(u8 *pokedex)
 }
 
 // TODO: need to change return value...
-// TODO: change 20 to a define or enum
 struct gen1_item *gen1_get_item_bag(struct gen1_items_bag *bag, u8 index)
 {
-	if(index <= 20) {
+	if(index <= BAG_ITEM_SIZE) {
 		return &bag->item[index];
 	}
 
@@ -499,10 +498,9 @@ struct gen1_item *gen1_get_item_bag(struct gen1_items_bag *bag, u8 index)
 }
 
 // TODO need to change return value...
-// TODO: change 50 to a define or enum
 struct gen1_item *gen1_get_item_pc(struct gen1_items_pc *pc, u8 index)
 {
-	if(index <= 50) {
+	if(index <= PC_ITEM_SIZE) {
 		return &pc->item[index];
 	}
 
