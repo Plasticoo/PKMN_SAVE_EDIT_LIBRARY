@@ -12,13 +12,13 @@ Features
 - [x] Rival Name
 - [x] Pokedex Owned
 - [x] Pokedex Seen
-- [ ] Pocket Item List
+- [x] Pocket Item List
 - [x] Money
 - [x] Casino Coins
 - [x] Options
 - [x] Badges
 - [x] Pikachu Friendship (Yellow Version)
-- [ ] PC Item List
+- [x] PC Item List
 - [x] Current PC Box
 - [x] Time Played
 - [x] Team Pokemon List
