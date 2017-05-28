@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>options</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<pre>
+<span class='curline'><a href='../S/54.html#L111'>options</a>           111 include/gen1/gen1_structs.h     u8 *options;</span>
+<span class='curline'><a href='../S/54.html#L135'>options</a>           135 include/gen1/gen1_structs.h u8 gen1_get_option(u8 *options, u8 flag);</span>
+<span class='curline'><a href='../S/54.html#L149'>options</a>           149 include/gen1/gen1_structs.h void gen1_set_option(u8 *options, u8 option);</span>
+<span class='curline'><a href='../S/61.html#L76'>options</a>            76 lib/gen1/gen1_funcs.c     file_struct-&gt;options = &amp;file_struct-&gt;file_map[OPTIONS_ADDRESS];</span>
+<span class='curline'><a href='../S/62.html#L207'>options</a>           207 lib/gen1/gen1_structs.c u8 gen1_get_option(u8 *options, u8 flag)</span>
+<span class='curline'><a href='../S/62.html#L209'>options</a>           209 lib/gen1/gen1_structs.c     if (!options) {</span>
+<span class='curline'><a href='../S/62.html#L218'>options</a>           218 lib/gen1/gen1_structs.c         result = options[0] &amp; OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_FAST];</span>
+<span class='curline'><a href='../S/62.html#L221'>options</a>           221 lib/gen1/gen1_structs.c         result = options[0] &amp; OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_NORMAL];</span>
+<span class='curline'><a href='../S/62.html#L224'>options</a>           224 lib/gen1/gen1_structs.c         result = options[0] &amp; OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_SLOW];</span>
+<span class='curline'><a href='../S/62.html#L227'>options</a>           227 lib/gen1/gen1_structs.c         result = options[0] &amp; OPTIONS_LOOKUP_TABLE[OPTION_SOUND_MONO];</span>
+<span class='curline'><a href='../S/62.html#L230'>options</a>           230 lib/gen1/gen1_structs.c         result = options[0] &amp; OPTIONS_LOOKUP_TABLE[OPTION_SOUND_MONO_Y];</span>
+<span class='curline'><a href='../S/62.html#L233'>options</a>           233 lib/gen1/gen1_structs.c         result = options[0] &amp; OPTIONS_LOOKUP_TABLE[OPTION_SOUND_STEREO];</span>
+<span class='curline'><a href='../S/62.html#L236'>options</a>           236 lib/gen1/gen1_structs.c         result = options[0] &amp; OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE1];</span>
+<span class='curline'><a href='../S/62.html#L239'>options</a>           239 lib/gen1/gen1_structs.c         result = options[0] &amp; OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE2];</span>
+<span class='curline'><a href='../S/62.html#L242'>options</a>           242 lib/gen1/gen1_structs.c         result = options[0] &amp; OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE3];</span>
+<span class='curline'><a href='../S/62.html#L245'>options</a>           245 lib/gen1/gen1_structs.c         result = options[0] &amp; OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_STYLE_SWITCH];</span>
+<span class='curline'><a href='../S/62.html#L248'>options</a>           248 lib/gen1/gen1_structs.c         result = options[0] &amp; OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_STYLE_SET];</span>
+<span class='curline'><a href='../S/62.html#L251'>options</a>           251 lib/gen1/gen1_structs.c         result = options[0] &amp; OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_EFFECTS_ON];</span>
+<span class='curline'><a href='../S/62.html#L254'>options</a>           254 lib/gen1/gen1_structs.c         result = options[0] &amp; OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_EFFECTS_OFF];</span>
+<span class='curline'><a href='../S/62.html#L263'>options</a>           263 lib/gen1/gen1_structs.c void gen1_set_option(u8 *options, u8 flag)</span>
+<span class='curline'><a href='../S/62.html#L265'>options</a>           265 lib/gen1/gen1_structs.c     if(!options) {</span>
+<span class='curline'><a href='../S/62.html#L272'>options</a>           272 lib/gen1/gen1_structs.c         set_clear_bits(&amp;options[0], OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_FAST]);</span>
+<span class='curline'><a href='../S/62.html#L275'>options</a>           275 lib/gen1/gen1_structs.c         set_clear_bits(&amp;options[0], OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_NORMAL]);</span>
+<span class='curline'><a href='../S/62.html#L278'>options</a>           278 lib/gen1/gen1_structs.c         set_clear_bits(&amp;options[0], OPTIONS_LOOKUP_TABLE[OPTION_TEXT_SPEED_SLOW]);</span>
+<span class='curline'><a href='../S/62.html#L281'>options</a>           281 lib/gen1/gen1_structs.c         set_clear_bits(&amp;options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_MONO]);</span>
+<span class='curline'><a href='../S/62.html#L284'>options</a>           284 lib/gen1/gen1_structs.c         set_clear_bits(&amp;options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_MONO_Y]);</span>
+<span class='curline'><a href='../S/62.html#L287'>options</a>           287 lib/gen1/gen1_structs.c         set_clear_bits(&amp;options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_STEREO]);</span>
+<span class='curline'><a href='../S/62.html#L290'>options</a>           290 lib/gen1/gen1_structs.c         set_clear_bits(&amp;options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE1]);</span>
+<span class='curline'><a href='../S/62.html#L293'>options</a>           293 lib/gen1/gen1_structs.c         set_clear_bits(&amp;options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE2]);</span>
+<span class='curline'><a href='../S/62.html#L296'>options</a>           296 lib/gen1/gen1_structs.c         set_clear_bits(&amp;options[0], OPTIONS_LOOKUP_TABLE[OPTION_SOUND_EARPHONE3]);</span>
+<span class='curline'><a href='../S/62.html#L299'>options</a>           299 lib/gen1/gen1_structs.c         set_clear_bits(&amp;options[0], OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_STYLE_SWITCH]);</span>
+<span class='curline'><a href='../S/62.html#L302'>options</a>           302 lib/gen1/gen1_structs.c         set_clear_bits(&amp;options[0], OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_STYLE_SET]);</span>
+<span class='curline'><a href='../S/62.html#L305'>options</a>           305 lib/gen1/gen1_structs.c         set_clear_bits(&amp;options[0], OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_EFFECTS_ON]);</span>
+<span class='curline'><a href='../S/62.html#L308'>options</a>           308 lib/gen1/gen1_structs.c         set_clear_bits(&amp;options[0], OPTIONS_LOOKUP_TABLE[OPTION_BATTLE_EFFECTS_OFF]);</span>
+<span class='curline'><a href='../S/8.html#L105'>options</a>           105 tests/unit_tests.c 	u8 save_option = gen1_get_option(save.options, OPTION_TEXT_SPEED_FAST);</span>
+<span class='curline'><a href='../S/8.html#L144'>options</a>           144 tests/unit_tests.c 	gen1_set_option(sav-&gt;options, OPTION_TEXT_SPEED_FAST);</span>
+</pre>
+</body>
+</html>

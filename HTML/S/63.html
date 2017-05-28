@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>lib/gen1/gen1_math.c</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/73.html'>lib</a>/<a href='../files/74.html'>gen1</a>/gen1_math.c</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L10'>[^]</a><a href='#L39'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L10' title='Defined at 10.'>__int_concat</a></li>
+<li><a href='#L21' title='Defined at 21.'>__bcd_to_dec</a></li>
+<li><a href='#L39' title='Defined at 39.'>__dec_to_bcd</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='sharp'>#include</em> "<a href='56.html'>gen1/gen1.h</a>"
+<a id='L2' name='L2'></a>
+<a id='L3' name='L3'></a><em class='sharp'>#include</em> &lt;math.h&gt;
+<a id='L4' name='L4'></a><em class='sharp'>#include</em> &lt;inttypes.h&gt;
+<a id='L5' name='L5'></a><em class='sharp'>#include</em> &lt;string.h&gt;
+<a id='L6' name='L6'></a><em class='sharp'>#include</em> &lt;assert.h&gt;
+<a id='L7' name='L7'></a>
+<a id='L8' name='L8'></a><em class='sharp'>#include</em> &lt;sys/types.h&gt;
+<a id='L9' name='L9'></a>
+<a id='L10' name='L10'></a><a href='../S/59.html#L15' title='Defined at 15 in include/defines.h.'>u32</a> <a href='../R/309.html' title='Multiple referred from 3 places.'>__int_concat</a>(<a href='../S/59.html#L15' title='Defined at 15 in include/defines.h.'>u32</a> x, <a href='../S/59.html#L15' title='Defined at 15 in include/defines.h.'>u32</a> y)
+<a id='L11' name='L11'></a><em class='brace'>{</em>
+<a id='L12' name='L12'></a>    <a href='../S/59.html#L15' title='Defined at 15 in include/defines.h.'>u32</a> _p = 10;
+<a id='L13' name='L13'></a>
+<a id='L14' name='L14'></a>    <strong class='reserved'>while</strong>(y &gt;= _p) <em class='brace'>{</em>
+<a id='L15' name='L15'></a>        _p *= 10;
+<a id='L16' name='L16'></a>    <em class='brace'>}</em>
+<a id='L17' name='L17'></a>
+<a id='L18' name='L18'></a>    <strong class='reserved'>return</strong> x * _p + y;
+<a id='L19' name='L19'></a><em class='brace'>}</em>
+<a id='L20' name='L20'></a>
+<a id='L21' name='L21'></a><a href='../S/59.html#L15' title='Defined at 15 in include/defines.h.'>u32</a> <a href='../R/307.html' title='Multiple referred from 6 places.'>__bcd_to_dec</a>(<strong class='reserved'>const</strong> <a href='../S/59.html#L13' title='Defined at 13 in include/defines.h.'>u8</a>* buffer, size_t num_bytes)
+<a id='L22' name='L22'></a><em class='brace'>{</em>
+<a id='L23' name='L23'></a>    ssize_t i;
+<a id='L24' name='L24'></a>    <a href='../S/59.html#L15' title='Defined at 15 in include/defines.h.'>u32</a> res;
+<a id='L25' name='L25'></a>    <a href='../S/59.html#L15' title='Defined at 15 in include/defines.h.'>u32</a> mult = 100;
+<a id='L26' name='L26'></a>
+<a id='L27' name='L27'></a>    res = (buffer[num_bytes-1] &amp; 0x0F) + ((buffer[num_bytes-1] &gt;&gt; 4) * 10);
+<a id='L28' name='L28'></a>
+<a id='L29' name='L29'></a>    <strong class='reserved'>for</strong>(i = (ssize_t)(num_bytes-2); i &gt;= 0; i--) <em class='brace'>{</em>
+<a id='L30' name='L30'></a>        res  += ((buffer[i] &amp; 0x0F) * mult);
+<a id='L31' name='L31'></a>        mult *= 10;
+<a id='L32' name='L32'></a>        res  += ((buffer[i] &gt;&gt; 4) * mult);
+<a id='L33' name='L33'></a>        mult *= 10;
+<a id='L34' name='L34'></a>    <em class='brace'>}</em>
+<a id='L35' name='L35'></a>
+<a id='L36' name='L36'></a>    <strong class='reserved'>return</strong> res;
+<a id='L37' name='L37'></a><em class='brace'>}</em>
+<a id='L38' name='L38'></a>
+<a id='L39' name='L39'></a><strong class='reserved'>void</strong> <a href='../R/308.html' title='Multiple referred from 3 places.'>__dec_to_bcd</a>(<a href='../S/59.html#L15' title='Defined at 15 in include/defines.h.'>u32</a> num, <a href='../S/59.html#L13' title='Defined at 13 in include/defines.h.'>u8</a>* buffer_out)
+<a id='L40' name='L40'></a><em class='brace'>{</em>
+<a id='L41' name='L41'></a>    <a href='../S/59.html#L15' title='Defined at 15 in include/defines.h.'>u32</a> log10_num = (uint32_t)log10((<strong class='reserved'>double</strong>)num);
+<a id='L42' name='L42'></a>    size_t num_bytes = (size_t)((log10_num + 1) / 2);
+<a id='L43' name='L43'></a>    <strong class='reserved'>if</strong>(log10_num % 2 == 0) <em class='brace'>{</em>
+<a id='L44' name='L44'></a>        ++num_bytes;
+<a id='L45' name='L45'></a>    <em class='brace'>}</em>
+<a id='L46' name='L46'></a>
+<a id='L47' name='L47'></a>    memset(buffer_out, 0, num_bytes);
+<a id='L48' name='L48'></a>    size_t mult = 100;
+<a id='L49' name='L49'></a>
+<a id='L50' name='L50'></a>    buffer_out[num_bytes-1] = (((num % 100) / 10) &lt;&lt; 4) | (num % 10);
+<a id='L51' name='L51'></a>    <strong class='reserved'>for</strong>(ssize_t i = (ssize_t)(num_bytes-2); i &gt;= 0; i--) <em class='brace'>{</em>
+<a id='L52' name='L52'></a>        buffer_out[i] = (uint8_t)((((num % (mult*100)) / (mult*10)) &lt;&lt; 4) |
+<a id='L53' name='L53'></a>                                  ((num % (mult*10)) / mult));
+<a id='L54' name='L54'></a>        mult *= 100;
+<a id='L55' name='L55'></a>    <em class='brace'>}</em>
+<a id='L56' name='L56'></a><em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L10'>[^]</a><a href='#L39'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

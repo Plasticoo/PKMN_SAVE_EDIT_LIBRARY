@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>tests/unit_tests.c</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/75.html'>tests</a>/unit_tests.c</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L50'>[^]</a><a href='#L152'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L50' title='Defined at 50.'>test_player_name</a></li>
+<li><a href='#L59' title='Defined at 59.'>test_rival_name</a></li>
+<li><a href='#L68' title='Defined at 68.'>test_pokedex_owned</a></li>
+<li><a href='#L75' title='Defined at 75.'>test_pokedex_seen</a></li>
+<li><a href='#L82' title='Defined at 82.'>test_money</a></li>
+<li><a href='#L89' title='Defined at 89.'>test_casino_coins</a></li>
+<li><a href='#L96' title='Defined at 96.'>test_badge</a></li>
+<li><a href='#L103' title='Defined at 103.'>test_options</a></li>
+<li><a href='#L110' title='Defined at 110.'>test_current_pc_box</a></li>
+<li><a href='#L117' title='Defined at 117.'>test_time</a></li>
+<li><a href='#L128' title='Defined at 128.'>test_pocket_items</a></li>
+<li><a href='#L136' title='Defined at 136.'>write_to_save</a></li>
+<li><a href='#L152' title='Defined at 152.'>main</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='sharp'>#include</em> "<a href='6.html'>unity/unity.h</a>"
+<a id='L2' name='L2'></a>
+<a id='L3' name='L3'></a><em class='sharp'>#include</em> "<a href='59.html'>defines.h</a>"
+<a id='L4' name='L4'></a><em class='sharp'>#include</em> "<a href='52.html'>utils.h</a>"
+<a id='L5' name='L5'></a>
+<a id='L6' name='L6'></a><em class='sharp'>#include</em> "<a href='56.html'>gen1/gen1.h</a>"
+<a id='L7' name='L7'></a>
+<a id='L8' name='L8'></a><em class='sharp'>#include</em> &lt;stdio.h&gt;
+<a id='L9' name='L9'></a><em class='sharp'>#include</em> &lt;stdlib.h&gt;
+<a id='L10' name='L10'></a><em class='sharp'>#include</em> &lt;string.h&gt;
+<a id='L11' name='L11'></a>
+<a id='L12' name='L12'></a><em class='sharp'>#define</em> BYTE_TO_BINARY_PATTERN "%c%c%c%c%c%c%c%c"
+<a id='L13' name='L13'></a><em class='sharp'>#define</em> BYTE_TO_BINARY(byte)  \
+<a id='L14' name='L14'></a>  (byte &amp; 0x80 ? '1' : '0'), \
+<a id='L15' name='L15'></a>  (byte &amp; 0x40 ? '1' : '0'), \
+<a id='L16' name='L16'></a>  (byte &amp; 0x20 ? '1' : '0'), \
+<a id='L17' name='L17'></a>  (byte &amp; 0x10 ? '1' : '0'), \
+<a id='L18' name='L18'></a>  (byte &amp; 0x08 ? '1' : '0'), \
+<a id='L19' name='L19'></a>  (byte &amp; 0x04 ? '1' : '0'), \
+<a id='L20' name='L20'></a>  (byte &amp; 0x02 ? '1' : '0'), \
+<a id='L21' name='L21'></a>  (byte &amp; 0x01 ? '1' : '0')
+<a id='L22' name='L22'></a>
+<a id='L23' name='L23'></a>FILE* f;
+<a id='L24' name='L24'></a><strong class='reserved'>struct</strong> <a href='../S/54.html#L104' title='Defined at 104 in include/gen1/gen1_structs.h.'>gen1_pkmn_file_struct</a> save;
+<a id='L25' name='L25'></a>
+<a id='L26' name='L26'></a><strong class='reserved'>char</strong> *player_name = "teste";
+<a id='L27' name='L27'></a><strong class='reserved'>char</strong> *rival_name = "topkek";
+<a id='L28' name='L28'></a>
+<a id='L29' name='L29'></a><a href='../S/59.html#L13' title='Defined at 13 in include/defines.h.'>u8</a> player_pokedex_owned_index = 43;
+<a id='L30' name='L30'></a><a href='../S/59.html#L13' title='Defined at 13 in include/defines.h.'>u8</a> player_pokedex_owned_res = 1;
+<a id='L31' name='L31'></a>
+<a id='L32' name='L32'></a><a href='../S/59.html#L13' title='Defined at 13 in include/defines.h.'>u8</a> player_pokedex_seen_index = 46;
+<a id='L33' name='L33'></a><a href='../S/59.html#L13' title='Defined at 13 in include/defines.h.'>u8</a> player_pokedex_seen_res = 1;
+<a id='L34' name='L34'></a>
+<a id='L35' name='L35'></a><a href='../S/59.html#L15' title='Defined at 15 in include/defines.h.'>u32</a> player_money = 543354;
+<a id='L36' name='L36'></a><a href='../S/59.html#L14' title='Defined at 14 in include/defines.h.'>u16</a> player_casino_coins = 504;
+<a id='L37' name='L37'></a>
+<a id='L38' name='L38'></a><a href='../S/59.html#L13' title='Defined at 13 in include/defines.h.'>u8</a> player_badge = 1;
+<a id='L39' name='L39'></a><a href='../S/59.html#L13' title='Defined at 13 in include/defines.h.'>u8</a> player_option = 1;
+<a id='L40' name='L40'></a>
+<a id='L41' name='L41'></a><a href='../S/59.html#L13' title='Defined at 13 in include/defines.h.'>u8</a> current_pc_box = 13;
+<a id='L42' name='L42'></a>
+<a id='L43' name='L43'></a><a href='../S/59.html#L14' title='Defined at 14 in include/defines.h.'>u16</a> hours = 867;
+<a id='L44' name='L44'></a><a href='../S/59.html#L13' title='Defined at 13 in include/defines.h.'>u8</a> minutes = 34;
+<a id='L45' name='L45'></a><a href='../S/59.html#L13' title='Defined at 13 in include/defines.h.'>u8</a> seconds = 54;
+<a id='L46' name='L46'></a>
+<a id='L47' name='L47'></a><a href='../S/59.html#L13' title='Defined at 13 in include/defines.h.'>u8</a> pocket_item = <a href='../S/55.html#L85' title='Defined at 85 in include/gen1/gen1_enums.h.'>ITEM_MAX_POTION</a>;
+<a id='L48' name='L48'></a><a href='../S/59.html#L13' title='Defined at 13 in include/defines.h.'>u8</a> pocket_item_count = 10;
+<a id='L49' name='L49'></a>
+<a id='L50' name='L50'></a><strong class='reserved'>void</strong> <a href='../S/8.html#L176' title='Referred from 176 in tests/unit_tests.c.'>test_player_name</a>()
+<a id='L51' name='L51'></a><em class='brace'>{</em>
+<a id='L52' name='L52'></a>    <strong class='reserved'>char</strong>* save_name = <a href='../S/62.html#L67' title='Defined at 67 in lib/gen1/gen1_structs.c.'>gen1_get_name</a>(save.player_name);
+<a id='L53' name='L53'></a>
+<a id='L54' name='L54'></a>    <a href='../S/6.html#L136' title='Defined at 136 in tests/unity/unity.h.'>TEST_ASSERT_EQUAL_STRING</a>(player_name, save_name);
+<a id='L55' name='L55'></a>
+<a id='L56' name='L56'></a>    free(save_name);
+<a id='L57' name='L57'></a><em class='brace'>}</em>
+<a id='L58' name='L58'></a>
+<a id='L59' name='L59'></a><strong class='reserved'>void</strong> <a href='../S/8.html#L177' title='Referred from 177 in tests/unit_tests.c.'>test_rival_name</a>()
+<a id='L60' name='L60'></a><em class='brace'>{</em>
+<a id='L61' name='L61'></a>        <strong class='reserved'>char</strong>* save_name = <a href='../S/62.html#L67' title='Defined at 67 in lib/gen1/gen1_structs.c.'>gen1_get_name</a>(save.rival_name);
+<a id='L62' name='L62'></a>
+<a id='L63' name='L63'></a>        <a href='../S/6.html#L136' title='Defined at 136 in tests/unity/unity.h.'>TEST_ASSERT_EQUAL_STRING</a>(rival_name, save_name);
+<a id='L64' name='L64'></a>
+<a id='L65' name='L65'></a>        free(save_name);
+<a id='L66' name='L66'></a><em class='brace'>}</em>
+<a id='L67' name='L67'></a>
+<a id='L68' name='L68'></a><strong class='reserved'>void</strong> <a href='../S/8.html#L178' title='Referred from 178 in tests/unit_tests.c.'>test_pokedex_owned</a>()
+<a id='L69' name='L69'></a><em class='brace'>{</em>
+<a id='L70' name='L70'></a>    <a href='../S/59.html#L13' title='Defined at 13 in include/defines.h.'>u8</a> save_pokedex_owned = <a href='../S/62.html#L112' title='Defined at 112 in lib/gen1/gen1_structs.c.'>gen1_get_pokedex</a>(save.pokedex_owned, player_pokedex_owned_index);
+<a id='L71' name='L71'></a>
+<a id='L72' name='L72'></a>    <a href='../S/6.html#L102' title='Defined at 102 in tests/unity/unity.h.'>TEST_ASSERT_EQUAL_UINT8</a>(player_pokedex_owned_res, save_pokedex_owned);
+<a id='L73' name='L73'></a><em class='brace'>}</em>
+<a id='L74' name='L74'></a>
+<a id='L75' name='L75'></a><strong class='reserved'>void</strong> <a href='../S/8.html#L179' title='Referred from 179 in tests/unit_tests.c.'>test_pokedex_seen</a>()
+<a id='L76' name='L76'></a><em class='brace'>{</em>
+<a id='L77' name='L77'></a>    <a href='../S/59.html#L13' title='Defined at 13 in include/defines.h.'>u8</a> save_pokedex_seen = <a href='../S/62.html#L112' title='Defined at 112 in lib/gen1/gen1_structs.c.'>gen1_get_pokedex</a>(save.pokedex_seen, player_pokedex_seen_index);
+<a id='L78' name='L78'></a>
+<a id='L79' name='L79'></a>    <a href='../S/6.html#L102' title='Defined at 102 in tests/unity/unity.h.'>TEST_ASSERT_EQUAL_UINT8</a>(player_pokedex_seen_res, save_pokedex_seen);
+<a id='L80' name='L80'></a><em class='brace'>}</em>
+<a id='L81' name='L81'></a>
+<a id='L82' name='L82'></a><strong class='reserved'>void</strong> <a href='../S/8.html#L180' title='Referred from 180 in tests/unit_tests.c.'>test_money</a>()
+<a id='L83' name='L83'></a><em class='brace'>{</em>
+<a id='L84' name='L84'></a>    <a href='../S/59.html#L15' title='Defined at 15 in include/defines.h.'>u32</a> save_money = <a href='../S/62.html#L142' title='Defined at 142 in lib/gen1/gen1_structs.c.'>gen1_get_money</a>(save.money);
+<a id='L85' name='L85'></a>
+<a id='L86' name='L86'></a>    <a href='../S/6.html#L104' title='Defined at 104 in tests/unity/unity.h.'>TEST_ASSERT_EQUAL_UINT32</a>(player_money, save_money);
+<a id='L87' name='L87'></a><em class='brace'>}</em>
+<a id='L88' name='L88'></a>
+<a id='L89' name='L89'></a><strong class='reserved'>void</strong> <a href='../S/8.html#L182' title='Referred from 182 in tests/unit_tests.c.'>test_casino_coins</a>()
+<a id='L90' name='L90'></a><em class='brace'>{</em>
+<a id='L91' name='L91'></a>    <a href='../S/59.html#L14' title='Defined at 14 in include/defines.h.'>u16</a> save_casino_coins = <a href='../S/62.html#L172' title='Defined at 172 in lib/gen1/gen1_structs.c.'>gen1_get_casino_coins</a>(save.casino_coins);
+<a id='L92' name='L92'></a>
+<a id='L93' name='L93'></a>    <a href='../S/6.html#L103' title='Defined at 103 in tests/unity/unity.h.'>TEST_ASSERT_EQUAL_UINT16</a>(player_casino_coins, save_casino_coins);
+<a id='L94' name='L94'></a><em class='brace'>}</em>
+<a id='L95' name='L95'></a>
+<a id='L96' name='L96'></a><strong class='reserved'>void</strong> <a href='../S/8.html#L181' title='Referred from 181 in tests/unit_tests.c.'>test_badge</a>()
+<a id='L97' name='L97'></a><em class='brace'>{</em>
+<a id='L98' name='L98'></a>        <a href='../S/59.html#L13' title='Defined at 13 in include/defines.h.'>u8</a> save_badge = <a href='../S/62.html#L344' title='Defined at 344 in lib/gen1/gen1_structs.c.'>gen1_get_badge</a>(save.<a href='../S/55.html#L30' title='Defined at 30 in include/gen1/gen1_enums.h.'>badges</a>, <a href='../S/55.html#L38' title='Defined at 38 in include/gen1/gen1_enums.h.'>BADGE_EARTH</a>);
+<a id='L99' name='L99'></a>
+<a id='L100' name='L100'></a>        <a href='../S/6.html#L102' title='Defined at 102 in tests/unity/unity.h.'>TEST_ASSERT_EQUAL_UINT8</a>(player_badge, save_badge);
+<a id='L101' name='L101'></a><em class='brace'>}</em>
+<a id='L102' name='L102'></a>
+<a id='L103' name='L103'></a><strong class='reserved'>void</strong> <a href='../S/8.html#L183' title='Referred from 183 in tests/unit_tests.c.'>test_options</a>()
+<a id='L104' name='L104'></a><em class='brace'>{</em>
+<a id='L105' name='L105'></a>        <a href='../S/59.html#L13' title='Defined at 13 in include/defines.h.'>u8</a> save_option = <a href='../S/62.html#L207' title='Defined at 207 in lib/gen1/gen1_structs.c.'>gen1_get_option</a>(save.<a href='../S/55.html#L4' title='Defined at 4 in include/gen1/gen1_enums.h.'>options</a>, <a href='../S/55.html#L12' title='Defined at 12 in include/gen1/gen1_enums.h.'>OPTION_TEXT_SPEED_FAST</a>);
+<a id='L106' name='L106'></a>
+<a id='L107' name='L107'></a>        <a href='../S/6.html#L102' title='Defined at 102 in tests/unity/unity.h.'>TEST_ASSERT_EQUAL_UINT8</a>(player_option, save_option);
+<a id='L108' name='L108'></a><em class='brace'>}</em>
+<a id='L109' name='L109'></a>
+<a id='L110' name='L110'></a><strong class='reserved'>void</strong> <a href='../S/8.html#L184' title='Referred from 184 in tests/unit_tests.c.'>test_current_pc_box</a>()
+<a id='L111' name='L111'></a><em class='brace'>{</em>
+<a id='L112' name='L112'></a>        <a href='../S/59.html#L13' title='Defined at 13 in include/defines.h.'>u8</a> save_current_pc_box = <a href='../S/62.html#L364' title='Defined at 364 in lib/gen1/gen1_structs.c.'>gen1_get_current_pc_box</a>(save.current_pc_box);
+<a id='L113' name='L113'></a>
+<a id='L114' name='L114'></a>        <a href='../S/6.html#L102' title='Defined at 102 in tests/unity/unity.h.'>TEST_ASSERT_EQUAL_UINT8</a>(current_pc_box, save_current_pc_box);
+<a id='L115' name='L115'></a><em class='brace'>}</em>
+<a id='L116' name='L116'></a>
+<a id='L117' name='L117'></a><strong class='reserved'>void</strong> <a href='../S/8.html#L185' title='Referred from 185 in tests/unit_tests.c.'>test_time</a>()
+<a id='L118' name='L118'></a><em class='brace'>{</em>
+<a id='L119' name='L119'></a>        <strong class='reserved'>struct</strong> <a href='../S/54.html#L48' title='Defined at 48 in include/gen1/gen1_structs.h.'>gen1_pkmn_time</a> _t = <em class='brace'>{</em>.hours = 0, .minutes = 0, .seconds = 0<em class='brace'>}</em>;
+<a id='L120' name='L120'></a>
+<a id='L121' name='L121'></a>        <a href='../S/62.html#L315' title='Defined at 315 in lib/gen1/gen1_structs.c.'>gen1_get_time_played</a>(save.time_played, &amp;_t);
+<a id='L122' name='L122'></a>
+<a id='L123' name='L123'></a>        <a href='../S/6.html#L103' title='Defined at 103 in tests/unity/unity.h.'>TEST_ASSERT_EQUAL_UINT16</a>(hours, _t.hours);
+<a id='L124' name='L124'></a>        <a href='../S/6.html#L102' title='Defined at 102 in tests/unity/unity.h.'>TEST_ASSERT_EQUAL_UINT8</a>(minutes, _t.minutes);
+<a id='L125' name='L125'></a>        <a href='../S/6.html#L102' title='Defined at 102 in tests/unity/unity.h.'>TEST_ASSERT_EQUAL_UINT8</a>(seconds, _t.seconds);
+<a id='L126' name='L126'></a><em class='brace'>}</em>
+<a id='L127' name='L127'></a>
+<a id='L128' name='L128'></a><strong class='reserved'>void</strong> <a href='../S/8.html#L186' title='Referred from 186 in tests/unit_tests.c.'>test_pocket_items</a>()
+<a id='L129' name='L129'></a><em class='brace'>{</em>
+<a id='L130' name='L130'></a>        <strong class='reserved'>struct</strong> <a href='../S/54.html#L87' title='Defined at 87 in include/gen1/gen1_structs.h.'>gen1_item</a> item = save.pocket_items-&gt;item[1];
+<a id='L131' name='L131'></a>
+<a id='L132' name='L132'></a>        <a href='../S/6.html#L102' title='Defined at 102 in tests/unity/unity.h.'>TEST_ASSERT_EQUAL_UINT8</a>(item.count, pocket_item_count);
+<a id='L133' name='L133'></a>        <a href='../S/6.html#L102' title='Defined at 102 in tests/unity/unity.h.'>TEST_ASSERT_EQUAL_UINT8</a>(item.index, pocket_item);
+<a id='L134' name='L134'></a><em class='brace'>}</em>
+<a id='L135' name='L135'></a>
+<a id='L136' name='L136'></a><strong class='reserved'>void</strong> <a href='../S/8.html#L168' title='Referred from 168 in tests/unit_tests.c.'>write_to_save</a>(<strong class='reserved'>struct</strong> <a href='../S/54.html#L104' title='Defined at 104 in include/gen1/gen1_structs.h.'>gen1_pkmn_file_struct</a> *sav)
+<a id='L137' name='L137'></a><em class='brace'>{</em>
+<a id='L138' name='L138'></a>    <a href='../S/62.html#L87' title='Defined at 87 in lib/gen1/gen1_structs.c.'>gen1_set_name</a>(sav-&gt;player_name, player_name, strlen(player_name));
+<a id='L139' name='L139'></a>    <a href='../S/62.html#L87' title='Defined at 87 in lib/gen1/gen1_structs.c.'>gen1_set_name</a>(sav-&gt;rival_name, rival_name, strlen(rival_name));
+<a id='L140' name='L140'></a>    <a href='../S/62.html#L121' title='Defined at 121 in lib/gen1/gen1_structs.c.'>gen1_set_pokedex</a>(sav-&gt;pokedex_owned, player_pokedex_owned_index);
+<a id='L141' name='L141'></a>    <a href='../S/62.html#L121' title='Defined at 121 in lib/gen1/gen1_structs.c.'>gen1_set_pokedex</a>(sav-&gt;pokedex_seen, player_pokedex_seen_index);
+<a id='L142' name='L142'></a>    <a href='../S/62.html#L158' title='Defined at 158 in lib/gen1/gen1_structs.c.'>gen1_set_money</a>(sav-&gt;money, player_money);
+<a id='L143' name='L143'></a>    <a href='../S/62.html#L186' title='Defined at 186 in lib/gen1/gen1_structs.c.'>gen1_set_casino_coins</a>(sav-&gt;casino_coins, player_casino_coins);
+<a id='L144' name='L144'></a>        <a href='../S/62.html#L263' title='Defined at 263 in lib/gen1/gen1_structs.c.'>gen1_set_option</a>(sav-&gt;<a href='../S/55.html#L4' title='Defined at 4 in include/gen1/gen1_enums.h.'>options</a>, <a href='../S/55.html#L12' title='Defined at 12 in include/gen1/gen1_enums.h.'>OPTION_TEXT_SPEED_FAST</a>);
+<a id='L145' name='L145'></a>        <a href='../S/62.html#L354' title='Defined at 354 in lib/gen1/gen1_structs.c.'>gen1_set_badge</a>(sav-&gt;<a href='../S/55.html#L30' title='Defined at 30 in include/gen1/gen1_enums.h.'>badges</a>, <a href='../S/55.html#L38' title='Defined at 38 in include/gen1/gen1_enums.h.'>BADGE_EARTH</a>);
+<a id='L146' name='L146'></a>        <em class='comment'>//gen1_set_pikachu_friendship(sav-&gt;pikachu_friendship, 36);</em>
+<a id='L147' name='L147'></a>        <a href='../S/62.html#L374' title='Defined at 374 in lib/gen1/gen1_structs.c.'>gen1_set_current_pc_box</a>(sav-&gt;current_pc_box, current_pc_box);
+<a id='L148' name='L148'></a>        <a href='../S/62.html#L328' title='Defined at 328 in lib/gen1/gen1_structs.c.'>gen1_set_time_played</a>(sav-&gt;time_played, hours,  minutes,  seconds);
+<a id='L149' name='L149'></a>        <a href='../S/62.html#L510' title='Defined at 510 in lib/gen1/gen1_structs.c.'>gen1_set_item_bag</a>(sav-&gt;pocket_items-&gt;item, 1, pocket_item, pocket_item_count);
+<a id='L150' name='L150'></a><em class='brace'>}</em>
+<a id='L151' name='L151'></a>
+<a id='L152' name='L152'></a><strong class='reserved'>int</strong> <a href='../R/360.html' title='Multiple referred from 2 places.'>main</a>(<strong class='reserved'>int</strong> argc, <strong class='reserved'>char</strong>** argv)
+<a id='L153' name='L153'></a><em class='brace'>{</em>
+<a id='L154' name='L154'></a>    <strong class='reserved'>int</strong> errn;
+<a id='L155' name='L155'></a>
+<a id='L156' name='L156'></a>    <strong class='reserved'>if</strong>(argc != 2) <em class='brace'>{</em>
+<a id='L157' name='L157'></a>        <a href='../S/59.html#L28' title='Defined at 28 in include/defines.h.'>PDEBUG</a>("number of arguments invalid");
+<a id='L158' name='L158'></a>        <strong class='reserved'>return</strong> EXIT_FAILURE;
+<a id='L159' name='L159'></a>    <em class='brace'>}</em>
+<a id='L160' name='L160'></a>
+<a id='L161' name='L161'></a>    <strong class='reserved'>if</strong>((f = <a href='../S/61.html#L35' title='Defined at 35 in lib/gen1/gen1_funcs.c.'>gen1_fopen</a>(argv[1], &amp;save, &amp;errn)) == NULL) <em class='brace'>{</em>
+<a id='L162' name='L162'></a>        <a href='../S/59.html#L28' title='Defined at 28 in include/defines.h.'>PDEBUG</a>("error opening file: %d\n", errn);
+<a id='L163' name='L163'></a>        <strong class='reserved'>return</strong> EXIT_FAILURE;
+<a id='L164' name='L164'></a>    <em class='brace'>}</em>
+<a id='L165' name='L165'></a>
+<a id='L166' name='L166'></a>    printf("File loaded.\n");
+<a id='L167' name='L167'></a>
+<a id='L168' name='L168'></a>    <a href='../S/8.html#L136' title='Defined at 136 in tests/unit_tests.c.'>write_to_save</a>(&amp;save);
+<a id='L169' name='L169'></a>    printf("Wrote to save.\n");
+<a id='L170' name='L170'></a>    <a href='../S/62.html#L56' title='Defined at 56 in lib/gen1/gen1_structs.c.'>gen1_set_checksum</a>(&amp;save);
+<a id='L171' name='L171'></a>
+<a id='L172' name='L172'></a>    printf("Preparing for unit tests...\n");
+<a id='L173' name='L173'></a>
+<a id='L174' name='L174'></a>    <a href='../S/7.html#L611' title='Defined at 611 in tests/unity/unity_internals.h.'>UNITY_BEGIN</a>();
+<a id='L175' name='L175'></a>
+<a id='L176' name='L176'></a>    <a href='../D/283.html' title='Multiple defined in 3 places.'>RUN_TEST</a>(<a href='../S/8.html#L50' title='Defined at 50 in tests/unit_tests.c.'>test_player_name</a>);
+<a id='L177' name='L177'></a>        <a href='../D/283.html' title='Multiple defined in 3 places.'>RUN_TEST</a>(<a href='../S/8.html#L59' title='Defined at 59 in tests/unit_tests.c.'>test_rival_name</a>);
+<a id='L178' name='L178'></a>    <a href='../D/283.html' title='Multiple defined in 3 places.'>RUN_TEST</a>(<a href='../S/8.html#L68' title='Defined at 68 in tests/unit_tests.c.'>test_pokedex_owned</a>);
+<a id='L179' name='L179'></a>    <a href='../D/283.html' title='Multiple defined in 3 places.'>RUN_TEST</a>(<a href='../S/8.html#L75' title='Defined at 75 in tests/unit_tests.c.'>test_pokedex_seen</a>);
+<a id='L180' name='L180'></a>    <a href='../D/283.html' title='Multiple defined in 3 places.'>RUN_TEST</a>(<a href='../S/8.html#L82' title='Defined at 82 in tests/unit_tests.c.'>test_money</a>);
+<a id='L181' name='L181'></a>        <a href='../D/283.html' title='Multiple defined in 3 places.'>RUN_TEST</a>(<a href='../S/8.html#L96' title='Defined at 96 in tests/unit_tests.c.'>test_badge</a>);
+<a id='L182' name='L182'></a>        <a href='../D/283.html' title='Multiple defined in 3 places.'>RUN_TEST</a>(<a href='../S/8.html#L89' title='Defined at 89 in tests/unit_tests.c.'>test_casino_coins</a>);
+<a id='L183' name='L183'></a>        <a href='../D/283.html' title='Multiple defined in 3 places.'>RUN_TEST</a>(<a href='../S/8.html#L103' title='Defined at 103 in tests/unit_tests.c.'>test_options</a>);
+<a id='L184' name='L184'></a>        <a href='../D/283.html' title='Multiple defined in 3 places.'>RUN_TEST</a>(<a href='../S/8.html#L110' title='Defined at 110 in tests/unit_tests.c.'>test_current_pc_box</a>);
+<a id='L185' name='L185'></a>        <a href='../D/283.html' title='Multiple defined in 3 places.'>RUN_TEST</a>(<a href='../S/8.html#L117' title='Defined at 117 in tests/unit_tests.c.'>test_time</a>);
+<a id='L186' name='L186'></a>        <a href='../D/283.html' title='Multiple defined in 3 places.'>RUN_TEST</a>(<a href='../S/8.html#L128' title='Defined at 128 in tests/unit_tests.c.'>test_pocket_items</a>);
+<a id='L187' name='L187'></a>
+<a id='L188' name='L188'></a>    <strong class='reserved'>return</strong> <a href='../S/7.html#L615' title='Defined at 615 in tests/unity/unity_internals.h.'>UNITY_END</a>();
+<a id='L189' name='L189'></a><em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L50'>[^]</a><a href='#L152'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

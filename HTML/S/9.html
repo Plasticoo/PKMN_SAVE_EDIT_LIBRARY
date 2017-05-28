@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>tests/file_load_test.c</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/75.html'>tests</a>/file_load_test.c</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L8'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L8' title='Defined at 8.'>main</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='sharp'>#include</em> "<a href='57.html'>../include/gen1/gen1_funcs.h</a>"
+<a id='L2' name='L2'></a><em class='sharp'>#include</em> "../include/gen1/gen1_prints.h"
+<a id='L3' name='L3'></a><em class='sharp'>#include</em> "<a href='54.html'>../include/gen1/gen1_structs.h</a>"
+<a id='L4' name='L4'></a>
+<a id='L5' name='L5'></a><em class='sharp'>#include</em> &lt;stdio.h&gt;
+<a id='L6' name='L6'></a><em class='sharp'>#include</em> &lt;stdlib.h&gt;
+<a id='L7' name='L7'></a>
+<a id='L8' name='L8'></a><strong class='reserved'>int</strong> <a href='../R/360.html' title='Multiple referred from 2 places.'>main</a>(<strong class='reserved'>int</strong> argc, <strong class='reserved'>char</strong> *argv[])
+<a id='L9' name='L9'></a><em class='brace'>{</em>
+<a id='L10' name='L10'></a>        <strong class='reserved'>int</strong> errn;
+<a id='L11' name='L11'></a>        uint8_t* f_map;
+<a id='L12' name='L12'></a>
+<a id='L13' name='L13'></a>        FILE* f;
+<a id='L14' name='L14'></a>    <strong class='reserved'>struct</strong> <a href='../S/54.html#L104' title='Defined at 104 in include/gen1/gen1_structs.h.'>gen1_pkmn_file_struct</a> a;
+<a id='L15' name='L15'></a>
+<a id='L16' name='L16'></a>    <strong class='reserved'>char</strong>* player_name;
+<a id='L17' name='L17'></a>
+<a id='L18' name='L18'></a>        <strong class='reserved'>if</strong> ((f = <a href='../S/64.html#L17' title='Defined at 17 in lib/utils.c.'>_fopen</a>("/home/romeu/Documents/Games/GB/pokemon_red.sav", &amp;errn)) == NULL) <em class='brace'>{</em>
+<a id='L19' name='L19'></a>        printf("Error opening file: %d\n", errn);
+<a id='L20' name='L20'></a>        exit(EXIT_FAILURE);
+<a id='L21' name='L21'></a>    <em class='brace'>}</em>
+<a id='L22' name='L22'></a>
+<a id='L23' name='L23'></a>        a.file_map = <a href='../S/61.html#L49' title='Defined at 49 in lib/gen1/gen1_funcs.c.'>load_file</a>(f);
+<a id='L24' name='L24'></a>        <a href='../S/61.html#L64' title='Defined at 64 in lib/gen1/gen1_funcs.c.'>gen1_load_file</a>(&amp;a);
+<a id='L25' name='L25'></a>
+<a id='L26' name='L26'></a>    <em class='comment'>// name tests</em>
+<a id='L27' name='L27'></a>    player_name = <a href='../S/62.html#L67' title='Defined at 67 in lib/gen1/gen1_structs.c.'>gen1_get_name</a>(a.player_name);
+<a id='L28' name='L28'></a>    printf("Player name: %s\n", player_name);
+<a id='L29' name='L29'></a>
+<a id='L30' name='L30'></a>    <a href='../S/62.html#L87' title='Defined at 87 in lib/gen1/gen1_structs.c.'>gen1_set_name</a>(a.player_name, "umadbro", 10);
+<a id='L31' name='L31'></a>    <a href='../S/62.html#L56' title='Defined at 56 in lib/gen1/gen1_structs.c.'>gen1_set_checksum</a>(&amp;a);
+<a id='L32' name='L32'></a>    <a href='../S/62.html#L32' title='Defined at 32 in lib/gen1/gen1_structs.c.'>gen1_save_changes</a>(&amp;a, "saved_changes.sav");
+<a id='L33' name='L33'></a>
+<a id='L34' name='L34'></a>        fclose(f);
+<a id='L35' name='L35'></a>
+<a id='L36' name='L36'></a>    free(a.file_map);
+<a id='L37' name='L37'></a>    free(player_name);
+<a id='L38' name='L38'></a>
+<a id='L39' name='L39'></a>    <strong class='reserved'>return</strong> 0;
+<a id='L40' name='L40'></a><em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L8'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

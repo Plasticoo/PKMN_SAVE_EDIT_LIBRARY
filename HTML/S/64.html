@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>lib/utils.c</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/73.html'>lib</a>/utils.c</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L6'>[^]</a><a href='#L36'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L6' title='Defined at 6.'>get_file_size</a></li>
+<li><a href='#L17' title='Defined at 17.'>_fopen</a></li>
+<li><a href='#L36' title='Defined at 36.'>print_hexmap</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='sharp'>#include</em> "<a href='52.html'>utils.h</a>"
+<a id='L2' name='L2'></a>
+<a id='L3' name='L3'></a><em class='sharp'>#include</em> &lt;stdio.h&gt;
+<a id='L4' name='L4'></a><em class='sharp'>#include</em> &lt;string.h&gt;
+<a id='L5' name='L5'></a>
+<a id='L6' name='L6'></a><strong class='reserved'>long</strong> <a href='../R/356.html' title='Multiple referred from 2 places.'>get_file_size</a>(FILE* f)
+<a id='L7' name='L7'></a><em class='brace'>{</em>
+<a id='L8' name='L8'></a>        <strong class='reserved'>long</strong> _s;
+<a id='L9' name='L9'></a>
+<a id='L10' name='L10'></a>        fseek(f, 0L, SEEK_END);
+<a id='L11' name='L11'></a>    _s = ftell(f);
+<a id='L12' name='L12'></a>    fseek(f, 0L, SEEK_END);
+<a id='L13' name='L13'></a>
+<a id='L14' name='L14'></a>        <strong class='reserved'>return</strong> _s;
+<a id='L15' name='L15'></a><em class='brace'>}</em>
+<a id='L16' name='L16'></a>
+<a id='L17' name='L17'></a>FILE* <a href='../R/310.html' title='Multiple referred from 5 places.'>_fopen</a>(<strong class='reserved'>char</strong>* file_name, <a href='../S/59.html#L15' title='Defined at 15 in include/defines.h.'>u32</a> fsize, <strong class='reserved'>int</strong>* errn)
+<a id='L18' name='L18'></a><em class='brace'>{</em>
+<a id='L19' name='L19'></a>    FILE* f;
+<a id='L20' name='L20'></a>
+<a id='L21' name='L21'></a>    <strong class='reserved'>if</strong> ((f = fopen(file_name, "r")) == NULL) <em class='brace'>{</em>
+<a id='L22' name='L22'></a>        *errn = <a href='../S/59.html#L18' title='Defined at 18 in include/defines.h.'>FILE_OPEN_ERR</a>;
+<a id='L23' name='L23'></a>        <strong class='reserved'>return</strong> NULL;
+<a id='L24' name='L24'></a>    <em class='brace'>}</em>
+<a id='L25' name='L25'></a>
+<a id='L26' name='L26'></a>    <strong class='reserved'>if</strong> (<a href='../S/64.html#L6' title='Defined at 6 in lib/utils.c.'>get_file_size</a>(f) != fsize) <em class='brace'>{</em>
+<a id='L27' name='L27'></a>        fclose(f);
+<a id='L28' name='L28'></a>
+<a id='L29' name='L29'></a>        *errn = <a href='../S/59.html#L19' title='Defined at 19 in include/defines.h.'>FILE_SIZE_ERR</a>;
+<a id='L30' name='L30'></a>        <strong class='reserved'>return</strong> NULL;
+<a id='L31' name='L31'></a>    <em class='brace'>}</em>
+<a id='L32' name='L32'></a>
+<a id='L33' name='L33'></a>    <strong class='reserved'>return</strong> f;
+<a id='L34' name='L34'></a><em class='brace'>}</em>
+<a id='L35' name='L35'></a>
+<a id='L36' name='L36'></a><strong class='reserved'>void</strong> <a href='../S/52.html#L31' title='Referred from 31 in include/utils.h.'>print_hexmap</a>(<a href='../S/59.html#L13' title='Defined at 13 in include/defines.h.'>u8</a>* array, <strong class='reserved'>int</strong> size)
+<a id='L37' name='L37'></a><em class='brace'>{</em>
+<a id='L38' name='L38'></a>        <strong class='reserved'>int</strong> i;
+<a id='L39' name='L39'></a>
+<a id='L40' name='L40'></a>        <strong class='reserved'>for</strong>(i = 0; i &lt; size; i++) <em class='brace'>{</em>
+<a id='L41' name='L41'></a>                <strong class='reserved'>if</strong>(i == 0) <em class='brace'>{</em>
+<a id='L42' name='L42'></a>                        printf("\n0x%04X - %02X ", i, array[i]);
+<a id='L43' name='L43'></a>                <em class='brace'>}</em> <strong class='reserved'>else</strong> <strong class='reserved'>if</strong>(i &gt;= 32 &amp;&amp; i % 32 == 0) <em class='brace'>{</em>
+<a id='L44' name='L44'></a>                        printf("\n0x%04X - %02X ", i, array[i]);
+<a id='L45' name='L45'></a>                <em class='brace'>}</em> <strong class='reserved'>else</strong> <em class='brace'>{</em>
+<a id='L46' name='L46'></a>                        printf("%02X ", array[i]);
+<a id='L47' name='L47'></a>                <em class='brace'>}</em>
+<a id='L48' name='L48'></a>        <em class='brace'>}</em>
+<a id='L49' name='L49'></a>
+<a id='L50' name='L50'></a>        putchar('\n');
+<a id='L51' name='L51'></a><em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L6'>[^]</a><a href='#L36'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

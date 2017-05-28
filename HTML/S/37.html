@@ -1,0 +1,588 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>build/CMakeFiles/3.7.2/CompilerIdC/CMakeCCompilerId.c</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.5.6' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/<a href='../files/65.html'>build</a>/<a href='../files/66.html'>CMakeFiles</a>/<a href='../files/67.html'>3.7.2</a>/<a href='../files/68.html'>CompilerIdC</a>/CMakeCCompilerId.c</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L533'>[^]</a><a href='#L536'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L533' title='Defined at 533.'>main</a></li>
+<li><a href='#L536' title='Defined at 536.'>main</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='sharp'>#ifdef</em> __cplusplus
+<a id='L2' name='L2'></a><em class='sharp'># error</em> "A C++ compiler has been selected for C."
+<a id='L3' name='L3'></a><em class='sharp'>#endif</em>
+<a id='L4' name='L4'></a>
+<a id='L5' name='L5'></a><em class='sharp'>#if</em> <strong class='reserved'>defined</strong>(__18CXX)
+<a id='L6' name='L6'></a><em class='sharp'># define</em> <a href='../S/37.html#L532' title='Referred from 532 in build/CMakeFiles/3.7.2/CompilerIdC/CMakeCCompilerId.c.'>ID_VOID_MAIN</a>
+<a id='L7' name='L7'></a><em class='sharp'>#endif</em>
+<a id='L8' name='L8'></a><em class='sharp'>#if</em> <strong class='reserved'>defined</strong>(__CLASSIC_C__)
+<a id='L9' name='L9'></a><em class='comment'>/* cv-qualifiers did not exist in K&amp;R C */</em>
+<a id='L10' name='L10'></a><em class='sharp'># define</em> <strong class='reserved'>const</strong>
+<a id='L11' name='L11'></a><em class='sharp'># define</em> <strong class='reserved'>volatile</strong>
+<a id='L12' name='L12'></a><em class='sharp'>#endif</em>
+<a id='L13' name='L13'></a>
+<a id='L14' name='L14'></a>
+<a id='L15' name='L15'></a><em class='comment'>/* Version number components: V=Version, R=Revision, P=Patch</em>
+<a id='L16' name='L16'></a><em class='comment'>   Version date components:   YYYY=Year, MM=Month,   DD=Day  */</em>
+<a id='L17' name='L17'></a>
+<a id='L18' name='L18'></a><em class='sharp'>#if</em> <strong class='reserved'>defined</strong>(__INTEL_COMPILER) || <strong class='reserved'>defined</strong>(__ICC)
+<a id='L19' name='L19'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "Intel"
+<a id='L20' name='L20'></a><em class='sharp'># if</em> <strong class='reserved'>defined</strong>(_MSC_VER)
+<a id='L21' name='L21'></a><em class='sharp'>#  define</em> <a href='../R/66.html' title='Multiple referred from 6 places.'>SIMULATE_ID</a> "MSVC"
+<a id='L22' name='L22'></a><em class='sharp'># endif</em>
+<a id='L23' name='L23'></a>  <em class='comment'>/* __INTEL_COMPILER = VRP */</em>
+<a id='L24' name='L24'></a><em class='sharp'># define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__INTEL_COMPILER/100)
+<a id='L25' name='L25'></a><em class='sharp'># define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__INTEL_COMPILER/10 % 10)
+<a id='L26' name='L26'></a><em class='sharp'># if</em> <strong class='reserved'>defined</strong>(__INTEL_COMPILER_UPDATE)
+<a id='L27' name='L27'></a><em class='sharp'>#  define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__INTEL_COMPILER_UPDATE)
+<a id='L28' name='L28'></a><em class='sharp'># else</em>
+<a id='L29' name='L29'></a><em class='sharp'>#  define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__INTEL_COMPILER   % 10)
+<a id='L30' name='L30'></a><em class='sharp'># endif</em>
+<a id='L31' name='L31'></a><em class='sharp'># if</em> <strong class='reserved'>defined</strong>(__INTEL_COMPILER_BUILD_DATE)
+<a id='L32' name='L32'></a>  <em class='comment'>/* __INTEL_COMPILER_BUILD_DATE = YYYYMMDD */</em>
+<a id='L33' name='L33'></a><em class='sharp'>#  define</em> <a href='../R/15.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_TWEAK</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__INTEL_COMPILER_BUILD_DATE)
+<a id='L34' name='L34'></a><em class='sharp'># endif</em>
+<a id='L35' name='L35'></a><em class='sharp'># if</em> <strong class='reserved'>defined</strong>(_MSC_VER)
+<a id='L36' name='L36'></a>   <em class='comment'>/* _MSC_VER = VVRR */</em>
+<a id='L37' name='L37'></a><em class='sharp'>#  define</em> <a href='../R/67.html' title='Multiple referred from 6 places.'>SIMULATE_VERSION_MAJOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(_MSC_VER / 100)
+<a id='L38' name='L38'></a><em class='sharp'>#  define</em> <a href='../R/68.html' title='Multiple referred from 4 places.'>SIMULATE_VERSION_MINOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(_MSC_VER % 100)
+<a id='L39' name='L39'></a><em class='sharp'># endif</em>
+<a id='L40' name='L40'></a>
+<a id='L41' name='L41'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__PATHCC__)
+<a id='L42' name='L42'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "PathScale"
+<a id='L43' name='L43'></a><em class='sharp'># define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__PATHCC__)
+<a id='L44' name='L44'></a><em class='sharp'># define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__PATHCC_MINOR__)
+<a id='L45' name='L45'></a><em class='sharp'># if</em> <strong class='reserved'>defined</strong>(__PATHCC_PATCHLEVEL__)
+<a id='L46' name='L46'></a><em class='sharp'>#  define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__PATHCC_PATCHLEVEL__)
+<a id='L47' name='L47'></a><em class='sharp'># endif</em>
+<a id='L48' name='L48'></a>
+<a id='L49' name='L49'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__BORLANDC__) &amp;&amp; <strong class='reserved'>defined</strong>(__CODEGEARC_VERSION__)
+<a id='L50' name='L50'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "Embarcadero"
+<a id='L51' name='L51'></a><em class='sharp'># define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/46.html' title='Multiple defined in 2 places.'>HEX</a>(__CODEGEARC_VERSION__&gt;&gt;24 &amp; 0x00FF)
+<a id='L52' name='L52'></a><em class='sharp'># define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/46.html' title='Multiple defined in 2 places.'>HEX</a>(__CODEGEARC_VERSION__&gt;&gt;16 &amp; 0x00FF)
+<a id='L53' name='L53'></a><em class='sharp'># define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__CODEGEARC_VERSION__     &amp; 0xFFFF)
+<a id='L54' name='L54'></a>
+<a id='L55' name='L55'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__BORLANDC__)
+<a id='L56' name='L56'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "Borland"
+<a id='L57' name='L57'></a>  <em class='comment'>/* __BORLANDC__ = 0xVRR */</em>
+<a id='L58' name='L58'></a><em class='sharp'># define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/46.html' title='Multiple defined in 2 places.'>HEX</a>(__BORLANDC__&gt;&gt;8)
+<a id='L59' name='L59'></a><em class='sharp'># define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/46.html' title='Multiple defined in 2 places.'>HEX</a>(__BORLANDC__ &amp; 0xFF)
+<a id='L60' name='L60'></a>
+<a id='L61' name='L61'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__WATCOMC__) &amp;&amp; __WATCOMC__ &lt; 1200
+<a id='L62' name='L62'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "Watcom"
+<a id='L63' name='L63'></a>   <em class='comment'>/* __WATCOMC__ = VVRR */</em>
+<a id='L64' name='L64'></a><em class='sharp'># define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__WATCOMC__ / 100)
+<a id='L65' name='L65'></a><em class='sharp'># define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>((__WATCOMC__ / 10) % 10)
+<a id='L66' name='L66'></a><em class='sharp'># if</em> (__WATCOMC__ % 10) &gt; 0
+<a id='L67' name='L67'></a><em class='sharp'>#  define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__WATCOMC__ % 10)
+<a id='L68' name='L68'></a><em class='sharp'># endif</em>
+<a id='L69' name='L69'></a>
+<a id='L70' name='L70'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__WATCOMC__)
+<a id='L71' name='L71'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "OpenWatcom"
+<a id='L72' name='L72'></a>   <em class='comment'>/* __WATCOMC__ = VVRP + 1100 */</em>
+<a id='L73' name='L73'></a><em class='sharp'># define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>((__WATCOMC__ - 1100) / 100)
+<a id='L74' name='L74'></a><em class='sharp'># define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>((__WATCOMC__ / 10) % 10)
+<a id='L75' name='L75'></a><em class='sharp'># if</em> (__WATCOMC__ % 10) &gt; 0
+<a id='L76' name='L76'></a><em class='sharp'>#  define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__WATCOMC__ % 10)
+<a id='L77' name='L77'></a><em class='sharp'># endif</em>
+<a id='L78' name='L78'></a>
+<a id='L79' name='L79'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__SUNPRO_C)
+<a id='L80' name='L80'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "SunPro"
+<a id='L81' name='L81'></a><em class='sharp'># if</em> __SUNPRO_C &gt;= 0x5100
+<a id='L82' name='L82'></a>   <em class='comment'>/* __SUNPRO_C = 0xVRRP */</em>
+<a id='L83' name='L83'></a><em class='sharp'>#  define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/46.html' title='Multiple defined in 2 places.'>HEX</a>(__SUNPRO_C&gt;&gt;12)
+<a id='L84' name='L84'></a><em class='sharp'>#  define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/46.html' title='Multiple defined in 2 places.'>HEX</a>(__SUNPRO_C&gt;&gt;4 &amp; 0xFF)
+<a id='L85' name='L85'></a><em class='sharp'>#  define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/46.html' title='Multiple defined in 2 places.'>HEX</a>(__SUNPRO_C    &amp; 0xF)
+<a id='L86' name='L86'></a><em class='sharp'># else</em>
+<a id='L87' name='L87'></a>   <em class='comment'>/* __SUNPRO_CC = 0xVRP */</em>
+<a id='L88' name='L88'></a><em class='sharp'>#  define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/46.html' title='Multiple defined in 2 places.'>HEX</a>(__SUNPRO_C&gt;&gt;8)
+<a id='L89' name='L89'></a><em class='sharp'>#  define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/46.html' title='Multiple defined in 2 places.'>HEX</a>(__SUNPRO_C&gt;&gt;4 &amp; 0xF)
+<a id='L90' name='L90'></a><em class='sharp'>#  define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/46.html' title='Multiple defined in 2 places.'>HEX</a>(__SUNPRO_C    &amp; 0xF)
+<a id='L91' name='L91'></a><em class='sharp'># endif</em>
+<a id='L92' name='L92'></a>
+<a id='L93' name='L93'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__HP_cc)
+<a id='L94' name='L94'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "HP"
+<a id='L95' name='L95'></a>  <em class='comment'>/* __HP_cc = VVRRPP */</em>
+<a id='L96' name='L96'></a><em class='sharp'># define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__HP_cc/10000)
+<a id='L97' name='L97'></a><em class='sharp'># define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__HP_cc/100 % 100)
+<a id='L98' name='L98'></a><em class='sharp'># define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__HP_cc     % 100)
+<a id='L99' name='L99'></a>
+<a id='L100' name='L100'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__DECC)
+<a id='L101' name='L101'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "Compaq"
+<a id='L102' name='L102'></a>  <em class='comment'>/* __DECC_VER = VVRRTPPPP */</em>
+<a id='L103' name='L103'></a><em class='sharp'># define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__DECC_VER/10000000)
+<a id='L104' name='L104'></a><em class='sharp'># define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__DECC_VER/100000  % 100)
+<a id='L105' name='L105'></a><em class='sharp'># define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__DECC_VER         % 10000)
+<a id='L106' name='L106'></a>
+<a id='L107' name='L107'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__IBMC__) &amp;&amp; <strong class='reserved'>defined</strong>(__COMPILER_VER__)
+<a id='L108' name='L108'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "zOS"
+<a id='L109' name='L109'></a>  <em class='comment'>/* __IBMC__ = VRP */</em>
+<a id='L110' name='L110'></a><em class='sharp'># define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__IBMC__/100)
+<a id='L111' name='L111'></a><em class='sharp'># define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__IBMC__/10 % 10)
+<a id='L112' name='L112'></a><em class='sharp'># define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__IBMC__    % 10)
+<a id='L113' name='L113'></a>
+<a id='L114' name='L114'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__IBMC__) &amp;&amp; !<strong class='reserved'>defined</strong>(__COMPILER_VER__) &amp;&amp; __IBMC__ &gt;= 800
+<a id='L115' name='L115'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "XL"
+<a id='L116' name='L116'></a>  <em class='comment'>/* __IBMC__ = VRP */</em>
+<a id='L117' name='L117'></a><em class='sharp'># define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__IBMC__/100)
+<a id='L118' name='L118'></a><em class='sharp'># define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__IBMC__/10 % 10)
+<a id='L119' name='L119'></a><em class='sharp'># define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__IBMC__    % 10)
+<a id='L120' name='L120'></a>
+<a id='L121' name='L121'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__IBMC__) &amp;&amp; !<strong class='reserved'>defined</strong>(__COMPILER_VER__) &amp;&amp; __IBMC__ &lt; 800
+<a id='L122' name='L122'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "VisualAge"
+<a id='L123' name='L123'></a>  <em class='comment'>/* __IBMC__ = VRP */</em>
+<a id='L124' name='L124'></a><em class='sharp'># define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__IBMC__/100)
+<a id='L125' name='L125'></a><em class='sharp'># define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__IBMC__/10 % 10)
+<a id='L126' name='L126'></a><em class='sharp'># define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__IBMC__    % 10)
+<a id='L127' name='L127'></a>
+<a id='L128' name='L128'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__PGI)
+<a id='L129' name='L129'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "PGI"
+<a id='L130' name='L130'></a><em class='sharp'># define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__PGIC__)
+<a id='L131' name='L131'></a><em class='sharp'># define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__PGIC_MINOR__)
+<a id='L132' name='L132'></a><em class='sharp'># if</em> <strong class='reserved'>defined</strong>(__PGIC_PATCHLEVEL__)
+<a id='L133' name='L133'></a><em class='sharp'>#  define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__PGIC_PATCHLEVEL__)
+<a id='L134' name='L134'></a><em class='sharp'># endif</em>
+<a id='L135' name='L135'></a>
+<a id='L136' name='L136'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(_CRAYC)
+<a id='L137' name='L137'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "Cray"
+<a id='L138' name='L138'></a><em class='sharp'># define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(_RELEASE_MAJOR)
+<a id='L139' name='L139'></a><em class='sharp'># define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(_RELEASE_MINOR)
+<a id='L140' name='L140'></a>
+<a id='L141' name='L141'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__TI_COMPILER_VERSION__)
+<a id='L142' name='L142'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "TI"
+<a id='L143' name='L143'></a>  <em class='comment'>/* __TI_COMPILER_VERSION__ = VVVRRRPPP */</em>
+<a id='L144' name='L144'></a><em class='sharp'># define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__TI_COMPILER_VERSION__/1000000)
+<a id='L145' name='L145'></a><em class='sharp'># define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__TI_COMPILER_VERSION__/1000   % 1000)
+<a id='L146' name='L146'></a><em class='sharp'># define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__TI_COMPILER_VERSION__        % 1000)
+<a id='L147' name='L147'></a>
+<a id='L148' name='L148'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__FUJITSU) || <strong class='reserved'>defined</strong>(__FCC_VERSION) || <strong class='reserved'>defined</strong>(__fcc_version)
+<a id='L149' name='L149'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "Fujitsu"
+<a id='L150' name='L150'></a>
+<a id='L151' name='L151'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__TINYC__)
+<a id='L152' name='L152'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "TinyCC"
+<a id='L153' name='L153'></a>
+<a id='L154' name='L154'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__BCC__)
+<a id='L155' name='L155'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "Bruce"
+<a id='L156' name='L156'></a>
+<a id='L157' name='L157'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__SCO_VERSION__)
+<a id='L158' name='L158'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "SCO"
+<a id='L159' name='L159'></a>
+<a id='L160' name='L160'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__clang__) &amp;&amp; <strong class='reserved'>defined</strong>(__apple_build_version__)
+<a id='L161' name='L161'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "AppleClang"
+<a id='L162' name='L162'></a><em class='sharp'># if</em> <strong class='reserved'>defined</strong>(_MSC_VER)
+<a id='L163' name='L163'></a><em class='sharp'>#  define</em> <a href='../R/66.html' title='Multiple referred from 6 places.'>SIMULATE_ID</a> "MSVC"
+<a id='L164' name='L164'></a><em class='sharp'># endif</em>
+<a id='L165' name='L165'></a><em class='sharp'># define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__clang_major__)
+<a id='L166' name='L166'></a><em class='sharp'># define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__clang_minor__)
+<a id='L167' name='L167'></a><em class='sharp'># define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__clang_patchlevel__)
+<a id='L168' name='L168'></a><em class='sharp'># if</em> <strong class='reserved'>defined</strong>(_MSC_VER)
+<a id='L169' name='L169'></a>   <em class='comment'>/* _MSC_VER = VVRR */</em>
+<a id='L170' name='L170'></a><em class='sharp'>#  define</em> <a href='../R/67.html' title='Multiple referred from 6 places.'>SIMULATE_VERSION_MAJOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(_MSC_VER / 100)
+<a id='L171' name='L171'></a><em class='sharp'>#  define</em> <a href='../R/68.html' title='Multiple referred from 4 places.'>SIMULATE_VERSION_MINOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(_MSC_VER % 100)
+<a id='L172' name='L172'></a><em class='sharp'># endif</em>
+<a id='L173' name='L173'></a><em class='sharp'># define</em> <a href='../R/15.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_TWEAK</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__apple_build_version__)
+<a id='L174' name='L174'></a>
+<a id='L175' name='L175'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__clang__)
+<a id='L176' name='L176'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "Clang"
+<a id='L177' name='L177'></a><em class='sharp'># if</em> <strong class='reserved'>defined</strong>(_MSC_VER)
+<a id='L178' name='L178'></a><em class='sharp'>#  define</em> <a href='../R/66.html' title='Multiple referred from 6 places.'>SIMULATE_ID</a> "MSVC"
+<a id='L179' name='L179'></a><em class='sharp'># endif</em>
+<a id='L180' name='L180'></a><em class='sharp'># define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__clang_major__)
+<a id='L181' name='L181'></a><em class='sharp'># define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__clang_minor__)
+<a id='L182' name='L182'></a><em class='sharp'># define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__clang_patchlevel__)
+<a id='L183' name='L183'></a><em class='sharp'># if</em> <strong class='reserved'>defined</strong>(_MSC_VER)
+<a id='L184' name='L184'></a>   <em class='comment'>/* _MSC_VER = VVRR */</em>
+<a id='L185' name='L185'></a><em class='sharp'>#  define</em> <a href='../R/67.html' title='Multiple referred from 6 places.'>SIMULATE_VERSION_MAJOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(_MSC_VER / 100)
+<a id='L186' name='L186'></a><em class='sharp'>#  define</em> <a href='../R/68.html' title='Multiple referred from 4 places.'>SIMULATE_VERSION_MINOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(_MSC_VER % 100)
+<a id='L187' name='L187'></a><em class='sharp'># endif</em>
+<a id='L188' name='L188'></a>
+<a id='L189' name='L189'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__GNUC__)
+<a id='L190' name='L190'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "GNU"
+<a id='L191' name='L191'></a><em class='sharp'># define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__GNUC__)
+<a id='L192' name='L192'></a><em class='sharp'># if</em> <strong class='reserved'>defined</strong>(__GNUC_MINOR__)
+<a id='L193' name='L193'></a><em class='sharp'>#  define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__GNUC_MINOR__)
+<a id='L194' name='L194'></a><em class='sharp'># endif</em>
+<a id='L195' name='L195'></a><em class='sharp'># if</em> <strong class='reserved'>defined</strong>(__GNUC_PATCHLEVEL__)
+<a id='L196' name='L196'></a><em class='sharp'>#  define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__GNUC_PATCHLEVEL__)
+<a id='L197' name='L197'></a><em class='sharp'># endif</em>
+<a id='L198' name='L198'></a>
+<a id='L199' name='L199'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(_MSC_VER)
+<a id='L200' name='L200'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "MSVC"
+<a id='L201' name='L201'></a>  <em class='comment'>/* _MSC_VER = VVRR */</em>
+<a id='L202' name='L202'></a><em class='sharp'># define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(_MSC_VER / 100)
+<a id='L203' name='L203'></a><em class='sharp'># define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(_MSC_VER % 100)
+<a id='L204' name='L204'></a><em class='sharp'># if</em> <strong class='reserved'>defined</strong>(_MSC_FULL_VER)
+<a id='L205' name='L205'></a><em class='sharp'>#  if</em> _MSC_VER &gt;= 1400
+<a id='L206' name='L206'></a>    <em class='comment'>/* _MSC_FULL_VER = VVRRPPPPP */</em>
+<a id='L207' name='L207'></a><em class='sharp'>#   define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(_MSC_FULL_VER % 100000)
+<a id='L208' name='L208'></a><em class='sharp'>#  else</em>
+<a id='L209' name='L209'></a>    <em class='comment'>/* _MSC_FULL_VER = VVRRPPPP */</em>
+<a id='L210' name='L210'></a><em class='sharp'>#   define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(_MSC_FULL_VER % 10000)
+<a id='L211' name='L211'></a><em class='sharp'>#  endif</em>
+<a id='L212' name='L212'></a><em class='sharp'># endif</em>
+<a id='L213' name='L213'></a><em class='sharp'># if</em> <strong class='reserved'>defined</strong>(_MSC_BUILD)
+<a id='L214' name='L214'></a><em class='sharp'>#  define</em> <a href='../R/15.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_TWEAK</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(_MSC_BUILD)
+<a id='L215' name='L215'></a><em class='sharp'># endif</em>
+<a id='L216' name='L216'></a>
+<a id='L217' name='L217'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__VISUALDSPVERSION__) || <strong class='reserved'>defined</strong>(__ADSPBLACKFIN__) || <strong class='reserved'>defined</strong>(__ADSPTS__) || <strong class='reserved'>defined</strong>(__ADSP21000__)
+<a id='L218' name='L218'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "ADSP"
+<a id='L219' name='L219'></a><em class='sharp'>#if</em> <strong class='reserved'>defined</strong>(__VISUALDSPVERSION__)
+<a id='L220' name='L220'></a>  <em class='comment'>/* __VISUALDSPVERSION__ = 0xVVRRPP00 */</em>
+<a id='L221' name='L221'></a><em class='sharp'># define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/46.html' title='Multiple defined in 2 places.'>HEX</a>(__VISUALDSPVERSION__&gt;&gt;24)
+<a id='L222' name='L222'></a><em class='sharp'># define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/46.html' title='Multiple defined in 2 places.'>HEX</a>(__VISUALDSPVERSION__&gt;&gt;16 &amp; 0xFF)
+<a id='L223' name='L223'></a><em class='sharp'># define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/46.html' title='Multiple defined in 2 places.'>HEX</a>(__VISUALDSPVERSION__&gt;&gt;8  &amp; 0xFF)
+<a id='L224' name='L224'></a><em class='sharp'>#endif</em>
+<a id='L225' name='L225'></a>
+<a id='L226' name='L226'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__IAR_SYSTEMS_ICC__ ) || <strong class='reserved'>defined</strong>(__IAR_SYSTEMS_ICC)
+<a id='L227' name='L227'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "IAR"
+<a id='L228' name='L228'></a>
+<a id='L229' name='L229'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__ARMCC_VERSION)
+<a id='L230' name='L230'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "ARMCC"
+<a id='L231' name='L231'></a><em class='sharp'>#if</em> __ARMCC_VERSION &gt;= 1000000
+<a id='L232' name='L232'></a>  <em class='comment'>/* __ARMCC_VERSION = VRRPPPP */</em>
+<a id='L233' name='L233'></a><em class='sharp'>  # define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__ARMCC_VERSION/1000000)
+<a id='L234' name='L234'></a><em class='sharp'>  # define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__ARMCC_VERSION/10000 % 100)
+<a id='L235' name='L235'></a><em class='sharp'>  # define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__ARMCC_VERSION     % 10000)
+<a id='L236' name='L236'></a><em class='sharp'>#else</em>
+<a id='L237' name='L237'></a>  <em class='comment'>/* __ARMCC_VERSION = VRPPPP */</em>
+<a id='L238' name='L238'></a><em class='sharp'>  # define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__ARMCC_VERSION/100000)
+<a id='L239' name='L239'></a><em class='sharp'>  # define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__ARMCC_VERSION/10000 % 10)
+<a id='L240' name='L240'></a><em class='sharp'>  # define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(__ARMCC_VERSION    % 10000)
+<a id='L241' name='L241'></a><em class='sharp'>#endif</em>
+<a id='L242' name='L242'></a>
+<a id='L243' name='L243'></a>
+<a id='L244' name='L244'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(SDCC)
+<a id='L245' name='L245'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "SDCC"
+<a id='L246' name='L246'></a>  <em class='comment'>/* SDCC = VRP */</em>
+<a id='L247' name='L247'></a><em class='sharp'>#  define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(SDCC/100)
+<a id='L248' name='L248'></a><em class='sharp'>#  define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(SDCC/10 % 10)
+<a id='L249' name='L249'></a><em class='sharp'>#  define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(SDCC    % 10)
+<a id='L250' name='L250'></a>
+<a id='L251' name='L251'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(_SGI_COMPILER_VERSION) || <strong class='reserved'>defined</strong>(_COMPILER_VERSION)
+<a id='L252' name='L252'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "MIPSpro"
+<a id='L253' name='L253'></a><em class='sharp'># if</em> <strong class='reserved'>defined</strong>(_SGI_COMPILER_VERSION)
+<a id='L254' name='L254'></a>  <em class='comment'>/* _SGI_COMPILER_VERSION = VRP */</em>
+<a id='L255' name='L255'></a><em class='sharp'>#  define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(_SGI_COMPILER_VERSION/100)
+<a id='L256' name='L256'></a><em class='sharp'>#  define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(_SGI_COMPILER_VERSION/10 % 10)
+<a id='L257' name='L257'></a><em class='sharp'>#  define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(_SGI_COMPILER_VERSION    % 10)
+<a id='L258' name='L258'></a><em class='sharp'># else</em>
+<a id='L259' name='L259'></a>  <em class='comment'>/* _COMPILER_VERSION = VRP */</em>
+<a id='L260' name='L260'></a><em class='sharp'>#  define</em> <a href='../R/12.html' title='Multiple referred from 6 places.'>COMPILER_VERSION_MAJOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(_COMPILER_VERSION/100)
+<a id='L261' name='L261'></a><em class='sharp'>#  define</em> <a href='../R/13.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_MINOR</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(_COMPILER_VERSION/10 % 10)
+<a id='L262' name='L262'></a><em class='sharp'>#  define</em> <a href='../R/14.html' title='Multiple referred from 4 places.'>COMPILER_VERSION_PATCH</a> <a href='../D/37.html' title='Multiple defined in 2 places.'>DEC</a>(_COMPILER_VERSION    % 10)
+<a id='L263' name='L263'></a><em class='sharp'># endif</em>
+<a id='L264' name='L264'></a>
+<a id='L265' name='L265'></a>
+<a id='L266' name='L266'></a><em class='comment'>/* These compilers are either not known or too old to define an</em>
+<a id='L267' name='L267'></a><em class='comment'>  identification macro.  Try to identify the platform and guess that</em>
+<a id='L268' name='L268'></a><em class='comment'>  it is the native compiler.  */</em>
+<a id='L269' name='L269'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__sgi)
+<a id='L270' name='L270'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "MIPSpro"
+<a id='L271' name='L271'></a>
+<a id='L272' name='L272'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__hpux) || <strong class='reserved'>defined</strong>(__hpua)
+<a id='L273' name='L273'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> "HP"
+<a id='L274' name='L274'></a>
+<a id='L275' name='L275'></a><em class='sharp'>#else</em> <em class='comment'>/* unknown compiler */</em>
+<a id='L276' name='L276'></a><em class='sharp'># define</em> <a href='../R/11.html' title='Multiple referred from 2 places.'>COMPILER_ID</a> ""
+<a id='L277' name='L277'></a><em class='sharp'>#endif</em>
+<a id='L278' name='L278'></a>
+<a id='L279' name='L279'></a><em class='comment'>/* Construct the string literal in pieces to prevent the source from</em>
+<a id='L280' name='L280'></a><em class='comment'>   getting matched.  Store it in a pointer rather than an array</em>
+<a id='L281' name='L281'></a><em class='comment'>   because some compilers will just produce instructions to fill the</em>
+<a id='L282' name='L282'></a><em class='comment'>   array rather than assigning a pointer to a static array.  */</em>
+<a id='L283' name='L283'></a><strong class='reserved'>char</strong> <strong class='reserved'>const</strong>* info_compiler = "INFO" ":" "compiler[" <a href='../D/25.html' title='Multiple defined in 60 places.'>COMPILER_ID</a> "]";
+<a id='L284' name='L284'></a><em class='sharp'>#ifdef</em> <a href='../D/288.html' title='Multiple defined in 6 places.'>SIMULATE_ID</a>
+<a id='L285' name='L285'></a><strong class='reserved'>char</strong> <strong class='reserved'>const</strong>* info_simulate = "INFO" ":" "simulate[" <a href='../D/288.html' title='Multiple defined in 6 places.'>SIMULATE_ID</a> "]";
+<a id='L286' name='L286'></a><em class='sharp'>#endif</em>
+<a id='L287' name='L287'></a>
+<a id='L288' name='L288'></a><em class='sharp'>#ifdef</em> __QNXNTO__
+<a id='L289' name='L289'></a><strong class='reserved'>char</strong> <strong class='reserved'>const</strong>* qnxnto = "INFO" ":" "qnxnto[]";
+<a id='L290' name='L290'></a><em class='sharp'>#endif</em>
+<a id='L291' name='L291'></a>
+<a id='L292' name='L292'></a><em class='sharp'>#if</em> <strong class='reserved'>defined</strong>(__CRAYXE) || <strong class='reserved'>defined</strong>(__CRAYXC)
+<a id='L293' name='L293'></a><strong class='reserved'>char</strong> <strong class='reserved'>const</strong> *info_cray = "INFO" ":" "compiler_wrapper[CrayPrgEnv]";
+<a id='L294' name='L294'></a><em class='sharp'>#endif</em>
+<a id='L295' name='L295'></a>
+<a id='L296' name='L296'></a><em class='sharp'>#define</em> <a href='../R/70.html' title='Multiple referred from 2 places.'>STRINGIFY_HELPER</a>(X) #X
+<a id='L297' name='L297'></a><em class='sharp'>#define</em> <a href='../R/69.html' title='Multiple referred from 2 places.'>STRINGIFY</a>(X) <a href='../D/302.html' title='Multiple defined in 2 places.'>STRINGIFY_HELPER</a>(X)
+<a id='L298' name='L298'></a>
+<a id='L299' name='L299'></a><em class='comment'>/* Identify known platforms by name.  */</em>
+<a id='L300' name='L300'></a><em class='sharp'>#if</em> <strong class='reserved'>defined</strong>(__linux) || <strong class='reserved'>defined</strong>(__linux__) || <strong class='reserved'>defined</strong>(linux)
+<a id='L301' name='L301'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "Linux"
+<a id='L302' name='L302'></a>
+<a id='L303' name='L303'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__CYGWIN__)
+<a id='L304' name='L304'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "Cygwin"
+<a id='L305' name='L305'></a>
+<a id='L306' name='L306'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__MINGW32__)
+<a id='L307' name='L307'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "MinGW"
+<a id='L308' name='L308'></a>
+<a id='L309' name='L309'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__APPLE__)
+<a id='L310' name='L310'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "Darwin"
+<a id='L311' name='L311'></a>
+<a id='L312' name='L312'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(_WIN32) || <strong class='reserved'>defined</strong>(__WIN32__) || <strong class='reserved'>defined</strong>(WIN32)
+<a id='L313' name='L313'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "Windows"
+<a id='L314' name='L314'></a>
+<a id='L315' name='L315'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__FreeBSD__) || <strong class='reserved'>defined</strong>(__FreeBSD)
+<a id='L316' name='L316'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "FreeBSD"
+<a id='L317' name='L317'></a>
+<a id='L318' name='L318'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__NetBSD__) || <strong class='reserved'>defined</strong>(__NetBSD)
+<a id='L319' name='L319'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "NetBSD"
+<a id='L320' name='L320'></a>
+<a id='L321' name='L321'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__OpenBSD__) || <strong class='reserved'>defined</strong>(__OPENBSD)
+<a id='L322' name='L322'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "OpenBSD"
+<a id='L323' name='L323'></a>
+<a id='L324' name='L324'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__sun) || <strong class='reserved'>defined</strong>(sun)
+<a id='L325' name='L325'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "SunOS"
+<a id='L326' name='L326'></a>
+<a id='L327' name='L327'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(_AIX) || <strong class='reserved'>defined</strong>(__AIX) || <strong class='reserved'>defined</strong>(__AIX__) || <strong class='reserved'>defined</strong>(__aix) || <strong class='reserved'>defined</strong>(__aix__)
+<a id='L328' name='L328'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "AIX"
+<a id='L329' name='L329'></a>
+<a id='L330' name='L330'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__sgi) || <strong class='reserved'>defined</strong>(__sgi__) || <strong class='reserved'>defined</strong>(_SGI)
+<a id='L331' name='L331'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "IRIX"
+<a id='L332' name='L332'></a>
+<a id='L333' name='L333'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__hpux) || <strong class='reserved'>defined</strong>(__hpux__)
+<a id='L334' name='L334'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "HP-UX"
+<a id='L335' name='L335'></a>
+<a id='L336' name='L336'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__HAIKU__)
+<a id='L337' name='L337'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "Haiku"
+<a id='L338' name='L338'></a>
+<a id='L339' name='L339'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__BeOS) || <strong class='reserved'>defined</strong>(__BEOS__) || <strong class='reserved'>defined</strong>(_BEOS)
+<a id='L340' name='L340'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "BeOS"
+<a id='L341' name='L341'></a>
+<a id='L342' name='L342'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__QNX__) || <strong class='reserved'>defined</strong>(__QNXNTO__)
+<a id='L343' name='L343'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "QNX"
+<a id='L344' name='L344'></a>
+<a id='L345' name='L345'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__tru64) || <strong class='reserved'>defined</strong>(_tru64) || <strong class='reserved'>defined</strong>(__TRU64__)
+<a id='L346' name='L346'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "Tru64"
+<a id='L347' name='L347'></a>
+<a id='L348' name='L348'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__riscos) || <strong class='reserved'>defined</strong>(__riscos__)
+<a id='L349' name='L349'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "RISCos"
+<a id='L350' name='L350'></a>
+<a id='L351' name='L351'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__sinix) || <strong class='reserved'>defined</strong>(__sinix__) || <strong class='reserved'>defined</strong>(__SINIX__)
+<a id='L352' name='L352'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "SINIX"
+<a id='L353' name='L353'></a>
+<a id='L354' name='L354'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__UNIX_SV__)
+<a id='L355' name='L355'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "UNIX_SV"
+<a id='L356' name='L356'></a>
+<a id='L357' name='L357'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__bsdos__)
+<a id='L358' name='L358'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "BSDOS"
+<a id='L359' name='L359'></a>
+<a id='L360' name='L360'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(_MPRAS) || <strong class='reserved'>defined</strong>(MPRAS)
+<a id='L361' name='L361'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "MP-RAS"
+<a id='L362' name='L362'></a>
+<a id='L363' name='L363'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__osf) || <strong class='reserved'>defined</strong>(__osf__)
+<a id='L364' name='L364'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "OSF1"
+<a id='L365' name='L365'></a>
+<a id='L366' name='L366'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(_SCO_SV) || <strong class='reserved'>defined</strong>(SCO_SV) || <strong class='reserved'>defined</strong>(sco_sv)
+<a id='L367' name='L367'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "SCO_SV"
+<a id='L368' name='L368'></a>
+<a id='L369' name='L369'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__ultrix) || <strong class='reserved'>defined</strong>(__ultrix__) || <strong class='reserved'>defined</strong>(_ULTRIX)
+<a id='L370' name='L370'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "ULTRIX"
+<a id='L371' name='L371'></a>
+<a id='L372' name='L372'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__XENIX__) || <strong class='reserved'>defined</strong>(_XENIX) || <strong class='reserved'>defined</strong>(XENIX)
+<a id='L373' name='L373'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "Xenix"
+<a id='L374' name='L374'></a>
+<a id='L375' name='L375'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__WATCOMC__)
+<a id='L376' name='L376'></a><em class='sharp'># if</em> <strong class='reserved'>defined</strong>(__LINUX__)
+<a id='L377' name='L377'></a><em class='sharp'>#  define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "Linux"
+<a id='L378' name='L378'></a>
+<a id='L379' name='L379'></a><em class='sharp'># elif</em> <strong class='reserved'>defined</strong>(__DOS__)
+<a id='L380' name='L380'></a><em class='sharp'>#  define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "DOS"
+<a id='L381' name='L381'></a>
+<a id='L382' name='L382'></a><em class='sharp'># elif</em> <strong class='reserved'>defined</strong>(__OS2__)
+<a id='L383' name='L383'></a><em class='sharp'>#  define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "OS2"
+<a id='L384' name='L384'></a>
+<a id='L385' name='L385'></a><em class='sharp'># elif</em> <strong class='reserved'>defined</strong>(__WINDOWS__)
+<a id='L386' name='L386'></a><em class='sharp'>#  define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a> "Windows3x"
+<a id='L387' name='L387'></a>
+<a id='L388' name='L388'></a><em class='sharp'># else</em> <em class='comment'>/* unknown platform */</em>
+<a id='L389' name='L389'></a><em class='sharp'>#  define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a>
+<a id='L390' name='L390'></a><em class='sharp'># endif</em>
+<a id='L391' name='L391'></a>
+<a id='L392' name='L392'></a><em class='sharp'>#else</em> <em class='comment'>/* unknown platform */</em>
+<a id='L393' name='L393'></a><em class='sharp'># define</em> <a href='../R/50.html' title='Multiple referred from 2 places.'>PLATFORM_ID</a>
+<a id='L394' name='L394'></a>
+<a id='L395' name='L395'></a><em class='sharp'>#endif</em>
+<a id='L396' name='L396'></a>
+<a id='L397' name='L397'></a><em class='comment'>/* For windows compilers MSVC and Intel we can determine</em>
+<a id='L398' name='L398'></a><em class='comment'>   the architecture of the compiler being used.  This is because</em>
+<a id='L399' name='L399'></a><em class='comment'>   the compilers do not have flags that can change the architecture,</em>
+<a id='L400' name='L400'></a><em class='comment'>   but rather depend on which compiler is being used</em>
+<a id='L401' name='L401'></a><em class='comment'>*/</em>
+<a id='L402' name='L402'></a><em class='sharp'>#if</em> <strong class='reserved'>defined</strong>(_WIN32) &amp;&amp; <strong class='reserved'>defined</strong>(_MSC_VER)
+<a id='L403' name='L403'></a><em class='sharp'># if</em> <strong class='reserved'>defined</strong>(_M_IA64)
+<a id='L404' name='L404'></a><em class='sharp'>#  define</em> <a href='../R/1.html' title='Multiple referred from 2 places.'>ARCHITECTURE_ID</a> "IA64"
+<a id='L405' name='L405'></a>
+<a id='L406' name='L406'></a><em class='sharp'># elif</em> <strong class='reserved'>defined</strong>(_M_X64) || <strong class='reserved'>defined</strong>(_M_AMD64)
+<a id='L407' name='L407'></a><em class='sharp'>#  define</em> <a href='../R/1.html' title='Multiple referred from 2 places.'>ARCHITECTURE_ID</a> "x64"
+<a id='L408' name='L408'></a>
+<a id='L409' name='L409'></a><em class='sharp'># elif</em> <strong class='reserved'>defined</strong>(_M_IX86)
+<a id='L410' name='L410'></a><em class='sharp'>#  define</em> <a href='../R/1.html' title='Multiple referred from 2 places.'>ARCHITECTURE_ID</a> "X86"
+<a id='L411' name='L411'></a>
+<a id='L412' name='L412'></a><em class='sharp'># elif</em> <strong class='reserved'>defined</strong>(_M_ARM)
+<a id='L413' name='L413'></a><em class='sharp'>#  if</em> _M_ARM == 4
+<a id='L414' name='L414'></a><em class='sharp'>#   define</em> <a href='../R/1.html' title='Multiple referred from 2 places.'>ARCHITECTURE_ID</a> "ARMV4I"
+<a id='L415' name='L415'></a><em class='sharp'>#  elif</em> _M_ARM == 5
+<a id='L416' name='L416'></a><em class='sharp'>#   define</em> <a href='../R/1.html' title='Multiple referred from 2 places.'>ARCHITECTURE_ID</a> "ARMV5I"
+<a id='L417' name='L417'></a><em class='sharp'>#  else</em>
+<a id='L418' name='L418'></a><em class='sharp'>#   define</em> <a href='../R/1.html' title='Multiple referred from 2 places.'>ARCHITECTURE_ID</a> "ARMV" <a href='../D/301.html' title='Multiple defined in 2 places.'>STRINGIFY</a>(_M_ARM)
+<a id='L419' name='L419'></a><em class='sharp'>#  endif</em>
+<a id='L420' name='L420'></a>
+<a id='L421' name='L421'></a><em class='sharp'># elif</em> <strong class='reserved'>defined</strong>(_M_MIPS)
+<a id='L422' name='L422'></a><em class='sharp'>#  define</em> <a href='../R/1.html' title='Multiple referred from 2 places.'>ARCHITECTURE_ID</a> "MIPS"
+<a id='L423' name='L423'></a>
+<a id='L424' name='L424'></a><em class='sharp'># elif</em> <strong class='reserved'>defined</strong>(_M_SH)
+<a id='L425' name='L425'></a><em class='sharp'>#  define</em> <a href='../R/1.html' title='Multiple referred from 2 places.'>ARCHITECTURE_ID</a> "SHx"
+<a id='L426' name='L426'></a>
+<a id='L427' name='L427'></a><em class='sharp'># else</em> <em class='comment'>/* unknown architecture */</em>
+<a id='L428' name='L428'></a><em class='sharp'>#  define</em> <a href='../R/1.html' title='Multiple referred from 2 places.'>ARCHITECTURE_ID</a> ""
+<a id='L429' name='L429'></a><em class='sharp'># endif</em>
+<a id='L430' name='L430'></a>
+<a id='L431' name='L431'></a><em class='sharp'>#elif</em> <strong class='reserved'>defined</strong>(__WATCOMC__)
+<a id='L432' name='L432'></a><em class='sharp'># if</em> <strong class='reserved'>defined</strong>(_M_I86)
+<a id='L433' name='L433'></a><em class='sharp'>#  define</em> <a href='../R/1.html' title='Multiple referred from 2 places.'>ARCHITECTURE_ID</a> "I86"
+<a id='L434' name='L434'></a>
+<a id='L435' name='L435'></a><em class='sharp'># elif</em> <strong class='reserved'>defined</strong>(_M_IX86)
+<a id='L436' name='L436'></a><em class='sharp'>#  define</em> <a href='../R/1.html' title='Multiple referred from 2 places.'>ARCHITECTURE_ID</a> "X86"
+<a id='L437' name='L437'></a>
+<a id='L438' name='L438'></a><em class='sharp'># else</em> <em class='comment'>/* unknown architecture */</em>
+<a id='L439' name='L439'></a><em class='sharp'>#  define</em> <a href='../R/1.html' title='Multiple referred from 2 places.'>ARCHITECTURE_ID</a> ""
+<a id='L440' name='L440'></a><em class='sharp'># endif</em>
+<a id='L441' name='L441'></a>
+<a id='L442' name='L442'></a><em class='sharp'>#else</em>
+<a id='L443' name='L443'></a><em class='sharp'>#  define</em> <a href='../R/1.html' title='Multiple referred from 2 places.'>ARCHITECTURE_ID</a>
+<a id='L444' name='L444'></a><em class='sharp'>#endif</em>
+<a id='L445' name='L445'></a>
+<a id='L446' name='L446'></a><em class='comment'>/* Convert integer to decimal digit literals.  */</em>
+<a id='L447' name='L447'></a><em class='sharp'>#define</em> <a href='../R/20.html' title='Multiple referred from 147 places.'>DEC</a>(n)                   \
+<a id='L448' name='L448'></a>  ('0' + (((n) / 10000000)%10)), \
+<a id='L449' name='L449'></a>  ('0' + (((n) / 1000000)%10)),  \
+<a id='L450' name='L450'></a>  ('0' + (((n) / 100000)%10)),   \
+<a id='L451' name='L451'></a>  ('0' + (((n) / 10000)%10)),    \
+<a id='L452' name='L452'></a>  ('0' + (((n) / 1000)%10)),     \
+<a id='L453' name='L453'></a>  ('0' + (((n) / 100)%10)),      \
+<a id='L454' name='L454'></a>  ('0' + (((n) / 10)%10)),       \
+<a id='L455' name='L455'></a>  ('0' +  ((n) % 10))
+<a id='L456' name='L456'></a>
+<a id='L457' name='L457'></a><em class='comment'>/* Convert integer to hex digit literals.  */</em>
+<a id='L458' name='L458'></a><em class='sharp'>#define</em> <a href='../R/25.html' title='Multiple referred from 26 places.'>HEX</a>(n)             \
+<a id='L459' name='L459'></a>  ('0' + ((n)&gt;&gt;28 &amp; 0xF)), \
+<a id='L460' name='L460'></a>  ('0' + ((n)&gt;&gt;24 &amp; 0xF)), \
+<a id='L461' name='L461'></a>  ('0' + ((n)&gt;&gt;20 &amp; 0xF)), \
+<a id='L462' name='L462'></a>  ('0' + ((n)&gt;&gt;16 &amp; 0xF)), \
+<a id='L463' name='L463'></a>  ('0' + ((n)&gt;&gt;12 &amp; 0xF)), \
+<a id='L464' name='L464'></a>  ('0' + ((n)&gt;&gt;8  &amp; 0xF)), \
+<a id='L465' name='L465'></a>  ('0' + ((n)&gt;&gt;4  &amp; 0xF)), \
+<a id='L466' name='L466'></a>  ('0' + ((n)     &amp; 0xF))
+<a id='L467' name='L467'></a>
+<a id='L468' name='L468'></a><em class='comment'>/* Construct a string literal encoding the version number components. */</em>
+<a id='L469' name='L469'></a><em class='sharp'>#ifdef</em> <a href='../D/26.html' title='Multiple defined in 52 places.'>COMPILER_VERSION_MAJOR</a>
+<a id='L470' name='L470'></a><strong class='reserved'>char</strong> <strong class='reserved'>const</strong> info_version[] = <em class='brace'>{</em>
+<a id='L471' name='L471'></a>  'I', 'N', 'F', 'O', ':',
+<a id='L472' name='L472'></a>  'c','o','m','p','i','l','e','r','_','v','e','r','s','i','o','n','[',
+<a id='L473' name='L473'></a>  <a href='../D/26.html' title='Multiple defined in 52 places.'>COMPILER_VERSION_MAJOR</a>,
+<a id='L474' name='L474'></a><em class='sharp'># ifdef</em> <a href='../D/27.html' title='Multiple defined in 52 places.'>COMPILER_VERSION_MINOR</a>
+<a id='L475' name='L475'></a>  '.', <a href='../D/27.html' title='Multiple defined in 52 places.'>COMPILER_VERSION_MINOR</a>,
+<a id='L476' name='L476'></a><em class='sharp'>#  ifdef</em> <a href='../D/28.html' title='Multiple defined in 51 places.'>COMPILER_VERSION_PATCH</a>
+<a id='L477' name='L477'></a>   '.', <a href='../D/28.html' title='Multiple defined in 51 places.'>COMPILER_VERSION_PATCH</a>,
+<a id='L478' name='L478'></a><em class='sharp'>#   ifdef</em> <a href='../D/29.html' title='Multiple defined in 6 places.'>COMPILER_VERSION_TWEAK</a>
+<a id='L479' name='L479'></a>    '.', <a href='../D/29.html' title='Multiple defined in 6 places.'>COMPILER_VERSION_TWEAK</a>,
+<a id='L480' name='L480'></a><em class='sharp'>#   endif</em>
+<a id='L481' name='L481'></a><em class='sharp'>#  endif</em>
+<a id='L482' name='L482'></a><em class='sharp'># endif</em>
+<a id='L483' name='L483'></a>  ']','\0'<em class='brace'>}</em>;
+<a id='L484' name='L484'></a><em class='sharp'>#endif</em>
+<a id='L485' name='L485'></a>
+<a id='L486' name='L486'></a><em class='comment'>/* Construct a string literal encoding the version number components. */</em>
+<a id='L487' name='L487'></a><em class='sharp'>#ifdef</em> <a href='../D/289.html' title='Multiple defined in 6 places.'>SIMULATE_VERSION_MAJOR</a>
+<a id='L488' name='L488'></a><strong class='reserved'>char</strong> <strong class='reserved'>const</strong> info_simulate_version[] = <em class='brace'>{</em>
+<a id='L489' name='L489'></a>  'I', 'N', 'F', 'O', ':',
+<a id='L490' name='L490'></a>  's','i','m','u','l','a','t','e','_','v','e','r','s','i','o','n','[',
+<a id='L491' name='L491'></a>  <a href='../D/289.html' title='Multiple defined in 6 places.'>SIMULATE_VERSION_MAJOR</a>,
+<a id='L492' name='L492'></a><em class='sharp'># ifdef</em> <a href='../D/290.html' title='Multiple defined in 6 places.'>SIMULATE_VERSION_MINOR</a>
+<a id='L493' name='L493'></a>  '.', <a href='../D/290.html' title='Multiple defined in 6 places.'>SIMULATE_VERSION_MINOR</a>,
+<a id='L494' name='L494'></a><em class='sharp'>#  ifdef</em> SIMULATE_VERSION_PATCH
+<a id='L495' name='L495'></a>   '.', SIMULATE_VERSION_PATCH,
+<a id='L496' name='L496'></a><em class='sharp'>#   ifdef</em> SIMULATE_VERSION_TWEAK
+<a id='L497' name='L497'></a>    '.', SIMULATE_VERSION_TWEAK,
+<a id='L498' name='L498'></a><em class='sharp'>#   endif</em>
+<a id='L499' name='L499'></a><em class='sharp'>#  endif</em>
+<a id='L500' name='L500'></a><em class='sharp'># endif</em>
+<a id='L501' name='L501'></a>  ']','\0'<em class='brace'>}</em>;
+<a id='L502' name='L502'></a><em class='sharp'>#endif</em>
+<a id='L503' name='L503'></a>
+<a id='L504' name='L504'></a><em class='comment'>/* Construct the string literal in pieces to prevent the source from</em>
+<a id='L505' name='L505'></a><em class='comment'>   getting matched.  Store it in a pointer rather than an array</em>
+<a id='L506' name='L506'></a><em class='comment'>   because some compilers will just produce instructions to fill the</em>
+<a id='L507' name='L507'></a><em class='comment'>   array rather than assigning a pointer to a static array.  */</em>
+<a id='L508' name='L508'></a><strong class='reserved'>char</strong> <strong class='reserved'>const</strong>* info_platform = "INFO" ":" "platform[" <a href='../D/264.html' title='Multiple defined in 62 places.'>PLATFORM_ID</a> "]";
+<a id='L509' name='L509'></a><strong class='reserved'>char</strong> <strong class='reserved'>const</strong>* info_arch = "INFO" ":" "arch[" <a href='../D/1.html' title='Multiple defined in 26 places.'>ARCHITECTURE_ID</a> "]";
+<a id='L510' name='L510'></a>
+<a id='L511' name='L511'></a>
+<a id='L512' name='L512'></a>
+<a id='L513' name='L513'></a>
+<a id='L514' name='L514'></a><em class='sharp'>#if</em> !<strong class='reserved'>defined</strong>(__STDC__)
+<a id='L515' name='L515'></a><em class='sharp'># if</em> <strong class='reserved'>defined</strong>(_MSC_VER) &amp;&amp; !<strong class='reserved'>defined</strong>(__clang__)
+<a id='L516' name='L516'></a><em class='sharp'>#  define</em> <a href='../S/37.html#L528' title='Referred from 528 in build/CMakeFiles/3.7.2/CompilerIdC/CMakeCCompilerId.c.'>C_DIALECT</a> "90"
+<a id='L517' name='L517'></a><em class='sharp'># else</em>
+<a id='L518' name='L518'></a><em class='sharp'>#  define</em> <a href='../S/37.html#L528' title='Referred from 528 in build/CMakeFiles/3.7.2/CompilerIdC/CMakeCCompilerId.c.'>C_DIALECT</a>
+<a id='L519' name='L519'></a><em class='sharp'># endif</em>
+<a id='L520' name='L520'></a><em class='sharp'>#elif</em> __STDC_VERSION__ &gt;= 201000L
+<a id='L521' name='L521'></a><em class='sharp'># define</em> <a href='../S/37.html#L528' title='Referred from 528 in build/CMakeFiles/3.7.2/CompilerIdC/CMakeCCompilerId.c.'>C_DIALECT</a> "11"
+<a id='L522' name='L522'></a><em class='sharp'>#elif</em> __STDC_VERSION__ &gt;= 199901L
+<a id='L523' name='L523'></a><em class='sharp'># define</em> <a href='../S/37.html#L528' title='Referred from 528 in build/CMakeFiles/3.7.2/CompilerIdC/CMakeCCompilerId.c.'>C_DIALECT</a> "99"
+<a id='L524' name='L524'></a><em class='sharp'>#else</em>
+<a id='L525' name='L525'></a><em class='sharp'># define</em> <a href='../S/37.html#L528' title='Referred from 528 in build/CMakeFiles/3.7.2/CompilerIdC/CMakeCCompilerId.c.'>C_DIALECT</a> "90"
+<a id='L526' name='L526'></a><em class='sharp'>#endif</em>
+<a id='L527' name='L527'></a><strong class='reserved'>const</strong> <strong class='reserved'>char</strong>* info_language_dialect_default =
+<a id='L528' name='L528'></a>  "INFO" ":" "dialect_default[" <a href='../D/35.html' title='Multiple defined in 5 places.'>C_DIALECT</a> "]";
+<a id='L529' name='L529'></a>
+<a id='L530' name='L530'></a><em class='comment'>/*--------------------------------------------------------------------------*/</em>
+<a id='L531' name='L531'></a>
+<a id='L532' name='L532'></a><em class='sharp'>#ifdef</em> <a href='../S/37.html#L6' title='Defined at 6 in build/CMakeFiles/3.7.2/CompilerIdC/CMakeCCompilerId.c.'>ID_VOID_MAIN</a>
+<a id='L533' name='L533'></a><strong class='reserved'>void</strong> <a href='../R/360.html' title='Multiple referred from 2 places.'>main</a>() <em class='brace'>{</em><em class='brace'>}</em>
+<a id='L534' name='L534'></a><em class='sharp'>#else</em>
+<a id='L535' name='L535'></a><em class='sharp'># if</em> <strong class='reserved'>defined</strong>(__CLASSIC_C__)
+<a id='L536' name='L536'></a><strong class='reserved'>int</strong> <a href='../R/360.html' title='Multiple referred from 2 places.'>main</a>(argc, argv) <strong class='reserved'>int</strong> argc; <strong class='reserved'>char</strong> *argv[];
+<a id='L537' name='L537'></a><em class='sharp'># else</em>
+<a id='L538' name='L538'></a><strong class='reserved'>int</strong> <a href='../D/839.html' title='Multiple defined in 8 places.'>main</a>(<strong class='reserved'>int</strong> argc, <strong class='reserved'>char</strong>* argv[])
+<a id='L539' name='L539'></a><em class='sharp'># endif</em>
+<a id='L540' name='L540'></a><em class='brace'>{</em>
+<a id='L541' name='L541'></a>  <strong class='reserved'>int</strong> require = 0;
+<a id='L542' name='L542'></a>  require += info_compiler[argc];
+<a id='L543' name='L543'></a>  require += info_platform[argc];
+<a id='L544' name='L544'></a>  require += info_arch[argc];
+<a id='L545' name='L545'></a><em class='sharp'>#ifdef</em> <a href='../D/26.html' title='Multiple defined in 52 places.'>COMPILER_VERSION_MAJOR</a>
+<a id='L546' name='L546'></a>  require += info_version[argc];
+<a id='L547' name='L547'></a><em class='sharp'>#endif</em>
+<a id='L548' name='L548'></a><em class='sharp'>#ifdef</em> <a href='../D/288.html' title='Multiple defined in 6 places.'>SIMULATE_ID</a>
+<a id='L549' name='L549'></a>  require += info_simulate[argc];
+<a id='L550' name='L550'></a><em class='sharp'>#endif</em>
+<a id='L551' name='L551'></a><em class='sharp'>#ifdef</em> <a href='../D/289.html' title='Multiple defined in 6 places.'>SIMULATE_VERSION_MAJOR</a>
+<a id='L552' name='L552'></a>  require += info_simulate_version[argc];
+<a id='L553' name='L553'></a><em class='sharp'>#endif</em>
+<a id='L554' name='L554'></a><em class='sharp'>#if</em> <strong class='reserved'>defined</strong>(__CRAYXE) || <strong class='reserved'>defined</strong>(__CRAYXC)
+<a id='L555' name='L555'></a>  require += info_cray[argc];
+<a id='L556' name='L556'></a><em class='sharp'>#endif</em>
+<a id='L557' name='L557'></a>  require += info_language_dialect_default[argc];
+<a id='L558' name='L558'></a>  (<strong class='reserved'>void</strong>)argv;
+<a id='L559' name='L559'></a>  <strong class='reserved'>return</strong> require;
+<a id='L560' name='L560'></a><em class='brace'>}</em>
+<a id='L561' name='L561'></a><em class='sharp'>#endif</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L533'>[^]</a><a href='#L536'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>
