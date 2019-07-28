@@ -13,7 +13,8 @@ set(CMAKE_CXX_FLAGS "-ggdb3 -O0 -std=c++17 -pedantic -m64 -pipe -fPIC -march=nat
 
 file(GLOB sources "lib/*.cpp")
 
-include_directories(include include/gen1)
+include_directories(include include/gen1 include/Rom)
 file(GLOB gen1_sources "lib/gen1/*.cpp")
+file(GLOB rom_sources "lib/Rom/*.cpp")
 
-add_library(pkmnsav SHARED ${gen1_sources} ${sources})
+add_library(pkmnsav SHARED ${gen1_sources} ${rom_sources} ${sources})
