@@ -7,9 +7,11 @@
 
 #include <memory>
 
+//template<class Derived>
 struct Gen1 : IGlobal {
     Gen1(std::unique_ptr<Rom>&& r) : m_rom(std::move(r))
     {
+		//static_assert(std::is_base_of<Rom, Derived>::value, "Derived not derivative of Rom.");
     }
 
     std::uint8_t get_checksum() const override;

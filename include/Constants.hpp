@@ -49,7 +49,7 @@ namespace C
             '1', '2', '3', '4', '5', '6', '7', '8', '9'
         };
 
-		namespace OPTIONS
+        namespace OPTIONS
 		{
             constexpr std::array<std::uint8_t, C::GEN1::SIZES::OPTIONS> LOOKUP_TABLE = {
                 0x1,  0x2,  0x5, 0x0,  0x0, 0x10, 0x10,
