@@ -6,15 +6,15 @@
 
 #include "Constants.hpp"
 
-namespace Gen1
+namespace Gen1Structs
 {
-struct gen1_pkmn_time {
+struct pkmn_time {
     std::uint16_t hours;
     std::uint8_t minutes;
     std::uint8_t seconds;
 };
 
-struct gen1_pkmn_data_struct {
+struct pkmn_data_struct {
     std::uint8_t name;
     std::uint8_t ot_name;
     std::uint8_t index;
@@ -42,24 +42,24 @@ struct gen1_pkmn_data_struct {
     std::uint16_t special;
 };
 
-struct gen1_pkmn_box {
+struct pkmn_box {
     struct gen1_pkmn_data_struct* pokemon_list[C::GEN1::SIZES::BOX];
 };
 
-struct gen1_item {
+struct item {
     std::uint8_t index;
     std::uint8_t count;
 };
 
-struct gen1_items_bag {
+struct items_bag {
     std::uint8_t count;
-    struct gen1_item item[20];
+    struct item item[20];
     std::uint8_t terminator;
 };
 
-struct gen1_items_pc {
+struct items_pc {
     std::uint8_t count;
-    struct gen1_item item[50];
+    struct item item[50];
     std::uint8_t terminator;
 };
 
@@ -67,22 +67,22 @@ struct gen1_pkmn_file_struct {
     std::uint8_t* player_name;
     std::uint8_t* pokedex_owned;
     std::uint8_t* pokedex_seen;
-    struct gen1_items_bag* pocket_items;
+    struct items_bag* pocket_items;
     std::uint8_t* money;
     std::uint8_t* rival_name;
     std::uint8_t* options;
     std::uint8_t* badges;
     std::uint16_t* player_trainer_id;
     std::uint8_t* pikachu_friendship;
-    struct gen1_items_pc* pc_item_list;
+    struct items_pc* pc_item_list;
     std::uint8_t* current_pc_box;
     std::uint8_t* casino_coins;
-    struct gen1_pkmn_time* time_played;
+    struct pkmn_time* time_played;
     std::uint8_t* item_count;
-    struct gen1_pkmn_data_struct* team_pokemon_list;
+    struct pkmn_data_struct* team_pokemon_list;
     std::uint8_t* current_box_list;
     std::uint8_t* checksum;
-    struct gen1_pkmn_box* pc_box[12];
+    struct pkmn_box* pc_box[12];
     std::uint8_t* file_map;
 };
 

@@ -84,6 +84,12 @@ namespace C
 			constexpr std::uint16_t CURRENT_BOX_LIST = 0x30C0;
 			constexpr std::uint16_t CHECKSUM = 0x3523;
 
+			constexpr std::uint16_t POCKET_ITEM_LIST = 0x25C9;
+			constexpr std::uint16_t PC_ITEM_LIST = 0x27E6;
+			constexpr std::uint16_t TIME_PLAYED = 0x2CEE;
+			constexpr std::uint16_t TEAM_POKEMON_LIST = 0x2F2C;
+			constexpr std::uint16_t PC_BOX_1_POKEMON_LIST = 0x4000;
+
             constexpr std::uint16_t CHECKSUM_INIT_OFFSET = 0x2598;
             constexpr std::uint16_t CHECKSUM_END_OFFSET = 0x3522;
         }
