@@ -70,6 +70,20 @@ namespace C
 
         namespace OFFSETS
         {
+			constexpr std::uint16_t PLAYER_NAME = 0x2598;
+			constexpr std::uint16_t POKEDEX_OWNED = 0x25A3;
+			constexpr std::uint16_t POKEDEX_SEEN = 0x25B6;
+			constexpr std::uint16_t MONEY = 0x25F3;
+			constexpr std::uint16_t RIVAL_NAME = 0x25F6;
+			constexpr std::uint16_t OPTIONS = 0x2601;
+			constexpr std::uint16_t BADGES = 0x2602;
+			constexpr std::uint16_t PLAYER_TRAINER_ID = 0x2605;
+			constexpr std::uint16_t PIKACHU_FRIENDSHIP = 0x271C;
+			constexpr std::uint16_t CURRENT_PC_BOX = 0x284C;
+			constexpr std::uint16_t CASINO_COINS = 0x2850;
+			constexpr std::uint16_t CURRENT_BOX_LIST = 0x30C0;
+			constexpr std::uint16_t CHECKSUM = 0x3523;
+
             constexpr std::uint16_t CHECKSUM_INIT_OFFSET = 0x2598;
             constexpr std::uint16_t CHECKSUM_END_OFFSET = 0x3522;
         }

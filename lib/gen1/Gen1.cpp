@@ -28,6 +28,6 @@ void Gen1::load_file()
 	this->pikachu_friendship = &this->m_rom->data[C::GEN1::OFFSETS::PIKACHU_FRIENDSHIP];
 	this->current_pc_box = &this->m_rom->data[C::GEN1::OFFSETS::CURRENT_PC_BOX];
 	this->casino_coins = &this->m_rom->data[C::GEN1::OFFSETS::CASINO_COINS];
-	this->current_box_list = &this->m_rom->data[C::GEN1::OFFSETS:CURRENT_BOX_LIST];
+	this->current_box_list = &this->m_rom->data[C::GEN1::OFFSETS::CURRENT_BOX_LIST];
 	this->checksum = &this->m_rom->data[C::GEN1::OFFSETS::CHECKSUM];
 }
