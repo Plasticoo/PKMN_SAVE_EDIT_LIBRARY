@@ -17,6 +17,10 @@ std::uint8_t Gen1::calc_checksum()
 
 void Gen1::load_file()
 {
+	if (this->m_rom == nullptr) {
+		return;
+	}
+
 	this->player_name = &this->m_rom->data[C::GEN1::OFFSETS::PLAYER_NAME];
 	this->pokedex_owned = &this->m_rom->data[C::GEN1::OFFSETS::POKEDEX_OWNED];
 	this->pokedex_seen = &this->m_rom->data[C::GEN1::OFFSETS::POKEDEX_SEEN];
