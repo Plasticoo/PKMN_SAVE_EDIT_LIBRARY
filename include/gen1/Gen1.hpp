@@ -17,12 +17,12 @@ struct Gen1 : IGlobal {
 	}
 
     auto get_checksum() const -> std::uint8_t override;
-    auto calc_checksum() -> std::uint8_t override;
+    auto calc_checksum() const -> std::uint8_t override;
 	auto set_checksum() -> void;
 
 	auto load_file() -> void;
 
-	auto get_character_code(std::uint8_t c) const -> std::uint8_t;
+	auto get_character_code(std::uint8_t const c) const -> std::uint8_t;
 
     private:
         std::unique_ptr<Rom> m_rom;

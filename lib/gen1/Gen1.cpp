@@ -5,7 +5,7 @@ auto Gen1::get_checksum() const -> std::uint8_t
     return this->m_rom->data[C::GEN1::OFFSETS::CHECKSUM];
 }
 
-auto Gen1::calc_checksum() -> std::uint8_t
+auto Gen1::calc_checksum() const -> std::uint8_t
 {
     std::uint8_t checksum{ 0 };
     for (auto i = C::GEN1::OFFSETS::CHECKSUM_INIT_OFFSET;
@@ -54,7 +54,7 @@ auto Gen1::load_file() -> void
 	}
 }
 
-auto Gen1::get_character_code(std::uint8_t c) const -> std::uint8_t
+auto Gen1::get_character_code(std::uint8_t const c) const -> std::uint8_t
 {
     int i;
 

@@ -6,7 +6,7 @@
 struct IGlobal
 {
 	virtual auto get_checksum() const -> std::uint8_t = 0;
-	virtual auto calc_checksum() -> std::uint8_t = 0;
+	virtual auto calc_checksum() const -> std::uint8_t = 0;
 };
 
 #endif
