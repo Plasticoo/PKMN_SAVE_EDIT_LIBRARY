@@ -10,7 +10,7 @@ Rom::Rom(std::filesystem::path& file)
     this->set_type();
 }
 
-void Rom::set_type()
+auto Rom::set_type() -> void
 {
     if (this->data.size() == C::GB::ROM_SIZE) {
         // checksum values comparison
@@ -21,12 +21,12 @@ void Rom::set_type()
     }
 }
 
-std::uint8_t Rom::get_type() const
+auto Rom::get_type() const -> std::uint8_t
 {
     return this->type;
 }
 
-void Rom::load(std::filesystem::path& file)
+auto Rom::load(std::filesystem::path& file) -> void
 {
     std::ifstream ifs(file, std::ios::binary | std::ios::ate);
     if (!ifs) {
@@ -43,7 +43,7 @@ void Rom::load(std::filesystem::path& file)
     }
 }
 
-std::size_t Rom::get_size() const
+auto Rom::get_size() const -> std::size_t
 {
     return this->data.size();
 }

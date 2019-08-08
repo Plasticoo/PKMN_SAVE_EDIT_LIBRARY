@@ -1,6 +1,6 @@
 #include "Utils.hpp"
 
-constexpr std::uint32_t __int_concat(const std::uint32_t x, const std::uint32_t y)
+constexpr auto __int_concat(const std::uint32_t x, const std::uint32_t y) -> std::uint32_t
 {
     std::uint32_t _p = 10;
 
@@ -11,7 +11,7 @@ constexpr std::uint32_t __int_concat(const std::uint32_t x, const std::uint32_t 
     return x * _p + y;
 }
 
-std::uint32_t __bcd_to_dec(const std::uint8_t* buffer, const std::size_t num_bytes)
+auto __bcd_to_dec(const std::uint8_t* buffer, const std::size_t num_bytes) -> std::uint32_t
 {
     ssize_t i;
     std::uint32_t res;
@@ -28,7 +28,7 @@ std::uint32_t __bcd_to_dec(const std::uint8_t* buffer, const std::size_t num_byt
     return res;
 }
 
-void __dec_to_bcd(const std::uint32_t num, std::uint8_t* buffer_out)
+auto __dec_to_bcd(const std::uint32_t num, std::uint8_t* buffer_out) -> void
 {
     std::uint32_t log10_num = (std::uint32_t)log10((double)num);
 	std::size_t num_bytes = (std::size_t)((log10_num + 1) / 2);

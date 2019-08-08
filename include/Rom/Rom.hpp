@@ -14,11 +14,11 @@ struct Rom
 
     Rom(std::filesystem::path& file);
 
-    void load(std::filesystem::path& file);
-    std::size_t get_size() const;
-    std::uint8_t get_type() const;
+    auto load(std::filesystem::path& file) -> void;
+    auto get_size() const -> std::size_t;
+    auto get_type() const -> std::uint8_t;
 
-    void set_type();
+    auto set_type() -> void;
 };
 
 #endif

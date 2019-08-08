@@ -1,11 +1,11 @@
 #include "Gen1.hpp"
 
-std::uint8_t Gen1::get_checksum() const
+auto Gen1::get_checksum() const -> std::uint8_t
 {
     return this->m_rom->data[C::GEN1::OFFSETS::CHECKSUM];
 }
 
-std::uint8_t Gen1::calc_checksum()
+auto Gen1::calc_checksum() -> std::uint8_t
 {
     std::uint8_t checksum{ 0 };
     for (auto i = C::GEN1::OFFSETS::CHECKSUM_INIT_OFFSET;
@@ -15,7 +15,7 @@ std::uint8_t Gen1::calc_checksum()
     return ~checksum;
 }
 
-void Gen1::load_file()
+auto Gen1::load_file() -> void
 {
 	if (this->m_rom == nullptr) {
 		return;

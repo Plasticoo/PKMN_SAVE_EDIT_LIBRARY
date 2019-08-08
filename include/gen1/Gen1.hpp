@@ -16,10 +16,10 @@ struct Gen1 : IGlobal {
 
 	}
 
-    std::uint8_t get_checksum() const override;
-    std::uint8_t calc_checksum() override;
+    auto get_checksum() const -> std::uint8_t override;
+    auto calc_checksum() -> std::uint8_t override;
 
-	void load_file();
+	auto load_file() -> void;
 
     private:
         std::unique_ptr<Rom> m_rom;
