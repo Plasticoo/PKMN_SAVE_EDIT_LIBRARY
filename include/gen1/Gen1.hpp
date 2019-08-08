@@ -25,6 +25,11 @@ struct Gen1 : IGlobal {
 	auto get_player_name() const -> std::string;
 	auto set_player_name(std::string name) -> void;
 
+	auto get_pokedex_owned(std::uint8_t index) const -> bool;
+	auto get_pokedex_seen(std::uint8_t index) const -> bool;
+	auto set_pokedex_owned(std::uint8_t index, bool owned) -> void;
+	auto set_pokedex_seen(std::uint8_t index, bool seen) -> void;
+
 	auto get_character_code(std::uint8_t const c) const -> std::uint8_t;
 
     private:

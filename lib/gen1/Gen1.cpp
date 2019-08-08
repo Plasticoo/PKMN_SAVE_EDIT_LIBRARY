@@ -96,6 +96,42 @@ auto Gen1::set_player_name(std::string name) -> void
 	}
 }
 
+auto Gen1::get_pokedex_owned(std::uint8_t index) const -> bool
+{
+	if (this->pokedex_owned && index < 152) {
+		return (this->pokedex_owned[index >> 3] >> (index & 7) & 1) == 1;
+	}
+
+	return false;
+}
+
+auto Gen1::get_pokedex_seen(std::uint8_t index) const -> bool
+{
+	if (this->pokedex_seen && index < 152) {
+		return (this->pokedex_seen[index >> 3] >> (index & 7) & 1) == 1;
+	}
+
+	return false;
+}
+
+auto Gen1::set_pokedex_owned(std::uint8_t index, bool owned) -> void
+{
+    if (owned) {
+        this->pokedex_owned[index >> 3] |= 1 << (index & 7);
+    } else {
+		this->pokedex_owned[index >> 3] &= ~(1 << (index & 7));
+	}
+}
+
+auto Gen1::set_pokedex_seen(std::uint8_t index, bool seen) -> void
+{
+    if (seen) {
+        this->pokedex_seen[index >> 3] |= 1 << (index & 7);
+    } else {
+		this->pokedex_seen[index >> 3] &= ~(1 << (index & 7));
+	}
+}
+
 auto Gen1::get_character_code(std::uint8_t const c) const -> std::uint8_t
 {
     int i;
