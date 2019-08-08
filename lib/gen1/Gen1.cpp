@@ -46,3 +46,17 @@ auto Gen1::load_file() -> void
 		offset += (sizeof(struct Gen1Structs::pkmn_box) * i);
 	}
 }
+
+auto Gen1::get_character_code(std::uint8_t c) const -> std::uint8_t
+{
+    int i;
+
+    for (i = 0; i < C::GEN1::SIZES::FONT; i++) {
+        if (c == C::GEN1::FONT[i]) {
+            return i;
+        }
+    }
+
+    // return space code, as in, invalid character
+    return 0x7F;
+}

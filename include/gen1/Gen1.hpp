@@ -21,6 +21,8 @@ struct Gen1 : IGlobal {
 
 	auto load_file() -> void;
 
+	auto get_character_code(std::uint8_t c) const -> std::uint8_t;
+
     private:
         std::unique_ptr<Rom> m_rom;
 
