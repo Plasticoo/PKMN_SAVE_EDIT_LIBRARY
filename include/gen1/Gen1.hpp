@@ -18,6 +18,7 @@ struct Gen1 : IGlobal {
 
     auto get_checksum() const -> std::uint8_t override;
     auto calc_checksum() -> std::uint8_t override;
+	auto set_checksum() -> void;
 
 	auto load_file() -> void;
 

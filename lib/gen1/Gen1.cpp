@@ -15,6 +15,13 @@ auto Gen1::calc_checksum() -> std::uint8_t
     return ~checksum;
 }
 
+auto Gen1::set_checksum() -> void
+{
+	auto checksum = this->calc_checksum();
+	// NOTE: *(this->checksum) = checksum
+	this->checksum[0] = checksum;
+}
+
 auto Gen1::load_file() -> void
 {
 	if (this->m_rom == nullptr) {
