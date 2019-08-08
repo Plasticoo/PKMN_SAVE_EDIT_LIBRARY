@@ -24,6 +24,8 @@ namespace C
 			constexpr std::uint32_t FILE = 0x8000;
 			constexpr std::uint32_t BOX = 20;
 			constexpr std::uint32_t OPTIONS = 13;
+
+			constexpr std::uint32_t PLAYER_NAME = 11;
 		}
 
         constexpr std::array<std::uint8_t, C::GEN1::SIZES::FONT> FONT = {

@@ -22,6 +22,9 @@ struct Gen1 : IGlobal {
 
 	auto load_file() -> void;
 
+	auto get_player_name() const -> std::string;
+	auto set_player_name(std::string name) -> void;
+
 	auto get_character_code(std::uint8_t const c) const -> std::uint8_t;
 
     private:

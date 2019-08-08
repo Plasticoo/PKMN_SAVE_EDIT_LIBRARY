@@ -54,6 +54,48 @@ auto Gen1::load_file() -> void
 	}
 }
 
+// NOTE: can probably be reused for any other names?
+auto Gen1::get_player_name() const -> std::string
+{
+	if (this->player_name == nullptr) {
+		return nullptr;
+	}
+
+	std::string name = "";
+	for (auto i = 0; i < C::GEN1::SIZES::PLAYER_NAME; i++) {
+        if(this->player_name[i] == 'P') {
+			break;
+		}
+
+        name += C::GEN1::FONT[this->player_name[i]];
+    }
+
+    return name;
+}
+
+auto Gen1::set_player_name(std::string name) -> void
+{
+	std::size_t size = name.size();
+
+	if (this->player_name == nullptr || name.empty()) {
+		return;
+	}
+
+	if (size >= 7) {
+		size = 7;
+	}
+
+	for (auto i = 0; i < size; i++) {
+		this->player_name[i] = this->get_character_code(name[i]);
+	}
+
+	this->player_name[++size] = 'P';
+
+	while (size < 11) {
+		this->player_name[++size] = 0x0;
+	}
+}
+
 auto Gen1::get_character_code(std::uint8_t const c) const -> std::uint8_t
 {
     int i;
