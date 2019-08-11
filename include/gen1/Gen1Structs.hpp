@@ -100,7 +100,7 @@ std::uint16_t gen1_get_casino_coins(std::uint8_t* casino_coins);
 std::uint8_t gen1_get_option(std::uint8_t* options, std::uint8_t flag);
 void gen1_get_time_played(struct gen1_pkmn_time* time,
                           struct gen1_pkmn_time* dest);
-std::uint8_t gen1_get_badge(std::uint8_t* badges, enum badges badge);
+// std::uint8_t gen1_get_badge(std::uint8_t* badges, enum badges badge);
 std::uint8_t gen1_get_current_pc_box(std::uint8_t* current_pc_box);
 struct gen1_pkmn_data_struct*
 gen1_get_pokemon_in_party(struct gen1_pkmn_data_struct* pokemon_party,
@@ -119,7 +119,7 @@ void gen1_set_casino_coins(std::uint8_t* casino_coins, std::uint16_t value);
 void gen1_set_option(std::uint8_t* options, std::uint8_t option);
 void gen1_set_time_played(struct gen1_pkmn_time* time, std::uint16_t hours,
                           std::uint8_t minutes, std::uint8_t seconds);
-void gen1_set_badge(std::uint8_t* badges, enum badges badge);
+// void gen1_set_badge(std::uint8_t* badges, enum badges badge);
 void gen1_set_current_pc_box(std::uint8_t* current_pc_box, std::uint8_t index);
 void gen1_set_pokemon(struct gen1_pkmn_data_struct* pkmn_data,
                       struct gen1_pkmn_data_struct pkmn_new);

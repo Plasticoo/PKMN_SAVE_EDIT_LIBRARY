@@ -132,6 +132,33 @@ auto Gen1::set_pokedex_seen(std::uint8_t index, bool seen) -> void
 	}
 }
 
+auto Gen1::get_money() -> std::uint32_t
+{
+	if (!this->money) {
+		return 0x7FFFFFFF;
+	}
+
+	if(money[1] == 0 && money[2] == 0) {
+        return __bcd_to_dec(money, 1);
+    } else if(money[1] != 0 && money[2] == 0) {
+        return __bcd_to_dec(money, 2);
+    }
+
+    return __bcd_to_dec(money, C::GEN1::SIZES::MONEY);
+}
+
+auto Gen1::set_money(std::uint32_t value) -> void
+{
+	if (!this->money) {
+		return;
+	}
+
+	std::uint8_t buffer[C::GEN1::SIZES::MONEY];
+	__dec_to_bcd(value, buffer);
+
+	std::memcpy(money, buffer,C::GEN1::SIZES::MONEY);
+}
+
 auto Gen1::get_character_code(std::uint8_t const c) const -> std::uint8_t
 {
     int i;

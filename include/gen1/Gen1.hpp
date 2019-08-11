@@ -5,6 +5,7 @@
 #include "gen1/Gen1Structs.hpp"
 #include "IGlobal.hpp"
 #include "Rom.hpp"
+#include "Utils.hpp"
 
 #include <memory>
 
@@ -29,6 +30,9 @@ struct Gen1 : IGlobal {
 	auto get_pokedex_seen(std::uint8_t index) const -> bool;
 	auto set_pokedex_owned(std::uint8_t index, bool owned) -> void;
 	auto set_pokedex_seen(std::uint8_t index, bool seen) -> void;
+
+	auto get_money() -> std::uint32_t;
+	auto set_money(std::uint32_t value) -> void;
 
 	auto get_character_code(std::uint8_t const c) const -> std::uint8_t;
 
