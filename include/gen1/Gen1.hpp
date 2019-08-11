@@ -34,6 +34,9 @@ struct Gen1 : IGlobal {
 	auto get_money() -> std::uint32_t;
 	auto set_money(std::uint32_t value) -> void;
 
+	auto get_casino_coins() -> std::uint16_t;
+	auto set_casino_coins(std::uint16_t value) -> void;
+
 	auto get_character_code(std::uint8_t const c) const -> std::uint8_t;
 
     private:

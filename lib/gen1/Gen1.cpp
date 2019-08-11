@@ -1,5 +1,16 @@
 #include "Gen1.hpp"
 
+static inline std::uint8_t n_digits(std::uint32_t n) {
+	std::uint8_t count = 0;
+
+    while(n != 0) {
+        n /= 10;
+        count++;
+    }
+
+    return count;
+}
+
 auto Gen1::get_checksum() const -> std::uint8_t
 {
     return this->m_rom->data[C::GEN1::OFFSETS::CHECKSUM];
@@ -138,13 +149,13 @@ auto Gen1::get_money() -> std::uint32_t
 		return 0x7FFFFFFF;
 	}
 
-	if(money[1] == 0 && money[2] == 0) {
-        return __bcd_to_dec(money, 1);
-    } else if(money[1] != 0 && money[2] == 0) {
-        return __bcd_to_dec(money, 2);
+	if(this->money[1] == 0 && this->money[2] == 0) {
+        return __bcd_to_dec(this->money, 1);
+    } else if(this->money[1] != 0 && this->money[2] == 0) {
+        return __bcd_to_dec(this->money, 2);
     }
 
-    return __bcd_to_dec(money, C::GEN1::SIZES::MONEY);
+    return __bcd_to_dec(this->money, C::GEN1::SIZES::MONEY);
 }
 
 auto Gen1::set_money(std::uint32_t value) -> void
@@ -156,7 +167,40 @@ auto Gen1::set_money(std::uint32_t value) -> void
 	std::uint8_t buffer[C::GEN1::SIZES::MONEY];
 	__dec_to_bcd(value, buffer);
 
-	std::memcpy(money, buffer,C::GEN1::SIZES::MONEY);
+	std::memcpy(this->money, buffer,C::GEN1::SIZES::MONEY);
+}
+
+auto Gen1::get_casino_coins() -> std::uint16_t
+{
+    if(!this->casino_coins) {
+        return 0;
+    }
+
+    if(this->casino_coins[1] == 0) {
+        return __bcd_to_dec(this->casino_coins, 1);
+    }
+
+    return __bcd_to_dec(this->casino_coins, C::GEN1::SIZES::CASINO_COINS);
+}
+
+auto Gen1::set_casino_coins(std::uint16_t value) -> void
+{
+    if(!this->casino_coins) {
+        return;
+    }
+
+	std::uint8_t buffer[C::GEN1::SIZES::CASINO_COINS];
+
+    __dec_to_bcd(value, buffer);
+
+    if(n_digits(value) == 1 || n_digits(value) == 2) {
+        this->casino_coins[0] = buffer[0];
+        this->casino_coins[1] = 0;
+
+        return;
+    }
+
+    memcpy(this->casino_coins, buffer, C::GEN1::SIZES::CASINO_COINS);
 }
 
 auto Gen1::get_character_code(std::uint8_t const c) const -> std::uint8_t
