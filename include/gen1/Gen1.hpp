@@ -37,6 +37,9 @@ struct Gen1 : IGlobal {
 	auto get_casino_coins() -> std::uint16_t;
 	auto set_casino_coins(std::uint16_t value) -> void;
 
+	auto get_time_played(struct pkmn_time *dest) -> void;
+	auto set_time_played(std::uint16_t hours, std::uint8_t minutes, std::uint8_t seconds) -> void;
+
 	auto get_character_code(std::uint8_t const c) const -> std::uint8_t;
 
     private:

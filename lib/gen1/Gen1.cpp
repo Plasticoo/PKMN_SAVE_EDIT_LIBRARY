@@ -203,6 +203,32 @@ auto Gen1::set_casino_coins(std::uint16_t value) -> void
     memcpy(this->casino_coins, buffer, C::GEN1::SIZES::CASINO_COINS);
 }
 
+auto Gen1::get_time_played(struct pkmn_time *dest) -> void
+{
+    if(this->time_played && dest) {
+		dest->hours = time->hours;
+		dest->minutes = time->minutes;
+		dest->seconds = time->seconds;
+
+		return;
+    }
+}
+
+auto Gen1::set_time_played(std::uint16_t hours, std::uint8_t minutes, std::uint8_t seconds) -> void
+{
+    if(hours < 1000 &&
+       minutes < 100 &&
+       seconds < 100 &&
+        this->time_played) {
+        this->time_played->seconds = seconds;
+        this->time_played->minutes = minutes;
+        this->time_played->hours = hours;
+
+        return;
+    }
+}
+
+
 auto Gen1::get_character_code(std::uint8_t const c) const -> std::uint8_t
 {
     int i;
