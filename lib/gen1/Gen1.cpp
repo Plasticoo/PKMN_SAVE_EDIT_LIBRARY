@@ -203,12 +203,12 @@ auto Gen1::set_casino_coins(std::uint16_t value) -> void
     memcpy(this->casino_coins, buffer, C::GEN1::SIZES::CASINO_COINS);
 }
 
-auto Gen1::get_time_played(struct pkmn_time *dest) -> void
+auto Gen1::get_time_played(struct Gen1Structs::pkmn_time *dest) -> void
 {
     if(this->time_played && dest) {
-		dest->hours = time->hours;
-		dest->minutes = time->minutes;
-		dest->seconds = time->seconds;
+		dest->hours = this->time_played->hours;
+		dest->minutes = this->time_played->minutes;
+		dest->seconds = this->time_played->seconds;
 
 		return;
     }
