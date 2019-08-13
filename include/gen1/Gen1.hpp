@@ -40,6 +40,9 @@ struct Gen1 : IGlobal {
 	auto get_time_played(struct Gen1Structs::pkmn_time *dest) -> void;
 	auto set_time_played(std::uint16_t hours, std::uint8_t minutes, std::uint8_t seconds) -> void;
 
+	auto get_current_pc_box() -> std::uint8_t;
+	auto set_current_pc_box(std::uint8_t index) -> void;
+
 	auto get_character_code(std::uint8_t const c) const -> std::uint8_t;
 
     private:

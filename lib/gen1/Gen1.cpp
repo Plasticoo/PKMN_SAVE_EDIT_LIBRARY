@@ -228,6 +228,29 @@ auto Gen1::set_time_played(std::uint16_t hours, std::uint8_t minutes, std::uint8
     }
 }
 
+auto Gen1::get_current_pc_box() -> std::uint8_t
+{
+	if (this->current_pc_box) {
+		return current_pc_box[0] + 1;
+	}
+
+	return 0;
+}
+
+auto Gen1::set_current_pc_box(std::uint8_t index) -> void
+{
+	std::uint8_t idx;
+
+    if (current_pc_box && index <= 20) {
+        if (index == 0) {
+            idx = 0;
+        } else {
+            idx = index - 1;
+        }
+
+        current_pc_box[0] = idx;
+    }
+}
 
 auto Gen1::get_character_code(std::uint8_t const c) const -> std::uint8_t
 {
