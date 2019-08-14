@@ -252,6 +252,22 @@ auto Gen1::set_current_pc_box(std::uint8_t index) -> void
     }
 }
 
+auto Gen1::get_badge(enum Gen1Enums::badges badge) -> std::uint8_t
+{
+    if (this->badges) {
+        return (this->badges[0] & (1 << badge)) >> badge;
+    }
+
+    return 0;
+}
+
+auto Gen1::set_badge(enum Gen1Enums::badges badge) -> void
+{
+    if (this->badges) {
+        this->badges[0] ^= (1 << badge);
+    }
+}
+
 auto Gen1::get_character_code(std::uint8_t const c) const -> std::uint8_t
 {
     int i;

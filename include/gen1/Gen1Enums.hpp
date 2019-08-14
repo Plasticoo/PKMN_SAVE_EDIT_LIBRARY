@@ -1,6 +1,7 @@
 #ifndef _PKMN_GEN1_ENUMS_HPP_
 #define _PKMN_GEN1_ENUMS_HPP_
 
+namespace Gen1Enums {
 enum options {
     OPTION_TEXT_SPEED,
     OPTION_SOUND,
@@ -210,5 +211,6 @@ enum {
     ITEM_TM54 = 0xFE,
     ITEM_TM55 = 0xFF,
 };
+}
 
 #endif

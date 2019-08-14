@@ -3,6 +3,7 @@
 
 #include "Constants.hpp"
 #include "gen1/Gen1Structs.hpp"
+#include "gen1/Gen1Enums.hpp"
 #include "IGlobal.hpp"
 #include "Rom.hpp"
 #include "Utils.hpp"
@@ -42,6 +43,9 @@ struct Gen1 : IGlobal {
 
 	auto get_current_pc_box() -> std::uint8_t;
 	auto set_current_pc_box(std::uint8_t index) -> void;
+
+	auto get_badge(enum Gen1Enums::badges badge) -> std::uint8_t;
+	auto set_badge(enum Gen1Enums::badges badge) -> void;
 
 	auto get_character_code(std::uint8_t const c) const -> std::uint8_t;
 
