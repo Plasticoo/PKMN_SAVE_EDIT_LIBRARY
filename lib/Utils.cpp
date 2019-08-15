@@ -50,7 +50,7 @@ auto __dec_to_bcd(const std::uint32_t num, std::uint8_t* buffer_out) -> void
     }
 }
 
-static inline void set_clear_bits(std::uint8_t *x, std::uint8_t n)
+auto set_clear_bits(std::uint8_t *x, std::uint8_t n) -> void
 {
     *x = (*x & n) | n;
 }

@@ -9,7 +9,11 @@ set(CMAKE_CXX_COMPILER clang++)
 
 include_directories(include)
 
-set(CMAKE_CXX_FLAGS "-ggdb3 -O0 -std=c++17 -pedantic -m64 -pipe -fPIC -march=native")
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+  set(CMAKE_CXX_FLAGS "-ggdb3 -O0 -std=c++17 -pedantic -m64 -pipe -fPIC -march=native -mmacosx-version-min=10.15")
+else()
+  set(CMAKE_CXX_FLAGS "-ggdb3 -O0 -std=c++17 -pedantic -m64 -pipe -fPIC -march=native")
+endif()
 
 file(GLOB sources "lib/*.cpp")
 
