@@ -286,6 +286,63 @@ auto Gen1::set_option(enum Gen1Enums::options_flags flag) -> void
 	Utils::set_clear_bits(&this->options[0], C::GEN1::OPTIONS::LOOKUP_TABLE[flag]);
 }
 
+auto Gen1::get_pikachu_friendship() -> std::uint8_t
+{
+    if(this->pikachu_friendship) {
+        return this->pikachu_friendship[0];
+    }
+
+    return 0;
+}
+
+auto Gen1::set_pikachu_friendship(std::uint8_t value) -> void
+{
+    if(this->pikachu_friendship) {
+        this->pikachu_friendship[0] = value;
+        return;
+    }
+}
+
+auto Gen1::get_item_bag(std::uint8_t index) -> struct Gen1Structs::item *
+{
+	if(index <= C::GEN1::SIZES::BAG_ITEM) {
+		return &this->pocket_item_list->item[index];
+	}
+
+	return nullptr;
+}
+
+// TODO: This is not doing what it is supposed to do
+auto Gen1::set_item_bag(struct Gen1Structs::item *items, std::uint8_t index, std::uint8_t item, std::uint8_t count) -> void
+{
+	if(index <= C::GEN1::SIZES::BAG_ITEM) {
+		items[index].index = item;
+		items[index].count = count;
+
+		return;
+	}
+}
+
+auto Gen1::get_item_pc(std::uint8_t index) -> struct Gen1Structs::item *
+{
+	if(index <= C::GEN1::SIZES::PC_ITEM) {
+		return &this->pc_item_list->item[index];
+	}
+
+	return nullptr;
+}
+
+// TODO: This is not doing what it is supposed to do
+auto Gen1::set_item_pc(struct Gen1Structs::item *items, std::uint8_t index, std::uint8_t item, std::uint8_t count) -> void
+{
+	if(index <= C::GEN1::SIZES::PC_ITEM) {
+		items[index].index = item;
+		items[index].count = count;
+
+		return;
+	}
+}
+
 auto Gen1::get_character_code(std::uint8_t const c) const -> std::uint8_t
 {
     int i;

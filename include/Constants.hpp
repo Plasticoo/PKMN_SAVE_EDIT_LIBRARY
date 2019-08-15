@@ -28,6 +28,9 @@ namespace C
 			constexpr std::uint32_t PLAYER_NAME = 11;
 			constexpr std::uint32_t MONEY = 3;
 			constexpr std::uint32_t CASINO_COINS = 2;
+
+			constexpr std::uint32_t BAG_ITEM = 20;
+			constexpr std::uint32_t PC_ITEM = 50;
 		}
 
         constexpr std::array<std::uint8_t, C::GEN1::SIZES::FONT> FONT = {

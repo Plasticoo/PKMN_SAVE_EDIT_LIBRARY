@@ -50,6 +50,15 @@ struct Gen1 : IGlobal {
 	auto get_option(enum Gen1Enums::options_flags flag) -> std::uint8_t;
 	auto set_option(enum Gen1Enums::options_flags flag) -> void;
 
+	auto get_pikachu_friendship() -> std::uint8_t;
+	auto set_pikachu_friendship(std::uint8_t value) -> void;
+
+	auto get_item_bag(std::uint8_t index) -> struct Gen1Structs::item *;
+	auto set_item_bag(struct Gen1Structs::item *items, std::uint8_t index, std::uint8_t item, std::uint8_t count) -> void;
+
+	auto get_item_pc(std::uint8_t index) -> struct Gen1Structs::item *;
+	auto set_item_pc(struct Gen1Structs::item *items, std::uint8_t index, std::uint8_t item, std::uint8_t count) -> void;
+
 	auto get_character_code(std::uint8_t const c) const -> std::uint8_t;
 
     private:
@@ -71,7 +80,7 @@ struct Gen1 : IGlobal {
 
 	std::uint16_t *player_trainer_id;
 
-	struct Gen1Structs::items_bag *pocket_items;
+	struct Gen1Structs::items_bag *pocket_item_list;
 	struct Gen1Structs::items_pc *pc_item_list;
 	struct Gen1Structs::pkmn_time *time_played;
 	struct Gen1Structs::pkmn_data_struct *team_pokemon_list;
