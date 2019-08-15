@@ -1,5 +1,7 @@
 #include "Utils.hpp"
 
+namespace Utils {
+
 constexpr auto __int_concat(const std::uint32_t x, const std::uint32_t y) -> std::uint32_t
 {
     std::uint32_t _p = 10;
@@ -46,4 +48,11 @@ auto __dec_to_bcd(const std::uint32_t num, std::uint8_t* buffer_out) -> void
                                   ((num % (mult*10)) / mult));
         mult *= 100;
     }
+}
+
+static inline void set_clear_bits(std::uint8_t *x, std::uint8_t n)
+{
+    *x = (*x & n) | n;
+}
+
 }

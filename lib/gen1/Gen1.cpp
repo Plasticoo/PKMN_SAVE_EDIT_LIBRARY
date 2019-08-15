@@ -150,12 +150,12 @@ auto Gen1::get_money() -> std::uint32_t
 	}
 
 	if(this->money[1] == 0 && this->money[2] == 0) {
-        return __bcd_to_dec(this->money, 1);
+        return Utils::__bcd_to_dec(this->money, 1);
     } else if(this->money[1] != 0 && this->money[2] == 0) {
-        return __bcd_to_dec(this->money, 2);
+        return Utils::__bcd_to_dec(this->money, 2);
     }
 
-    return __bcd_to_dec(this->money, C::GEN1::SIZES::MONEY);
+    return Utils::__bcd_to_dec(this->money, C::GEN1::SIZES::MONEY);
 }
 
 auto Gen1::set_money(std::uint32_t value) -> void
@@ -165,7 +165,7 @@ auto Gen1::set_money(std::uint32_t value) -> void
 	}
 
 	std::uint8_t buffer[C::GEN1::SIZES::MONEY];
-	__dec_to_bcd(value, buffer);
+	Utils::__dec_to_bcd(value, buffer);
 
 	std::memcpy(this->money, buffer,C::GEN1::SIZES::MONEY);
 }
@@ -177,10 +177,10 @@ auto Gen1::get_casino_coins() -> std::uint16_t
     }
 
     if(this->casino_coins[1] == 0) {
-        return __bcd_to_dec(this->casino_coins, 1);
+        return Utils::__bcd_to_dec(this->casino_coins, 1);
     }
 
-    return __bcd_to_dec(this->casino_coins, C::GEN1::SIZES::CASINO_COINS);
+    return Utils::__bcd_to_dec(this->casino_coins, C::GEN1::SIZES::CASINO_COINS);
 }
 
 auto Gen1::set_casino_coins(std::uint16_t value) -> void
@@ -191,7 +191,7 @@ auto Gen1::set_casino_coins(std::uint16_t value) -> void
 
 	std::uint8_t buffer[C::GEN1::SIZES::CASINO_COINS];
 
-    __dec_to_bcd(value, buffer);
+	Utils::__dec_to_bcd(value, buffer);
 
     if(n_digits(value) == 1 || n_digits(value) == 2) {
         this->casino_coins[0] = buffer[0];
@@ -266,6 +266,24 @@ auto Gen1::set_badge(enum Gen1Enums::badges badge) -> void
     if (this->badges) {
         this->badges[0] ^= (1 << badge);
     }
+}
+
+auto Gen1::get_option(enum Gen1Enums::options_flags flag) -> std::uint8_t
+{
+	if (!this->options) {
+		return 0;
+	}
+
+	return options[0] & C::GEN1::OPTIONS::LOOKUP_TABLE[flag];
+}
+
+auto Gen1::set_option(enum Gen1Enums::options_flags flag) -> void
+{
+	if (!this->options) {
+		return;
+	}
+
+	Utils::set_clear_bits(&this->options[0], C::GEN1::OPTIONS::LOOKUP_TABLE[flag]);
 }
 
 auto Gen1::get_character_code(std::uint8_t const c) const -> std::uint8_t

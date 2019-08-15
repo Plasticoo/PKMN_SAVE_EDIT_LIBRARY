@@ -47,6 +47,9 @@ struct Gen1 : IGlobal {
 	auto get_badge(enum Gen1Enums::badges badge) -> std::uint8_t;
 	auto set_badge(enum Gen1Enums::badges badge) -> void;
 
+	auto get_option(enum Gen1Enums::options_flags flag) -> std::uint8_t;
+	auto set_option(enum Gen1Enums::options_flags flag) -> void;
+
 	auto get_character_code(std::uint8_t const c) const -> std::uint8_t;
 
     private:

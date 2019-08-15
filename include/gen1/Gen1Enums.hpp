@@ -9,8 +9,8 @@ enum options {
     OPTION_BATTLE_EFFECTS
 };
 
-enum {
-    OPTION_TEXT_SPEED_FAST,
+enum options_flags {
+    OPTION_TEXT_SPEED_FAST = 0x0,
     OPTION_TEXT_SPEED_NORMAL,
     OPTION_TEXT_SPEED_SLOW,
 
@@ -29,7 +29,7 @@ enum {
 };
 
 enum badges {
-	BADGE_BOULDER = 0,
+	BADGE_BOULDER = 0x0,
 	BADGE_CASCADE,
 	BADGE_THUNDER,
 	BADGE_RAINBOW,
