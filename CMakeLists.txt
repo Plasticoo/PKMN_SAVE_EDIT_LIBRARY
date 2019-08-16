@@ -15,10 +15,10 @@ else()
   set(CMAKE_CXX_FLAGS "-ggdb3 -O0 -std=c++17 -pedantic -m64 -pipe -fPIC -march=native")
 endif()
 
-file(GLOB sources "lib/*.cpp")
+file(GLOB sources "src/*.cpp")
 
-include_directories(include include/gen1 include/Rom)
-file(GLOB gen1_sources "lib/gen1/*.cpp")
-file(GLOB rom_sources "lib/Rom/*.cpp")
+include_directories(include include/gen1 include/Rom lib)
+file(GLOB gen1_sources "src/gen1/*.cpp")
+file(GLOB rom_sources "src/Rom/*.cpp")
 
 add_library(pkmnsav SHARED ${gen1_sources} ${rom_sources} ${sources})
