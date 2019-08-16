@@ -65,7 +65,7 @@ auto Gen1::load_file() -> void
 	}
 }
 
-auto Gen1::save_changes(std::filesystem::path& file_name) -> bool
+auto Gen1::save_changes(std::filesystem::path const & file_name) const -> bool
 {
 	std::ofstream out;
 
@@ -105,7 +105,7 @@ auto Gen1::get_player_name() const -> std::string
     return name;
 }
 
-auto Gen1::set_player_name(std::string name) -> void
+auto Gen1::set_player_name(std::string const & name) -> void
 {
 	std::size_t size = name.size();
 
@@ -128,7 +128,7 @@ auto Gen1::set_player_name(std::string name) -> void
 	}
 }
 
-auto Gen1::get_pokedex_owned(std::uint8_t index) const -> bool
+auto Gen1::get_pokedex_owned(std::uint8_t const index) const -> bool
 {
 	if (this->pokedex_owned && index < 152) {
 		return (this->pokedex_owned[index >> 3] >> (index & 7) & 1) == 1;
@@ -137,16 +137,7 @@ auto Gen1::get_pokedex_owned(std::uint8_t index) const -> bool
 	return false;
 }
 
-auto Gen1::get_pokedex_seen(std::uint8_t index) const -> bool
-{
-	if (this->pokedex_seen && index < 152) {
-		return (this->pokedex_seen[index >> 3] >> (index & 7) & 1) == 1;
-	}
-
-	return false;
-}
-
-auto Gen1::set_pokedex_owned(std::uint8_t index, bool owned) -> void
+auto Gen1::set_pokedex_owned(std::uint8_t const index, bool const owned) -> void
 {
     if (owned) {
         this->pokedex_owned[index >> 3] |= 1 << (index & 7);
@@ -155,7 +146,16 @@ auto Gen1::set_pokedex_owned(std::uint8_t index, bool owned) -> void
 	}
 }
 
-auto Gen1::set_pokedex_seen(std::uint8_t index, bool seen) -> void
+auto Gen1::get_pokedex_seen(std::uint8_t const index) const -> bool
+{
+	if (this->pokedex_seen && index < 152) {
+		return (this->pokedex_seen[index >> 3] >> (index & 7) & 1) == 1;
+	}
+
+	return false;
+}
+
+auto Gen1::set_pokedex_seen(std::uint8_t const index, bool const seen) -> void
 {
     if (seen) {
         this->pokedex_seen[index >> 3] |= 1 << (index & 7);
@@ -164,7 +164,7 @@ auto Gen1::set_pokedex_seen(std::uint8_t index, bool seen) -> void
 	}
 }
 
-auto Gen1::get_money() -> std::uint32_t
+auto Gen1::get_money() const -> std::uint32_t
 {
 	if (!this->money) {
 		return 0x7FFFFFFF;
@@ -179,7 +179,7 @@ auto Gen1::get_money() -> std::uint32_t
     return Utils::__bcd_to_dec(this->money, C::GEN1::SIZES::MONEY);
 }
 
-auto Gen1::set_money(std::uint32_t value) -> void
+auto Gen1::set_money(std::uint32_t const value) -> void
 {
 	if (!this->money) {
 		return;
@@ -191,7 +191,7 @@ auto Gen1::set_money(std::uint32_t value) -> void
 	std::memcpy(this->money, buffer,C::GEN1::SIZES::MONEY);
 }
 
-auto Gen1::get_casino_coins() -> std::uint16_t
+auto Gen1::get_casino_coins() const -> std::uint16_t
 {
     if(!this->casino_coins) {
         return 0;
@@ -204,7 +204,7 @@ auto Gen1::get_casino_coins() -> std::uint16_t
     return Utils::__bcd_to_dec(this->casino_coins, C::GEN1::SIZES::CASINO_COINS);
 }
 
-auto Gen1::set_casino_coins(std::uint16_t value) -> void
+auto Gen1::set_casino_coins(std::uint16_t const value) -> void
 {
     if(!this->casino_coins) {
         return;
@@ -224,7 +224,7 @@ auto Gen1::set_casino_coins(std::uint16_t value) -> void
     memcpy(this->casino_coins, buffer, C::GEN1::SIZES::CASINO_COINS);
 }
 
-auto Gen1::get_time_played(struct Gen1Structs::pkmn_time *dest) -> void
+auto Gen1::get_time_played(struct Gen1Structs::pkmn_time *dest) const  -> void
 {
     if(this->time_played && dest) {
 		dest->hours = this->time_played->hours;
@@ -235,7 +235,7 @@ auto Gen1::get_time_played(struct Gen1Structs::pkmn_time *dest) -> void
     }
 }
 
-auto Gen1::set_time_played(std::uint16_t hours, std::uint8_t minutes, std::uint8_t seconds) -> void
+auto Gen1::set_time_played(std::uint16_t const hours, std::uint8_t const minutes, std::uint8_t const seconds) -> void
 {
     if(hours < 1000 &&
        minutes < 100 &&
@@ -249,7 +249,7 @@ auto Gen1::set_time_played(std::uint16_t hours, std::uint8_t minutes, std::uint8
     }
 }
 
-auto Gen1::get_current_pc_box() -> std::uint8_t
+auto Gen1::get_current_pc_box() const -> std::uint8_t
 {
 	if (this->current_pc_box) {
 		return current_pc_box[0] + 1;
@@ -258,22 +258,22 @@ auto Gen1::get_current_pc_box() -> std::uint8_t
 	return 0;
 }
 
-auto Gen1::set_current_pc_box(std::uint8_t index) -> void
+auto Gen1::set_current_pc_box(std::uint8_t const index) -> void
 {
 	std::uint8_t idx;
 
-    if (current_pc_box && index <= 20) {
+    if (this->current_pc_box && index <= 20) {
         if (index == 0) {
             idx = 0;
         } else {
             idx = index - 1;
         }
 
-        current_pc_box[0] = idx;
+        this->current_pc_box[0] = idx;
     }
 }
 
-auto Gen1::get_badge(enum Gen1Enums::badges badge) -> std::uint8_t
+auto Gen1::get_badge(enum Gen1Enums::badges const badge) const -> std::uint8_t
 {
     if (this->badges) {
         return (this->badges[0] & (1 << badge)) >> badge;
@@ -282,14 +282,14 @@ auto Gen1::get_badge(enum Gen1Enums::badges badge) -> std::uint8_t
     return 0;
 }
 
-auto Gen1::set_badge(enum Gen1Enums::badges badge) -> void
+auto Gen1::set_badge(enum Gen1Enums::badges const badge) -> void
 {
     if (this->badges) {
         this->badges[0] ^= (1 << badge);
     }
 }
 
-auto Gen1::get_option(enum Gen1Enums::options_flags flag) -> std::uint8_t
+auto Gen1::get_option(enum Gen1Enums::options_flags const flag) const -> std::uint8_t
 {
 	if (!this->options) {
 		return 0;
@@ -298,7 +298,7 @@ auto Gen1::get_option(enum Gen1Enums::options_flags flag) -> std::uint8_t
 	return options[0] & C::GEN1::OPTIONS::LOOKUP_TABLE[flag];
 }
 
-auto Gen1::set_option(enum Gen1Enums::options_flags flag) -> void
+auto Gen1::set_option(enum Gen1Enums::options_flags const flag) -> void
 {
 	if (!this->options) {
 		return;
@@ -307,7 +307,7 @@ auto Gen1::set_option(enum Gen1Enums::options_flags flag) -> void
 	Utils::set_clear_bits(&this->options[0], C::GEN1::OPTIONS::LOOKUP_TABLE[flag]);
 }
 
-auto Gen1::get_pikachu_friendship() -> std::uint8_t
+auto Gen1::get_pikachu_friendship() const -> std::uint8_t
 {
     if(this->pikachu_friendship) {
         return this->pikachu_friendship[0];
@@ -316,7 +316,7 @@ auto Gen1::get_pikachu_friendship() -> std::uint8_t
     return 0;
 }
 
-auto Gen1::set_pikachu_friendship(std::uint8_t value) -> void
+auto Gen1::set_pikachu_friendship(std::uint8_t const value) -> void
 {
     if(this->pikachu_friendship) {
         this->pikachu_friendship[0] = value;
@@ -324,7 +324,7 @@ auto Gen1::set_pikachu_friendship(std::uint8_t value) -> void
     }
 }
 
-auto Gen1::get_item_bag(std::uint8_t index) -> struct Gen1Structs::item *
+auto Gen1::get_item_bag(std::uint8_t const index) const -> struct Gen1Structs::item *
 {
 	if(index <= C::GEN1::SIZES::BAG_ITEM) {
 		return &this->pocket_item_list->item[index];
@@ -334,7 +334,7 @@ auto Gen1::get_item_bag(std::uint8_t index) -> struct Gen1Structs::item *
 }
 
 // TODO: This is not doing what it is supposed to do
-auto Gen1::set_item_bag(struct Gen1Structs::item *items, std::uint8_t index, std::uint8_t item, std::uint8_t count) -> void
+auto Gen1::set_item_bag(struct Gen1Structs::item *items, std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void
 {
 	if(index <= C::GEN1::SIZES::BAG_ITEM) {
 		items[index].index = item;
@@ -344,7 +344,7 @@ auto Gen1::set_item_bag(struct Gen1Structs::item *items, std::uint8_t index, std
 	}
 }
 
-auto Gen1::get_item_pc(std::uint8_t index) -> struct Gen1Structs::item *
+auto Gen1::get_item_pc(std::uint8_t const index) const -> struct Gen1Structs::item *
 {
 	if(index <= C::GEN1::SIZES::PC_ITEM) {
 		return &this->pc_item_list->item[index];
@@ -354,7 +354,7 @@ auto Gen1::get_item_pc(std::uint8_t index) -> struct Gen1Structs::item *
 }
 
 // TODO: This is not doing what it is supposed to do
-auto Gen1::set_item_pc(struct Gen1Structs::item *items, std::uint8_t index, std::uint8_t item, std::uint8_t count) -> void
+auto Gen1::set_item_pc(struct Gen1Structs::item *items, std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void
 {
 	if(index <= C::GEN1::SIZES::PC_ITEM) {
 		items[index].index = item;

@@ -24,42 +24,43 @@ struct Gen1 : IGlobal {
 	auto set_checksum() -> void;
 
 	auto load_file() -> void;
-	auto save_changes(std::filesystem::path& file_name) -> bool;
+	auto save_changes(std::filesystem::path const & file_name) const -> bool;
 
 	auto get_player_name() const -> std::string;
-	auto set_player_name(std::string name) -> void;
+	auto set_player_name(std::string const &  name) -> void;
 
-	auto get_pokedex_owned(std::uint8_t index) const -> bool;
-	auto get_pokedex_seen(std::uint8_t index) const -> bool;
-	auto set_pokedex_owned(std::uint8_t index, bool owned) -> void;
-	auto set_pokedex_seen(std::uint8_t index, bool seen) -> void;
+	auto get_pokedex_owned(std::uint8_t const index) const -> bool;
+	auto set_pokedex_owned(std::uint8_t const index, bool const owned) -> void;
 
-	auto get_money() -> std::uint32_t;
-	auto set_money(std::uint32_t value) -> void;
+	auto get_pokedex_seen(std::uint8_t const index) const -> bool;
+	auto set_pokedex_seen(std::uint8_t const index, bool const seen) -> void;
 
-	auto get_casino_coins() -> std::uint16_t;
-	auto set_casino_coins(std::uint16_t value) -> void;
+	auto get_money() const -> std::uint32_t;
+	auto set_money(std::uint32_t const value) -> void;
 
-	auto get_time_played(struct Gen1Structs::pkmn_time *dest) -> void;
-	auto set_time_played(std::uint16_t hours, std::uint8_t minutes, std::uint8_t seconds) -> void;
+	auto get_casino_coins() const -> std::uint16_t;
+	auto set_casino_coins(std::uint16_t const value) -> void;
 
-	auto get_current_pc_box() -> std::uint8_t;
-	auto set_current_pc_box(std::uint8_t index) -> void;
+	auto get_time_played(struct Gen1Structs::pkmn_time *dest) const -> void;
+	auto set_time_played(std::uint16_t const hours, std::uint8_t const minutes, std::uint8_t const seconds) -> void;
 
-	auto get_badge(enum Gen1Enums::badges badge) -> std::uint8_t;
-	auto set_badge(enum Gen1Enums::badges badge) -> void;
+	auto get_current_pc_box() const -> std::uint8_t;
+	auto set_current_pc_box(std::uint8_t const index) -> void;
 
-	auto get_option(enum Gen1Enums::options_flags flag) -> std::uint8_t;
-	auto set_option(enum Gen1Enums::options_flags flag) -> void;
+	auto get_badge(enum Gen1Enums::badges const badge) const -> std::uint8_t;
+	auto set_badge(enum Gen1Enums::badges const badge) -> void;
 
-	auto get_pikachu_friendship() -> std::uint8_t;
-	auto set_pikachu_friendship(std::uint8_t value) -> void;
+	auto get_option(enum Gen1Enums::options_flags const flag) const -> std::uint8_t;
+	auto set_option(enum Gen1Enums::options_flags const flag) -> void;
 
-	auto get_item_bag(std::uint8_t index) -> struct Gen1Structs::item *;
-	auto set_item_bag(struct Gen1Structs::item *items, std::uint8_t index, std::uint8_t item, std::uint8_t count) -> void;
+	auto get_pikachu_friendship() const -> std::uint8_t;
+	auto set_pikachu_friendship(std::uint8_t const value) -> void;
 
-	auto get_item_pc(std::uint8_t index) -> struct Gen1Structs::item *;
-	auto set_item_pc(struct Gen1Structs::item *items, std::uint8_t index, std::uint8_t item, std::uint8_t count) -> void;
+	auto get_item_bag(std::uint8_t const index) const -> struct Gen1Structs::item *;
+	auto set_item_bag(struct Gen1Structs::item *items, std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void;
+
+	auto get_item_pc(std::uint8_t const index) const -> struct Gen1Structs::item *;
+	auto set_item_pc(struct Gen1Structs::item *items, std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void;
 
 	auto get_character_code(std::uint8_t const c) const -> std::uint8_t;
 
