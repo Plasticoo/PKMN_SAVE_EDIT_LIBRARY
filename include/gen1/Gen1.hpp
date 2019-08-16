@@ -8,6 +8,7 @@
 #include "Rom.hpp"
 #include "Utils.hpp"
 
+#include <fstream>
 #include <memory>
 
 //template<class Derived>
@@ -23,6 +24,7 @@ struct Gen1 : IGlobal {
 	auto set_checksum() -> void;
 
 	auto load_file() -> void;
+	auto save_changes(std::filesystem::path& file_name) -> bool;
 
 	auto get_player_name() const -> std::string;
 	auto set_player_name(std::string name) -> void;

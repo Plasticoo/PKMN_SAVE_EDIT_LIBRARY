@@ -65,6 +65,28 @@ auto Gen1::load_file() -> void
 	}
 }
 
+auto Gen1::save_changes(std::filesystem::path& file_name) -> bool
+{
+    int i;
+	std::ofstream out;
+
+    if(!this->m_rom) {
+        return false;
+    }
+
+	out.open(file_name, std::ios::out | std::ios::binary);
+
+    if (!out.is_open()) {
+		return false;
+	}
+
+    for (i = 0; i < C::GEN1::SIZES::FILE; i++) {
+		out.write((char*)&this->m_rom->data[i], 1);
+    }
+
+    return true;
+}
+
 // NOTE: can probably be reused for any other names?
 auto Gen1::get_player_name() const -> std::string
 {
