@@ -66,27 +66,27 @@ struct Gen1 : IGlobal {
     private:
         std::unique_ptr<Rom> m_rom;
 
-	std::uint8_t *player_name;
-    std::uint8_t *pokedex_owned;
-    std::uint8_t *pokedex_seen;
-    std::uint8_t *money;
-    std::uint8_t *rival_name;
-    std::uint8_t *options;
-    std::uint8_t *badges;
-    std::uint8_t *pikachu_friendship;
-    std::uint8_t *current_pc_box;
-    std::uint8_t *casino_coins;
-    std::uint8_t *item_count;
-    std::uint8_t *current_box_list;
-    std::uint8_t *checksum;
+        std::uint8_t* player_name;
+        std::uint8_t* pokedex_owned;
+        std::uint8_t* pokedex_seen;
+        std::uint8_t* money;
+        std::uint8_t* rival_name;
+        std::uint8_t* options;
+        std::uint8_t* badges;
+        std::uint8_t* pikachu_friendship;
+        std::uint8_t* current_pc_box;
+        std::uint8_t* casino_coins;
+        std::uint8_t* item_count;
+        std::uint8_t* current_box_list;
+        std::uint8_t* checksum;
 
-	std::uint16_t *player_trainer_id;
+        std::uint16_t* player_trainer_id;
 
-	struct Gen1Structs::items_bag *pocket_item_list;
-	struct Gen1Structs::items_pc *pc_item_list;
-	struct Gen1Structs::pkmn_time *time_played;
-	struct Gen1Structs::pkmn_data_struct *team_pokemon_list;
-    struct Gen1Structs::pkmn_box *pc_box[12];
+        struct Gen1Structs::items_bag* pocket_item_list;
+        struct Gen1Structs::items_pc* pc_item_list;
+        struct Gen1Structs::pkmn_time* time_played;
+        struct Gen1Structs::pkmn_data_struct* team_pokemon_list;
+        struct Gen1Structs::pkmn_box* pc_box[12];
 };
 
 #endif
