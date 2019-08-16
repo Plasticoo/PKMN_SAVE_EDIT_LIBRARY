@@ -5,3 +5,5 @@ tests/.gdb_history
 tests/saved_changes.sav
 tests/unit_tests
 build/
+.ccls-cache
+compile_commands.json
