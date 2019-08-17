@@ -8,6 +8,7 @@
 
 struct RomInterface
 {
+	// TODO: to remove
     static auto make_rom(std::filesystem::path const & file) -> std::unique_ptr<RomInterface>;
 
     virtual auto load(std::filesystem::path const & file) -> void = 0;

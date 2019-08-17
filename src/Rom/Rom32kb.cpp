@@ -11,7 +11,7 @@ Rom32kb::Rom32kb(std::filesystem::path const & file)
 
 auto Rom32kb::load(std::filesystem::path const & file) -> void
 {
-    std::ifstream ifs(file, std::ios::binary | std::ios::ate);
+    std::ifstream ifs(file, std::ios::binary | std::ios::in);
     if (!ifs) {
         return;
     }
@@ -21,9 +21,8 @@ auto Rom32kb::load(std::filesystem::path const & file) -> void
         return;
     }
 
-    if (ifs.read((char*)this->data.data(), size)) {
-        return;
-    }
+    ifs.read((char*)this->data.data(), size);
+	ifs.close();
 }
 
 auto Rom32kb::get_size() const -> std::size_t

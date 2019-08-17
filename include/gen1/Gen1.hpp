@@ -5,7 +5,7 @@
 #include "gen1/Gen1Structs.hpp"
 #include "gen1/Gen1Enums.hpp"
 #include "IGlobal.hpp"
-#include "Rom.hpp"
+#include "RomInterface.hpp"
 #include "Utils.hpp"
 
 #include <fstream>
@@ -13,10 +13,8 @@
 
 //template<class Derived>
 struct Gen1 : IGlobal {
-    Gen1(std::unique_ptr<Rom>&& r) : m_rom(std::move(r))
+    Gen1(std::unique_ptr<RomInterface>&& r) : m_rom(std::move(r))
     {
-		//static_assert(std::is_base_of<Rom, Derived>::value, "Derived not derivative of Rom.");
-
 	}
 
     auto get_checksum() const -> std::uint8_t override;
@@ -65,7 +63,7 @@ struct Gen1 : IGlobal {
 	auto get_character_code(std::uint8_t const c) const -> std::uint8_t;
 
     private:
-        std::unique_ptr<Rom> m_rom;
+        std::unique_ptr<RomInterface> m_rom;
 
         std::uint8_t* player_name;
         std::uint8_t* pokedex_owned;
