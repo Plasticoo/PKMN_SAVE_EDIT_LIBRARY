@@ -1,9 +1,5 @@
-tests/checksum_test
-tests/file_load_test
-tests/number_concat_test
-tests/.gdb_history
-tests/saved_changes.sav
-tests/unit_tests
+games/
 build/
+tests/build
 .ccls-cache
 compile_commands.json
