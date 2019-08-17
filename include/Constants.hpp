@@ -99,7 +99,7 @@ namespace C
 
 			constexpr std::uint16_t POCKET_ITEM_LIST = 0x25C9;
 			constexpr std::uint16_t PC_ITEM_LIST = 0x27E6;
-			constexpr std::uint16_t TIME_PLAYED = 0x2CEE;
+			constexpr std::uint16_t TIME_PLAYED = 0x2CED;
 			constexpr std::uint16_t TEAM_POKEMON_LIST = 0x2F2C;
 			constexpr std::uint16_t PC_BOX_1_POKEMON_LIST = 0x4000;
 

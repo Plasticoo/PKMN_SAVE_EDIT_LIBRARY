@@ -19,9 +19,9 @@ TEST_CASE("Generation 1 class gets correct information")
 
     auto gen1 = new Gen1(std::move(_rom));
 
-	SECTION("Player name is ROMEU")
+	SECTION("Player name is ASH")
 	{
-		REQUIRE(gen1->get_player_name() == "ROMEU");
+		REQUIRE(gen1->get_player_name() == "ASH");
 	}
 
 	SECTION("Rival name is GARY")
@@ -39,9 +39,9 @@ TEST_CASE("Generation 1 class gets correct information")
     //     REQUIRE(gen1->get_rival_name() == "GARY");
     // }
 
-    SECTION("Money is 3175")
+    SECTION("Money is 390890")
     {
-        REQUIRE(gen1->get_money() == 3175);
+        REQUIRE(gen1->get_money() == 390890);
     }
 
 	SECTION("Casino Coins is 0")
@@ -54,19 +54,29 @@ TEST_CASE("Generation 1 class gets correct information")
 		auto time_played = Gen1Structs::pkmn_time();
 		gen1->get_time_played(&time_played);
 
+		SECTION("Maximum time not reached")
+		{
+			REQUIRE(time_played.maxed == 0);
+		}
+
 		SECTION("Hours is XX")
 		{
-			REQUIRE(time_played.hours == 0);
+			REQUIRE(time_played.hours == 122);
 		}
 
 		SECTION("Minutes is XX")
 		{
-			REQUIRE(time_played.minutes == 1);
+			REQUIRE(time_played.minutes == 20);
 		}
 
 		SECTION("Seconds is XX")
 		{
-			REQUIRE(time_played.seconds == 0);
+			REQUIRE(time_played.seconds == 58);
+		}
+
+		SECTION("Frames is XX")
+		{
+			REQUIRE(time_played.frames == 10);
 		}
 	}
 }

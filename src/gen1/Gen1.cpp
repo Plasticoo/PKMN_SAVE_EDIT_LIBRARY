@@ -268,22 +268,29 @@ auto Gen1::get_time_played(struct Gen1Structs::pkmn_time *dest) const  -> void
 {
     if(this->time_played && dest) {
 		dest->hours = this->time_played->hours;
+		dest->maxed = this->time_played->maxed;
 		dest->minutes = this->time_played->minutes;
 		dest->seconds = this->time_played->seconds;
+		dest->frames = this->time_played->frames;
 
 		return;
     }
 }
 
-auto Gen1::set_time_played(std::uint16_t const hours, std::uint8_t const minutes, std::uint8_t const seconds) -> void
+auto Gen1::set_time_played(std::uint8_t const hours, std::uint8_t const minutes, std::uint8_t const seconds, std::uint8_t const frames) -> void
 {
-    if(hours < 1000 &&
-       minutes < 100 &&
-       seconds < 100 &&
+    if(hours <= 255 &&
+       minutes <= 59 &&
+       seconds <= 59 &&
         this->time_played) {
+		this->time_played->frames = frames;
         this->time_played->seconds = seconds;
         this->time_played->minutes = minutes;
         this->time_played->hours = hours;
+
+		if (hours == 255 && minutes == 59 && seconds == 59 && frames == 59) {
+			this->time_played->maxed = 255;
+		}
 
         return;
     }

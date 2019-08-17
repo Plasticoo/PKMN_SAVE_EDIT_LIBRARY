@@ -9,9 +9,11 @@
 namespace Gen1Structs
 {
 struct pkmn_time {
-    std::uint16_t hours;
+    std::uint8_t hours;
+	std::uint8_t maxed;
     std::uint8_t minutes;
     std::uint8_t seconds;
+    std::uint8_t frames;
 };
 
 struct pkmn_data_struct {

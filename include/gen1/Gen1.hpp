@@ -44,7 +44,7 @@ struct Gen1 : IGlobal {
 	auto set_casino_coins(std::uint16_t const value) -> void;
 
 	auto get_time_played(struct Gen1Structs::pkmn_time *dest) const -> void;
-	auto set_time_played(std::uint16_t const hours, std::uint8_t const minutes, std::uint8_t const seconds) -> void;
+	auto set_time_played(std::uint8_t const hours, std::uint8_t const minutes, std::uint8_t const seconds, std::uint8_t const frames) -> void;
 
 	auto get_current_pc_box() const -> std::uint8_t;
 	auto set_current_pc_box(std::uint8_t const index) -> void;
