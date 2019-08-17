@@ -1,15 +1,15 @@
-#include "Rom.hpp"
+#include "Rom32kb.hpp"
 
 #include "Constants.hpp"
 
 #include <fstream>
 
-Rom::Rom(std::filesystem::path const & file)
+Rom32kb::Rom32kb(std::filesystem::path const & file)
 {
     this->load(file);
 }
 
-auto Rom::load(std::filesystem::path const & file) -> void
+auto Rom32kb::load(std::filesystem::path const & file) -> void
 {
     std::ifstream ifs(file, std::ios::binary | std::ios::ate);
     if (!ifs) {
@@ -17,7 +17,7 @@ auto Rom::load(std::filesystem::path const & file) -> void
     }
 
     auto size = std::filesystem::file_size(file);
-    if (size == 0 || size != C::GB::ROM_SIZE) {
+    if (size == 0 || size != C::SIZES::ROM32KB) {
         return;
     }
 
@@ -26,7 +26,7 @@ auto Rom::load(std::filesystem::path const & file) -> void
     }
 }
 
-auto Rom::get_size() const -> std::size_t
+auto Rom32kb::get_size() const -> std::size_t
 {
     return this->data.size();
 }

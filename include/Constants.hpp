@@ -6,6 +6,12 @@
 
 namespace C
 {
+	namespace SIZES
+	{
+		constexpr std::uint32_t ROM32KB = 0x8000;
+		constexpr std::uint32_t ROM64KB = 0xFFFF;
+	}
+
     namespace GB
     {
         constexpr std::uint32_t ROM_SIZE = 32768;
