@@ -13,8 +13,9 @@
 
 //template<class Derived>
 struct Gen1 : IGlobal {
-    Gen1(std::unique_ptr<RomInterface>&& r) : m_rom(std::move(r))
+    Gen1(std::unique_ptr<Rom32kb>&& r) : m_rom(std::move(r))
     {
+		this->load_file();
 	}
 
     auto get_checksum() const -> std::uint8_t override;
@@ -26,6 +27,9 @@ struct Gen1 : IGlobal {
 
 	auto get_player_name() const -> std::string;
 	auto set_player_name(std::string const &  name) -> void;
+
+	auto get_rival_name() const -> std::string;
+	auto set_rival_name(std::string const & name) -> void;
 
 	auto get_pokedex_owned(std::uint8_t const index) const -> bool;
 	auto set_pokedex_owned(std::uint8_t const index, bool const owned) -> void;
@@ -63,7 +67,7 @@ struct Gen1 : IGlobal {
 	auto get_character_code(std::uint8_t const c) const -> std::uint8_t;
 
     private:
-        std::unique_ptr<RomInterface> m_rom;
+        std::unique_ptr<Rom32kb> m_rom;
 
         std::uint8_t* player_name;
         std::uint8_t* pokedex_owned;

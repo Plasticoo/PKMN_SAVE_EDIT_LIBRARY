@@ -86,7 +86,6 @@ auto Gen1::save_changes(std::filesystem::path const & file_name) const -> bool
     return true;
 }
 
-// NOTE: can probably be reused for any other names?
 auto Gen1::get_player_name() const -> std::string
 {
 	if (this->player_name == nullptr) {
@@ -125,6 +124,47 @@ auto Gen1::set_player_name(std::string const & name) -> void
 
 	while (size < 11) {
 		this->player_name[++size] = 0x0;
+	}
+}
+
+auto Gen1::get_rival_name() const -> std::string
+{
+	if (this->rival_name == nullptr) {
+		return nullptr;
+	}
+
+	std::string name = "";
+	for (auto i = 0; i < C::GEN1::SIZES::PLAYER_NAME; i++) {
+        if(this->rival_name[i] == 'P') {
+			break;
+		}
+
+        name += C::GEN1::FONT[this->rival_name[i]];
+    }
+
+    return name;
+}
+
+auto Gen1::set_rival_name(std::string const & name) -> void
+{
+	std::size_t size = name.size();
+
+	if (this->rival_name == nullptr || name.empty()) {
+		return;
+	}
+
+	if (size >= 7) {
+		size = 7;
+	}
+
+	for (auto i = 0; i < size; i++) {
+		this->rival_name[i] = this->get_character_code(name[i]);
+	}
+
+	this->rival_name[++size] = 'P';
+
+	while (size < 11) {
+		this->rival_name[++size] = 0x0;
 	}
 }
 
