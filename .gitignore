@@ -3,3 +3,6 @@ build/
 tests/build
 .ccls-cache
 compile_commands.json
+.DS_Store
+.ccls
+lib/.DS_Store
