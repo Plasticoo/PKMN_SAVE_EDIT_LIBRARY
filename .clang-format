@@ -17,6 +17,7 @@ BreakBeforeBraces: Linux
 BreakBeforeTernaryOperators: 'false'
 BreakConstructorInitializers: AfterColon
 BreakInheritanceList: AfterColon
+ColumnLimit: 0
 CompactNamespaces: 'false'
 ConstructorInitializerAllOnOneLineOrOnePerLine: 'true'
 Cpp11BracedListStyle: 'false'
