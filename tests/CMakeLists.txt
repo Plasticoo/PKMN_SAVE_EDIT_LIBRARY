@@ -10,7 +10,7 @@ set(CMAKE_CXX_COMPILER clang++)
 include_directories(../include)
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
-  set(CMAKE_CXX_FLAGS "-ggdb3 -O0 -std=c++17 -pedantic -m64 -march=native -mmacosx-version-min=10.15")
+  set(CMAKE_CXX_FLAGS "-ggdb3 -O0 -std=c++17 -pedantic -m64 -march=native -mmacosx-version-min=10.15 -L/usr/local/Cellar/llvm/8.0.1/lib -lc++fs")
 else()
   set(CMAKE_CXX_FLAGS "-ggdb3 -O0 -std=c++17 -pedantic -m64 -march=native")
 endif()
