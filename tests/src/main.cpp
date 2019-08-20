@@ -59,22 +59,22 @@ TEST_CASE("Generation 1 class gets correct information")
 			REQUIRE(time_played.maxed == 0);
 		}
 
-		SECTION("Hours is XX")
+		SECTION("Hours is 122")
 		{
 			REQUIRE(time_played.hours == 122);
 		}
 
-		SECTION("Minutes is XX")
+		SECTION("Minutes is 20")
 		{
 			REQUIRE(time_played.minutes == 20);
 		}
 
-		SECTION("Seconds is XX")
+		SECTION("Seconds is 58")
 		{
 			REQUIRE(time_played.seconds == 58);
 		}
 
-		SECTION("Frames is XX")
+		SECTION("Frames is 10")
 		{
 			REQUIRE(time_played.frames == 10);
 		}
