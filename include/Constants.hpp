@@ -64,10 +64,14 @@ namespace C
 
         namespace OPTIONS
 		{
-            constexpr std::array<std::uint8_t, C::GEN1::SIZES::OPTIONS> LOOKUP_TABLE = {
+            constexpr std::array<std::uint8_t, C::GEN1::SIZES::OPTIONS> FLAGS_LOOKUP_TABLE = {
                 0x1,  0x2,  0x5, 0x0,  0x0, 0x10, 0x10,
                 0x20, 0x30, 0x0, 0x40, 0x0, 0x80
             };
+
+			constexpr std::array<std::uint8_t, 4> LOOKUP_TABLE = {
+				0x3, 0x4, 0x6, 0x7
+			};
 
             constexpr std::uint8_t OPTION_TEXT_SPEED_MASK = 0x7;
             constexpr std::uint8_t OPTION_SOUND_MASK = 0x30;

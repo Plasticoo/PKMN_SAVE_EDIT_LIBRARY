@@ -3,10 +3,10 @@
 
 namespace Gen1Enums {
 enum options {
-    OPTION_TEXT_SPEED,
-    OPTION_SOUND,
-    OPTION_BATTLE_STYLE,
-    OPTION_BATTLE_EFFECTS
+    TEXT_SPEED = 0x0,
+    SOUND,
+    BATTLE_STYLE,
+    BATTLE_EFFECTS
 };
 
 enum options_flags {

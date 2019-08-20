@@ -52,8 +52,8 @@ struct Gen1 : IGlobal {
 	auto get_badge(enum Gen1Enums::badges const badge) const -> std::uint8_t;
 	auto set_badge(enum Gen1Enums::badges const badge) -> void;
 
-	auto get_option(enum Gen1Enums::options_flags const flag) const -> std::uint8_t;
-	auto set_option(enum Gen1Enums::options_flags const flag) -> void;
+	auto get_option(enum Gen1Enums::options const flag) const -> std::uint8_t;
+	auto set_option(enum Gen1Enums::options const flag) -> void;
 
 	auto get_pikachu_friendship() const -> std::uint8_t;
 	auto set_pikachu_friendship(std::uint8_t const value) -> void;

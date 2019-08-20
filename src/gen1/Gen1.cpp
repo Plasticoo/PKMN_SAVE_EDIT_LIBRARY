@@ -337,7 +337,7 @@ auto Gen1::set_badge(enum Gen1Enums::badges const badge) -> void
     }
 }
 
-auto Gen1::get_option(enum Gen1Enums::options_flags const flag) const -> std::uint8_t
+auto Gen1::get_option(enum Gen1Enums::options const flag) const -> std::uint8_t
 {
     if (!this->options) {
         return 0;
@@ -346,7 +346,7 @@ auto Gen1::get_option(enum Gen1Enums::options_flags const flag) const -> std::ui
     return options[0] & C::GEN1::OPTIONS::LOOKUP_TABLE[flag];
 }
 
-auto Gen1::set_option(enum Gen1Enums::options_flags const flag) -> void
+auto Gen1::set_option(enum Gen1Enums::options const flag) -> void
 {
     if (!this->options) {
         return;
