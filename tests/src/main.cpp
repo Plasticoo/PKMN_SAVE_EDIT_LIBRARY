@@ -106,4 +106,21 @@ TEST_CASE("Generation 1 class gets correct information")
 	{
 		REQUIRE(gen1->get_pikachu_friendship() == 103);
 	}
+
+	SECTION("Bag unique item quantity is 19")
+	{
+		REQUIRE(gen1->get_item_bag_count() == 19);
+	}
+
+	SECTION("First item in the bag is an Ultra Ball")
+	{
+		auto item = gen1->get_item_bag(0);
+		REQUIRE(item->index == Gen1Enums::ITEM_ULTRA_BALL);
+	}
+
+	SECTION("There are 3 Ultra Balls in the bag item list")
+	{
+		auto item = gen1->get_item_bag(0);
+		REQUIRE(item->count == 3);
+	}
 }

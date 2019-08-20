@@ -372,6 +372,11 @@ auto Gen1::set_pikachu_friendship(std::uint8_t const value) -> void
     }
 }
 
+auto Gen1::get_item_bag_count() const -> std::uint8_t
+{
+	return this->pocket_item_list->count;
+}
+
 auto Gen1::get_item_bag(std::uint8_t const index) const -> struct Gen1Structs::item*
 {
     if (index <= C::GEN1::SIZES::BAG_ITEM) {
