@@ -101,4 +101,9 @@ TEST_CASE("Generation 1 class gets correct information")
 		REQUIRE(gen1->get_option(Gen1Enums::options::BATTLE_STYLE) == 0);
 		REQUIRE(gen1->get_option(Gen1Enums::options::BATTLE_EFFECTS) == 1);
 	}
+
+	SECTION("Pikachu friendship is 103")
+	{
+		REQUIRE(gen1->get_pikachu_friendship() == 103);
+	}
 }
