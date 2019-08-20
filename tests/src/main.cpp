@@ -10,7 +10,7 @@
 
 TEST_CASE("Generation 1 class gets correct information")
 {
-	auto _rom = std::make_unique<Rom32kb>("../../games/yellow.sav");
+	auto _rom = std::make_unique<Rom32kb>("../../saves/yellow.sav");
 
 	SECTION("File is loaded correctly and has correct size")
     {
