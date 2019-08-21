@@ -82,6 +82,11 @@ TEST_CASE("Generation 1 class gets correct information")
 
 //
 
+	SECTION("Current PC box that is selected is number 12")
+	{
+		REQUIRE(gen1->get_current_pc_box() == 12);
+	}
+
 	SECTION("Every gym is completed")
 	{
 		REQUIRE(gen1->get_badge(Gen1Enums::badges::BADGE_BOULDER) == 1);

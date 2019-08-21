@@ -300,12 +300,13 @@ auto Gen1::set_time_played(std::uint8_t const hours, std::uint8_t const minutes,
 auto Gen1::get_current_pc_box() const -> std::uint8_t
 {
     if (this->current_pc_box) {
-        return current_pc_box[0] + 1;
+        return (current_pc_box[0] & 0b01111111) + 1;
     }
 
     return 0;
 }
 
+// TODO: set 8th bit if needed
 auto Gen1::set_current_pc_box(std::uint8_t const index) -> void
 {
     std::uint8_t idx;
