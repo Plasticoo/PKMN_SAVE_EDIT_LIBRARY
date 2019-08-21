@@ -123,4 +123,16 @@ TEST_CASE("Generation 1 class gets correct information")
 		auto item = gen1->get_item_bag(0);
 		REQUIRE(item->count == 3);
 	}
+
+	SECTION("First item in PC is an TM12")
+	{
+		auto item = gen1->get_item_pc(0);
+		REQUIRE(item->index == Gen1Enums::ITEM_TM12);
+	}
+
+	SECTION("There is 1 TM12 in the PC item list")
+	{
+		auto item = gen1->get_item_pc(0);
+		REQUIRE(item->count == 1);
+	}
 }
