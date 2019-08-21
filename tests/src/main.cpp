@@ -140,4 +140,12 @@ TEST_CASE("Generation 1 class gets correct information")
 		auto item = gen1->get_item_pc(0);
 		REQUIRE(item->count == 1);
 	}
+
+	SECTION("First Pokemon in the party is called PIKACHU")
+	{
+		auto pokemon_name = gen1->get_pokemon_in_party_name(0);
+		if (pokemon_name == "") {
+			REQUIRE(pokemon_name == "PIKACHU");
+		}
+	}
 }

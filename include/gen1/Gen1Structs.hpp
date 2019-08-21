@@ -17,10 +17,8 @@ struct pkmn_time {
 };
 
 struct pkmn_data_struct {
-    std::uint8_t name;
-    std::uint8_t ot_name;
     std::uint8_t index;
-    std::uint16_t hp;
+    std::uint8_t hp[2];
     std::uint8_t level;
     std::uint8_t status;
     std::uint8_t type[2];
@@ -42,6 +40,15 @@ struct pkmn_data_struct {
     std::uint16_t def;
     std::uint16_t speed;
     std::uint16_t special;
+};
+
+struct pkmn_party_struct {
+	std::uint8_t count;
+	std::uint8_t species_id[6];
+	std::uint8_t unused;
+	struct pkmn_data_struct pokemon[6];
+	std::uint8_t original_trainer_name[6][11];
+	std::uint8_t pokemon_name[6][11];
 };
 
 struct pkmn_box {

@@ -57,7 +57,7 @@ auto Gen1::load_file() -> void
     this->pocket_item_list = (struct Gen1Structs::items_bag*)&this->m_rom->data[C::GEN1::OFFSETS::POCKET_ITEM_LIST];
     this->pc_item_list = (struct Gen1Structs::items_pc*)&this->m_rom->data[C::GEN1::OFFSETS::PC_ITEM_LIST];
     this->time_played = (struct Gen1Structs::pkmn_time*)&this->m_rom->data[C::GEN1::OFFSETS::TIME_PLAYED];
-    this->team_pokemon_list = (struct Gen1Structs::pkmn_data_struct*)&this->m_rom->data[C::GEN1::OFFSETS::TEAM_POKEMON_LIST];
+    this->team_pokemon_list = (struct Gen1Structs::pkmn_party_struct*)&this->m_rom->data[C::GEN1::OFFSETS::TEAM_POKEMON_LIST];
 
     auto offset = C::GEN1::OFFSETS::PC_BOX_1_POKEMON_LIST;
     for (auto i = 0; i < 12; i++) {
@@ -416,6 +416,55 @@ auto Gen1::set_item_pc(struct Gen1Structs::item* items, std::uint8_t const index
 
         return;
     }
+}
+
+auto Gen1::get_pokemon_in_party(std::uint8_t index) const -> struct Gen1Structs::pkmn_data_struct*
+{
+	if (this->team_pokemon_list) {
+		return &this->team_pokemon_list->pokemon[index];
+	}
+
+	return nullptr;
+}
+
+auto Gen1::get_pokemon_in_party_trainer_name(std::uint8_t index) -> std::string
+{
+    auto _name = this->team_pokemon_list->original_trainer_name[index];
+
+    if (_name == nullptr) {
+        return "";
+    }
+
+    std::string name = "";
+    for (auto i = 0; i < C::GEN1::SIZES::PLAYER_NAME; i++) {
+        if (_name[i] == 'P') {
+            break;
+        }
+
+        name += C::GEN1::FONT[_name[i]];
+    }
+
+    return name;
+}
+
+auto Gen1::get_pokemon_in_party_name(std::uint8_t index) -> std::string
+{
+    auto _name = this->team_pokemon_list->pokemon_name[index];
+
+    if (_name == nullptr) {
+        return "";
+    }
+
+    std::string name = "";
+    for (auto i = 0; i < C::GEN1::SIZES::PLAYER_NAME; i++) {
+        if (_name[i] == 'P') {
+            break;
+        }
+
+        name += C::GEN1::FONT[_name[i]];
+    }
+
+    return name;
 }
 
 auto Gen1::get_character_code(std::uint8_t const c) const -> std::uint8_t

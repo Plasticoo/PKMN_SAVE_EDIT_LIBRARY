@@ -66,6 +66,11 @@ struct Gen1 : IGlobal {
 	auto get_item_pc(std::uint8_t const index) const -> struct Gen1Structs::item *;
 	auto set_item_pc(struct Gen1Structs::item *items, std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void;
 
+	auto get_pokemon_in_party(std::uint8_t index) const -> struct Gen1Structs::pkmn_data_struct*;
+
+	auto get_pokemon_in_party_trainer_name(std::uint8_t index) -> std::string;
+	auto get_pokemon_in_party_name(std::uint8_t index) -> std::string;
+
 	auto get_character_code(std::uint8_t const c) const -> std::uint8_t;
 
     private:
@@ -90,7 +95,7 @@ struct Gen1 : IGlobal {
         struct Gen1Structs::items_bag* pocket_item_list;
         struct Gen1Structs::items_pc* pc_item_list;
         struct Gen1Structs::pkmn_time* time_played;
-        struct Gen1Structs::pkmn_data_struct* team_pokemon_list;
+        struct Gen1Structs::pkmn_party_struct* team_pokemon_list;
         struct Gen1Structs::pkmn_box* pc_box[12];
 };
 
