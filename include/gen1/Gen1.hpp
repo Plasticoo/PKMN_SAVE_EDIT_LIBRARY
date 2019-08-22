@@ -71,6 +71,7 @@ struct Gen1: IGlobal {
 
     auto get_pokemon_in_party_trainer_name(std::uint8_t index) const -> std::string;
     auto get_pokemon_in_party_name(std::uint8_t index) const -> std::string;
+    auto get_pokemon_in_box(std::uint8_t box, std::uint8_t index) const -> struct Gen1Structs::pkmn_data_struct*;
 
     auto get_character_code(std::uint8_t const c) const -> std::uint8_t;
 

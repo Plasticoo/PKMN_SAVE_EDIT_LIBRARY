@@ -52,7 +52,12 @@ struct pkmn_party_struct {
 };
 
 struct pkmn_box {
-    struct gen1_pkmn_data_struct* pokemon_list[C::GEN1::SIZES::BOX];
+    std::uint8_t count;
+    std::uint8_t species_id[20];
+    std::uint8_t unused;
+    struct pkmn_data_struct pokemon[20];
+    std::uint8_t original_trainer_name[20][11];
+    std::uint8_t pokemon_name[20][11];
 };
 
 struct item {

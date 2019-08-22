@@ -467,6 +467,15 @@ auto Gen1::get_pokemon_in_party_name(std::uint8_t index) const -> std::string
     return name;
 }
 
+auto Gen1::get_pokemon_in_box(std::uint8_t box, std::uint8_t index) const -> struct Gen1Structs::pkmn_data_struct*
+{
+    if (this->pc_box[box] != nullptr) {
+        return &this->pc_box[box]->pokemon[index];
+    }
+
+	return nullptr;
+}
+
 auto Gen1::get_character_code(std::uint8_t const c) const -> std::uint8_t
 {
     int i;

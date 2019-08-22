@@ -147,4 +147,13 @@ TEST_CASE("Generation 1 class gets correct information")
             REQUIRE(pokemon_name == "PIKACHU");
         }
     }
+
+    SECTION("First Pokemon in Box 1 is called LAPRAS")
+    {
+        auto pokemon_name = gen1->get_pokemon_in_box(0, 0);
+        std::printf("test");
+        // if (pokemon_name == "") {
+        //     REQUIRE(pokemon_name == "PIKACHU");
+        // }
+    }
 }
