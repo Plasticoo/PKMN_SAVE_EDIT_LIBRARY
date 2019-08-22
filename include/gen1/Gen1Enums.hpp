@@ -1,7 +1,8 @@
 #ifndef _PKMN_GEN1_ENUMS_HPP_
 #define _PKMN_GEN1_ENUMS_HPP_
 
-namespace Gen1Enums {
+namespace Gen1Enums
+{
 enum options {
     TEXT_SPEED = 0x0,
     SOUND,
@@ -29,14 +30,14 @@ enum options_flags {
 };
 
 enum badges {
-	BADGE_BOULDER = 0x0,
-	BADGE_CASCADE,
-	BADGE_THUNDER,
-	BADGE_RAINBOW,
-	BADGE_SOUL,
-	BADGE_MARSH,
-	BADGE_VOLCANO,
-	BADGE_EARTH
+    BADGE_BOULDER = 0x0,
+    BADGE_CASCADE,
+    BADGE_THUNDER,
+    BADGE_RAINBOW,
+    BADGE_SOUL,
+    BADGE_MARSH,
+    BADGE_VOLCANO,
+    BADGE_EARTH
 };
 
 enum {

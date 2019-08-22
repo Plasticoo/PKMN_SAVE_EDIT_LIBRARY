@@ -375,7 +375,7 @@ auto Gen1::set_pikachu_friendship(std::uint8_t const value) -> void
 
 auto Gen1::get_item_bag_count() const -> std::uint8_t
 {
-	return this->pocket_item_list->count;
+    return this->pocket_item_list->count;
 }
 
 auto Gen1::get_item_bag(std::uint8_t const index) const -> struct Gen1Structs::item*
@@ -420,14 +420,14 @@ auto Gen1::set_item_pc(struct Gen1Structs::item* items, std::uint8_t const index
 
 auto Gen1::get_pokemon_in_party(std::uint8_t index) const -> struct Gen1Structs::pkmn_data_struct*
 {
-	if (this->team_pokemon_list) {
-		return &this->team_pokemon_list->pokemon[index];
-	}
+    if (this->team_pokemon_list) {
+        return &this->team_pokemon_list->pokemon[index];
+    }
 
-	return nullptr;
+    return nullptr;
 }
 
-auto Gen1::get_pokemon_in_party_trainer_name(std::uint8_t index) -> std::string
+auto Gen1::get_pokemon_in_party_trainer_name(std::uint8_t index) const -> std::string
 {
     auto _name = this->team_pokemon_list->original_trainer_name[index];
 
@@ -447,7 +447,7 @@ auto Gen1::get_pokemon_in_party_trainer_name(std::uint8_t index) -> std::string
     return name;
 }
 
-auto Gen1::get_pokemon_in_party_name(std::uint8_t index) -> std::string
+auto Gen1::get_pokemon_in_party_name(std::uint8_t index) const -> std::string
 {
     auto _name = this->team_pokemon_list->pokemon_name[index];
 

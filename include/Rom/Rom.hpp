@@ -8,14 +8,13 @@
 #include <filesystem>
 #include <memory>
 
-struct Rom : RomInterface
-{
+struct Rom: RomInterface {
     std::array<std::uint8_t, 131072> data;
     std::uint8_t type;
 
-    Rom(std::filesystem::path const & file);
+    Rom(std::filesystem::path const& file);
 
-    auto load(std::filesystem::path const & file) -> void;
+    auto load(std::filesystem::path const& file) -> void;
     auto get_size() const -> std::size_t;
 };
 

@@ -4,12 +4,12 @@
 
 #include <fstream>
 
-Rom32kb::Rom32kb(std::filesystem::path const & file)
+Rom32kb::Rom32kb(std::filesystem::path const& file)
 {
     this->load(file);
 }
 
-auto Rom32kb::load(std::filesystem::path const & file) -> void
+auto Rom32kb::load(std::filesystem::path const& file) -> void
 {
     std::ifstream ifs(file, std::ios::binary | std::ios::in);
     if (!ifs) {
@@ -22,7 +22,7 @@ auto Rom32kb::load(std::filesystem::path const & file) -> void
     }
 
     ifs.read((char*)this->data.data(), size);
-	ifs.close();
+    ifs.close();
 }
 
 auto Rom32kb::get_size() const -> std::size_t

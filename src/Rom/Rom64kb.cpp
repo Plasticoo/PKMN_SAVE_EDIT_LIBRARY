@@ -4,12 +4,12 @@
 
 #include <fstream>
 
-Rom64kb::Rom64kb(std::filesystem::path const & file)
+Rom64kb::Rom64kb(std::filesystem::path const& file)
 {
     this->load(file);
 }
 
-auto Rom64kb::load(std::filesystem::path const & file) -> void
+auto Rom64kb::load(std::filesystem::path const& file) -> void
 {
     std::ifstream ifs(file, std::ios::binary | std::ios::ate);
     if (!ifs) {

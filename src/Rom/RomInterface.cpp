@@ -4,7 +4,7 @@
 #include "Rom32kb.hpp"
 #include "Rom64kb.hpp"
 
-auto RomInterface::make_rom(std::filesystem::path const & file) -> std::unique_ptr<RomInterface>
+auto RomInterface::make_rom(std::filesystem::path const& file) -> std::unique_ptr<RomInterface>
 {
     auto file_size = std::filesystem::file_size(file);
 

@@ -1,3 +1,2 @@
-struct IGlobal
-{
+struct IGlobal {
 };

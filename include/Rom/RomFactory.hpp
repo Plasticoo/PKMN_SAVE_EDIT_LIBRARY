@@ -6,9 +6,8 @@
 #include "Rom64kb.hpp"
 #include "RomInterface.hpp"
 
-struct RomFactory
-{
-	static auto make_rom(std::filesystem::path const& file) -> std::unique_ptr<RomInterface>;
+struct RomFactory {
+    static auto make_rom(std::filesystem::path const& file) -> std::unique_ptr<RomInterface>;
 };
 
 #endif

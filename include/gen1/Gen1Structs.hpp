@@ -1,16 +1,16 @@
 #ifndef __GEN1_STRUCTS_H_
 #define __GEN1_STRUCTS_H_
 
+#include "Constants.hpp"
+
 #include <cinttypes>
 #include <sys/types.h>
-
-#include "Constants.hpp"
 
 namespace Gen1Structs
 {
 struct pkmn_time {
     std::uint8_t hours;
-	std::uint8_t maxed;
+    std::uint8_t maxed;
     std::uint8_t minutes;
     std::uint8_t seconds;
     std::uint8_t frames;
@@ -43,12 +43,12 @@ struct pkmn_data_struct {
 };
 
 struct pkmn_party_struct {
-	std::uint8_t count;
-	std::uint8_t species_id[6];
-	std::uint8_t unused;
-	struct pkmn_data_struct pokemon[6];
-	std::uint8_t original_trainer_name[6][11];
-	std::uint8_t pokemon_name[6][11];
+    std::uint8_t count;
+    std::uint8_t species_id[6];
+    std::uint8_t unused;
+    struct pkmn_data_struct pokemon[6];
+    std::uint8_t original_trainer_name[6][11];
+    std::uint8_t pokemon_name[6][11];
 };
 
 struct pkmn_box {
