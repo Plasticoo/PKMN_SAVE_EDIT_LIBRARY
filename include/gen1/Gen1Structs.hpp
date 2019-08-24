@@ -18,7 +18,7 @@ struct pkmn_time {
 
 
 #pragma pack(push, 1)
-struct pkmn_data_struct {
+struct pkmn_data_party {
     std::uint8_t index;
     std::uint16_t hp;
     std::uint8_t level;
@@ -44,11 +44,32 @@ struct pkmn_data_struct {
 };
 #pragma pack(pop)
 
-struct pkmn_party_struct {
+#pragma pack(push, 1)
+struct pkmn_data_box {
+    std::uint8_t index;
+    std::uint16_t hp;
+    std::uint8_t level;
+    std::uint8_t status;
+    std::uint8_t type[2];
+    std::uint8_t catch_item;
+    std::uint8_t moves[4];
+    std::uint16_t trainer_id;
+    std::uint8_t xp[3];
+    std::uint16_t hp_ev;
+    std::uint16_t atk_ev;
+    std::uint16_t def_ev;
+    std::uint16_t speed_ev;
+    std::uint16_t special_ev;
+    std::uint16_t iv;
+    std::uint8_t moves_pp[4];
+};
+#pragma pack(pop)
+
+struct pkmn_party {
     std::uint8_t count;
     std::uint8_t species_id[6];
     std::uint8_t unused;
-    struct pkmn_data_struct pokemon[6];
+    struct pkmn_data_party pokemon[6];
     std::uint8_t original_trainer_name[6][11];
     std::uint8_t pokemon_name[6][11];
 };
@@ -57,7 +78,7 @@ struct pkmn_box {
     std::uint8_t count;
     std::uint8_t species_id[20];
     std::uint8_t unused;
-    struct pkmn_data_struct pokemon[20];
+    struct pkmn_data_box pokemon[20];
     std::uint8_t original_trainer_name[20][11];
     std::uint8_t pokemon_name[20][11];
 };
