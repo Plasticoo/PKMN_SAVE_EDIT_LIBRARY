@@ -106,6 +106,7 @@ namespace GEN1
         constexpr std::uint16_t TIME_PLAYED = 0x2CED;
         constexpr std::uint16_t TEAM_POKEMON_LIST = 0x2F2C;
         constexpr std::uint16_t PC_BOX_1_POKEMON_LIST = 0x4000;
+        constexpr std::uint16_t PC_BOX_7_POKEMON_LIST = 0x6000;
 
         constexpr std::uint16_t CHECKSUM_INIT_OFFSET = 0x2598;
         constexpr std::uint16_t CHECKSUM_END_OFFSET = 0x3522;

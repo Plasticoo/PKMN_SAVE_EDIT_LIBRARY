@@ -166,61 +166,113 @@ TEST_CASE("Generation 1 class gets correct information")
             }
         }
 
-		SECTION("First Pokemon is level 55")
-		{
-			auto pokemon = gen1->get_pokemon_in_party(0);
-			if (pokemon) {
-				REQUIRE(pokemon->level == 55);
-			}
-		}
+        SECTION("First Pokemon is level 55")
+        {
+            auto pokemon = gen1->get_pokemon_in_party(0);
+            if (pokemon) {
+                REQUIRE(pokemon->level == 55);
+            }
+        }
 
-		// TODO: why isnt this working
-		// SECTION("Second  Pokemon is level 70")
-		// {
-		// 	auto pokemon = gen1->get_pokemon_in_party(1);
-		// 	if (pokemon) {
-		// 		REQUIRE(pokemon->level == 70);
-		// 	}
-		// }
+        // TODO: why isnt this working
+        // SECTION("Second  Pokemon is level 70")
+        // {
+        // 	auto pokemon = gen1->get_pokemon_in_party(1);
+        // 	if (pokemon) {
+        // 		REQUIRE(pokemon->level == 70);
+        // 	}
+        // }
 
-		SECTION("Last Pokemon is level 43")
-		{
-			auto pokemon = gen1->get_pokemon_in_party(5);
-			if (pokemon) {
-				REQUIRE(pokemon->level == 43);
-			}
-		}
+        SECTION("Last Pokemon is level 43")
+        {
+            auto pokemon = gen1->get_pokemon_in_party(5);
+            if (pokemon) {
+                REQUIRE(pokemon->level == 43);
+            }
+        }
 
-		SECTION("First Pokemon HP is 134")
-		{
-			auto pokemon = gen1->get_pokemon_in_party(0);
-			if (pokemon) {
-				REQUIRE(Utils::swap_endian<std::uint16_t>(pokemon->hp) == 134);
-			}
-		}
+        SECTION("First Pokemon HP is 134")
+        {
+            auto pokemon = gen1->get_pokemon_in_party(0);
+            if (pokemon) {
+                REQUIRE(Utils::swap_endian<std::uint16_t>(pokemon->hp) == 134);
+            }
+        }
 
-		SECTION("Second  Pokemon HP is 257")
-		{
-			auto pokemon = gen1->get_pokemon_in_party(1);
-			if (pokemon) {
-				REQUIRE(Utils::swap_endian<std::uint16_t>(pokemon->hp) == 257);
-			}
-		}
+        SECTION("Second  Pokemon HP is 257")
+        {
+            auto pokemon = gen1->get_pokemon_in_party(1);
+            if (pokemon) {
+                REQUIRE(Utils::swap_endian<std::uint16_t>(pokemon->hp) == 257);
+            }
+        }
 
-		SECTION("Last Pokemon HP is 95")
-		{
-			auto pokemon = gen1->get_pokemon_in_party(5);
-			if (pokemon) {
-				REQUIRE(Utils::swap_endian<std::uint16_t>(pokemon->hp) == 95);
-			}
-		}
+        SECTION("Last Pokemon HP is 95")
+        {
+            auto pokemon = gen1->get_pokemon_in_party(5);
+            if (pokemon) {
+                REQUIRE(Utils::swap_endian<std::uint16_t>(pokemon->hp) == 95);
+            }
+        }
     }
 
-    SECTION("First Pokemon in Box 1 is called LAPRAS")
+    SECTION("Box information is correct")
     {
-        auto pokemon_name = gen1->get_pokemon_in_box_name(0, 0);
-        if (pokemon_name != "") {
-            REQUIRE(pokemon_name == "LAPRAS");
+        SECTION("Pokemon count in all Boxes")
+        {
+            REQUIRE(gen1->get_pokemon_box(0)->count == 1);
+            REQUIRE(gen1->get_pokemon_box(1)->count == 0);
+            REQUIRE(gen1->get_pokemon_box(2)->count == 0);
+            REQUIRE(gen1->get_pokemon_box(3)->count == 5);
+            REQUIRE(gen1->get_pokemon_box(4)->count == 0);
+            REQUIRE(gen1->get_pokemon_box(5)->count == 20);
+            REQUIRE(gen1->get_pokemon_box(6)->count == 20);
+            REQUIRE(gen1->get_pokemon_box(7)->count == 12);
+            REQUIRE(gen1->get_pokemon_box(8)->count == 0);
+            REQUIRE(gen1->get_pokemon_box(9)->count == 1);
+            REQUIRE(gen1->get_pokemon_box(10)->count == 0);
+            // NOTE: box in use, therefore count == 0 and not count == 19
+            REQUIRE(gen1->get_pokemon_box(11)->count == 0);
+        }
+
+        SECTION("First Pokemon in Box 1 is called LAPRAS")
+        {
+            auto pokemon_name = gen1->get_pokemon_in_box_name(0, 0);
+            if (pokemon_name != "") {
+                REQUIRE(pokemon_name == "LAPRAS");
+            }
+        }
+
+        SECTION("First Pokemon in Box 4 is called BEEDRILL")
+        {
+            auto pokemon_name = gen1->get_pokemon_in_box_name(3, 0);
+            if (pokemon_name != "") {
+                REQUIRE(pokemon_name == "BEEDRILL");
+            }
+        }
+
+        SECTION("Second Pokemon in Box 4 is called WEEZING")
+        {
+            auto pokemon_name = gen1->get_pokemon_in_box_name(3, 1);
+            if (pokemon_name != "") {
+                REQUIRE(pokemon_name == "WEEZING");
+            }
+        }
+
+        SECTION("First Pokemon in Box 12 is called POLIWRATH")
+        {
+            auto pokemon_name = gen1->get_pokemon_in_box_name(11, 0);
+            if (pokemon_name != "") {
+                REQUIRE(pokemon_name == "POLIWRATH");
+            }
+        }
+
+        SECTION("Second Pokemon in Box 12 is called RAPIDASH")
+        {
+            auto pokemon_name = gen1->get_pokemon_in_box_name(11, 1);
+            if (pokemon_name != "") {
+                REQUIRE(pokemon_name == "RAPIDASH");
+            }
         }
     }
 }

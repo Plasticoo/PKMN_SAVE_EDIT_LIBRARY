@@ -59,11 +59,19 @@ auto Gen1::load_file() -> void
     this->time_played = (struct Gen1Structs::pkmn_time*)&this->m_rom->data[C::GEN1::OFFSETS::TIME_PLAYED];
     this->team_pokemon_list = (struct Gen1Structs::pkmn_party*)&this->m_rom->data[C::GEN1::OFFSETS::TEAM_POKEMON_LIST];
 
-    auto offset = C::GEN1::OFFSETS::PC_BOX_1_POKEMON_LIST;
-    for (auto i = 0; i < 12; i++) {
-        this->pc_box[i] = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[offset];
-        offset += (sizeof(struct Gen1Structs::pkmn_box) * i);
-    }
+    this->pc_box[0] = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[0x4000];
+    this->pc_box[1] = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[0x4000 + (1122 * 1)];
+    this->pc_box[2] = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[0x4000 + (1122 * 2)];
+    this->pc_box[3] = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[0x4000 + (1122 * 3)];
+    this->pc_box[4] = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[0x4000 + (1122 * 4)];
+    this->pc_box[5] = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[0x4000 + (1122 * 5)];
+
+    this->pc_box[6] = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[0x6000];
+    this->pc_box[7] = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[0x6000 + (1122 * 1)];
+    this->pc_box[8] = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[0x6000 + (1122 * 2)];
+    this->pc_box[9] = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[0x6000 + (1122 * 3)];
+    this->pc_box[10] = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[0x6000 + (1122 * 4)];
+    this->pc_box[11] = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[0x6000 + (1122 * 5)];
 }
 
 auto Gen1::save_changes(std::filesystem::path const& file_name) const -> bool
@@ -420,11 +428,11 @@ auto Gen1::set_item_pc(struct Gen1Structs::item* items, std::uint8_t const index
 
 auto Gen1::get_pokemon_party() const -> struct Gen1Structs::pkmn_party*
 {
-	if (this->team_pokemon_list) {
-		return this->team_pokemon_list;
-	}
+    if (this->team_pokemon_list) {
+        return this->team_pokemon_list;
+    }
 
-	return nullptr;
+    return nullptr;
 }
 
 auto Gen1::get_pokemon_in_party(std::uint8_t index) const -> struct Gen1Structs::pkmn_data_party*
@@ -474,6 +482,15 @@ auto Gen1::get_pokemon_in_party_name(std::uint8_t index) const -> std::string
     }
 
     return name;
+}
+
+auto Gen1::get_pokemon_box(std::uint8_t box) const -> struct Gen1Structs::pkmn_box*
+{
+    if (this->pc_box[box]) {
+        return this->pc_box[box];
+    }
+
+    return nullptr;
 }
 
 auto Gen1::get_pokemon_in_box(std::uint8_t box, std::uint8_t index) const -> struct Gen1Structs::pkmn_data_box*
