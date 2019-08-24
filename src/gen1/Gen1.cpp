@@ -51,7 +51,7 @@ auto Gen1::load_file() -> void
     this->pikachu_friendship = &this->m_rom->data[C::GEN1::OFFSETS::PIKACHU_FRIENDSHIP];
     this->current_pc_box = &this->m_rom->data[C::GEN1::OFFSETS::CURRENT_PC_BOX];
     this->casino_coins = &this->m_rom->data[C::GEN1::OFFSETS::CASINO_COINS];
-    this->current_box_list = &this->m_rom->data[C::GEN1::OFFSETS::CURRENT_BOX_LIST];
+    this->current_box_list = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[C::GEN1::OFFSETS::CURRENT_BOX_LIST];
     this->checksum = &this->m_rom->data[C::GEN1::OFFSETS::CHECKSUM];
 
     this->pocket_item_list = (struct Gen1Structs::items_bag*)&this->m_rom->data[C::GEN1::OFFSETS::POCKET_ITEM_LIST];
@@ -467,6 +467,44 @@ auto Gen1::get_pokemon_in_party_trainer_name(std::uint8_t index) const -> std::s
 auto Gen1::get_pokemon_in_party_name(std::uint8_t index) const -> std::string
 {
     auto _name = this->team_pokemon_list->pokemon_name[index];
+
+    if (_name == nullptr) {
+        return "";
+    }
+
+    std::string name = "";
+    for (auto i = 0; i < C::GEN1::SIZES::PLAYER_NAME; i++) {
+        if (_name[i] == 'P') {
+            break;
+        }
+
+        name += C::GEN1::FONT[_name[i]];
+    }
+
+    return name;
+}
+
+auto Gen1::get_current_pc_box_list() const -> struct Gen1Structs::pkmn_box*
+{
+	if (this->current_box_list) {
+		return this->current_box_list;
+	}
+
+	return nullptr;
+}
+
+auto Gen1::get_pokemon_in_current_box(std::uint8_t index) const -> struct Gen1Structs::pkmn_data_box*
+{
+    if (this->current_box_list) {
+		return &this->current_box_list->pokemon[index];
+	}
+
+    return nullptr;
+}
+
+auto Gen1::get_pokemon_in_current_box_name(std::uint8_t index) const -> std::string
+{
+    auto _name = this->current_box_list->pokemon_name[index];
 
     if (_name == nullptr) {
         return "";

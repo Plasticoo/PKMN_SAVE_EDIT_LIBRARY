@@ -81,9 +81,68 @@ TEST_CASE("Generation 1 class gets correct information")
 
     //
 
-    SECTION("Current PC box that is selected is number 12")
+    SECTION("Current PC Box has correct information")
     {
-        REQUIRE(gen1->get_current_pc_box() == 12);
+        SECTION("Current PC box that is selected is number 12")
+        {
+            REQUIRE(gen1->get_current_pc_box() == 12);
+        }
+
+        SECTION("Current selected PC Box has 19 Pokemons in it")
+        {
+            auto current_box = gen1->get_current_pc_box_list();
+            if (current_box) {
+                REQUIRE(current_box->count == 18);
+            }
+        }
+
+		SECTION("First Pokemon in Current PC Box is called POLIWRATH")
+        {
+            auto pokemon_name = gen1->get_pokemon_in_current_box_name(0);
+            if (pokemon_name != "") {
+                REQUIRE(pokemon_name == "POLIWRATH");
+            }
+        }
+
+        SECTION("Second Pokemon in Current PC Box is called RAPIDASH")
+        {
+            auto pokemon_name = gen1->get_pokemon_in_current_box_name(1);
+            if (pokemon_name != "") {
+                REQUIRE(pokemon_name == "RAPIDASH");
+            }
+        }
+
+		SECTION("Last Pokemon in Current PC Box is called MEWTWO")
+        {
+            auto pokemon_name = gen1->get_pokemon_in_current_box_name(17);
+            if (pokemon_name != "") {
+                REQUIRE(pokemon_name == "MEWTWO");
+            }
+        }
+
+		SECTION("First Pokemon in Current PC Box is level 55")
+        {
+            auto pokemon = gen1->get_pokemon_in_current_box(0);
+            if (pokemon) {
+                REQUIRE(pokemon->level == 55);
+            }
+        }
+
+        SECTION("Second Pokemon in Current PC Box is level 43")
+        {
+            auto pokemon = gen1->get_pokemon_in_current_box(1);
+            if (pokemon) {
+                REQUIRE(pokemon->level == 43);
+            }
+        }
+
+		SECTION("Last Pokemon in Current PC Box is level 72")
+        {
+            auto pokemon = gen1->get_pokemon_in_current_box(17);
+            if (pokemon) {
+                REQUIRE(pokemon->level == 72);
+            }
+        }
     }
 
     SECTION("Every gym is completed")
@@ -231,7 +290,7 @@ TEST_CASE("Generation 1 class gets correct information")
             REQUIRE(gen1->get_pokemon_box(8)->count == 0);
             REQUIRE(gen1->get_pokemon_box(9)->count == 1);
             REQUIRE(gen1->get_pokemon_box(10)->count == 0);
-            // NOTE: box in use, therefore count == 0 and not count == 19
+            // NOTE: box in use, therefore count == 0 and not count == 18
             REQUIRE(gen1->get_pokemon_box(11)->count == 0);
         }
 
