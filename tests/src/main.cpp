@@ -216,11 +216,11 @@ TEST_CASE("Generation 1 class gets correct information")
 		}
     }
 
-    // SECTION("First Pokemon in Box 1 is called LAPRAS")
-    // {
-    //     auto pokemon_name = gen1->get_pokemon_in_box_name(1, 0);
-    //     if (pokemon_name != "") {
-    //         REQUIRE(pokemon_name == "LAPRAS");
-    //     }
-    // }
+    SECTION("First Pokemon in Box 1 is called LAPRAS")
+    {
+        auto pokemon_name = gen1->get_pokemon_in_box_name(0, 0);
+        if (pokemon_name != "") {
+            REQUIRE(pokemon_name == "LAPRAS");
+        }
+    }
 }
