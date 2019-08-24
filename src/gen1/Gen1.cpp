@@ -473,7 +473,47 @@ auto Gen1::get_pokemon_in_box(std::uint8_t box, std::uint8_t index) const -> str
         return &this->pc_box[box]->pokemon[index];
     }
 
-	return nullptr;
+    return nullptr;
+}
+
+auto Gen1::get_pokemon_in_box_trainer_name(std::uint8_t box, std::uint8_t index) const -> std::string
+{
+    auto _name = this->pc_box[box]->original_trainer_name[index];
+
+    if (_name == nullptr) {
+        return "";
+    }
+
+    std::string name = "";
+    for (auto i = 0; i < C::GEN1::SIZES::PLAYER_NAME; i++) {
+        if (_name[i] == 'P') {
+            break;
+        }
+
+        name += C::GEN1::FONT[_name[i]];
+    }
+
+    return name;
+}
+
+auto Gen1::get_pokemon_in_box_name(std::uint8_t box, std::uint8_t index) const -> std::string
+{
+    auto _name = this->pc_box[box]->pokemon_name[index];
+
+    if (_name == nullptr) {
+        return "";
+    }
+
+    std::string name = "";
+    for (auto i = 0; i < C::GEN1::SIZES::PLAYER_NAME; i++) {
+        if (_name[i] == 'P') {
+            break;
+        }
+
+        name += C::GEN1::FONT[_name[i]];
+    }
+
+    return name;
 }
 
 auto Gen1::get_character_code(std::uint8_t const c) const -> std::uint8_t
