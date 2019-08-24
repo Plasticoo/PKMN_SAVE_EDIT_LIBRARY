@@ -16,9 +16,11 @@ struct pkmn_time {
     std::uint8_t frames;
 };
 
+
+#pragma pack(push, 1)
 struct pkmn_data_struct {
     std::uint8_t index;
-    std::uint8_t hp[2];
+    std::uint16_t hp;
     std::uint8_t level;
     std::uint8_t status;
     std::uint8_t type[2];
@@ -33,7 +35,6 @@ struct pkmn_data_struct {
     std::uint16_t special_ev;
     std::uint16_t iv;
     std::uint8_t moves_pp[4];
-    // these are not exactly needed.. ?
     std::uint8_t level_opt;
     std::uint16_t max_hp;
     std::uint16_t atk;
@@ -41,6 +42,7 @@ struct pkmn_data_struct {
     std::uint16_t speed;
     std::uint16_t special;
 };
+#pragma pack(pop)
 
 struct pkmn_party_struct {
     std::uint8_t count;

@@ -418,6 +418,15 @@ auto Gen1::set_item_pc(struct Gen1Structs::item* items, std::uint8_t const index
     }
 }
 
+auto Gen1::get_pokemon_party() const -> struct Gen1Structs::pkmn_party_struct*
+{
+	if (this->team_pokemon_list) {
+		return this->team_pokemon_list;
+	}
+
+	return nullptr;
+}
+
 auto Gen1::get_pokemon_in_party(std::uint8_t index) const -> struct Gen1Structs::pkmn_data_struct*
 {
     if (this->team_pokemon_list) {
