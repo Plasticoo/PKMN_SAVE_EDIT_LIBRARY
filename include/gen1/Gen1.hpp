@@ -72,9 +72,9 @@ struct Gen1: IGlobal {
     auto get_pokemon_in_party_trainer_name(std::uint8_t index) const -> std::string;
     auto get_pokemon_in_party_name(std::uint8_t index) const -> std::string;
 
-	auto get_current_pc_box_list() const -> struct Gen1Structs::pkmn_box*;
-	auto get_pokemon_in_current_box(std::uint8_t index) const -> struct Gen1Structs::pkmn_data_box*;
-	auto get_pokemon_in_current_box_name(std::uint8_t index) const -> std::string;
+    auto get_current_pc_box_list() const -> struct Gen1Structs::pkmn_box*;
+    auto get_pokemon_in_current_box(std::uint8_t index) const -> struct Gen1Structs::pkmn_data_box*;
+    auto get_pokemon_in_current_box_name(std::uint8_t index) const -> std::string;
 
     auto get_pokemon_box(std::uint8_t box) const -> struct Gen1Structs::pkmn_box*;
     auto get_pokemon_in_box(std::uint8_t box, std::uint8_t index) const -> struct Gen1Structs::pkmn_data_box*;
@@ -105,7 +105,7 @@ struct Gen1: IGlobal {
     struct Gen1Structs::items_pc* pc_item_list;
     struct Gen1Structs::pkmn_time* time_played;
     struct Gen1Structs::pkmn_party* team_pokemon_list;
-	struct Gen1Structs::pkmn_box* current_box_list;
+    struct Gen1Structs::pkmn_box* current_box_list;
     struct Gen1Structs::pkmn_box* pc_box[12];
 };
 

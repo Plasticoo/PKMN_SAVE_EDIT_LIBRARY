@@ -16,7 +16,6 @@ struct pkmn_time {
     std::uint8_t frames;
 };
 
-
 #pragma pack(push, 1)
 struct pkmn_data_party {
     std::uint8_t index;

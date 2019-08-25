@@ -486,18 +486,18 @@ auto Gen1::get_pokemon_in_party_name(std::uint8_t index) const -> std::string
 
 auto Gen1::get_current_pc_box_list() const -> struct Gen1Structs::pkmn_box*
 {
-	if (this->current_box_list) {
-		return this->current_box_list;
-	}
+    if (this->current_box_list) {
+        return this->current_box_list;
+    }
 
-	return nullptr;
+    return nullptr;
 }
 
 auto Gen1::get_pokemon_in_current_box(std::uint8_t index) const -> struct Gen1Structs::pkmn_data_box*
 {
     if (this->current_box_list) {
-		return &this->current_box_list->pokemon[index];
-	}
+        return &this->current_box_list->pokemon[index];
+    }
 
     return nullptr;
 }

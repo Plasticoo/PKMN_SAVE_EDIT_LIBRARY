@@ -96,7 +96,7 @@ TEST_CASE("Generation 1 class gets correct information")
             }
         }
 
-		SECTION("First Pokemon in Current PC Box is called POLIWRATH")
+        SECTION("First Pokemon in Current PC Box is called POLIWRATH")
         {
             auto pokemon_name = gen1->get_pokemon_in_current_box_name(0);
             if (pokemon_name != "") {
@@ -112,7 +112,7 @@ TEST_CASE("Generation 1 class gets correct information")
             }
         }
 
-		SECTION("Last Pokemon in Current PC Box is called MEWTWO")
+        SECTION("Last Pokemon in Current PC Box is called MEWTWO")
         {
             auto pokemon_name = gen1->get_pokemon_in_current_box_name(17);
             if (pokemon_name != "") {
@@ -120,7 +120,7 @@ TEST_CASE("Generation 1 class gets correct information")
             }
         }
 
-		SECTION("First Pokemon in Current PC Box is level 55")
+        SECTION("First Pokemon in Current PC Box is level 55")
         {
             auto pokemon = gen1->get_pokemon_in_current_box(0);
             if (pokemon) {
@@ -136,7 +136,7 @@ TEST_CASE("Generation 1 class gets correct information")
             }
         }
 
-		SECTION("Last Pokemon in Current PC Box is level 72")
+        SECTION("Last Pokemon in Current PC Box is level 72")
         {
             auto pokemon = gen1->get_pokemon_in_current_box(17);
             if (pokemon) {
