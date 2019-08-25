@@ -32,8 +32,8 @@ auto __bcd_to_dec(const std::uint8_t* buffer, const std::size_t num_bytes) -> st
 
 auto __dec_to_bcd(const std::uint32_t num, std::uint8_t* buffer_out) -> void
 {
-    std::uint32_t log10_num = (std::uint32_t)log10((double)num);
-    std::size_t num_bytes = (std::size_t)((log10_num + 1) / 2);
+    auto log10_num = (std::uint32_t)log10((double)num);
+    auto num_bytes = (std::size_t)((log10_num + 1) / 2);
 
     if (log10_num % 2 == 0) {
         ++num_bytes;
@@ -43,7 +43,7 @@ auto __dec_to_bcd(const std::uint32_t num, std::uint8_t* buffer_out) -> void
     std::size_t mult = 100;
 
     buffer_out[num_bytes - 1] = (((num % 100) / 10) << 4) | (num % 10);
-    for (ssize_t i = (ssize_t)(num_bytes - 2); i >= 0; i--) {
+    for (auto i = (ssize_t)(num_bytes - 2); i >= 0; i--) {
         buffer_out[i] = (uint8_t)((((num % (mult * 100)) / (mult * 10)) << 4) |
                                   ((num % (mult * 10)) / mult));
         mult *= 100;
