@@ -234,10 +234,12 @@ auto Gen1::set_money(std::uint32_t const value) -> void
         return;
     }
 
-    std::uint8_t buffer[C::GEN1::SIZES::MONEY];
-    Utils::__dec_to_bcd(value, buffer);
+    // std::uint8_t buffer[C::GEN1::SIZES::MONEY];
+    std::array<std::uint8_t, C::GEN1::SIZES::MONEY> buffer;
 
-    std::memcpy(this->money, buffer, C::GEN1::SIZES::MONEY);
+    Utils::__dec_to_bcd(value, buffer.data());
+
+    std::memcpy(this->money, buffer.data(), C::GEN1::SIZES::MONEY);
 }
 
 auto Gen1::get_casino_coins() const -> std::uint16_t
@@ -259,9 +261,10 @@ auto Gen1::set_casino_coins(std::uint16_t const value) -> void
         return;
     }
 
-    std::uint8_t buffer[C::GEN1::SIZES::CASINO_COINS];
+    // std::uint8_t buffer[C::GEN1::SIZES::CASINO_COINS];
+    std::array<std::uint8_t, C::GEN1::SIZES::CASINO_COINS> buffer;
 
-    Utils::__dec_to_bcd(value, buffer);
+    Utils::__dec_to_bcd(value, buffer.data());
 
     if (n_digits(value) == 1 || n_digits(value) == 2) {
         this->casino_coins[0] = buffer[0];
@@ -270,7 +273,7 @@ auto Gen1::set_casino_coins(std::uint16_t const value) -> void
         return;
     }
 
-    memcpy(this->casino_coins, buffer, C::GEN1::SIZES::CASINO_COINS);
+    std::memcpy(this->casino_coins, buffer.data(), C::GEN1::SIZES::CASINO_COINS);
 }
 
 auto Gen1::get_time_played(struct Gen1Structs::pkmn_time* dest) const -> void
