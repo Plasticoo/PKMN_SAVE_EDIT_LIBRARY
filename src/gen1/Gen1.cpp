@@ -409,6 +409,11 @@ auto Gen1::set_item_bag(struct Gen1Structs::item* items, std::uint8_t const inde
     }
 }
 
+auto Gen1::get_item_pc_count() const -> std::uint8_t
+{
+	return this->pc_item_list->count;
+}
+
 auto Gen1::get_item_pc(std::uint8_t const index) const -> struct Gen1Structs::item*
 {
     if (index <= C::GEN1::SIZES::PC_ITEM) {

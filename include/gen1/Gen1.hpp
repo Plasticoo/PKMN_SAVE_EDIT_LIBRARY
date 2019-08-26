@@ -60,10 +60,10 @@ struct Gen1: IGlobal {
     auto set_pikachu_friendship(std::uint8_t const value) -> void;
 
     auto get_item_bag_count() const -> std::uint8_t;
-
     auto get_item_bag(std::uint8_t const index) const -> struct Gen1Structs::item*;
     auto set_item_bag(struct Gen1Structs::item* items, std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void;
 
+	auto get_item_pc_count() const -> std::uint8_t;
     auto get_item_pc(std::uint8_t const index) const -> struct Gen1Structs::item*;
     auto set_item_pc(struct Gen1Structs::item* items, std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void;
 

@@ -187,7 +187,24 @@ TEST_CASE("Generation 1 class gets correct information")
         REQUIRE(item->count == 3);
     }
 
-    SECTION("First item in PC is an TM12")
+	SECTION("Last item in the bag is a Poke Flute")
+	{
+		auto item = gen1->get_item_bag(gen1->get_item_bag_count() - 1);
+		REQUIRE(item->index == Gen1Enums::ITEM_POKE_FLUTE);
+	}
+
+	SECTION("There is 1 Poke Flute in the bag item list")
+    {
+        auto item = gen1->get_item_bag(gen1->get_item_bag_count() - 1);
+        REQUIRE(item->count == 1);
+    }
+
+	SECTION("PC unique item quantity is 47")
+	{
+		REQUIRE(gen1->get_item_pc_count() == 47);
+	}
+
+    SECTION("First item in PC is a TM12")
     {
         auto item = gen1->get_item_pc(0);
         REQUIRE(item->index == Gen1Enums::ITEM_TM12);
@@ -198,6 +215,18 @@ TEST_CASE("Generation 1 class gets correct information")
         auto item = gen1->get_item_pc(0);
         REQUIRE(item->count == 1);
     }
+
+	SECTION("Last item in PC is a TM45")
+	{
+		auto item = gen1->get_item_pc(gen1->get_item_pc_count() - 1);
+        REQUIRE(item->index == Gen1Enums::ITEM_TM45);
+	}
+
+	SECTION("There is 1 TM45 in the PC item list")
+	{
+		auto item = gen1->get_item_pc(gen1->get_item_pc_count() - 1);
+        REQUIRE(item->count == 1);
+	}
 
     SECTION("Party information is correct")
     {
