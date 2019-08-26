@@ -13,8 +13,8 @@ struct Rom64kb: RomInterface {
 
     Rom64kb(std::filesystem::path const& file);
 
-    auto load(std::filesystem::path const& file) -> void;
-    auto get_size() const -> std::size_t;
+    auto load(std::filesystem::path const& file) -> void override;
+    auto get_size() const -> std::size_t override;
 };
 
 #endif
