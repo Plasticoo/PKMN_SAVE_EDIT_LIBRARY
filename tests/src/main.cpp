@@ -363,4 +363,18 @@ TEST_CASE("Generation 1 class gets correct information")
             }
         }
     }
+
+	SECTION("Checksum value is 183")
+	{
+		auto checksum = gen1->get_checksum();
+		REQUIRE(checksum == 183);
+	}
+
+	SECTION("Checksum is calculated correctly")
+	{
+		auto checksum = gen1->get_checksum();
+		auto calculated = gen1->calc_checksum();
+
+		REQUIRE(checksum == calculated);
+	}
 }
