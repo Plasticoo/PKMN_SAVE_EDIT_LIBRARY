@@ -187,22 +187,22 @@ TEST_CASE("Generation 1 class gets correct information")
         REQUIRE(item->count == 3);
     }
 
-	SECTION("Last item in the bag is a Poke Flute")
-	{
-		auto item = gen1->get_item_bag(gen1->get_item_bag_count() - 1);
-		REQUIRE(item->index == Gen1Enums::ITEM_POKE_FLUTE);
-	}
+    SECTION("Last item in the bag is a Poke Flute")
+    {
+        auto item = gen1->get_item_bag(gen1->get_item_bag_count() - 1);
+        REQUIRE(item->index == Gen1Enums::ITEM_POKE_FLUTE);
+    }
 
-	SECTION("There is 1 Poke Flute in the bag item list")
+    SECTION("There is 1 Poke Flute in the bag item list")
     {
         auto item = gen1->get_item_bag(gen1->get_item_bag_count() - 1);
         REQUIRE(item->count == 1);
     }
 
-	SECTION("PC unique item quantity is 47")
-	{
-		REQUIRE(gen1->get_item_pc_count() == 47);
-	}
+    SECTION("PC unique item quantity is 47")
+    {
+        REQUIRE(gen1->get_item_pc_count() == 47);
+    }
 
     SECTION("First item in PC is a TM12")
     {
@@ -216,17 +216,17 @@ TEST_CASE("Generation 1 class gets correct information")
         REQUIRE(item->count == 1);
     }
 
-	SECTION("Last item in PC is a TM45")
-	{
-		auto item = gen1->get_item_pc(gen1->get_item_pc_count() - 1);
+    SECTION("Last item in PC is a TM45")
+    {
+        auto item = gen1->get_item_pc(gen1->get_item_pc_count() - 1);
         REQUIRE(item->index == Gen1Enums::ITEM_TM45);
-	}
+    }
 
-	SECTION("There is 1 TM45 in the PC item list")
-	{
-		auto item = gen1->get_item_pc(gen1->get_item_pc_count() - 1);
+    SECTION("There is 1 TM45 in the PC item list")
+    {
+        auto item = gen1->get_item_pc(gen1->get_item_pc_count() - 1);
         REQUIRE(item->count == 1);
-	}
+    }
 
     SECTION("Party information is correct")
     {
@@ -364,17 +364,17 @@ TEST_CASE("Generation 1 class gets correct information")
         }
     }
 
-	SECTION("Checksum value is 183")
-	{
-		auto checksum = gen1->get_checksum();
-		REQUIRE(checksum == 183);
-	}
+    SECTION("Checksum value is 183")
+    {
+        auto checksum = gen1->get_checksum();
+        REQUIRE(checksum == 183);
+    }
 
-	SECTION("Checksum is calculated correctly")
-	{
-		auto checksum = gen1->get_checksum();
-		auto calculated = gen1->calc_checksum();
+    SECTION("Checksum is calculated correctly")
+    {
+        auto checksum = gen1->get_checksum();
+        auto calculated = gen1->calc_checksum();
 
-		REQUIRE(checksum == calculated);
-	}
+        REQUIRE(checksum == calculated);
+    }
 }
