@@ -377,4 +377,7 @@ TEST_CASE("Generation 1 class gets correct information")
 
         REQUIRE(checksum == calculated);
     }
+
+	// save bytes from loaded file in new file
+	gen1->save_changes("../../games/yellow.sav");
 }
