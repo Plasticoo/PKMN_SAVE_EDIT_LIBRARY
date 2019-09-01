@@ -1,8 +1,8 @@
 #ifndef _PKMN_UTILS_HPP_
 #define _PKMN_UTILS_HPP_
 
-#include "Rom32kb.hpp"
-#include "Rom64kb.hpp"
+#include "Rom/Rom32kb.hpp"
+#include "Rom/Rom64kb.hpp"
 
 #include <cinttypes>
 #include <climits>
@@ -21,19 +21,19 @@ auto set_clear_bits(std::uint8_t* x, std::uint8_t n) -> void;
 template<typename T>
 T swap_endian(T u)
 {
-    static_assert(CHAR_BIT == 8, "CHAR_BIT != 8");
+	static_assert(CHAR_BIT == 8, "CHAR_BIT != 8");
 
-    union {
-        T u;
-        unsigned char u8[sizeof(T)];
-    } source, dest;
+	union {
+		T u;
+		unsigned char u8[sizeof(T)];
+	} source, dest;
 
-    source.u = u;
+	source.u = u;
 
-    for (size_t k = 0; k < sizeof(T); k++)
-        dest.u8[k] = source.u8[sizeof(T) - k - 1];
+	for (size_t k = 0; k < sizeof(T); k++)
+		dest.u8[k] = source.u8[sizeof(T) - k - 1];
 
-    return dest.u;
+	return dest.u;
 }
 }
 
