@@ -147,14 +147,14 @@ TEST_CASE("Generation 1 class gets correct information")
 
     SECTION("Every gym is completed")
     {
-        REQUIRE(gen1->get_badge(Gen1Enums::badges::BADGE_BOULDER) == 1);
-        REQUIRE(gen1->get_badge(Gen1Enums::badges::BADGE_CASCADE) == 1);
-        REQUIRE(gen1->get_badge(Gen1Enums::badges::BADGE_THUNDER) == 1);
-        REQUIRE(gen1->get_badge(Gen1Enums::badges::BADGE_RAINBOW) == 1);
-        REQUIRE(gen1->get_badge(Gen1Enums::badges::BADGE_SOUL) == 1);
-        REQUIRE(gen1->get_badge(Gen1Enums::badges::BADGE_MARSH) == 1);
-        REQUIRE(gen1->get_badge(Gen1Enums::badges::BADGE_VOLCANO) == 1);
-        REQUIRE(gen1->get_badge(Gen1Enums::badges::BADGE_EARTH) == 1);
+        REQUIRE(gen1->get_badge(Gen1Enums::badges::BOULDER) == 1);
+        REQUIRE(gen1->get_badge(Gen1Enums::badges::CASCADE) == 1);
+        REQUIRE(gen1->get_badge(Gen1Enums::badges::THUNDER) == 1);
+        REQUIRE(gen1->get_badge(Gen1Enums::badges::RAINBOW) == 1);
+        REQUIRE(gen1->get_badge(Gen1Enums::badges::SOUL) == 1);
+        REQUIRE(gen1->get_badge(Gen1Enums::badges::MARSH) == 1);
+        REQUIRE(gen1->get_badge(Gen1Enums::badges::VOLCANO) == 1);
+        REQUIRE(gen1->get_badge(Gen1Enums::badges::EARTH) == 1);
     }
 
     SECTION("Options are all set")
@@ -178,7 +178,7 @@ TEST_CASE("Generation 1 class gets correct information")
     SECTION("First item in the bag is an Ultra Ball")
     {
         auto item = gen1->get_item_bag(0);
-        REQUIRE(item->index == Gen1Enums::ITEM_ULTRA_BALL);
+        REQUIRE(item->index == Gen1Enums::ULTRA_BALL);
     }
 
     SECTION("There are 3 Ultra Balls in the bag item list")
@@ -190,7 +190,7 @@ TEST_CASE("Generation 1 class gets correct information")
     SECTION("Last item in the bag is a Poke Flute")
     {
         auto item = gen1->get_item_bag(gen1->get_item_bag_count() - 1);
-        REQUIRE(item->index == Gen1Enums::ITEM_POKE_FLUTE);
+        REQUIRE(item->index == Gen1Enums::POKE_FLUTE);
     }
 
     SECTION("There is 1 Poke Flute in the bag item list")
@@ -207,7 +207,7 @@ TEST_CASE("Generation 1 class gets correct information")
     SECTION("First item in PC is a TM12")
     {
         auto item = gen1->get_item_pc(0);
-        REQUIRE(item->index == Gen1Enums::ITEM_TM12);
+        REQUIRE(item->index == Gen1Enums::TM12);
     }
 
     SECTION("There is 1 TM12 in the PC item list")
@@ -219,7 +219,7 @@ TEST_CASE("Generation 1 class gets correct information")
     SECTION("Last item in PC is a TM45")
     {
         auto item = gen1->get_item_pc(gen1->get_item_pc_count() - 1);
-        REQUIRE(item->index == Gen1Enums::ITEM_TM45);
+        REQUIRE(item->index == Gen1Enums::TM45);
     }
 
     SECTION("There is 1 TM45 in the PC item list")
