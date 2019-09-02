@@ -19,8 +19,10 @@ endif()
 
 file(GLOB sources "src/*.cpp")
 
-include_directories(include include/gen1 include/Rom lib)
-file(GLOB gen1_sources "src/gen1/*.cpp")
+include_directories(include include/Gen1 include/Rom lib)
+file(GLOB gen1_sources "src/Gen1/*.cpp")
 file(GLOB rom_sources "src/Rom/*.cpp")
 
+
 add_library(pkmnsav SHARED ${gen1_sources} ${rom_sources} ${sources})
+target_link_libraries(pkmnsav /usr/local/Cellar/llvm/8.0.1/lib/libc++.dylib)
