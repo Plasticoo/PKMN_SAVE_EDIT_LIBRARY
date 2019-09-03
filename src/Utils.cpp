@@ -55,4 +55,16 @@ auto set_clear_bits(std::uint8_t* x, std::uint8_t n) -> void
     *x = (*x & n) | n;
 }
 
+auto n_digits(std::uint32_t n) -> std::uint8_t
+{
+    std::uint8_t count = 0;
+
+    while (n != 0) {
+        n /= 10;
+        count++;
+    }
+
+    return count;
+}
+
 }

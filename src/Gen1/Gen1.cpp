@@ -1,19 +1,7 @@
 #include "Gen1.hpp"
 
-static inline std::uint8_t n_digits(std::uint32_t n)
+namespace Gen1
 {
-    std::uint8_t count = 0;
-
-    while (n != 0) {
-        n /= 10;
-        count++;
-    }
-
-    return count;
-}
-
-namespace Gen1 {
-
 auto Gen1::get_checksum() const -> std::uint8_t
 {
     return this->m_rom->data[C::GEN1::OFFSETS::CHECKSUM];
@@ -268,7 +256,7 @@ auto Gen1::set_casino_coins(std::uint16_t const value) -> void
 
     Utils::__dec_to_bcd(value, buffer.data());
 
-    if (n_digits(value) == 1 || n_digits(value) == 2) {
+    if (Utils::n_digits(value) == 1 || Utils::n_digits(value) == 2) {
         this->casino_coins[0] = buffer[0];
         this->casino_coins[1] = 0;
 
@@ -413,7 +401,7 @@ auto Gen1::set_item_bag(struct Structs::item* items, std::uint8_t const index, s
 
 auto Gen1::get_item_pc_count() const -> std::uint8_t
 {
-	return this->pc_item_list->count;
+    return this->pc_item_list->count;
 }
 
 auto Gen1::get_item_pc(std::uint8_t const index) const -> struct Structs::item*

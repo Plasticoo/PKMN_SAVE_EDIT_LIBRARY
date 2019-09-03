@@ -18,6 +18,8 @@ auto __dec_to_bcd(const std::uint32_t num, std::uint8_t* buffer_out) -> void;
 
 auto set_clear_bits(std::uint8_t* x, std::uint8_t n) -> void;
 
+auto n_digits(std::uint32_t n) -> std::uint8_t;
+
 template<typename T>
 T swap_endian(T u)
 {
