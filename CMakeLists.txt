@@ -19,8 +19,8 @@ endif()
 
 file(GLOB sources "src/*.cpp")
 
-include_directories(include include/Gen1 include/Rom lib)
-file(GLOB gen1_sources "src/Gen1/*.cpp")
+include_directories(include include/Gen/Gen1 include/Rom lib)
+file(GLOB gen1_sources "src/Gen/Gen1/*.cpp")
 file(GLOB rom_sources "src/Rom/*.cpp")
 
 

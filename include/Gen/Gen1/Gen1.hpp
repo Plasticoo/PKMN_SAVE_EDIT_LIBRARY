@@ -5,8 +5,8 @@
 #include "IGlobal.hpp"
 #include "Rom/RomInterface.hpp"
 #include "Utils.hpp"
-#include "Gen1/Enums.hpp"
-#include "Gen1/Structs.hpp"
+#include "Gen/Gen1/Enums.hpp"
+#include "Gen/Gen1/Structs.hpp"
 
 #include <fstream>
 #include <memory>
