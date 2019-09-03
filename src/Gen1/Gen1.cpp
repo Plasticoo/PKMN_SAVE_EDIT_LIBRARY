@@ -12,6 +12,8 @@ static inline std::uint8_t n_digits(std::uint32_t n)
     return count;
 }
 
+namespace Gen1 {
+
 auto Gen1::get_checksum() const -> std::uint8_t
 {
     return this->m_rom->data[C::GEN1::OFFSETS::CHECKSUM];
@@ -51,27 +53,27 @@ auto Gen1::load_file() -> void
     this->pikachu_friendship = &this->m_rom->data[C::GEN1::OFFSETS::PIKACHU_FRIENDSHIP];
     this->current_pc_box = &this->m_rom->data[C::GEN1::OFFSETS::CURRENT_PC_BOX];
     this->casino_coins = &this->m_rom->data[C::GEN1::OFFSETS::CASINO_COINS];
-    this->current_box_list = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[C::GEN1::OFFSETS::CURRENT_BOX_LIST];
+    this->current_box_list = (struct Structs::pkmn_box*)&this->m_rom->data[C::GEN1::OFFSETS::CURRENT_BOX_LIST];
     this->checksum = &this->m_rom->data[C::GEN1::OFFSETS::CHECKSUM];
 
-    this->pocket_item_list = (struct Gen1Structs::items_bag*)&this->m_rom->data[C::GEN1::OFFSETS::POCKET_ITEM_LIST];
-    this->pc_item_list = (struct Gen1Structs::items_pc*)&this->m_rom->data[C::GEN1::OFFSETS::PC_ITEM_LIST];
-    this->time_played = (struct Gen1Structs::pkmn_time*)&this->m_rom->data[C::GEN1::OFFSETS::TIME_PLAYED];
-    this->team_pokemon_list = (struct Gen1Structs::pkmn_party*)&this->m_rom->data[C::GEN1::OFFSETS::TEAM_POKEMON_LIST];
+    this->pocket_item_list = (struct Structs::items_bag*)&this->m_rom->data[C::GEN1::OFFSETS::POCKET_ITEM_LIST];
+    this->pc_item_list = (struct Structs::items_pc*)&this->m_rom->data[C::GEN1::OFFSETS::PC_ITEM_LIST];
+    this->time_played = (struct Structs::pkmn_time*)&this->m_rom->data[C::GEN1::OFFSETS::TIME_PLAYED];
+    this->team_pokemon_list = (struct Structs::pkmn_party*)&this->m_rom->data[C::GEN1::OFFSETS::TEAM_POKEMON_LIST];
 
-    this->pc_box[0] = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[0x4000];
-    this->pc_box[1] = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[0x4000 + (1122 * 1)];
-    this->pc_box[2] = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[0x4000 + (1122 * 2)];
-    this->pc_box[3] = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[0x4000 + (1122 * 3)];
-    this->pc_box[4] = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[0x4000 + (1122 * 4)];
-    this->pc_box[5] = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[0x4000 + (1122 * 5)];
+    this->pc_box[0] = (struct Structs::pkmn_box*)&this->m_rom->data[0x4000];
+    this->pc_box[1] = (struct Structs::pkmn_box*)&this->m_rom->data[0x4000 + (1122 * 1)];
+    this->pc_box[2] = (struct Structs::pkmn_box*)&this->m_rom->data[0x4000 + (1122 * 2)];
+    this->pc_box[3] = (struct Structs::pkmn_box*)&this->m_rom->data[0x4000 + (1122 * 3)];
+    this->pc_box[4] = (struct Structs::pkmn_box*)&this->m_rom->data[0x4000 + (1122 * 4)];
+    this->pc_box[5] = (struct Structs::pkmn_box*)&this->m_rom->data[0x4000 + (1122 * 5)];
 
-    this->pc_box[6] = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[0x6000];
-    this->pc_box[7] = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[0x6000 + (1122 * 1)];
-    this->pc_box[8] = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[0x6000 + (1122 * 2)];
-    this->pc_box[9] = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[0x6000 + (1122 * 3)];
-    this->pc_box[10] = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[0x6000 + (1122 * 4)];
-    this->pc_box[11] = (struct Gen1Structs::pkmn_box*)&this->m_rom->data[0x6000 + (1122 * 5)];
+    this->pc_box[6] = (struct Structs::pkmn_box*)&this->m_rom->data[0x6000];
+    this->pc_box[7] = (struct Structs::pkmn_box*)&this->m_rom->data[0x6000 + (1122 * 1)];
+    this->pc_box[8] = (struct Structs::pkmn_box*)&this->m_rom->data[0x6000 + (1122 * 2)];
+    this->pc_box[9] = (struct Structs::pkmn_box*)&this->m_rom->data[0x6000 + (1122 * 3)];
+    this->pc_box[10] = (struct Structs::pkmn_box*)&this->m_rom->data[0x6000 + (1122 * 4)];
+    this->pc_box[11] = (struct Structs::pkmn_box*)&this->m_rom->data[0x6000 + (1122 * 5)];
 }
 
 auto Gen1::save_changes(std::filesystem::path const& file_name) const -> bool
@@ -276,7 +278,7 @@ auto Gen1::set_casino_coins(std::uint16_t const value) -> void
     std::memcpy(this->casino_coins, buffer.data(), C::GEN1::SIZES::CASINO_COINS);
 }
 
-auto Gen1::get_time_played(struct Gen1Structs::pkmn_time* dest) const -> void
+auto Gen1::get_time_played(struct Structs::pkmn_time* dest) const -> void
 {
     if (this->time_played && dest) {
         dest->hours = this->time_played->hours;
@@ -333,7 +335,7 @@ auto Gen1::set_current_pc_box(std::uint8_t const index) -> void
     }
 }
 
-auto Gen1::get_badge(enum Gen1Enums::badges const badge) const -> std::uint8_t
+auto Gen1::get_badge(enum Enums::badges const badge) const -> std::uint8_t
 {
     if (this->badges) {
         return (this->badges[0] & (1 << badge)) >> badge;
@@ -342,14 +344,14 @@ auto Gen1::get_badge(enum Gen1Enums::badges const badge) const -> std::uint8_t
     return 0;
 }
 
-auto Gen1::set_badge(enum Gen1Enums::badges const badge) -> void
+auto Gen1::set_badge(enum Enums::badges const badge) -> void
 {
     if (this->badges) {
         this->badges[0] ^= (1 << badge);
     }
 }
 
-auto Gen1::get_option(enum Gen1Enums::options const flag) const -> std::uint8_t
+auto Gen1::get_option(enum Enums::options const flag) const -> std::uint8_t
 {
     if (!this->options) {
         return 0;
@@ -358,7 +360,7 @@ auto Gen1::get_option(enum Gen1Enums::options const flag) const -> std::uint8_t
     return options[0] & C::GEN1::OPTIONS::LOOKUP_TABLE[flag];
 }
 
-auto Gen1::set_option(enum Gen1Enums::options const flag) -> void
+auto Gen1::set_option(enum Enums::options const flag) -> void
 {
     if (!this->options) {
         return;
@@ -389,7 +391,7 @@ auto Gen1::get_item_bag_count() const -> std::uint8_t
     return this->pocket_item_list->count;
 }
 
-auto Gen1::get_item_bag(std::uint8_t const index) const -> struct Gen1Structs::item*
+auto Gen1::get_item_bag(std::uint8_t const index) const -> struct Structs::item*
 {
     if (index <= C::GEN1::SIZES::BAG_ITEM) {
         return &this->pocket_item_list->item[index];
@@ -399,7 +401,7 @@ auto Gen1::get_item_bag(std::uint8_t const index) const -> struct Gen1Structs::i
 }
 
 // TODO: This is not doing what it is supposed to do
-auto Gen1::set_item_bag(struct Gen1Structs::item* items, std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void
+auto Gen1::set_item_bag(struct Structs::item* items, std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void
 {
     if (index <= C::GEN1::SIZES::BAG_ITEM) {
         items[index].index = item;
@@ -414,7 +416,7 @@ auto Gen1::get_item_pc_count() const -> std::uint8_t
 	return this->pc_item_list->count;
 }
 
-auto Gen1::get_item_pc(std::uint8_t const index) const -> struct Gen1Structs::item*
+auto Gen1::get_item_pc(std::uint8_t const index) const -> struct Structs::item*
 {
     if (index <= C::GEN1::SIZES::PC_ITEM) {
         return &this->pc_item_list->item[index];
@@ -424,7 +426,7 @@ auto Gen1::get_item_pc(std::uint8_t const index) const -> struct Gen1Structs::it
 }
 
 // TODO: This is not doing what it is supposed to do
-auto Gen1::set_item_pc(struct Gen1Structs::item* items, std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void
+auto Gen1::set_item_pc(struct Structs::item* items, std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void
 {
     if (index <= C::GEN1::SIZES::PC_ITEM) {
         items[index].index = item;
@@ -434,7 +436,7 @@ auto Gen1::set_item_pc(struct Gen1Structs::item* items, std::uint8_t const index
     }
 }
 
-auto Gen1::get_pokemon_party() const -> struct Gen1Structs::pkmn_party*
+auto Gen1::get_pokemon_party() const -> struct Structs::pkmn_party*
 {
     if (this->team_pokemon_list) {
         return this->team_pokemon_list;
@@ -443,7 +445,7 @@ auto Gen1::get_pokemon_party() const -> struct Gen1Structs::pkmn_party*
     return nullptr;
 }
 
-auto Gen1::get_pokemon_in_party(std::uint8_t index) const -> struct Gen1Structs::pkmn_data_party*
+auto Gen1::get_pokemon_in_party(std::uint8_t index) const -> struct Structs::pkmn_data_party*
 {
     if (this->team_pokemon_list) {
         return &this->team_pokemon_list->pokemon[index];
@@ -492,7 +494,7 @@ auto Gen1::get_pokemon_in_party_name(std::uint8_t index) const -> std::string
     return name;
 }
 
-auto Gen1::get_current_pc_box_list() const -> struct Gen1Structs::pkmn_box*
+auto Gen1::get_current_pc_box_list() const -> struct Structs::pkmn_box*
 {
     if (this->current_box_list) {
         return this->current_box_list;
@@ -501,7 +503,7 @@ auto Gen1::get_current_pc_box_list() const -> struct Gen1Structs::pkmn_box*
     return nullptr;
 }
 
-auto Gen1::get_pokemon_in_current_box(std::uint8_t index) const -> struct Gen1Structs::pkmn_data_box*
+auto Gen1::get_pokemon_in_current_box(std::uint8_t index) const -> struct Structs::pkmn_data_box*
 {
     if (this->current_box_list) {
         return &this->current_box_list->pokemon[index];
@@ -530,7 +532,7 @@ auto Gen1::get_pokemon_in_current_box_name(std::uint8_t index) const -> std::str
     return name;
 }
 
-auto Gen1::get_pokemon_box(std::uint8_t box) const -> struct Gen1Structs::pkmn_box*
+auto Gen1::get_pokemon_box(std::uint8_t box) const -> struct Structs::pkmn_box*
 {
     if (this->pc_box[box]) {
         return this->pc_box[box];
@@ -539,7 +541,7 @@ auto Gen1::get_pokemon_box(std::uint8_t box) const -> struct Gen1Structs::pkmn_b
     return nullptr;
 }
 
-auto Gen1::get_pokemon_in_box(std::uint8_t box, std::uint8_t index) const -> struct Gen1Structs::pkmn_data_box*
+auto Gen1::get_pokemon_in_box(std::uint8_t box, std::uint8_t index) const -> struct Structs::pkmn_data_box*
 {
     if (this->pc_box[box] != nullptr) {
         return &this->pc_box[box]->pokemon[index];
@@ -600,4 +602,6 @@ auto Gen1::get_character_code(std::uint8_t const c) const -> std::uint8_t
 
     // return space code, as in, invalid character
     return 0x7F;
+}
+
 }

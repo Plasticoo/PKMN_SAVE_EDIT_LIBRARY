@@ -16,7 +16,7 @@ TEST_CASE("Generation 1 class gets correct information")
         REQUIRE(_rom->get_size() == 0x8000);
     }
 
-    auto gen1 = new Gen1(std::move(_rom));
+    auto gen1 = new Gen1::Gen1(std::move(_rom));
 
     SECTION("Player name is ASH")
     {
@@ -50,7 +50,7 @@ TEST_CASE("Generation 1 class gets correct information")
 
     SECTION("Time played is 122:20:58:10")
     {
-        auto time_played = Gen1Structs::pkmn_time();
+        auto time_played = Gen1::Structs::pkmn_time();
         gen1->get_time_played(&time_played);
 
         SECTION("Maximum time not reached")
@@ -147,22 +147,22 @@ TEST_CASE("Generation 1 class gets correct information")
 
     SECTION("Every gym is completed")
     {
-        REQUIRE(gen1->get_badge(Gen1Enums::badges::BOULDER) == 1);
-        REQUIRE(gen1->get_badge(Gen1Enums::badges::CASCADE) == 1);
-        REQUIRE(gen1->get_badge(Gen1Enums::badges::THUNDER) == 1);
-        REQUIRE(gen1->get_badge(Gen1Enums::badges::RAINBOW) == 1);
-        REQUIRE(gen1->get_badge(Gen1Enums::badges::SOUL) == 1);
-        REQUIRE(gen1->get_badge(Gen1Enums::badges::MARSH) == 1);
-        REQUIRE(gen1->get_badge(Gen1Enums::badges::VOLCANO) == 1);
-        REQUIRE(gen1->get_badge(Gen1Enums::badges::EARTH) == 1);
+        REQUIRE(gen1->get_badge(Gen1::Enums::badges::BOULDER) == 1);
+        REQUIRE(gen1->get_badge(Gen1::Enums::badges::CASCADE) == 1);
+        REQUIRE(gen1->get_badge(Gen1::Enums::badges::THUNDER) == 1);
+        REQUIRE(gen1->get_badge(Gen1::Enums::badges::RAINBOW) == 1);
+        REQUIRE(gen1->get_badge(Gen1::Enums::badges::SOUL) == 1);
+        REQUIRE(gen1->get_badge(Gen1::Enums::badges::MARSH) == 1);
+        REQUIRE(gen1->get_badge(Gen1::Enums::badges::VOLCANO) == 1);
+        REQUIRE(gen1->get_badge(Gen1::Enums::badges::EARTH) == 1);
     }
 
     SECTION("Options are all set")
     {
-        REQUIRE(gen1->get_option(Gen1Enums::options::TEXT_SPEED) == 1);
-        REQUIRE(gen1->get_option(Gen1Enums::options::SOUND) == 0);
-        REQUIRE(gen1->get_option(Gen1Enums::options::BATTLE_STYLE) == 0);
-        REQUIRE(gen1->get_option(Gen1Enums::options::BATTLE_EFFECTS) == 1);
+        REQUIRE(gen1->get_option(Gen1::Enums::options::TEXT_SPEED) == 1);
+        REQUIRE(gen1->get_option(Gen1::Enums::options::SOUND) == 0);
+        REQUIRE(gen1->get_option(Gen1::Enums::options::BATTLE_STYLE) == 0);
+        REQUIRE(gen1->get_option(Gen1::Enums::options::BATTLE_EFFECTS) == 1);
     }
 
     SECTION("Pikachu friendship is 103")
@@ -178,7 +178,7 @@ TEST_CASE("Generation 1 class gets correct information")
     SECTION("First item in the bag is an Ultra Ball")
     {
         auto item = gen1->get_item_bag(0);
-        REQUIRE(item->index == Gen1Enums::ULTRA_BALL);
+        REQUIRE(item->index == Gen1::Enums::ULTRA_BALL);
     }
 
     SECTION("There are 3 Ultra Balls in the bag item list")
@@ -190,7 +190,7 @@ TEST_CASE("Generation 1 class gets correct information")
     SECTION("Last item in the bag is a Poke Flute")
     {
         auto item = gen1->get_item_bag(gen1->get_item_bag_count() - 1);
-        REQUIRE(item->index == Gen1Enums::POKE_FLUTE);
+        REQUIRE(item->index == Gen1::Enums::POKE_FLUTE);
     }
 
     SECTION("There is 1 Poke Flute in the bag item list")
@@ -207,7 +207,7 @@ TEST_CASE("Generation 1 class gets correct information")
     SECTION("First item in PC is a TM12")
     {
         auto item = gen1->get_item_pc(0);
-        REQUIRE(item->index == Gen1Enums::TM12);
+        REQUIRE(item->index == Gen1::Enums::TM12);
     }
 
     SECTION("There is 1 TM12 in the PC item list")
@@ -219,7 +219,7 @@ TEST_CASE("Generation 1 class gets correct information")
     SECTION("Last item in PC is a TM45")
     {
         auto item = gen1->get_item_pc(gen1->get_item_pc_count() - 1);
-        REQUIRE(item->index == Gen1Enums::TM45);
+        REQUIRE(item->index == Gen1::Enums::TM45);
     }
 
     SECTION("There is 1 TM45 in the PC item list")
