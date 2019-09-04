@@ -11,12 +11,16 @@ namespace Gen1
 /** @brief Contains Generation I relevant serializable structures. */
 namespace Structs
 {
+    /**
+	 * @brief Structure that represents the time played.
+	 */
     struct pkmn_time {
-        std::uint8_t hours;
-        std::uint8_t maxed;
-        std::uint8_t minutes;
-        std::uint8_t seconds;
-        std::uint8_t frames;
+        std::uint8_t hours; /**< pkmn_time#hours represents hours played. */
+        std::uint8_t maxed; /**< pkmn_time#maxed represents a bit that
+							 * is set if time is maxed out.  */
+        std::uint8_t minutes; /**< pkmn_time#minutes represents minutes played. */
+        std::uint8_t seconds; /**< pkmn_time#seconds represents seconds played. */
+        std::uint8_t frames; /**< pkmn_time#frames represents frames per second. */
     };
 
 #pragma pack(push, 1)
