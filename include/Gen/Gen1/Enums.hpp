@@ -3,6 +3,7 @@
 
 namespace Gen1
 {
+/** @brief Contains Generation I relevant enumerations. */
 namespace Enums
 {
     enum options {

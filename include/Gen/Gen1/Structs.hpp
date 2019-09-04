@@ -8,6 +8,7 @@
 
 namespace Gen1
 {
+/** @brief Contains Generation I relevant serializable structures. */
 namespace Structs
 {
     struct pkmn_time {
