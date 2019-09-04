@@ -251,7 +251,6 @@ auto Gen1::set_casino_coins(std::uint16_t const value) -> void
         return;
     }
 
-    // std::uint8_t buffer[C::GEN1::SIZES::CASINO_COINS];
     std::array<std::uint8_t, C::GEN1::SIZES::CASINO_COINS> buffer;
 
     Utils::__dec_to_bcd(value, buffer.data());
