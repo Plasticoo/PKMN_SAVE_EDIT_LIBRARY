@@ -15,15 +15,17 @@ namespace Structs
 	 * @brief Structure that represents the time played.
 	 */
     struct pkmn_time {
-        std::uint8_t hours; /**< pkmn_time#hours represents hours played. */
-        std::uint8_t maxed; /**< pkmn_time#maxed represents a bit that
-							 * is set if time is maxed out.  */
-        std::uint8_t minutes; /**< pkmn_time#minutes represents minutes played. */
-        std::uint8_t seconds; /**< pkmn_time#seconds represents seconds played. */
-        std::uint8_t frames; /**< pkmn_time#frames represents frames per second. */
+        std::uint8_t hours; /**< Hours played. */
+        std::uint8_t maxed; /**< Bit that is set if time is maxed out.  */
+        std::uint8_t minutes; /**< Minutes played. */
+        std::uint8_t seconds; /**< Seconds played. */
+        std::uint8_t frames; /**< Frames per second. */
     };
 
 #pragma pack(push, 1)
+    /**
+	 * @brief Structure that represents a pokemon in the party.
+	 */
     struct pkmn_data_party {
         std::uint8_t index;
         std::uint16_t hp;
@@ -51,6 +53,9 @@ namespace Structs
 #pragma pack(pop)
 
 #pragma pack(push, 1)
+    /**
+	 * @brief Structure that represents a pokemon in a PC Box.
+	 */
     struct pkmn_data_box {
         std::uint8_t index;
         std::uint16_t hp;
@@ -71,6 +76,9 @@ namespace Structs
     };
 #pragma pack(pop)
 
+    /**
+	 * @brief Structure that represents a Pokemon Party.
+	 */
     struct pkmn_party {
         std::uint8_t count;
         std::uint8_t species_id[6];
@@ -80,6 +88,9 @@ namespace Structs
         std::uint8_t pokemon_name[6][11];
     };
 
+    /**
+	 * @brief Structure that represents a Pokemon PC Box.
+	 */
     struct pkmn_box {
         std::uint8_t count;
         std::uint8_t species_id[20];
@@ -89,17 +100,26 @@ namespace Structs
         std::uint8_t pokemon_name[20][11];
     };
 
+	 /**
+	 * @brief Structure that represents an item.
+	 */
     struct item {
         std::uint8_t index;
         std::uint8_t count;
     };
 
+    /**
+	 * @brief Structure that represents the player bag.
+	 */
     struct items_bag {
         std::uint8_t count;
         struct item item[20];
         std::uint8_t terminator;
     };
 
+	 /**
+	 * @brief Structure that represents the player PC Item box.
+	 */
     struct items_pc {
         std::uint8_t count;
         struct item item[50];
