@@ -25,4 +25,7 @@ file(GLOB rom_sources "src/Rom/*.cpp")
 
 
 add_library(pkmnsav SHARED ${gen1_sources} ${rom_sources} ${sources})
-target_link_libraries(pkmnsav /usr/local/Cellar/llvm/8.0.1/lib/libc++.dylib)
+
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+  target_link_libraries(pkmnsav /usr/local/Cellar/llvm/8.0.1/lib/libc++.dylib)
+endif()
