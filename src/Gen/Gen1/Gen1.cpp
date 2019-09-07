@@ -1,4 +1,4 @@
-#include "Gen1.hpp"
+#include <Gen/Gen1/Gen1.hpp>
 
 namespace Gen1
 {
