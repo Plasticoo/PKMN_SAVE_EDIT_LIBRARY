@@ -167,6 +167,19 @@ auto Gen1::set_rival_name(std::string const& name) -> void
     }
 }
 
+auto Gen1::get_pokedex_owned_total() const -> std::uint8_t
+{
+	std::uint8_t total = 0;
+
+	for (auto i = 0; i < 151; i++) {
+		if (this->get_pokedex_owned(i)) {
+			total++;
+		}
+	}
+
+	return total;
+}
+
 auto Gen1::get_pokedex_owned(std::uint8_t const index) const -> bool
 {
     if (this->pokedex_owned && index < 152) {
@@ -183,6 +196,19 @@ auto Gen1::set_pokedex_owned(std::uint8_t const index, bool const owned) -> void
     } else {
         this->pokedex_owned[index >> 3] &= ~(1 << (index & 7));
     }
+}
+
+auto Gen1::get_pokedex_seen_total() const -> std::uint8_t
+{
+	std::uint8_t total = 0;
+
+	for (auto i = 0; i < 151; i++) {
+		if (this->get_pokedex_seen(i)) {
+			total++;
+		}
+	}
+
+	return total;
 }
 
 auto Gen1::get_pokedex_seen(std::uint8_t const index) const -> bool

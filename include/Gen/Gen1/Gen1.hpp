@@ -34,9 +34,11 @@ struct Gen1: IGlobal {
     auto get_rival_name() const -> std::string;
     auto set_rival_name(std::string const& name) -> void;
 
+	auto get_pokedex_owned_total() const -> std::uint8_t;
     auto get_pokedex_owned(std::uint8_t const index) const -> bool;
     auto set_pokedex_owned(std::uint8_t const index, bool const owned) -> void;
 
+	auto get_pokedex_seen_total() const -> std::uint8_t;
     auto get_pokedex_seen(std::uint8_t const index) const -> bool;
     auto set_pokedex_seen(std::uint8_t const index, bool const seen) -> void;
 
