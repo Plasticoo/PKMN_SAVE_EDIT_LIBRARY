@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_MAIN
 
-#include "Gen1.hpp"
+#include "Gen1/Gen1.hpp"
 #include "RomInterface.hpp"
 #include "catch2/catch.hpp"
 
@@ -147,14 +147,14 @@ TEST_CASE("Generation 1 class gets correct information")
 
     SECTION("Every gym is completed")
     {
-        REQUIRE(gen1->get_badge(Gen1::Enums::badges::BOULDER) == 1);
-        REQUIRE(gen1->get_badge(Gen1::Enums::badges::CASCADE) == 1);
-        REQUIRE(gen1->get_badge(Gen1::Enums::badges::THUNDER) == 1);
-        REQUIRE(gen1->get_badge(Gen1::Enums::badges::RAINBOW) == 1);
-        REQUIRE(gen1->get_badge(Gen1::Enums::badges::SOUL) == 1);
-        REQUIRE(gen1->get_badge(Gen1::Enums::badges::MARSH) == 1);
-        REQUIRE(gen1->get_badge(Gen1::Enums::badges::VOLCANO) == 1);
-        REQUIRE(gen1->get_badge(Gen1::Enums::badges::EARTH) == 1);
+        REQUIRE(gen1->get_badge(Gen1::Enums::badges::BOULDER) == true);
+        REQUIRE(gen1->get_badge(Gen1::Enums::badges::CASCADE) == true);
+        REQUIRE(gen1->get_badge(Gen1::Enums::badges::THUNDER) == true);
+        REQUIRE(gen1->get_badge(Gen1::Enums::badges::RAINBOW) == true);
+        REQUIRE(gen1->get_badge(Gen1::Enums::badges::SOUL) == true);
+        REQUIRE(gen1->get_badge(Gen1::Enums::badges::MARSH) == true);
+        REQUIRE(gen1->get_badge(Gen1::Enums::badges::VOLCANO) == true);
+        REQUIRE(gen1->get_badge(Gen1::Enums::badges::EARTH) == true);
     }
 
     SECTION("Options are all set")

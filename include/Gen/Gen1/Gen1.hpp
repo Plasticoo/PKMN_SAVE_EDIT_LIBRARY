@@ -54,7 +54,7 @@ struct Gen1: IGlobal {
     auto get_current_pc_box() const -> std::uint8_t;
     auto set_current_pc_box(std::uint8_t const index) -> void;
 
-    auto get_badge(enum Enums::badges const badge) const -> std::uint8_t;
+    auto get_badge(enum Enums::badges const badge) const -> bool;
     auto set_badge(enum Enums::badges const badge) -> void;
 
     auto get_option(enum Enums::options const flag) const -> std::uint8_t;

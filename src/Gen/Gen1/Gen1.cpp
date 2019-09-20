@@ -348,13 +348,13 @@ auto Gen1::set_current_pc_box(std::uint8_t const index) -> void
     }
 }
 
-auto Gen1::get_badge(enum Enums::badges const badge) const -> std::uint8_t
+auto Gen1::get_badge(enum Enums::badges const badge) const -> bool
 {
     if (this->badges) {
-        return (this->badges[0] & (1 << badge)) >> badge;
+        return ((this->badges[0] & (1 << badge)) >> badge) == 1 ? true : false;
     }
 
-    return 0;
+    return false;
 }
 
 auto Gen1::set_badge(enum Enums::badges const badge) -> void
