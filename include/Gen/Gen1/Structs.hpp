@@ -80,12 +80,12 @@ namespace Structs
 	 * @brief Structure that represents a Pokemon Party.
 	 */
     struct pkmn_party {
-        std::uint8_t count;
-        std::uint8_t species_id[6];
-        std::uint8_t unused;
-        struct pkmn_data_party pokemon[6];
-        std::uint8_t original_trainer_name[6][11];
-        std::uint8_t pokemon_name[6][11];
+        std::uint8_t count; /**< Pokemon count in party. */
+        std::uint8_t species_id[6]; /**< Species ID of each Pokemon. */
+        std::uint8_t unused; /**< Unused byte. */
+        struct pkmn_data_party pokemon[6]; /**< Pokemon Data for each Pokemon. */
+        std::uint8_t original_trainer_name[6][11]; /**< Original Trainer Name for each Pokemon. */
+        std::uint8_t pokemon_name[6][11]; /**< Pokemon Name for each Pokemon. */
     };
 
     /**
