@@ -121,9 +121,9 @@ namespace Structs
 	 * @brief Structure that represents the player PC Item box.
 	 */
     struct items_pc {
-        std::uint8_t count;
-        struct item item[50];
-        std::uint8_t terminator;
+        std::uint8_t count; /**< Count of unique items. */
+        struct item item[50]; /**< Item information for each item. */
+        std::uint8_t terminator; /**< Terminator byte. */
     };
 
     struct gen1_pkmn_file_struct {
