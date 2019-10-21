@@ -57,22 +57,22 @@ namespace Structs
 	 * @brief Structure that represents a pokemon in a PC Box.
 	 */
     struct pkmn_data_box {
-        std::uint8_t index;
-        std::uint16_t hp;
-        std::uint8_t level;
-        std::uint8_t status;
-        std::uint8_t type[2];
-        std::uint8_t catch_item;
-        std::uint8_t moves[4];
-        std::uint16_t trainer_id;
-        std::uint8_t xp[3];
-        std::uint16_t hp_ev;
-        std::uint16_t atk_ev;
-        std::uint16_t def_ev;
-        std::uint16_t speed_ev;
-        std::uint16_t special_ev;
-        std::uint16_t iv;
-        std::uint8_t moves_pp[4];
+        std::uint8_t index; /**< Party index. */
+        std::uint16_t hp; /**< Health Points. */
+        std::uint8_t level; /**< Level. */
+        std::uint8_t status; /**< Current status. (e.g.: Poisoned) */
+        std::uint8_t type[2]; /**< Primary type and secondary type. */
+        std::uint8_t catch_item; /**< Catch rate or held item. */
+        std::uint8_t moves[4]; /**< Current moves learned. */
+        std::uint16_t trainer_id; /**< Original trainer ID. */
+        std::uint8_t xp[3]; /**< Experience points. */
+        std::uint16_t hp_ev; /**< Health Points effort value. */
+        std::uint16_t atk_ev; /**< Attack effort value. */
+        std::uint16_t def_ev; /**< Defense effort value. */
+        std::uint16_t speed_ev; /**< Speed effort value. */
+        std::uint16_t special_ev; /**< Special effort value. */
+        std::uint16_t iv; /**< Individual value. */
+        std::uint8_t moves_pp[4]; /**< Power Points for each move. */
     };
 #pragma pack(pop)
 
