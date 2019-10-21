@@ -11,47 +11,169 @@
 #include <fstream>
 #include <memory>
 
-//template<class Derived>
+/** @brief Contains Generation I relevant classes, functions and utilities. */
 namespace Gen1
 {
+
+/** @brief  Generation I class. */
 struct Gen1: IGlobal {
+
+	/**
+	 *  @brief Gen1 Constructor
+	 *  @see Rom32Kb
+	 *  @param r Rvalue reference to Rom32Kb.
+	 */
     Gen1(std::unique_ptr<Rom32kb>&& r) :
         m_rom(std::move(r))
     {
         this->load_file();
     }
 
+	/**
+	 *  @brief Get current checksum.
+	 *  @return Relevant byte that represents the checksum.
+	 */
     auto get_checksum() const -> std::uint8_t override;
+
+    /**
+	 *  @brief Calculates the checksum.
+	 *  @return Checksum calculation result.
+	 */
     auto calc_checksum() const -> std::uint8_t override;
+
+	/**
+	 *  @brief Calculates the checksum and sets the value in the
+	 *  relevant Rom byte.
+	 */
     auto set_checksum() -> void;
 
+	/**
+	 *  @brief Loads Rom information into relevant structs.
+	 */
     auto load_file() -> void;
+
+	/**
+	 *  @brief Save changes made to Rom information in memory to a file.
+	 *
+	 *  @param file_name Path to file.
+	 *
+	 *  @return True if everything worked.
+	 */
     auto save_changes(std::filesystem::path const& file_name) const -> bool;
 
+	/**
+	 *  @brief Get player name.
+	 *  @return Name of the player.
+	 */
     auto get_player_name() const -> std::string;
+
+	/**
+	 *  @brief Set player name.
+	 *  @param name New player name.
+	 */
     auto set_player_name(std::string const& name) -> void;
 
+	/**
+	 *  @brief Get rival name.
+	 *  @return Name of the rival.
+	 */
     auto get_rival_name() const -> std::string;
+
+	/**
+	 *  @brief Set rival name.
+	 *  @param name New rival name.
+	 */
     auto set_rival_name(std::string const& name) -> void;
 
+	/**
+	 *  @brief Get total of owned Pokemons.
+	 *  @return Value of owned Pokemons.
+	 */
 	auto get_pokedex_owned_total() const -> std::uint8_t;
+
+	/**
+	 *  @brief Get information from the Pokedex if Pokemon is owned.
+	 *  @param index Pokedex index.
+	 *  @return True if Pokemon owned.
+	 */
     auto get_pokedex_owned(std::uint8_t const index) const -> bool;
+
+	/**
+	 *  @brief Set own status of Pokemons in Pokedex.
+	 *  @param index Pokedex index.
+	 *  @param owned Own status.
+	 */
     auto set_pokedex_owned(std::uint8_t const index, bool const owned) -> void;
 
+	/**
+	 *  @brief Get total of seen Pokemons.
+	 *  @return Value of seen Pokemons.
+	 */
 	auto get_pokedex_seen_total() const -> std::uint8_t;
+
+    /**
+     *  @brief Get information from the Pokedex if Pokemon is seen.
+	 *  @param index Pokedex index.
+	 *  @return True if Pokemon seen.
+	 */
     auto get_pokedex_seen(std::uint8_t const index) const -> bool;
+
+	/**
+	 *  @brief Set seen status of Pokemons in Pokedex.
+	 *  @param index Pokedex index.
+	 *  @param seen Seen status.
+	 */
     auto set_pokedex_seen(std::uint8_t const index, bool const seen) -> void;
 
+	/**
+     *  @brief Get player money.
+	 *  @return Player money value.
+	 */
     auto get_money() const -> std::uint32_t;
+
+	/**
+     *  @brief Sets player money.
+	 *  @param value New money value.
+	 */
     auto set_money(std::uint32_t const value) -> void;
 
+	/**
+     *  @brief Get player casino coins.
+	 *  @return Player casino coins value.
+	 */
     auto get_casino_coins() const -> std::uint16_t;
+
+	/**
+     *  @brief Sets player casino coins.
+	 *  @param value New casino coins value.
+	 */
     auto set_casino_coins(std::uint16_t const value) -> void;
 
+	/**
+     *  @brief Get time played.
+	 *  @param dest Variable to hold result.
+	 */
     auto get_time_played(struct Structs::pkmn_time* dest) const -> void;
+
+	/**
+     *  @brief Set time played.
+	 *  @param hours Hours value.
+	 *  @param minutes Minutes value.
+	 *  @param seconds Seconds value.
+	 *  @param frames Frames value.
+	 */
     auto set_time_played(std::uint8_t const hours, std::uint8_t const minutes, std::uint8_t const seconds, std::uint8_t const frames) -> void;
 
+	/**
+     *  @brief Get current active PC Box.
+	 *  @return Current active PC Box index.
+	 */
     auto get_current_pc_box() const -> std::uint8_t;
+
+	/**
+     *  @brief Set current active PC Box.
+	 *  @param index PC Box index.
+	 */
     auto set_current_pc_box(std::uint8_t const index) -> void;
 
     auto get_badge(enum Enums::badges const badge) const -> bool;
