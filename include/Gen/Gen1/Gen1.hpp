@@ -176,19 +176,70 @@ struct Gen1: IGlobal {
 	 */
     auto set_current_pc_box(std::uint8_t const index) -> void;
 
+	/**
+     *  @brief Get Gym badge status.
+	 *  @param badge Gym badge to check up against.
+	 *  @return True if Gym has been completed.
+	 */
     auto get_badge(enum Enums::badges const badge) const -> bool;
+
+	/**
+     *  @brief Set Gym badge status.
+	 *  @param badge Gym badge to change.
+	 */
     auto set_badge(enum Enums::badges const badge) -> void;
 
+	/**
+     *  @brief Get options flags.
+	 *  @param flag Option to get.
+	 *  @return Chosen option value.
+	 */
     auto get_option(enum Enums::options const flag) const -> std::uint8_t;
+
+	/**
+     *  @brief Set options flags.
+	 *  @param flag Option to change.
+	 */
     auto set_option(enum Enums::options const flag) -> void;
 
+	/**
+     *  @brief Get Pikachu friendship value.
+	 *  @return Pikachu friendship value.
+	 */
     auto get_pikachu_friendship() const -> std::uint8_t;
+
+	/**
+     *  @brief Set Pikachu friendship value.
+	 *  @param value New value.
+	 */
     auto set_pikachu_friendship(std::uint8_t const value) -> void;
 
+	/**
+     *  @brief Get total amount of items in players bag.
+	 *  @return Count of items in bag.
+	 */
     auto get_item_bag_count() const -> std::uint8_t;
+
+	/**
+     *  @brief Get information from item in players bag.
+	 *  @param index Index of the item.
+	 *  @return Selected item information
+	 */
     auto get_item_bag(std::uint8_t const index) const -> struct Structs::item*;
+
+	/**
+     *  @brief Set an item in the players bag.
+	 *  @param items Items in the players bag.
+	 *  @param index Item index in the bag
+	 *  @param item Item type.
+	 *  @param count Item quantity.
+	 */
     auto set_item_bag(struct Structs::item* items, std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void;
 
+	/**
+     *  @brief Get PC items count.
+	 *  @return PC items count value.
+	 */
     auto get_item_pc_count() const -> std::uint8_t;
     auto get_item_pc(std::uint8_t const index) const -> struct Structs::item*;
     auto set_item_pc(struct Structs::item* items, std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void;
