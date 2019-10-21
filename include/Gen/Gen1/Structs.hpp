@@ -92,12 +92,12 @@ namespace Structs
 	 * @brief Structure that represents a Pokemon PC Box.
 	 */
     struct pkmn_box {
-        std::uint8_t count;
-        std::uint8_t species_id[20];
-        std::uint8_t unused;
-        struct pkmn_data_box pokemon[20];
-        std::uint8_t original_trainer_name[20][11];
-        std::uint8_t pokemon_name[20][11];
+        std::uint8_t count; /**< Pokemon count in party. */
+        std::uint8_t species_id[20]; /**< Species ID of each Pokemon. */
+        std::uint8_t unused; /**< Unused byte. */
+        struct pkmn_data_box pokemon[20]; /**< Pokemon Data for each Pokemon. */
+        std::uint8_t original_trainer_name[20][11]; /**< Original Trainer Name for each Pokemon. */
+        std::uint8_t pokemon_name[20][11]; /**< Pokemon Name for each Pokemon. */
     };
 
 	 /**
