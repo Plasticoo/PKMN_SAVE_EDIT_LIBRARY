@@ -104,8 +104,8 @@ namespace Structs
 	 * @brief Structure that represents an item.
 	 */
     struct item {
-        std::uint8_t index;
-        std::uint8_t count;
+        std::uint8_t index; /**< Item ID. */
+        std::uint8_t count; /** Item count. */
     };
 
     /**
