@@ -125,29 +125,6 @@ namespace Structs
         struct item item[50]; /**< Item information for each item. */
         std::uint8_t terminator; /**< Terminator byte. */
     };
-
-    struct gen1_pkmn_file_struct {
-        std::uint8_t* player_name;
-        std::uint8_t* pokedex_owned;
-        std::uint8_t* pokedex_seen;
-        struct items_bag* pocket_items;
-        std::uint8_t* money;
-        std::uint8_t* rival_name;
-        std::uint8_t* options;
-        std::uint8_t* badges;
-        std::uint16_t* player_trainer_id;
-        std::uint8_t* pikachu_friendship;
-        struct items_pc* pc_item_list;
-        std::uint8_t* current_pc_box;
-        std::uint8_t* casino_coins;
-        struct pkmn_time* time_played;
-        std::uint8_t* item_count;
-        struct pkmn_data_struct* team_pokemon_list;
-        std::uint8_t* current_box_list;
-        std::uint8_t* checksum;
-        struct pkmn_box* pc_box[12];
-        std::uint8_t* file_map;
-    };
 }
 }
 
