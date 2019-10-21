@@ -112,9 +112,9 @@ namespace Structs
 	 * @brief Structure that represents the player bag.
 	 */
     struct items_bag {
-        std::uint8_t count;
-        struct item item[20];
-        std::uint8_t terminator;
+        std::uint8_t count; /**< Count of unique items. */
+        struct item item[20]; /**< Item information for each item. */
+        std::uint8_t terminator; /**< Terminator byte. */
     };
 
 	 /**
