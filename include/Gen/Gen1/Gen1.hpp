@@ -243,6 +243,7 @@ struct Gen1: IGlobal {
     auto get_item_pc_count() const -> std::uint8_t;
     auto get_item_pc(std::uint8_t const index) const -> struct Structs::item*;
     auto set_item_pc(struct Structs::item* items, std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void;
+    auto set_item_pc(std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void;
 
     auto get_pokemon_party() const -> struct Structs::pkmn_party*;
     auto get_pokemon_in_party(std::uint8_t index) const -> struct Structs::pkmn_data_party*;

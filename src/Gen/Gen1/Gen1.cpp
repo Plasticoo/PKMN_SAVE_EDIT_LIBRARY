@@ -438,15 +438,16 @@ auto Gen1::get_item_pc(std::uint8_t const index) const -> struct Structs::item*
     return nullptr;
 }
 
-// TODO: This is not doing what it is supposed to do
-auto Gen1::set_item_pc(struct Structs::item* items, std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void
+auto Gen1::set_item_pc(std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void
 {
-    if (index <= C::GEN1::SIZES::PC_ITEM) {
-        items[index].index = item;
-        items[index].count = count;
+	if (index > 0 && index < C::GEN1::SIZES::PC_ITEM) {
+		this->pc_item_list->item[index].index = item;
+		this->pc_item_list->item[index].count = count;
 
-        return;
-    }
+		return;
+	}
+
+	return;
 }
 
 auto Gen1::get_pokemon_party() const -> struct Structs::pkmn_party*
