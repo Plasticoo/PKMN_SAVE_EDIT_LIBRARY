@@ -241,24 +241,104 @@ struct Gen1: IGlobal {
 	 *  @return PC items count value.
 	 */
     auto get_item_pc_count() const -> std::uint8_t;
+
+	/**
+     *  @brief Get PC item information.
+	 *  @param index PC item index.
+	 *  @return PC item information.
+	 */
     auto get_item_pc(std::uint8_t const index) const -> struct Structs::item*;
-    auto set_item_pc(struct Structs::item* items, std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void;
+
+	/**
+     *  @brief Set PC item information.
+	 *  @param index PC index.
+	 *  @param item Item ID.
+	 *  @param count Item amount.
+	 */
     auto set_item_pc(std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void;
 
+	/**
+     *  @brief Get party information.
+	 *  @return Party information.
+	 */
     auto get_pokemon_party() const -> struct Structs::pkmn_party*;
+
+	/**
+     *  @brief Get Pokemon information from the party.
+	 *  @param index Party index.
+	 *  @return Pokemon information.
+	 */
     auto get_pokemon_in_party(std::uint8_t index) const -> struct Structs::pkmn_data_party*;
+
+	/**
+     *  @brief Get Pokemon information from the party.
+	 *  @param index Party index.
+	 *  @return Pokemon information.
+	 */
     auto get_pokemon_in_party_trainer_name(std::uint8_t index) const -> std::string;
+
+	/**
+     *  @brief Get Pokemon name from the party.
+	 *  @param index Party index.
+	 *  @return Pokemon name.
+	 */
     auto get_pokemon_in_party_name(std::uint8_t index) const -> std::string;
 
+	/**
+     *  @brief Get current active PC Box information.
+	 *  @return Current active PC Box information.
+	 */
     auto get_current_pc_box_list() const -> struct Structs::pkmn_box*;
+
+	/**
+     *  @brief Get Pokemon from current active PC Box.
+     *  @param index Pokemon index.
+	 *  @return Pokemon information from current active PC Box.
+	 */
     auto get_pokemon_in_current_box(std::uint8_t index) const -> struct Structs::pkmn_data_box*;
+
+	/**
+     *  @brief Get Pokemon name from current active PC Box.
+	 *  @param index Current active PC Box index.
+	 *  @return Pokemon name.
+	 */
     auto get_pokemon_in_current_box_name(std::uint8_t index) const -> std::string;
 
+	/**
+     *  @brief Get PC Box information.
+	 *  @param box PC Box index.
+	 *  @return PC Box information.
+	 */
     auto get_pokemon_box(std::uint8_t box) const -> struct Structs::pkmn_box*;
+
+	/**
+     *  @brief Get Pokemon information from PC Box.
+	 *  @param box PC Box index.
+	 *  @param index Pokemon index.
+	 *  @return Pokemon information from PC Box.
+	 */
     auto get_pokemon_in_box(std::uint8_t box, std::uint8_t index) const -> struct Structs::pkmn_data_box*;
+
+	/**
+     *  @brief Get Pokemon trainer name from PC Box.
+	 *  @param box PC Box index.
+	 *  @param index Pokemon index.
+	 *  @return Pokemon trainer name.
+	 */
     auto get_pokemon_in_box_trainer_name(std::uint8_t box, std::uint8_t index) const -> std::string;
+
+	/**
+     *  @brief Get Pokemon name from PC Box.
+	 *  @param index PC Box index.
+	 *  @return Pokemon name.
+	 */
     auto get_pokemon_in_box_name(std::uint8_t box, std::uint8_t index) const -> std::string;
 
+	/**
+     *  @brief Convert ASCII char to equivalent ROM byte.
+	 *  @param c ASCII character.
+	 *  @return Converted byte.
+	 */
     auto get_character_code(std::uint8_t const c) const -> std::uint8_t;
 
   private:
