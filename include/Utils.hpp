@@ -1,9 +1,6 @@
 #ifndef _PKMN_UTILS_HPP_
 #define _PKMN_UTILS_HPP_
 
-#include "Rom/Rom32kb.hpp"
-#include "Rom/Rom64kb.hpp"
-
 #include <cinttypes>
 #include <climits>
 #include <cstring>
