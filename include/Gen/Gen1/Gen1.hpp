@@ -19,9 +19,9 @@ template<typename T>
 struct Gen1: IGlobal {
     static_assert(std::is_same<Rom<Rom32kb>, T>::value, "This class only accepts 32kb files.");
 
-    Gen1()
+    Gen1(std::filesystem::path const& file)
     {
-        this->m_rom = std::make_unique<T>();
+        this->m_rom = std::make_unique<T>(file);
         this->load_file();
     }
 
