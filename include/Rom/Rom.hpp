@@ -24,7 +24,7 @@ struct Rom : RomInterface {
 
     auto load(std::filesystem::path const& file) -> void override
     {
-        std::ifstream ifs(file, std::ios::binary | std::ios::ate);
+        std::ifstream ifs(file, std::ios::binary | std::ios::in);
         if (!ifs) {
             return;
         }
@@ -47,6 +47,7 @@ struct Rom : RomInterface {
 template<>
 struct Rom<Rom32kb> : RomInterface
 {
+	bool a = true;
 	std::array<std::uint8_t, 0x8000> data;
 
 	Rom(std::filesystem::path const& file) {
@@ -55,7 +56,7 @@ struct Rom<Rom32kb> : RomInterface
 
     auto load(std::filesystem::path const& file) -> void override
     {
-        std::ifstream ifs(file, std::ios::binary | std::ios::ate);
+        std::ifstream ifs(file, std::ios::binary | std::ios::in);
         if (!ifs) {
             return;
         }
@@ -86,7 +87,7 @@ struct Rom<Rom64kb> : RomInterface
 
     auto load(std::filesystem::path const& file) -> void override
     {
-        std::ifstream ifs(file, std::ios::binary | std::ios::ate);
+        std::ifstream ifs(file, std::ios::binary | std::ios::in);
         if (!ifs) {
             return;
         }

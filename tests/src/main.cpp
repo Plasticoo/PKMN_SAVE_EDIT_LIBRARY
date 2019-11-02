@@ -1,6 +1,7 @@
 #define CATCH_CONFIG_MAIN
 
 #include "Gen1/Gen1.hpp"
+#include "Rom.hpp"
 #include "RomInterface.hpp"
 #include "catch2/catch.hpp"
 
@@ -9,14 +10,21 @@
 
 TEST_CASE("Generation 1 class gets correct information")
 {
-    auto _rom = std::make_unique<Rom32kb>("../../saves/yellow.sav");
+    // auto _rom = std::make_unique<Rom32kb>("../../saves/yellow.sav");
 
-    SECTION("File is loaded correctly and has correct size")
+    // SECTION("File is loaded correctly and has correct size")
+    // {
+    //     REQUIRE(_rom->get_size() == 0x8000);
+    // }
+
+    // auto gen1 = new Gen1::Gen1(std::move(_rom));
+
+	auto gen1 = new Gen1::Gen1<Rom32kb>("../../saves/yellow.sav");
+
+	SECTION("File is loaded correctly and has correct size")
     {
-        REQUIRE(_rom->get_size() == 0x8000);
+        REQUIRE(gen1->get_rom_size() == 0x8000);
     }
-
-    auto gen1 = new Gen1::Gen1(std::move(_rom));
 
     SECTION("Player name is ASH")
     {

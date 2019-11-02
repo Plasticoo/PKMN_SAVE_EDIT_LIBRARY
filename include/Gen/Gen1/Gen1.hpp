@@ -17,11 +17,11 @@ namespace Gen1
 {
 template<typename T>
 struct Gen1: IGlobal {
-    static_assert(std::is_same<Rom<Rom32kb>, T>::value, "This class only accepts 32kb files.");
+    static_assert(std::is_same<Rom32kb, T>::value, "This class only accepts 32kb files.");
 
     Gen1(std::filesystem::path const& file)
     {
-        this->m_rom = std::make_unique<T>(file);
+        this->m_rom = std::make_unique<Rom<T>>(file);
         this->load_file();
     }
 
@@ -86,6 +86,11 @@ struct Gen1: IGlobal {
         this->pc_box[10] = (struct Structs::pkmn_box*)&this->m_rom->data[0x6000 + (1122 * 4)];
         this->pc_box[11] = (struct Structs::pkmn_box*)&this->m_rom->data[0x6000 + (1122 * 5)];
     }
+
+	auto get_rom_size() const -> std::uint32_t
+	{
+		return this->m_rom->get_size();
+	}
 
     auto save_changes(std::filesystem::path const& file_name) const -> bool
     {
@@ -635,7 +640,7 @@ struct Gen1: IGlobal {
     }
 
   private:
-    std::unique_ptr<T> m_rom;
+    std::unique_ptr<Rom<T>> m_rom;
 
     std::uint8_t* player_name;
     std::uint8_t* pokedex_owned;
