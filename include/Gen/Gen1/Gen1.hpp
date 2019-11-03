@@ -10,19 +10,95 @@
 #include "Utils.hpp"
 
 #include <fstream>
+#include <functional>
+#include <map>
 #include <memory>
 
-//template<class Derived>
 namespace Gen1
 {
-template<typename T>
-struct Gen1: IGlobal {
-    //static_assert(std::is_same<Rom32kb, T>::value, "This class only accepts 32kb files.");
+auto get_rom_type(std::uint32_t file_size) -> std::string
+{
+    if (file_size == 0x8000) {
+        return "Rom32kb";
+    } else {
+        return "Rom64kb";
+    }
+}
 
-    Gen1(std::filesystem::path const& file)
+template<template<typename> class>
+struct base_of;
+
+template<template<typename> class C>
+using base_of_t = typename base_of<C>::type;
+
+template<template<typename> class C>
+std::unique_ptr<base_of_t<C>> make_templated(const std::string& type_str)
+{
+    RomType type = get_string_romtype(type_str);
+    const std::map<RomType, std::function<std::unique_ptr<base_of_t<C>>()>> factory{
+        { RomType::Rom32kb, [] { return std::make_unique<C<Rom32kb>>(); } },
+        { RomType::Rom64kb, [] { return std::make_unique<C<Rom64kb>>(); } },
+        { RomType::Unknown, [] { return nullptr; } }
+    };
+    return factory.at(type)();
+}
+
+struct IGen1 {
+    virtual auto get_checksum() const -> std::uint8_t = 0;
+    virtual auto calc_checksum() const -> std::uint8_t = 0;
+    virtual auto set_checksum() -> void = 0;
+    virtual auto get_rom_size() const -> std::uint32_t = 0;
+    virtual auto load_file(std::filesystem::path const& file) -> void = 0;
+    virtual auto save_changes(std::filesystem::path const& file_name) const -> bool = 0;
+    virtual auto get_player_name() const -> std::string = 0;
+    virtual auto set_player_name(std::string const& name) -> void = 0;
+    virtual auto get_rival_name() const -> std::string = 0;
+    virtual auto set_rival_name(std::string const& name) -> void = 0;
+    virtual auto get_pokedex_owned_total() const -> std::uint8_t = 0;
+    virtual auto get_pokedex_owned(std::uint8_t const index) const -> bool = 0;
+    virtual auto set_pokedex_owned(std::uint8_t const index, bool const owned) -> void = 0;
+    virtual auto get_pokedex_seen_total() const -> std::uint8_t = 0;
+    virtual auto get_pokedex_seen(std::uint8_t const index) const -> bool = 0;
+    virtual auto set_pokedex_seen(std::uint8_t const index, bool const seen) -> void = 0;
+    virtual auto get_money() const -> std::uint32_t = 0;
+    virtual auto set_money(std::uint32_t const value) -> void = 0;
+    virtual auto get_casino_coins() const -> std::uint16_t = 0;
+    virtual auto set_casino_coins(std::uint16_t const value) -> void = 0;
+    virtual auto get_time_played(struct Structs::pkmn_time* dest) const -> void = 0;
+    virtual auto set_time_played(std::uint8_t const hours, std::uint8_t const minutes, std::uint8_t const seconds, std::uint8_t const frames) -> void = 0;
+    virtual auto get_current_pc_box() const -> std::uint8_t = 0;
+    virtual auto set_current_pc_box(std::uint8_t const index) -> void = 0;
+    virtual auto get_badge(enum Enums::badges const badge) const -> bool = 0;
+    virtual auto set_badge(enum Enums::badges const badge) -> void = 0;
+    virtual auto get_option(enum Enums::options const flag) const -> std::uint8_t = 0;
+    virtual auto set_option(enum Enums::options const flag) -> void = 0;
+    virtual auto get_pikachu_friendship() const -> std::uint8_t = 0;
+    virtual auto set_pikachu_friendship(std::uint8_t const value) -> void = 0;
+    virtual auto get_item_bag_count() const -> std::uint8_t = 0;
+    virtual auto get_item_bag(std::uint8_t const index) const -> struct Structs::item* = 0;
+    virtual auto set_item_bag(struct Structs::item* items, std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void = 0;
+    virtual auto get_item_pc_count() const -> std::uint8_t = 0;
+    virtual auto get_item_pc(std::uint8_t const index) const -> struct Structs::item* = 0;
+    virtual auto set_item_pc(struct Structs::item* items, std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void = 0;
+    virtual auto get_pokemon_party() const -> struct Structs::pkmn_party* = 0;
+    virtual auto get_pokemon_in_party(std::uint8_t index) const -> struct Structs::pkmn_data_party* = 0;
+    virtual auto get_pokemon_in_party_trainer_name(std::uint8_t index) const -> std::string = 0;
+    virtual auto get_pokemon_in_party_name(std::uint8_t index) const -> std::string = 0;
+    virtual auto get_current_pc_box_list() const -> struct Structs::pkmn_box* = 0;
+    virtual auto get_pokemon_in_current_box(std::uint8_t index) const -> struct Structs::pkmn_data_box* = 0;
+    virtual auto get_pokemon_in_current_box_name(std::uint8_t index) const -> std::string = 0;
+    virtual auto get_pokemon_box(std::uint8_t box) const -> struct Structs::pkmn_box* = 0;
+    virtual auto get_pokemon_in_box(std::uint8_t box, std::uint8_t index) const -> struct Structs::pkmn_data_box* = 0;
+    virtual auto get_pokemon_in_box_trainer_name(std::uint8_t box, std::uint8_t index) const -> std::string = 0;
+    virtual auto get_pokemon_in_box_name(std::uint8_t box, std::uint8_t index) const -> std::string = 0;
+    virtual auto get_character_code(std::uint8_t const c) const -> std::uint8_t = 0;
+};
+
+template<typename T>
+struct Gen1: IGen1 {
+    Gen1()
     {
         this->m_rom = std::make_unique<T>();
-        this->load_file();
     }
 
     auto get_checksum() const -> std::uint8_t override
@@ -40,18 +116,25 @@ struct Gen1: IGlobal {
         return ~checksum;
     }
 
-    auto set_checksum() -> void
+    auto set_checksum() -> void override
     {
         auto checksum = this->calc_checksum();
         // NOTE: *(this->checksum) = checksum
         this->checksum[0] = checksum;
     }
 
-    auto load_file() -> void
+    auto get_rom_size() const -> std::uint32_t override
+    {
+        return this->m_rom->get_size();
+    }
+
+    auto load_file(std::filesystem::path const& file) -> void override
     {
         if (this->m_rom == nullptr) {
             return;
         }
+
+        this->m_rom->load(file);
 
         this->player_name = &this->m_rom->data[C::GEN1::OFFSETS::PLAYER_NAME];
         this->pokedex_owned = &this->m_rom->data[C::GEN1::OFFSETS::POKEDEX_OWNED];
@@ -87,12 +170,7 @@ struct Gen1: IGlobal {
         this->pc_box[11] = (struct Structs::pkmn_box*)&this->m_rom->data[0x6000 + (1122 * 5)];
     }
 
-	auto get_rom_size() const -> std::uint32_t
-	{
-		return this->m_rom->get_size();
-	}
-
-    auto save_changes(std::filesystem::path const& file_name) const -> bool
+    auto save_changes(std::filesystem::path const& file_name) const -> bool override
     {
         std::ofstream out;
 
@@ -113,7 +191,7 @@ struct Gen1: IGlobal {
         return true;
     }
 
-    auto get_player_name() const -> std::string
+    auto get_player_name() const -> std::string override
     {
         if (this->player_name == nullptr) {
             return nullptr;
@@ -130,7 +208,7 @@ struct Gen1: IGlobal {
 
         return name;
     }
-    auto set_player_name(std::string const& name) -> void
+    auto set_player_name(std::string const& name) -> void override
     {
         std::size_t size = name.size();
 
@@ -153,7 +231,7 @@ struct Gen1: IGlobal {
         }
     }
 
-    auto get_rival_name() const -> std::string
+    auto get_rival_name() const -> std::string override
     {
         if (this->rival_name == nullptr) {
             return nullptr;
@@ -170,7 +248,7 @@ struct Gen1: IGlobal {
 
         return name;
     }
-    auto set_rival_name(std::string const& name) -> void
+    auto set_rival_name(std::string const& name) -> void override
     {
         std::size_t size = name.size();
 
@@ -193,7 +271,7 @@ struct Gen1: IGlobal {
         }
     }
 
-    auto get_pokedex_owned_total() const -> std::uint8_t
+    auto get_pokedex_owned_total() const -> std::uint8_t override
     {
         std::uint8_t total = 0;
 
@@ -205,7 +283,7 @@ struct Gen1: IGlobal {
 
         return total;
     }
-    auto get_pokedex_owned(std::uint8_t const index) const -> bool
+    auto get_pokedex_owned(std::uint8_t const index) const -> bool override
     {
         if (this->pokedex_owned && index < 152) {
             return (this->pokedex_owned[index >> 3] >> (index & 7) & 1) == 1;
@@ -213,7 +291,7 @@ struct Gen1: IGlobal {
 
         return false;
     }
-    auto set_pokedex_owned(std::uint8_t const index, bool const owned) -> void
+    auto set_pokedex_owned(std::uint8_t const index, bool const owned) -> void override
     {
         if (owned) {
             this->pokedex_owned[index >> 3] |= 1 << (index & 7);
@@ -222,7 +300,7 @@ struct Gen1: IGlobal {
         }
     }
 
-    auto get_pokedex_seen_total() const -> std::uint8_t
+    auto get_pokedex_seen_total() const -> std::uint8_t override
     {
         std::uint8_t total = 0;
 
@@ -234,7 +312,7 @@ struct Gen1: IGlobal {
 
         return total;
     }
-    auto get_pokedex_seen(std::uint8_t const index) const -> bool
+    auto get_pokedex_seen(std::uint8_t const index) const -> bool override
     {
         if (this->pokedex_seen && index < 152) {
             return (this->pokedex_seen[index >> 3] >> (index & 7) & 1) == 1;
@@ -242,7 +320,7 @@ struct Gen1: IGlobal {
 
         return false;
     }
-    auto set_pokedex_seen(std::uint8_t const index, bool const seen) -> void
+    auto set_pokedex_seen(std::uint8_t const index, bool const seen) -> void override
     {
         if (seen) {
             this->pokedex_seen[index >> 3] |= 1 << (index & 7);
@@ -251,7 +329,7 @@ struct Gen1: IGlobal {
         }
     }
 
-    auto get_money() const -> std::uint32_t
+    auto get_money() const -> std::uint32_t override
     {
         if (!this->money) {
             return 0x7FFFFFFF;
@@ -266,7 +344,7 @@ struct Gen1: IGlobal {
         return Utils::__bcd_to_dec(this->money, C::GEN1::SIZES::MONEY);
     }
 
-    auto set_money(std::uint32_t const value) -> void
+    auto set_money(std::uint32_t const value) -> void override
     {
         if (!this->money) {
             return;
@@ -280,7 +358,7 @@ struct Gen1: IGlobal {
         std::memcpy(this->money, buffer.data(), C::GEN1::SIZES::MONEY);
     }
 
-    auto get_casino_coins() const -> std::uint16_t
+    auto get_casino_coins() const -> std::uint16_t override
     {
         if (!this->casino_coins) {
             return 0;
@@ -293,7 +371,7 @@ struct Gen1: IGlobal {
         return Utils::__bcd_to_dec(this->casino_coins, C::GEN1::SIZES::CASINO_COINS);
     }
 
-    auto set_casino_coins(std::uint16_t const value) -> void
+    auto set_casino_coins(std::uint16_t const value) -> void override
     {
         if (!this->casino_coins) {
             return;
@@ -313,7 +391,7 @@ struct Gen1: IGlobal {
         std::memcpy(this->casino_coins, buffer.data(), C::GEN1::SIZES::CASINO_COINS);
     }
 
-    auto get_time_played(struct Structs::pkmn_time* dest) const -> void
+    auto get_time_played(struct Structs::pkmn_time* dest) const -> void override
     {
         if (this->time_played && dest) {
             dest->hours = this->time_played->hours;
@@ -326,7 +404,7 @@ struct Gen1: IGlobal {
         }
     }
 
-    auto set_time_played(std::uint8_t const hours, std::uint8_t const minutes, std::uint8_t const seconds, std::uint8_t const frames) -> void
+    auto set_time_played(std::uint8_t const hours, std::uint8_t const minutes, std::uint8_t const seconds, std::uint8_t const frames) -> void override
     {
         if (hours <= 255 &&
             minutes <= 59 &&
@@ -345,7 +423,7 @@ struct Gen1: IGlobal {
         }
     }
 
-    auto get_current_pc_box() const -> std::uint8_t
+    auto get_current_pc_box() const -> std::uint8_t override
     {
         if (this->current_pc_box) {
             return (current_pc_box[0] & 0b01111111) + 1;
@@ -355,7 +433,7 @@ struct Gen1: IGlobal {
     }
 
     // TODO: set 8th bit if needed
-    auto set_current_pc_box(std::uint8_t const index) -> void
+    auto set_current_pc_box(std::uint8_t const index) -> void override
     {
         std::uint8_t idx;
 
@@ -370,7 +448,7 @@ struct Gen1: IGlobal {
         }
     }
 
-    auto get_badge(enum Enums::badges const badge) const -> bool
+    auto get_badge(enum Enums::badges const badge) const -> bool override
     {
         if (this->badges) {
             return ((this->badges[0] & (1 << badge)) >> badge) == 1 ? true : false;
@@ -379,14 +457,14 @@ struct Gen1: IGlobal {
         return false;
     }
 
-    auto set_badge(enum Enums::badges const badge) -> void
+    auto set_badge(enum Enums::badges const badge) -> void override
     {
         if (this->badges) {
             this->badges[0] ^= (1 << badge);
         }
     }
 
-    auto get_option(enum Enums::options const flag) const -> std::uint8_t
+    auto get_option(enum Enums::options const flag) const -> std::uint8_t override
     {
         if (!this->options) {
             return 0;
@@ -395,7 +473,7 @@ struct Gen1: IGlobal {
         return options[0] & C::GEN1::OPTIONS::LOOKUP_TABLE[flag];
     }
 
-    auto set_option(enum Enums::options const flag) -> void
+    auto set_option(enum Enums::options const flag) -> void override
     {
         if (!this->options) {
             return;
@@ -404,7 +482,7 @@ struct Gen1: IGlobal {
         Utils::set_clear_bits(&this->options[0], C::GEN1::OPTIONS::LOOKUP_TABLE[flag]);
     }
 
-    auto get_pikachu_friendship() const -> std::uint8_t
+    auto get_pikachu_friendship() const -> std::uint8_t override
     {
         if (this->pikachu_friendship) {
             return this->pikachu_friendship[0];
@@ -413,7 +491,7 @@ struct Gen1: IGlobal {
         return 0;
     }
 
-    auto set_pikachu_friendship(std::uint8_t const value) -> void
+    auto set_pikachu_friendship(std::uint8_t const value) -> void override
     {
         if (this->pikachu_friendship) {
             this->pikachu_friendship[0] = value;
@@ -421,12 +499,12 @@ struct Gen1: IGlobal {
         }
     }
 
-    auto get_item_bag_count() const -> std::uint8_t
+    auto get_item_bag_count() const -> std::uint8_t override
     {
         return this->pocket_item_list->count;
     }
 
-    auto get_item_bag(std::uint8_t const index) const -> struct Structs::item*
+    auto get_item_bag(std::uint8_t const index) const -> struct Structs::item* override
     {
         if (index <= C::GEN1::SIZES::BAG_ITEM) {
             return &this->pocket_item_list->item[index];
@@ -436,7 +514,7 @@ struct Gen1: IGlobal {
     }
 
     // TODO: This is not doing what it is supposed to do
-    auto set_item_bag(struct Structs::item* items, std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void
+    auto set_item_bag(struct Structs::item* items, std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void override
     {
         if (index <= C::GEN1::SIZES::BAG_ITEM) {
             items[index].index = item;
@@ -446,12 +524,12 @@ struct Gen1: IGlobal {
         }
     }
 
-    auto get_item_pc_count() const -> std::uint8_t
+    auto get_item_pc_count() const -> std::uint8_t override
     {
         return this->pc_item_list->count;
     }
 
-    auto get_item_pc(std::uint8_t const index) const -> struct Structs::item*
+    auto get_item_pc(std::uint8_t const index) const -> struct Structs::item* override
     {
         if (index <= C::GEN1::SIZES::PC_ITEM) {
             return &this->pc_item_list->item[index];
@@ -461,7 +539,7 @@ struct Gen1: IGlobal {
     }
 
     // TODO: This is not doing what it is supposed to do
-    auto set_item_pc(struct Structs::item* items, std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void
+    auto set_item_pc(struct Structs::item* items, std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void override
     {
         if (index <= C::GEN1::SIZES::PC_ITEM) {
             items[index].index = item;
@@ -471,7 +549,7 @@ struct Gen1: IGlobal {
         }
     }
 
-    auto get_pokemon_party() const -> struct Structs::pkmn_party*
+    auto get_pokemon_party() const -> struct Structs::pkmn_party* override
     {
         if (this->team_pokemon_list) {
             return this->team_pokemon_list;
@@ -480,7 +558,7 @@ struct Gen1: IGlobal {
         return nullptr;
     }
 
-    auto get_pokemon_in_party(std::uint8_t index) const -> struct Structs::pkmn_data_party*
+    auto get_pokemon_in_party(std::uint8_t index) const -> struct Structs::pkmn_data_party* override
     {
         if (this->team_pokemon_list) {
             return &this->team_pokemon_list->pokemon[index];
@@ -489,7 +567,7 @@ struct Gen1: IGlobal {
         return nullptr;
     }
 
-    auto get_pokemon_in_party_trainer_name(std::uint8_t index) const -> std::string
+    auto get_pokemon_in_party_trainer_name(std::uint8_t index) const -> std::string override
     {
         auto _name = this->team_pokemon_list->original_trainer_name[index];
 
@@ -509,7 +587,7 @@ struct Gen1: IGlobal {
         return name;
     }
 
-    auto get_pokemon_in_party_name(std::uint8_t index) const -> std::string
+    auto get_pokemon_in_party_name(std::uint8_t index) const -> std::string override
     {
         auto _name = this->team_pokemon_list->pokemon_name[index];
 
@@ -529,7 +607,7 @@ struct Gen1: IGlobal {
         return name;
     }
 
-    auto get_current_pc_box_list() const -> struct Structs::pkmn_box*
+    auto get_current_pc_box_list() const -> struct Structs::pkmn_box* override
     {
         if (this->current_box_list) {
             return this->current_box_list;
@@ -538,7 +616,7 @@ struct Gen1: IGlobal {
         return nullptr;
     }
 
-    auto get_pokemon_in_current_box(std::uint8_t index) const -> struct Structs::pkmn_data_box*
+    auto get_pokemon_in_current_box(std::uint8_t index) const -> struct Structs::pkmn_data_box* override
     {
         if (this->current_box_list) {
             return &this->current_box_list->pokemon[index];
@@ -547,7 +625,7 @@ struct Gen1: IGlobal {
         return nullptr;
     }
 
-    auto get_pokemon_in_current_box_name(std::uint8_t index) const -> std::string
+    auto get_pokemon_in_current_box_name(std::uint8_t index) const -> std::string override
     {
         auto _name = this->current_box_list->pokemon_name[index];
 
@@ -567,7 +645,7 @@ struct Gen1: IGlobal {
         return name;
     }
 
-    auto get_pokemon_box(std::uint8_t box) const -> struct Structs::pkmn_box*
+    auto get_pokemon_box(std::uint8_t box) const -> struct Structs::pkmn_box* override
     {
         if (this->pc_box[box]) {
             return this->pc_box[box];
@@ -576,7 +654,7 @@ struct Gen1: IGlobal {
         return nullptr;
     }
 
-    auto get_pokemon_in_box(std::uint8_t box, std::uint8_t index) const -> struct Structs::pkmn_data_box*
+    auto get_pokemon_in_box(std::uint8_t box, std::uint8_t index) const -> struct Structs::pkmn_data_box* override
     {
         if (this->pc_box[box] != nullptr) {
             return &this->pc_box[box]->pokemon[index];
@@ -585,7 +663,7 @@ struct Gen1: IGlobal {
         return nullptr;
     }
 
-    auto get_pokemon_in_box_trainer_name(std::uint8_t box, std::uint8_t index) const -> std::string
+    auto get_pokemon_in_box_trainer_name(std::uint8_t box, std::uint8_t index) const -> std::string override
     {
         auto _name = this->pc_box[box]->original_trainer_name[index];
 
@@ -605,7 +683,7 @@ struct Gen1: IGlobal {
         return name;
     }
 
-    auto get_pokemon_in_box_name(std::uint8_t box, std::uint8_t index) const -> std::string
+    auto get_pokemon_in_box_name(std::uint8_t box, std::uint8_t index) const -> std::string override
     {
         auto _name = this->pc_box[box]->pokemon_name[index];
 
@@ -625,7 +703,7 @@ struct Gen1: IGlobal {
         return name;
     }
 
-    auto get_character_code(std::uint8_t const c) const -> std::uint8_t
+    auto get_character_code(std::uint8_t const c) const -> std::uint8_t override
     {
         int i;
 
@@ -664,6 +742,10 @@ struct Gen1: IGlobal {
     struct Structs::pkmn_box* current_box_list;
     struct Structs::pkmn_box* pc_box[12];
 };
-}
 
+template<>
+struct base_of<Gen1> {
+    using type = IGen1;
+};
+}
 #endif
