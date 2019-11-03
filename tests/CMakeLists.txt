@@ -18,8 +18,6 @@ endif()
 include_directories(../include ../include/Gen ../include/Rom ../lib)
 
 file(GLOB sources "../src/*.cpp")
-file(GLOB gen1_sources "../src/Gen/Gen1/*.cpp")
-file(GLOB rom_sources "../src/Rom/*.cpp")
 file(GLOB test_sources "src/*.cpp")
 
 add_executable(pkmnsav_tests ${gen1_sources} ${rom_sources} ${sources} ${test_sources})

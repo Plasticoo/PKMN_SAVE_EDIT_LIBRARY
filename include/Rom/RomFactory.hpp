@@ -2,8 +2,6 @@
 #define _PKMN_ROMFACTORY_HPP_
 
 #include "Rom.hpp"
-#include "Rom32kb.hpp"
-#include "Rom64kb.hpp"
 #include "RomInterface.hpp"
 
 struct RomFactory {
