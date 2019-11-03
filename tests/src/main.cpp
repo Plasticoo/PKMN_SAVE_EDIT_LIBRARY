@@ -8,6 +8,22 @@
 #include <cstdio>
 #include <iostream>
 
+// int main()
+// {
+//     make_templated<raw_attribute_vector>("Rom32kb")->print();
+//     make_templated<raw_attribute_vector>("Rom64kb")->print();
+//     auto p = make_templated<raw_attribute_vector>("invalid");
+//     if (!p) { std::cout << "nullptr\n"; }
+// }
+
+std::string test__(int size) {
+	if (size == 0x8000) {
+		return "Rom32kb";
+	} else {
+		return "Rom64kb";
+	}
+}
+
 TEST_CASE("Generation 1 class gets correct information")
 {
     // auto _rom = std::make_unique<Rom32kb>("../../saves/yellow.sav");
@@ -19,7 +35,15 @@ TEST_CASE("Generation 1 class gets correct information")
 
     // auto gen1 = new Gen1::Gen1(std::move(_rom));
 
-	auto gen1 = new Gen1::Gen1<Rom32kb>("../../saves/yellow.sav");
+	// auto rom = make_templated<raw_attribute_vector>("Rom32kb");
+    // auto gen1 = new Gen1::Gen1<Rom32kb>("../../saves/yellow.sav");
+	auto file_ = std::filesystem::path("../../saves/yellow.sav");
+	auto file_size_ = std::filesystem::file_size(file_);
+	std::string a = test__(file_size_);
+	auto gen1 = make_templated<raw_attribute_vector>(a);
+	gen1->load_file_rom("../../saves/yellow.sav");
+	gen1->load_file();
+	//gen1->load_file("../../saves/yellow.sav");
 
 	SECTION("File is loaded correctly and has correct size")
     {
