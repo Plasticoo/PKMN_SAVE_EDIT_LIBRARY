@@ -4,7 +4,6 @@
 #include "Constants.hpp"
 #include "Gen/Gen1/Enums.hpp"
 #include "Gen/Gen1/Structs.hpp"
-#include "IGlobal.hpp"
 #include "Rom.hpp"
 #include "Rom/RomInterface.hpp"
 #include "Utils.hpp"
