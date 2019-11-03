@@ -138,7 +138,7 @@ struct Gen1: IGen1 {
         this->checksum[0] = checksum;
     }
 
-	/**
+    /**
 	 *  @brief Get total size of the rom file.
 	 *  @return Rom size;
 	 */
@@ -221,7 +221,7 @@ struct Gen1: IGen1 {
         return true;
     }
 
-	/**
+    /**
 	 *  @brief Get player name.
 	 *  @return Name of the player.
 	 */
@@ -243,7 +243,7 @@ struct Gen1: IGen1 {
         return name;
     }
 
-	/**
+    /**
 	 *  @brief Set player name.
 	 *  @param name New player name.
 	 */
@@ -270,7 +270,7 @@ struct Gen1: IGen1 {
         }
     }
 
-	/**
+    /**
 	 *  @brief Get rival name.
 	 *  @return Name of the rival.
 	 */
@@ -292,7 +292,7 @@ struct Gen1: IGen1 {
         return name;
     }
 
-	/**
+    /**
 	 *  @brief Set rival name.
 	 *  @param name New rival name.
 	 */
@@ -319,7 +319,7 @@ struct Gen1: IGen1 {
         }
     }
 
-	/**
+    /**
 	 *  @brief Get total of owned Pokemons.
 	 *  @return Value of owned Pokemons.
 	 */
@@ -336,7 +336,7 @@ struct Gen1: IGen1 {
         return total;
     }
 
-	/**
+    /**
 	 *  @brief Get information from the Pokedex if Pokemon is owned.
 	 *  @param index Pokedex index.
 	 *  @return True if Pokemon owned.
@@ -350,7 +350,7 @@ struct Gen1: IGen1 {
         return false;
     }
 
-	/**
+    /**
 	 *  @brief Set own status of Pokemons in Pokedex.
 	 *  @param index Pokedex index.
 	 *  @param owned Own status.
@@ -364,7 +364,7 @@ struct Gen1: IGen1 {
         }
     }
 
-	/**
+    /**
 	 *  @brief Get total of seen Pokemons.
 	 *  @return Value of seen Pokemons.
 	 */
@@ -381,7 +381,7 @@ struct Gen1: IGen1 {
         return total;
     }
 
-	/**
+    /**
      *  @brief Get information from the Pokedex if Pokemon is seen.
 	 *  @param index Pokedex index.
 	 *  @return True if Pokemon seen.
@@ -395,7 +395,7 @@ struct Gen1: IGen1 {
         return false;
     }
 
-	/**
+    /**
 	 *  @brief Set seen status of Pokemons in Pokedex.
 	 *  @param index Pokedex index.
 	 *  @param seen Seen status.
@@ -409,7 +409,7 @@ struct Gen1: IGen1 {
         }
     }
 
-	/**
+    /**
      *  @brief Get player money.
 	 *  @return Player money value.
 	 */
@@ -428,7 +428,7 @@ struct Gen1: IGen1 {
         return Utils::__bcd_to_dec(this->money, C::GEN1::SIZES::MONEY);
     }
 
-	/**
+    /**
      *  @brief Sets player money.
 	 *  @param value New money value.
 	 */
@@ -446,7 +446,7 @@ struct Gen1: IGen1 {
         std::memcpy(this->money, buffer.data(), C::GEN1::SIZES::MONEY);
     }
 
-	/**
+    /**
      *  @brief Get player casino coins.
 	 *  @return Player casino coins value.
 	 */
@@ -463,7 +463,7 @@ struct Gen1: IGen1 {
         return Utils::__bcd_to_dec(this->casino_coins, C::GEN1::SIZES::CASINO_COINS);
     }
 
-	/**
+    /**
      *  @brief Sets player casino coins.
 	 *  @param value New casino coins value.
 	 */
@@ -487,7 +487,7 @@ struct Gen1: IGen1 {
         std::memcpy(this->casino_coins, buffer.data(), C::GEN1::SIZES::CASINO_COINS);
     }
 
-	/**
+    /**
      *  @brief Get time played.
 	 *  @param dest Variable to hold result.
 	 */
@@ -504,7 +504,7 @@ struct Gen1: IGen1 {
         }
     }
 
-	/**
+    /**
      *  @brief Set time played.
 	 *  @param hours Hours value.
 	 *  @param minutes Minutes value.
@@ -530,7 +530,7 @@ struct Gen1: IGen1 {
         }
     }
 
-	/**
+    /**
      *  @brief Get current active PC Box.
 	 *  @return Current active PC Box index.
 	 */
@@ -544,7 +544,7 @@ struct Gen1: IGen1 {
     }
 
     // TODO: set 8th bit if needed
-	/**
+    /**
      *  @brief Set current active PC Box.
 	 *  @param index PC Box index.
 	 */
@@ -563,7 +563,7 @@ struct Gen1: IGen1 {
         }
     }
 
-	/**
+    /**
      *  @brief Get Gym badge status.
 	 *  @param badge Gym badge to check up against.
 	 *  @return True if Gym has been completed.
@@ -577,7 +577,7 @@ struct Gen1: IGen1 {
         return false;
     }
 
-	/**
+    /**
      *  @brief Set Gym badge status.
 	 *  @param badge Gym badge to change.
 	 */
@@ -588,7 +588,7 @@ struct Gen1: IGen1 {
         }
     }
 
-	/**
+    /**
      *  @brief Get options flags.
 	 *  @param flag Option to get.
 	 *  @return Chosen option value.
@@ -602,7 +602,7 @@ struct Gen1: IGen1 {
         return options[0] & C::GEN1::OPTIONS::LOOKUP_TABLE[flag];
     }
 
-	/**
+    /**
      *  @brief Set options flags.
 	 *  @param flag Option to change.
 	 */
@@ -615,7 +615,7 @@ struct Gen1: IGen1 {
         Utils::set_clear_bits(&this->options[0], C::GEN1::OPTIONS::LOOKUP_TABLE[flag]);
     }
 
-	/**
+    /**
      *  @brief Get Pikachu friendship value.
 	 *  @return Pikachu friendship value.
 	 */
@@ -628,7 +628,7 @@ struct Gen1: IGen1 {
         return 0;
     }
 
-	/**
+    /**
      *  @brief Set Pikachu friendship value.
 	 *  @param value New value.
 	 */
@@ -640,7 +640,7 @@ struct Gen1: IGen1 {
         }
     }
 
-	/**
+    /**
      *  @brief Get total amount of items in players bag.
 	 *  @return Count of items in bag.
 	 */
@@ -649,7 +649,7 @@ struct Gen1: IGen1 {
         return this->pocket_item_list->count;
     }
 
-	/**
+    /**
      *  @brief Get information from item in players bag.
 	 *  @param index Index of the item.
 	 *  @return Selected item information
@@ -673,16 +673,16 @@ struct Gen1: IGen1 {
     auto set_item_bag(struct Structs::item* items, std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void override
     {
         if (index > 0 && index <= C::GEN1::SIZES::BAG_ITEM) {
-			this->pocket_item_list->item[index].index = item;
-			this->pocket_item_list->item[index].count = count;
+            this->pocket_item_list->item[index].index = item;
+            this->pocket_item_list->item[index].count = count;
 
             return;
         }
 
-		return;
+        return;
     }
 
-	/**
+    /**
      *  @brief Get PC items count.
 	 *  @return PC items count value.
 	 */
@@ -691,7 +691,7 @@ struct Gen1: IGen1 {
         return this->pc_item_list->count;
     }
 
-	/**
+    /**
      *  @brief Get PC item information.
 	 *  @param index PC item index.
 	 *  @return PC item information.
@@ -723,7 +723,7 @@ struct Gen1: IGen1 {
         return;
     }
 
-	/**
+    /**
      *  @brief Get party information.
 	 *  @return Party information.
 	 */
@@ -736,7 +736,7 @@ struct Gen1: IGen1 {
         return nullptr;
     }
 
-	/**
+    /**
      *  @brief Get Pokemon information from the party.
 	 *  @param index Party index.
 	 *  @return Pokemon information.
@@ -750,7 +750,7 @@ struct Gen1: IGen1 {
         return nullptr;
     }
 
-	/**
+    /**
      *  @brief Get Pokemon information from the party.
 	 *  @param index Party index.
 	 *  @return Pokemon information.
@@ -775,7 +775,7 @@ struct Gen1: IGen1 {
         return name;
     }
 
-	/**
+    /**
      *  @brief Get Pokemon name from the party.
 	 *  @param index Party index.
 	 *  @return Pokemon name.
@@ -800,7 +800,7 @@ struct Gen1: IGen1 {
         return name;
     }
 
-	/**
+    /**
      *  @brief Get current active PC Box information.
 	 *  @return Current active PC Box information.
 	 */
@@ -813,7 +813,7 @@ struct Gen1: IGen1 {
         return nullptr;
     }
 
-	/**
+    /**
      *  @brief Get Pokemon from current active PC Box.
      *  @param index Pokemon index.
 	 *  @return Pokemon information from current active PC Box.
@@ -827,7 +827,7 @@ struct Gen1: IGen1 {
         return nullptr;
     }
 
-	/**
+    /**
      *  @brief Get Pokemon name from current active PC Box.
 	 *  @param index Current active PC Box index.
 	 *  @return Pokemon name.
@@ -852,7 +852,7 @@ struct Gen1: IGen1 {
         return name;
     }
 
-	/**
+    /**
      *  @brief Get PC Box information.
 	 *  @param box PC Box index.
 	 *  @return PC Box information.
@@ -866,7 +866,7 @@ struct Gen1: IGen1 {
         return nullptr;
     }
 
-	/**
+    /**
      *  @brief Get Pokemon information from PC Box.
 	 *  @param box PC Box index.
 	 *  @param index Pokemon index.
@@ -881,7 +881,7 @@ struct Gen1: IGen1 {
         return nullptr;
     }
 
-	/**
+    /**
      *  @brief Get Pokemon trainer name from PC Box.
 	 *  @param box PC Box index.
 	 *  @param index Pokemon index.
@@ -907,7 +907,7 @@ struct Gen1: IGen1 {
         return name;
     }
 
-	/**
+    /**
      *  @brief Get Pokemon name from PC Box.
 	 *  @param index PC Box index.
 	 *  @return Pokemon name.
@@ -932,7 +932,7 @@ struct Gen1: IGen1 {
         return name;
     }
 
-	/**
+    /**
      *  @brief Convert ASCII char to equivalent ROM byte.
 	 *  @param c ASCII character.
 	 *  @return Converted byte.
