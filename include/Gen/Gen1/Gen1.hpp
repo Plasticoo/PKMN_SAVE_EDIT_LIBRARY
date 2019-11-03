@@ -129,8 +129,7 @@ struct Gen1: IGen1 {
     }
 
     /**
-	 *  @brief Calculates the checksum and sets the value in the
-	 *  relevant Rom byte.
+	 *  @brief Calculates the checksum and sets the value in the relevant Rom byte.
 	 */
     auto set_checksum() -> void override
     {
@@ -139,6 +138,10 @@ struct Gen1: IGen1 {
         this->checksum[0] = checksum;
     }
 
+	/**
+	 *  @brief Get total size of the rom file.
+	 *  @return Rom size;
+	 */
     auto get_rom_size() const -> std::uint32_t override
     {
         return this->m_rom->get_size();
