@@ -16,33 +16,6 @@
 /** @brief Contains Generation I relevant classes, functions and utilities. */
 namespace Gen1
 {
-auto get_rom_type(std::uint32_t file_size) -> std::string
-{
-    if (file_size == 0x8000) {
-        return "Rom32kb";
-    } else {
-        return "Rom64kb";
-    }
-}
-
-template<template<typename> class>
-struct base_of;
-
-template<template<typename> class C>
-using base_of_t = typename base_of<C>::type;
-
-template<template<typename> class C>
-std::unique_ptr<base_of_t<C>> make_templated(std::string const& type_str, std::filesystem::path const & file)
-{
-    RomType type = get_string_romtype(type_str);
-    const std::map<RomType, std::function<std::unique_ptr<base_of_t<C>>()>> factory{
-        { RomType::Rom32kb, [&file] { return std::make_unique<C<Rom32kb>>(file); } },
-        { RomType::Rom64kb, [&file] { return std::make_unique<C<Rom64kb>>(file); } },
-        { RomType::Unknown, [] { return nullptr; } }
-    };
-    return factory.at(type)();
-}
-
 struct IGen1 {
     virtual auto get_checksum() const -> std::uint8_t = 0;
     virtual auto calc_checksum() const -> std::uint8_t = 0;
@@ -100,10 +73,10 @@ struct Gen1: IGen1 {
     /**
 	 *  @brief Gen1 Constructor
 	 */
-    Gen1(std::filesystem::path const & file)
+    Gen1(std::filesystem::path const& file)
     {
         this->m_rom = std::make_unique<T>();
-		this->load_file(file);
+        this->load_file(file);
     }
 
     /**
@@ -978,9 +951,37 @@ struct Gen1: IGen1 {
     struct Structs::pkmn_box* pc_box[12];
 };
 
+auto get_rom_type(std::uint32_t file_size) -> std::string
+{
+    if (file_size == 0x8000) {
+        return "Rom32kb";
+    } else {
+        return "Rom64kb";
+    }
+}
+
+template<template<typename> class>
+struct base_of;
+
 template<>
 struct base_of<Gen1> {
     using type = IGen1;
 };
+
+template<template<typename> class C>
+using base_of_t = typename base_of<C>::type;
+
+template<template<typename> class C>
+std::unique_ptr<base_of_t<C>> make_templated(std::string const& type_str, std::filesystem::path const& file)
+{
+    RomType type = get_string_romtype(type_str);
+    const std::map<RomType, std::function<std::unique_ptr<base_of_t<C>>()>> factory{
+        { RomType::Rom32kb, [&file] { return std::make_unique<C<Rom32kb>>(file); } },
+        { RomType::Rom64kb, [&file] { return std::make_unique<C<Rom64kb>>(file); } },
+        { RomType::Unknown, [] { return nullptr; } }
+    };
+    return factory.at(type)();
+}
+
 }
 #endif
