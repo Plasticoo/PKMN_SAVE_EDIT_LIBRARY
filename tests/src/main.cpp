@@ -14,7 +14,8 @@ TEST_CASE("Generation 1 class gets correct information")
 	auto file_size_ = std::filesystem::file_size(file_);
 	std::string rom_type = Gen1::get_rom_type(file_size_);
 
-	auto gen1 = Gen1::make_templated<Gen1::Gen1>(rom_type, file_);
+	//auto gen1 = Gen1::make_templated<Gen1::Gen1>(rom_type, file_);
+	auto gen1 = Gen1::make_templated(rom_type, file_);
 
 	SECTION("File is loaded correctly and has correct size")
     {
