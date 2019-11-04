@@ -32,12 +32,12 @@ template<template<typename> class C>
 using base_of_t = typename base_of<C>::type;
 
 template<template<typename> class C>
-std::unique_ptr<base_of_t<C>> make_templated(const std::string& type_str)
+std::unique_ptr<base_of_t<C>> make_templated(std::string const& type_str, std::filesystem::path const & file)
 {
     RomType type = get_string_romtype(type_str);
     const std::map<RomType, std::function<std::unique_ptr<base_of_t<C>>()>> factory{
-        { RomType::Rom32kb, [] { return std::make_unique<C<Rom32kb>>(); } },
-        { RomType::Rom64kb, [] { return std::make_unique<C<Rom64kb>>(); } },
+        { RomType::Rom32kb, [&file] { return std::make_unique<C<Rom32kb>>(file); } },
+        { RomType::Rom64kb, [&file] { return std::make_unique<C<Rom64kb>>(file); } },
         { RomType::Unknown, [] { return nullptr; } }
     };
     return factory.at(type)();
@@ -100,9 +100,10 @@ struct Gen1: IGen1 {
     /**
 	 *  @brief Gen1 Constructor
 	 */
-    Gen1()
+    Gen1(std::filesystem::path const & file)
     {
         this->m_rom = std::make_unique<T>();
+		this->load_file(file);
     }
 
     /**
