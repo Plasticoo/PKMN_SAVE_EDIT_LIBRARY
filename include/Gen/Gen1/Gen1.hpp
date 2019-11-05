@@ -42,7 +42,7 @@ struct IGen1 {
     virtual auto get_current_pc_box() const -> std::uint8_t = 0;
     virtual auto set_current_pc_box(std::uint8_t const index) -> void = 0;
     virtual auto get_badge(enum Enums::badges const badge) const -> bool = 0;
-    virtual auto set_badge(enum Enums::badges const badge) -> void = 0;
+    virtual auto set_badge(enum Enums::badges const badge, bool const completed) -> void = 0;
     virtual auto get_option(enum Enums::options const flag) const -> std::uint8_t = 0;
     virtual auto set_option(enum Enums::options const flag) -> void = 0;
     virtual auto get_pikachu_friendship() const -> std::uint8_t = 0;
@@ -555,10 +555,14 @@ struct Gen1: IGen1 {
      *  @brief Set Gym badge status.
 	 *  @param badge Gym badge to change.
 	 */
-    auto set_badge(enum Enums::badges const badge) -> void override
+    auto set_badge(enum Enums::badges const badge, bool const completed) -> void override
     {
         if (this->badges) {
-            this->badges[0] ^= (1 << badge);
+			if (completed) {
+				this->badges[0] ^= (-1 ^ this->badges[0]) & (1UL << badge);
+			} else {
+				this->badges[0] ^= (-0 ^ this->badges[0]) & (1UL << badge);
+			}
         }
     }
 
