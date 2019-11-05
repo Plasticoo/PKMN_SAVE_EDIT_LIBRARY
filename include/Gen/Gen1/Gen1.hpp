@@ -639,7 +639,6 @@ struct Gen1: IGen1 {
 
     /**
      *  @brief Set an item in the players bag.
-	 *  @param items Items in the players bag.
 	 *  @param index Item index in the bag
 	 *  @param item Item type.
 	 *  @param count Item quantity.
