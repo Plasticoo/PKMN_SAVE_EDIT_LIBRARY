@@ -49,7 +49,7 @@ struct IGen1 {
     virtual auto set_pikachu_friendship(std::uint8_t const value) -> void = 0;
     virtual auto get_item_bag_count() const -> std::uint8_t = 0;
     virtual auto get_item_bag(std::uint8_t const index) const -> struct Structs::item* = 0;
-    virtual auto set_item_bag(struct Structs::item* items, std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void = 0;
+    virtual auto set_item_bag(std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void = 0;
     virtual auto get_item_pc_count() const -> std::uint8_t = 0;
     virtual auto get_item_pc(std::uint8_t const index) const -> struct Structs::item* = 0;
     virtual auto set_item_pc(std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void = 0;
@@ -644,7 +644,7 @@ struct Gen1: IGen1 {
 	 *  @param item Item type.
 	 *  @param count Item quantity.
 	 */
-    auto set_item_bag(struct Structs::item* items, std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void override
+    auto set_item_bag(std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void override
     {
         if (index > 0 && index <= C::GEN1::SIZES::BAG_ITEM) {
             this->pocket_item_list->item[index].index = item;
