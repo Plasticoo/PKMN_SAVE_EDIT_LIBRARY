@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_MAIN
 
-#include "Gen1/Gen1.hpp"
+#include "Gen1.hpp"
 #include "Rom.hpp"
 #include "RomInterface.hpp"
 #include "catch2/catch.hpp"
@@ -406,8 +406,20 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
 	gen1->set_casino_coins(50);
 
 	gen1->set_time_played(50, 45, 10, 10);
-	gen1->set_current_pc_box(4);
-	gen1->set_badge();
 
-	// test changes
+	gen1->set_current_pc_box(4);
+
+	gen1->set_badge(Gen1::Enums::badges::BOULDER, false);
+	gen1->set_badge(Gen1::Enums::badges::CASCADE, false);
+	gen1->set_badge(Gen1::Enums::badges::EARTH, false);
+	gen1->set_badge(Gen1::Enums::badges::MARSH, false);
+	gen1->set_badge(Gen1::Enums::badges::RAINBOW, false);
+	gen1->set_badge(Gen1::Enums::badges::SOUL, false);
+	gen1->set_badge(Gen1::Enums::badges::THUNDER, false);
+	gen1->set_badge(Gen1::Enums::badges::VOLCANO, false);
+
+	gen1->set_item_pc(0, Gen1::Enums::item::FULL_RESTORE, 10);
+	gen1->set_item_bag(0, Gen1::Enums::item::FULL_RESTORE, 10);
+
+	// TODO: test changes
 }
