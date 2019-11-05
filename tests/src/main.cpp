@@ -14,7 +14,6 @@ TEST_CASE("Generation 1 class gets correct information")
 	auto file_size_ = std::filesystem::file_size(file_);
 	std::string rom_type = Gen1::get_rom_type(file_size_);
 
-	//auto gen1 = Gen1::make_templated<Gen1::Gen1>(rom_type, file_);
 	auto gen1 = Gen1::make_templated(rom_type, file_);
 
 	SECTION("File is loaded correctly and has correct size")
@@ -382,6 +381,32 @@ TEST_CASE("Generation 1 class gets correct information")
         REQUIRE(checksum == calculated);
     }
 
+	// TODO: test file size and file consistency between
+	// old and new
 	// save bytes from loaded file in new file
-	gen1->save_changes("../../games/yellow.sav");
+	gen1->save_changes("../../games/yellow_new.sav");
+}
+
+TEST_CASE("Generation I save changes are reflected correctly in new save file")
+{
+	auto file_ = std::filesystem::path("../../saves/yellow.sav");
+	auto file_size_ = std::filesystem::file_size(file_);
+	std::string rom_type = Gen1::get_rom_type(file_size_);
+
+	auto gen1 = Gen1::make_templated(rom_type, file_);
+
+	// make changes
+	gen1->set_player_name("JOHN");
+	gen1->set_rival_name("MATT");
+
+	gen1->set_pokedex_owned(65, false);
+	gen1->set_pokedex_seen(65, false);
+
+	gen1->set_money(5000);
+	gen1->set_casino_coins(50);
+
+	gen1->set_time_played(50, 45, 10, 10);
+
+
+	// test changes
 }
