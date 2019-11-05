@@ -406,7 +406,8 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
 	gen1->set_casino_coins(50);
 
 	gen1->set_time_played(50, 45, 10, 10);
-
+	gen1->set_current_pc_box(4);
+	gen1->set_badge();
 
 	// test changes
 }
