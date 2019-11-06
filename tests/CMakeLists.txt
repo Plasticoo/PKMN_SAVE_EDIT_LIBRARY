@@ -15,7 +15,7 @@ else()
   set(CMAKE_CXX_FLAGS "-ggdb3 -O0 -std=c++17 -pedantic -m64 -march=native")
 endif()
 
-include_directories(../include ../include/Gen ../include/Rom ../lib)
+include_directories(../include ../include/Gen/Gen1 ../include/Rom ../lib)
 
 file(GLOB sources "../src/*.cpp")
 file(GLOB test_sources "src/*.cpp")
