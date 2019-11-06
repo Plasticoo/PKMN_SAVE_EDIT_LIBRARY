@@ -421,5 +421,31 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
 	gen1->set_item_pc(0, Gen1::Enums::item::FULL_RESTORE, 10);
 	gen1->set_item_bag(0, Gen1::Enums::item::FULL_RESTORE, 10);
 
+	// save changes
+	gen1->save_changes("../../games/yellow_test.sav");
+
 	// TODO: test changes
+	auto file2_ = std::filesystem::path("../../saves/yellow_test.sav");
+	auto file_size2_ = std::filesystem::file_size(file_);
+	std::string rom_type2 = Gen1::get_rom_type(file_size_);
+
+	auto gen1c = Gen1::make_templated(rom_type, file_);
+
+	SECTION("New names are correct")
+    {
+        REQUIRE(gen1c->get_player_name() == "JOHN");
+        REQUIRE(gen1c->get_rival_name() == "MATT");
+    }
+
+	SECTION("Pokedex function changes are correct")
+	{
+		REQUIRE(gen1c->get_pokedex_owned(65) == false);
+		REQUIRE(gen1c->get_pokedex_seen(65) == false);
+	}
+
+	SECTION("Money/Casino coin changes are correct")
+	{
+		REQUIRE(gen1c->get_money() == 5000);
+		REQUIRE(gen1c->get_casino_coins() == 50);
+	}
 }
