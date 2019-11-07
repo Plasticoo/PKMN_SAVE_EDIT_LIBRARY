@@ -412,6 +412,11 @@ struct Gen1: IGen1 {
             return;
         }
 
+		// TODO: constant
+		if (value > 999999) {
+			return;
+		}
+
         std::array<std::uint8_t, C::GEN1::SIZES::MONEY> buffer;
 
         Utils::__dec_to_bcd(value, buffer.data());
@@ -445,6 +450,11 @@ struct Gen1: IGen1 {
         if (!this->casino_coins) {
             return;
         }
+
+		// TODO: constant
+		if (value > 999) {
+			return;
+		}
 
         std::array<std::uint8_t, C::GEN1::SIZES::CASINO_COINS> buffer;
 
