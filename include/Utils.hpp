@@ -5,6 +5,9 @@
 #include <climits>
 #include <cstring>
 #include <math.h>
+#include <bitset>
+#include <vector>
+#include <algorithm>
 
 namespace Utils
 {

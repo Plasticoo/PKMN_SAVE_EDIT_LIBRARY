@@ -421,6 +421,29 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
 	gen1->set_item_pc(0, Gen1::Enums::item::FULL_RESTORE, 10);
 	gen1->set_item_bag(0, Gen1::Enums::item::FULL_RESTORE, 10);
 
+
+	SECTION("New names are correct (before save)")
+    {
+        REQUIRE(gen1->get_player_name() == "JOHN");
+        REQUIRE(gen1->get_rival_name() == "MATT");
+    }
+
+	SECTION("Pokedex function changes are correct (before save)")
+	{
+		REQUIRE(gen1->get_pokedex_owned(65) == false);
+		REQUIRE(gen1->get_pokedex_seen(65) == false);
+	}
+
+	SECTION("Money changes are correct (before save)")
+	{
+		REQUIRE(gen1->get_money() == 5000);
+	}
+
+	SECTION("Casino coin changes are correct (before save)")
+	{
+		REQUIRE(gen1->get_casino_coins() == 5000);
+	}
+
 	// save changes
 	gen1->save_changes("../../games/yellow_test.sav");
 
@@ -443,9 +466,13 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
 		REQUIRE(gen1c->get_pokedex_seen(65) == false);
 	}
 
-	SECTION("Money/Casino coin changes are correct")
+	SECTION("Money changes are correct")
 	{
 		REQUIRE(gen1c->get_money() == 5000);
-		REQUIRE(gen1c->get_casino_coins() == 50);
+	}
+
+	SECTION("Casino coin changes are correct")
+	{
+		REQUIRE(gen1c->get_casino_coins() == 5000);
 	}
 }

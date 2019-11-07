@@ -412,7 +412,6 @@ struct Gen1: IGen1 {
             return;
         }
 
-        // std::uint8_t buffer[C::GEN1::SIZES::MONEY];
         std::array<std::uint8_t, C::GEN1::SIZES::MONEY> buffer;
 
         Utils::__dec_to_bcd(value, buffer.data());
