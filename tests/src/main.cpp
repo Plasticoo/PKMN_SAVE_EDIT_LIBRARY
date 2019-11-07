@@ -403,7 +403,7 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
 	gen1->set_pokedex_seen(65, false);
 
 	gen1->set_money(5000);
-	gen1->set_casino_coins(50);
+	gen1->set_casino_coins(545);
 
 	gen1->set_time_played(50, 45, 10, 10);
 
@@ -441,7 +441,7 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
 
 	SECTION("Casino coin changes are correct (before save)")
 	{
-		REQUIRE(gen1->get_casino_coins() == 5000);
+		REQUIRE(gen1->get_casino_coins() == 545);
 	}
 
 	// save changes
@@ -473,6 +473,6 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
 
 	SECTION("Casino coin changes are correct")
 	{
-		REQUIRE(gen1c->get_casino_coins() == 5000);
+		REQUIRE(gen1c->get_casino_coins() == 545);
 	}
 }
