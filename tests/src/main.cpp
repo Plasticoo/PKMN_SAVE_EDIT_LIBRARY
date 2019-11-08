@@ -468,7 +468,7 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
 
 	SECTION("Money changes are correct")
 	{
-		REQUIRE(gen1c->get_money() == 5000);
+		REQUIRE(gen1c->get_money() == 5555);
 	}
 
 	SECTION("Casino coin changes are correct")
