@@ -237,7 +237,7 @@ struct Gen1: IGen1 {
             this->player_name[i] = this->get_character_code(name[i]);
         }
 
-        this->player_name[++size] = 'P';
+        this->player_name[size] = 'P';
 
         while (size < 11) {
             this->player_name[++size] = 0x0;
@@ -286,7 +286,7 @@ struct Gen1: IGen1 {
             this->rival_name[i] = this->get_character_code(name[i]);
         }
 
-        this->rival_name[++size] = 'P';
+        this->rival_name[size] = 'P';
 
         while (size < 11) {
             this->rival_name[++size] = 0x0;
