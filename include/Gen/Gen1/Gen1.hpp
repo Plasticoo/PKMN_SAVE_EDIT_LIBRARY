@@ -178,7 +178,7 @@ struct Gen1: IGen1 {
     {
         std::ofstream out;
 
-        if (!this->m_rom) {
+        if (this->m_rom == nullptr) {
             return false;
         }
 

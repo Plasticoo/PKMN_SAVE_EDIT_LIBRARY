@@ -384,7 +384,7 @@ TEST_CASE("Generation 1 class gets correct information")
 	// TODO: test file size and file consistency between
 	// old and new
 	// save bytes from loaded file in new file
-	gen1->save_changes("../../games/yellow_new.sav");
+	// gen1->save_changes("../../games/yellow_new.sav");
 }
 
 TEST_CASE("Generation I save changes are reflected correctly in new save file")
@@ -445,14 +445,14 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
 	}
 
 	// save changes
-	gen1->save_changes("../../games/yellow_test.sav");
+	gen1->save_changes("../../saves/yellow_test.sav");
 
 	// TODO: test changes
 	auto file2_ = std::filesystem::path("../../saves/yellow_test.sav");
-	auto file_size2_ = std::filesystem::file_size(file_);
-	std::string rom_type2 = Gen1::get_rom_type(file_size_);
+	auto file_size2_ = std::filesystem::file_size(file2_);
+	std::string rom_type2 = Gen1::get_rom_type(file_size2_);
 
-	auto gen1c = Gen1::make_templated(rom_type, file_);
+	auto gen1c = Gen1::make_templated(rom_type, file2_);
 
 	SECTION("New names are correct")
     {
