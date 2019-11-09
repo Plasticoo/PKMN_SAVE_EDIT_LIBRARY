@@ -393,13 +393,7 @@ struct Gen1: IGen1 {
             return 0x7FFFFFFF;
         }
 
-        // if (this->money[1] == 0 && this->money[2] == 0) {
-        //     return Utils::__bcd_to_dec_alt(this->money, 1, 0);
-        // } else if (this->money[1] != 0 && this->money[2] == 0) {
-        //     return Utils::__bcd_to_dec_alt(this->money, 2, 0);
-        // }
-
-        return Utils::__bcd_to_dec(this->money, C::GEN1::SIZES::MONEY);
+        return Utils::__bcd_to_dec_alt(this->money, C::GEN1::SIZES::MONEY, 0);
     }
 
     /**
@@ -434,10 +428,6 @@ struct Gen1: IGen1 {
             return 0;
         }
 
-        if (this->casino_coins[1] == 0) {
-            return Utils::__bcd_to_dec_alt(this->casino_coins, 1, 0);
-        }
-
         return Utils::__bcd_to_dec_alt(this->casino_coins, C::GEN1::SIZES::CASINO_COINS, 0);
     }
 
@@ -459,13 +449,6 @@ struct Gen1: IGen1 {
         std::array<std::uint8_t, C::GEN1::SIZES::CASINO_COINS> buffer{0};
 
         Utils::__dec_to_bcd_alt(value, buffer.data(), 2);
-
-        if (Utils::n_digits(value) == 1 || Utils::n_digits(value) == 2) {
-            this->casino_coins[0] = buffer[0];
-            this->casino_coins[1] = 0;
-
-            return;
-        }
 
         std::memcpy(this->casino_coins, buffer.data(), C::GEN1::SIZES::CASINO_COINS);
     }
