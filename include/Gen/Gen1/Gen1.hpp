@@ -641,7 +641,7 @@ struct Gen1: IGen1 {
 	 */
     auto set_item_bag(std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void override
     {
-        if (index > 0 && index <= C::GEN1::SIZES::BAG_ITEM) {
+        if (index >= 0 && index <= C::GEN1::SIZES::BAG_ITEM) {
             this->pocket_item_list->item[index].index = item;
             this->pocket_item_list->item[index].count = count;
 
@@ -682,7 +682,7 @@ struct Gen1: IGen1 {
 	 */
     auto set_item_pc(std::uint8_t const index, std::uint8_t const item, std::uint8_t const count) -> void override
     {
-        if (index > 0 && index < C::GEN1::SIZES::PC_ITEM) {
+        if (index >= 0 && index < C::GEN1::SIZES::PC_ITEM) {
             this->pc_item_list->item[index].index = item;
             this->pc_item_list->item[index].count = count;
 

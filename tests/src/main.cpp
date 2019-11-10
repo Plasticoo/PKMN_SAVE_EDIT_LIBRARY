@@ -418,8 +418,11 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
     gen1->set_badge(Gen1::Enums::badges::THUNDER, false);
     gen1->set_badge(Gen1::Enums::badges::VOLCANO, false);
 
-    gen1->set_item_pc(0, Gen1::Enums::item::FULL_RESTORE, 10);
-    gen1->set_item_bag(0, Gen1::Enums::item::FULL_RESTORE, 10);
+    gen1->set_item_pc(0, Gen1::Enums::item::FULL_RESTORE, 2);
+    gen1->set_item_pc(1, Gen1::Enums::item::ANTIDOTE, 3);
+
+    gen1->set_item_bag(0, Gen1::Enums::item::FULL_RESTORE, 2);
+    gen1->set_item_bag(1, Gen1::Enums::item::ANTIDOTE, 3);
 
     // save changes
     gen1->save_changes("../../saves/yellow_test.sav");
@@ -429,7 +432,7 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
     auto file_size2_ = std::filesystem::file_size(file2_);
     std::string rom_type2 = Gen1::get_rom_type(file_size2_);
 
-    auto gen1c = Gen1::make_templated(rom_type, file2_);
+    auto gen1c = Gen1::make_templated(rom_type2, file2_);
 
     SECTION("New names are correct")
     {
@@ -500,4 +503,28 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
         REQUIRE(gen1c->get_badge(Gen1::Enums::badges::VOLCANO) == false);
         REQUIRE(gen1c->get_badge(Gen1::Enums::badges::EARTH) == false);
     }
+
+	SECTION("PC items are correct")
+	{
+		auto item0 = gen1c->get_item_pc(0);
+		auto item1 = gen1c->get_item_pc(1);
+
+		REQUIRE(item0->index == Gen1::Enums::item::FULL_RESTORE);
+		REQUIRE(item0->count == 2);
+
+		REQUIRE(item1->index == Gen1::Enums::item::ANTIDOTE);
+		REQUIRE(item1->count == 3);
+	}
+
+	SECTION("Bag items are correct")
+	{
+		auto item0 = gen1c->get_item_bag(0);
+		auto item1 = gen1c->get_item_bag(1);
+
+		REQUIRE(item0->index == Gen1::Enums::item::FULL_RESTORE);
+		REQUIRE(item0->count == 2);
+
+		REQUIRE(item1->index == Gen1::Enums::item::ANTIDOTE);
+		REQUIRE(item1->count == 3);
+	}
 }
