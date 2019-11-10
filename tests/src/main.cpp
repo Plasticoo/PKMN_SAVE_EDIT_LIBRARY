@@ -405,7 +405,7 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
     gen1->set_money(5000);
     gen1->set_casino_coins(5);
 
-    gen1->set_time_played(50, 45, 10, 10);
+    gen1->set_time_played(50, 45, 10, 15);
 
     gen1->set_current_pc_box(4);
 
@@ -451,5 +451,53 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
     SECTION("Casino coin changes are correct")
     {
         REQUIRE(gen1c->get_casino_coins() == 5);
+    }
+
+    SECTION("Time played changes are correct")
+    {
+        auto time_played = Gen1::Structs::pkmn_time();
+        gen1c->get_time_played(&time_played);
+
+        SECTION("Maximum time not reached")
+        {
+            REQUIRE(time_played.maxed == 0);
+        }
+
+        SECTION("Hours is 50")
+        {
+            REQUIRE(time_played.hours == 50);
+        }
+
+        SECTION("Minutes is 45")
+        {
+            REQUIRE(time_played.minutes == 45);
+        }
+
+        SECTION("Seconds is 10")
+        {
+            REQUIRE(time_played.seconds == 10);
+        }
+
+        SECTION("Frames is 15")
+        {
+            REQUIRE(time_played.frames == 15);
+        }
+    }
+
+    SECTION("Current PC Box is correct")
+    {
+        REQUIRE(gen1c->get_current_pc_box() == 4);
+    }
+
+    SECTION("Gym Badge changes are correct")
+    {
+        REQUIRE(gen1c->get_badge(Gen1::Enums::badges::BOULDER) == false);
+        REQUIRE(gen1c->get_badge(Gen1::Enums::badges::CASCADE) == false);
+        REQUIRE(gen1c->get_badge(Gen1::Enums::badges::THUNDER) == false);
+        REQUIRE(gen1c->get_badge(Gen1::Enums::badges::RAINBOW) == false);
+        REQUIRE(gen1c->get_badge(Gen1::Enums::badges::SOUL) == false);
+        REQUIRE(gen1c->get_badge(Gen1::Enums::badges::MARSH) == false);
+        REQUIRE(gen1c->get_badge(Gen1::Enums::badges::VOLCANO) == false);
+        REQUIRE(gen1c->get_badge(Gen1::Enums::badges::EARTH) == false);
     }
 }
