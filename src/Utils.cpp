@@ -13,7 +13,7 @@ constexpr auto __int_concat(const std::uint32_t x, const std::uint32_t y) -> std
     return x * _p + y;
 }
 
-auto __bcd_to_dec(std::uint8_t const * buffer, std::size_t const num_bytes) -> std::uint32_t
+auto __bcd_to_dec(std::uint8_t const* buffer, std::size_t const num_bytes) -> std::uint32_t
 {
     ssize_t i;
     std::uint32_t res;
@@ -50,9 +50,9 @@ auto __dec_to_bcd(const std::uint32_t num, std::uint8_t* buffer_out) -> void
     }
 }
 
-auto __bcd_to_dec_alt(std::uint8_t const * buffer, std::size_t const num_bytes, int const offset) -> std::uint32_t
+auto __bcd_to_dec_alt(std::uint8_t const* buffer, std::size_t const num_bytes, int const offset) -> std::uint32_t
 {
-	std::uint32_t result = 0;
+    std::uint32_t result = 0;
 
     for (auto i = offset; i < offset + num_bytes; i++) {
         auto p = buffer[i];
@@ -61,18 +61,18 @@ auto __bcd_to_dec_alt(std::uint8_t const * buffer, std::size_t const num_bytes, 
         result += p & 0xf;
     }
 
-	return result;
+    return result;
 }
 
 auto __dec_to_bcd_alt(std::uint32_t const num, std::uint8_t* buffer_out, int size) -> void
 {
-	auto input = num;
+    auto input = num;
 
-	for (auto i = 0; i < size; i++) {
-		auto p = input % 100;
-		input /= 100;
-		buffer_out[size - i - 1] = (((p/10) << 4) | p % 10);
-	}
+    for (auto i = 0; i < size; i++) {
+        auto p = input % 100;
+        input /= 100;
+        buffer_out[size - i - 1] = (((p / 10) << 4) | p % 10);
+    }
 }
 
 auto set_clear_bits(std::uint8_t* x, std::uint8_t n) -> void

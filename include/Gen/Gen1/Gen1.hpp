@@ -406,12 +406,12 @@ struct Gen1: IGen1 {
             return;
         }
 
-		// TODO: constant
-		if (value > 999999) {
-			return;
-		}
+        // TODO: constant
+        if (value > 999999) {
+            return;
+        }
 
-        std::array<std::uint8_t, C::GEN1::SIZES::MONEY> buffer{0};
+        std::array<std::uint8_t, C::GEN1::SIZES::MONEY> buffer{ 0 };
 
         Utils::__dec_to_bcd_alt(value, buffer.data(), 3);
 
@@ -441,12 +441,12 @@ struct Gen1: IGen1 {
             return;
         }
 
-		// TODO: constant
-		if (value > 999) {
-			return;
-		}
+        // TODO: constant
+        if (value > 999) {
+            return;
+        }
 
-        std::array<std::uint8_t, C::GEN1::SIZES::CASINO_COINS> buffer{0};
+        std::array<std::uint8_t, C::GEN1::SIZES::CASINO_COINS> buffer{ 0 };
 
         Utils::__dec_to_bcd_alt(value, buffer.data(), 2);
 
@@ -550,11 +550,11 @@ struct Gen1: IGen1 {
     auto set_badge(enum Enums::badges const badge, bool const completed) -> void override
     {
         if (this->badges) {
-			if (completed) {
-				this->badges[0] ^= (-1 ^ this->badges[0]) & (1UL << badge);
-			} else {
-				this->badges[0] ^= (-0 ^ this->badges[0]) & (1UL << badge);
-			}
+            if (completed) {
+                this->badges[0] ^= (-1 ^ this->badges[0]) & (1UL << badge);
+            } else {
+                this->badges[0] ^= (-0 ^ this->badges[0]) & (1UL << badge);
+            }
         }
     }
 

@@ -100,7 +100,7 @@ namespace Structs
         std::uint8_t pokemon_name[20][11]; /**< Pokemon Name for each Pokemon. */
     };
 
-	 /**
+    /**
 	 * @brief Structure that represents an item.
 	 */
     struct item {
@@ -117,7 +117,7 @@ namespace Structs
         std::uint8_t terminator; /**< Terminator byte. */
     };
 
-	 /**
+    /**
 	 * @brief Structure that represents the player PC Item box.
 	 */
     struct items_pc {
