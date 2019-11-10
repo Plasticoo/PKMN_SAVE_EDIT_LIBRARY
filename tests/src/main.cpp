@@ -420,9 +420,11 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
 
     gen1->set_item_pc(0, Gen1::Enums::item::FULL_RESTORE, 2);
     gen1->set_item_pc(1, Gen1::Enums::item::ANTIDOTE, 3);
+	gen1->set_item_pc(49, Gen1::Enums::item::SAFARI_BALL, 10);
 
     gen1->set_item_bag(0, Gen1::Enums::item::FULL_RESTORE, 2);
     gen1->set_item_bag(1, Gen1::Enums::item::ANTIDOTE, 3);
+	gen1->set_item_bag(19, Gen1::Enums::item::SAFARI_BALL, 10);
 
     // save changes
     gen1->save_changes("../../saves/yellow_test.sav");
@@ -508,23 +510,31 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
 	{
 		auto item0 = gen1c->get_item_pc(0);
 		auto item1 = gen1c->get_item_pc(1);
+		auto item2 = gen1c->get_item_pc(49);
 
 		REQUIRE(item0->index == Gen1::Enums::item::FULL_RESTORE);
 		REQUIRE(item0->count == 2);
 
 		REQUIRE(item1->index == Gen1::Enums::item::ANTIDOTE);
 		REQUIRE(item1->count == 3);
+
+		REQUIRE(item2->index == Gen1::Enums::item::SAFARI_BALL);
+		REQUIRE(item2->count == 10);
 	}
 
 	SECTION("Bag items are correct")
 	{
 		auto item0 = gen1c->get_item_bag(0);
 		auto item1 = gen1c->get_item_bag(1);
+		auto item2 = gen1c->get_item_bag(19);
 
 		REQUIRE(item0->index == Gen1::Enums::item::FULL_RESTORE);
 		REQUIRE(item0->count == 2);
 
 		REQUIRE(item1->index == Gen1::Enums::item::ANTIDOTE);
 		REQUIRE(item1->count == 3);
+
+		REQUIRE(item2->index == Gen1::Enums::item::SAFARI_BALL);
+		REQUIRE(item2->count == 10);
 	}
 }
