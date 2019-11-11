@@ -44,7 +44,7 @@ struct IGen1 {
     virtual auto get_badge(enum Enums::badges const badge) const -> bool = 0;
     virtual auto set_badge(enum Enums::badges const badge, bool const completed) -> void = 0;
     virtual auto get_option(enum Enums::options const flag) const -> std::uint8_t = 0;
-    virtual auto set_option(enum Enums::options const flag) -> void = 0;
+    virtual auto set_option(enum Enums::options const flag, enum Enums::options_flags const flag_option) -> void = 0;
     virtual auto get_pikachu_friendship() const -> std::uint8_t = 0;
     virtual auto set_pikachu_friendship(std::uint8_t const value) -> void = 0;
     virtual auto get_item_bag_count() const -> std::uint8_t = 0;
@@ -575,12 +575,40 @@ struct Gen1: IGen1 {
     /**
      *  @brief Set options flags.
 	 *  @param flag Option to change.
+	 *  @param flag_option Value to change option to.
 	 */
-    auto set_option(enum Enums::options const flag) -> void override
+    auto set_option(enum Enums::options const flag, enum Enums::options_flags const flag_option) -> void override
     {
         if (!this->options) {
             return;
         }
+
+		if (flag == Enums::options::TEXT_SPEED) {
+			if (flag_option == Enums::options_flags::TEXT_SPEED_SLOW ||
+				flag_option == Enums::options_flags::TEXT_SPEED_NORMAL ||
+				flag_option == Enums::options_flags::TEXT_SPEED_FAST) {
+				// TODO
+			}
+		} else if (flag == Enums::options::SOUND) {
+			if (flag_option == Enums::options_flags::SOUND_EARPHONE1 ||
+				flag_option == Enums::options_flags::SOUND_EARPHONE2 ||
+				flag_option == Enums::options_flags::SOUND_EARPHONE3 ||
+				flag_option == Enums::options_flags::SOUND_MONO ||
+				flag_option == Enums::options_flags::SOUND_MONO_Y ||
+				flag_option == Enums::options_flags::SOUND_STEREO) {
+				// TODO
+			}
+		} else if (flag == Enums::options::BATTLE_STYLE) {
+			if (flag_option == Enums::options_flags::BATTLE_STYLE_SET ||
+				flag_option == Enums::options_flags::BATTLE_STYLE_SWITCH) {
+				// TODO
+			}
+		} else if (flag == Enums::options::BATTLE_EFFECTS) {
+			if (flag_option == Enums::options_flags::BATTLE_EFFECTS_ON ||
+				flag_option == Enums::options_flags::BATTLE_EFFECTS_OFF) {
+				// TODO
+			}
+		}
 
         Utils::set_clear_bits(&this->options[0], C::GEN1::OPTIONS::LOOKUP_TABLE[flag]);
     }
