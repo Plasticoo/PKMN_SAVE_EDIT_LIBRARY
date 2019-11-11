@@ -418,6 +418,11 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
     gen1->set_badge(Gen1::Enums::badges::THUNDER, false);
     gen1->set_badge(Gen1::Enums::badges::VOLCANO, false);
 
+	gen1->set_option(Gen1::Enums::options::TEXT_SPEED);
+	gen1->set_option(Gen1::Enums::options::SOUND);
+	gen1->set_option(Gen1::Enums::options::BATTLE_STYLE);
+	gen1->set_option(Gen1::Enums::options::BATTLE_EFFECTS);
+
     gen1->set_item_pc(0, Gen1::Enums::item::FULL_RESTORE, 2);
     gen1->set_item_pc(1, Gen1::Enums::item::ANTIDOTE, 3);
 	gen1->set_item_pc(49, Gen1::Enums::item::SAFARI_BALL, 10);
@@ -506,7 +511,15 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
         REQUIRE(gen1c->get_badge(Gen1::Enums::badges::EARTH) == false);
     }
 
-	SECTION("PC items are correct")
+    SECTION("Options are correct")
+    {
+        REQUIRE(gen1c->get_option(Gen1::Enums::options::TEXT_SPEED) == 0);
+		REQUIRE(gen1c->get_option(Gen1::Enums::options::SOUND) == 1);
+		REQUIRE(gen1c->get_option(Gen1::Enums::options::BATTLE_STYLE) == 1);
+		REQUIRE(gen1c->get_option(Gen1::Enums::options::BATTLE_EFFECTS) == 0);
+    }
+
+    SECTION("PC items are correct")
 	{
 		auto item0 = gen1c->get_item_pc(0);
 		auto item1 = gen1c->get_item_pc(1);
