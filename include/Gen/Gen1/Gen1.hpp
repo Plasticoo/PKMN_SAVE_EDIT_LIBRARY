@@ -1,6 +1,7 @@
 #ifndef _PKMN_GEN1_HPP_
 #define _PKMN_GEN1_HPP_
 
+#include "Bitset.hpp"
 #include "Constants.hpp"
 #include "Gen/Gen1/Enums.hpp"
 #include "Gen/Gen1/Structs.hpp"
@@ -583,32 +584,37 @@ struct Gen1: IGen1 {
             return;
         }
 
-		if (flag == Enums::options::TEXT_SPEED) {
-			if (flag_option == Enums::options_flags::TEXT_SPEED_SLOW ||
-				flag_option == Enums::options_flags::TEXT_SPEED_NORMAL ||
-				flag_option == Enums::options_flags::TEXT_SPEED_FAST) {
-				// TODO
-			}
-		} else if (flag == Enums::options::SOUND) {
-			if (flag_option == Enums::options_flags::SOUND_EARPHONE1 ||
-				flag_option == Enums::options_flags::SOUND_EARPHONE2 ||
-				flag_option == Enums::options_flags::SOUND_EARPHONE3 ||
-				flag_option == Enums::options_flags::SOUND_MONO ||
-				flag_option == Enums::options_flags::SOUND_MONO_Y ||
-				flag_option == Enums::options_flags::SOUND_STEREO) {
-				// TODO
-			}
-		} else if (flag == Enums::options::BATTLE_STYLE) {
-			if (flag_option == Enums::options_flags::BATTLE_STYLE_SET ||
-				flag_option == Enums::options_flags::BATTLE_STYLE_SWITCH) {
-				// TODO
-			}
-		} else if (flag == Enums::options::BATTLE_EFFECTS) {
-			if (flag_option == Enums::options_flags::BATTLE_EFFECTS_ON ||
-				flag_option == Enums::options_flags::BATTLE_EFFECTS_OFF) {
-				// TODO
-			}
-		}
+        if (flag == Enums::options::TEXT_SPEED) {
+            if (flag_option == Enums::options_flags::TEXT_SPEED_SLOW ||
+                flag_option == Enums::options_flags::TEXT_SPEED_NORMAL ||
+                flag_option == Enums::options_flags::TEXT_SPEED_FAST) {
+                // TODO: verify
+				clear_bit<std::uint8_t>(this->options[0], 0);
+				clear_bit<std::uint8_t>(this->options[0], 1);
+				clear_bit<std::uint8_t>(this->options[0], 2);
+
+				this->options[0] = this->options[0] & C::GEN1::OPTIONS::FLAGS_LOOKUP_TABLE[flag_option];
+            }
+        } else if (flag == Enums::options::SOUND) {
+            if (flag_option == Enums::options_flags::SOUND_EARPHONE1 ||
+                flag_option == Enums::options_flags::SOUND_EARPHONE2 ||
+                flag_option == Enums::options_flags::SOUND_EARPHONE3 ||
+                flag_option == Enums::options_flags::SOUND_MONO ||
+                flag_option == Enums::options_flags::SOUND_MONO_Y ||
+                flag_option == Enums::options_flags::SOUND_STEREO) {
+                // TODO
+            }
+        } else if (flag == Enums::options::BATTLE_STYLE) {
+            if (flag_option == Enums::options_flags::BATTLE_STYLE_SET ||
+                flag_option == Enums::options_flags::BATTLE_STYLE_SWITCH) {
+                // TODO
+            }
+        } else if (flag == Enums::options::BATTLE_EFFECTS) {
+            if (flag_option == Enums::options_flags::BATTLE_EFFECTS_ON ||
+                flag_option == Enums::options_flags::BATTLE_EFFECTS_OFF) {
+                // TODO
+            }
+        }
 
         Utils::set_clear_bits(&this->options[0], C::GEN1::OPTIONS::LOOKUP_TABLE[flag]);
     }
