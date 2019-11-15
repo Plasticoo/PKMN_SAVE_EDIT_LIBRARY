@@ -588,12 +588,10 @@ struct Gen1: IGen1 {
             if (flag_option == Enums::options_flags::TEXT_SPEED_SLOW ||
                 flag_option == Enums::options_flags::TEXT_SPEED_NORMAL ||
                 flag_option == Enums::options_flags::TEXT_SPEED_FAST) {
-                // TODO: verify
-				clear_bit<std::uint8_t>(this->options[0], 0);
-				clear_bit<std::uint8_t>(this->options[0], 1);
-				clear_bit<std::uint8_t>(this->options[0], 2);
-
-				this->options[0] = this->options[0] & C::GEN1::OPTIONS::FLAGS_LOOKUP_TABLE[flag_option];
+                clear_bit<std::uint8_t>(this->options[0], 0);
+                clear_bit<std::uint8_t>(this->options[0], 1);
+                clear_bit<std::uint8_t>(this->options[0], 2);
+                this->options[0] = this->options[0] & C::GEN1::OPTIONS::FLAGS_LOOKUP_TABLE[flag_option];
             }
         } else if (flag == Enums::options::SOUND) {
             if (flag_option == Enums::options_flags::SOUND_EARPHONE1 ||
@@ -602,7 +600,9 @@ struct Gen1: IGen1 {
                 flag_option == Enums::options_flags::SOUND_MONO ||
                 flag_option == Enums::options_flags::SOUND_MONO_Y ||
                 flag_option == Enums::options_flags::SOUND_STEREO) {
-                // TODO
+                clear_bit<std::uint8_t>(this->options[0], 4);
+                clear_bit<std::uint8_t>(this->options[0], 5);
+                this->options[0] = this->options[0] & C::GEN1::OPTIONS::FLAGS_LOOKUP_TABLE[flag_option];
             }
         } else if (flag == Enums::options::BATTLE_STYLE) {
             if (flag_option == Enums::options_flags::BATTLE_STYLE_SET ||
@@ -612,11 +612,12 @@ struct Gen1: IGen1 {
         } else if (flag == Enums::options::BATTLE_EFFECTS) {
             if (flag_option == Enums::options_flags::BATTLE_EFFECTS_ON ||
                 flag_option == Enums::options_flags::BATTLE_EFFECTS_OFF) {
-                // TODO
+                clear_bit<std::uint8_t>(this->options[0], 7);
+                this->options[0] = this->options[0] & C::GEN1::OPTIONS::FLAGS_LOOKUP_TABLE[flag_option];
             }
         }
 
-        Utils::set_clear_bits(&this->options[0], C::GEN1::OPTIONS::LOOKUP_TABLE[flag]);
+        //Utils::set_clear_bits(&this->options[0], C::GEN1::OPTIONS::LOOKUP_TABLE[flag]);
     }
 
     /**

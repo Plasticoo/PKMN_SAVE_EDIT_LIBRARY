@@ -418,18 +418,18 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
     gen1->set_badge(Gen1::Enums::badges::THUNDER, false);
     gen1->set_badge(Gen1::Enums::badges::VOLCANO, false);
 
-	gen1->set_option(Gen1::Enums::options::TEXT_SPEED);
-	gen1->set_option(Gen1::Enums::options::SOUND);
-	gen1->set_option(Gen1::Enums::options::BATTLE_STYLE);
-	gen1->set_option(Gen1::Enums::options::BATTLE_EFFECTS);
+    gen1->set_option(Gen1::Enums::options::TEXT_SPEED, Gen1::Enums::options_flags::TEXT_SPEED_SLOW);
+    gen1->set_option(Gen1::Enums::options::SOUND, Gen1::Enums::options_flags::SOUND_STEREO);
+    gen1->set_option(Gen1::Enums::options::BATTLE_STYLE, Gen1::Enums::options_flags::BATTLE_STYLE_SWITCH);
+    gen1->set_option(Gen1::Enums::options::BATTLE_EFFECTS, Gen1::Enums::options_flags::BATTLE_EFFECTS_OFF);
 
     gen1->set_item_pc(0, Gen1::Enums::item::FULL_RESTORE, 2);
     gen1->set_item_pc(1, Gen1::Enums::item::ANTIDOTE, 3);
-	gen1->set_item_pc(49, Gen1::Enums::item::SAFARI_BALL, 10);
+    gen1->set_item_pc(49, Gen1::Enums::item::SAFARI_BALL, 10);
 
     gen1->set_item_bag(0, Gen1::Enums::item::FULL_RESTORE, 2);
     gen1->set_item_bag(1, Gen1::Enums::item::ANTIDOTE, 3);
-	gen1->set_item_bag(19, Gen1::Enums::item::SAFARI_BALL, 10);
+    gen1->set_item_bag(19, Gen1::Enums::item::SAFARI_BALL, 10);
 
     // save changes
     gen1->save_changes("../../saves/yellow_test.sav");
