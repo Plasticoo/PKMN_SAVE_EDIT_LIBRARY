@@ -429,6 +429,9 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
     gen1->set_item_bag(1, Gen1::Enums::item::ANTIDOTE, 3);
     gen1->set_item_bag(19, Gen1::Enums::item::SAFARI_BALL, 10);
 
+    // set new checksum
+    gen1->set_checksum();
+
     // save changes
     gen1->save_changes("../../saves/yellow_test.sav");
 
@@ -547,5 +550,11 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
 
         REQUIRE(item2->index == Gen1::Enums::item::SAFARI_BALL);
         REQUIRE(item2->count == 10);
+    }
+
+    SECTION("New checksum is correct")
+    {
+        auto checksum = gen1c->calc_checksum();
+        REQUIRE(gen1c->get_checksum() == checksum);
     }
 }
