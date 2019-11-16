@@ -37,12 +37,12 @@ TEST_CASE("Generation 1 class gets correct information")
 
     SECTION("Number in Pokedex Owned is 151")
     {
-        REQUIRE(gen1->get_pokedex_owned(151 - 1) == true);
+        REQUIRE(gen1->get_pokedex_owned(150));
     }
 
     SECTION("Number in Pokedex Owned is 151")
     {
-        REQUIRE(gen1->get_pokedex_seen(151 - 1) == true);
+        REQUIRE(gen1->get_pokedex_seen(150));
     }
 
     SECTION("Money is 390890")
@@ -86,8 +86,6 @@ TEST_CASE("Generation 1 class gets correct information")
         }
     }
 
-    //
-
     SECTION("Current PC Box has correct information")
     {
         SECTION("Current PC box that is selected is number 12")
@@ -106,7 +104,7 @@ TEST_CASE("Generation 1 class gets correct information")
         SECTION("First Pokemon in Current PC Box is called POLIWRATH")
         {
             auto pokemon_name = gen1->get_pokemon_in_current_box_name(0);
-            if (pokemon_name != "") {
+            if (!pokemon_name.empty()) {
                 REQUIRE(pokemon_name == "POLIWRATH");
             }
         }
@@ -114,7 +112,7 @@ TEST_CASE("Generation 1 class gets correct information")
         SECTION("Second Pokemon in Current PC Box is called RAPIDASH")
         {
             auto pokemon_name = gen1->get_pokemon_in_current_box_name(1);
-            if (pokemon_name != "") {
+            if (!pokemon_name.empty()) {
                 REQUIRE(pokemon_name == "RAPIDASH");
             }
         }
@@ -122,7 +120,7 @@ TEST_CASE("Generation 1 class gets correct information")
         SECTION("Last Pokemon in Current PC Box is called MEWTWO")
         {
             auto pokemon_name = gen1->get_pokemon_in_current_box_name(17);
-            if (pokemon_name != "") {
+            if (!pokemon_name.empty()) {
                 REQUIRE(pokemon_name == "MEWTWO");
             }
         }
@@ -154,14 +152,14 @@ TEST_CASE("Generation 1 class gets correct information")
 
     SECTION("Every gym is completed")
     {
-        REQUIRE(gen1->get_badge(Gen1::Enums::badges::BOULDER) == true);
-        REQUIRE(gen1->get_badge(Gen1::Enums::badges::CASCADE) == true);
-        REQUIRE(gen1->get_badge(Gen1::Enums::badges::THUNDER) == true);
-        REQUIRE(gen1->get_badge(Gen1::Enums::badges::RAINBOW) == true);
-        REQUIRE(gen1->get_badge(Gen1::Enums::badges::SOUL) == true);
-        REQUIRE(gen1->get_badge(Gen1::Enums::badges::MARSH) == true);
-        REQUIRE(gen1->get_badge(Gen1::Enums::badges::VOLCANO) == true);
-        REQUIRE(gen1->get_badge(Gen1::Enums::badges::EARTH) == true);
+        REQUIRE(gen1->get_badge(Gen1::Enums::badges::BOULDER));
+        REQUIRE(gen1->get_badge(Gen1::Enums::badges::CASCADE));
+        REQUIRE(gen1->get_badge(Gen1::Enums::badges::THUNDER));
+        REQUIRE(gen1->get_badge(Gen1::Enums::badges::RAINBOW));
+        REQUIRE(gen1->get_badge(Gen1::Enums::badges::SOUL));
+        REQUIRE(gen1->get_badge(Gen1::Enums::badges::MARSH));
+        REQUIRE(gen1->get_badge(Gen1::Enums::badges::VOLCANO));
+        REQUIRE(gen1->get_badge(Gen1::Enums::badges::EARTH));
     }
 
     SECTION("Options are all set")
@@ -240,7 +238,7 @@ TEST_CASE("Generation 1 class gets correct information")
         SECTION("First Pokemon information matches")
         {
             auto pokemon_name = gen1->get_pokemon_in_party_name(0);
-            if (pokemon_name != "") {
+            if (!pokemon_name.empty()) {
                 REQUIRE(pokemon_name == "PIKACHU");
             }
         }
@@ -248,7 +246,7 @@ TEST_CASE("Generation 1 class gets correct information")
         SECTION("Second Pokemon in the party is called MEW")
         {
             auto pokemon_name = gen1->get_pokemon_in_party_name(1);
-            if (pokemon_name != "") {
+            if (!pokemon_name.empty()) {
                 REQUIRE(pokemon_name == "MEW");
             }
         }
@@ -256,7 +254,7 @@ TEST_CASE("Generation 1 class gets correct information")
         SECTION("Last Pokemon in the party is called DUGTRIO")
         {
             auto pokemon_name = gen1->get_pokemon_in_party_name(5);
-            if (pokemon_name != "") {
+            if (!pokemon_name.empty()) {
                 REQUIRE(pokemon_name == "DUGTRIO");
             }
         }
@@ -333,7 +331,7 @@ TEST_CASE("Generation 1 class gets correct information")
         SECTION("First Pokemon in Box 1 is called LAPRAS")
         {
             auto pokemon_name = gen1->get_pokemon_in_box_name(0, 0);
-            if (pokemon_name != "") {
+            if (!pokemon_name.empty()) {
                 REQUIRE(pokemon_name == "LAPRAS");
             }
         }
@@ -341,7 +339,7 @@ TEST_CASE("Generation 1 class gets correct information")
         SECTION("First Pokemon in Box 4 is called BEEDRILL")
         {
             auto pokemon_name = gen1->get_pokemon_in_box_name(3, 0);
-            if (pokemon_name != "") {
+            if (!pokemon_name.empty()) {
                 REQUIRE(pokemon_name == "BEEDRILL");
             }
         }
@@ -349,7 +347,7 @@ TEST_CASE("Generation 1 class gets correct information")
         SECTION("Second Pokemon in Box 4 is called WEEZING")
         {
             auto pokemon_name = gen1->get_pokemon_in_box_name(3, 1);
-            if (pokemon_name != "") {
+            if (!pokemon_name.empty()) {
                 REQUIRE(pokemon_name == "WEEZING");
             }
         }
@@ -357,7 +355,7 @@ TEST_CASE("Generation 1 class gets correct information")
         SECTION("First Pokemon in Box 12 is called POLIWRATH")
         {
             auto pokemon_name = gen1->get_pokemon_in_box_name(11, 0);
-            if (pokemon_name != "") {
+            if (!pokemon_name.empty()) {
                 REQUIRE(pokemon_name == "POLIWRATH");
             }
         }
@@ -365,7 +363,7 @@ TEST_CASE("Generation 1 class gets correct information")
         SECTION("Second Pokemon in Box 12 is called RAPIDASH")
         {
             auto pokemon_name = gen1->get_pokemon_in_box_name(11, 1);
-            if (pokemon_name != "") {
+            if (!pokemon_name.empty()) {
                 REQUIRE(pokemon_name == "RAPIDASH");
             }
         }
@@ -449,8 +447,8 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
 
     SECTION("Pokedex function changes are correct")
     {
-        REQUIRE(gen1c->get_pokedex_owned(65) == false);
-        REQUIRE(gen1c->get_pokedex_seen(65) == false);
+        REQUIRE(!gen1c->get_pokedex_owned(65));
+        REQUIRE(!gen1c->get_pokedex_seen(65));
     }
 
     SECTION("Money changes are correct")
@@ -501,14 +499,14 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
 
     SECTION("Gym Badge changes are correct")
     {
-        REQUIRE(gen1c->get_badge(Gen1::Enums::badges::BOULDER) == false);
-        REQUIRE(gen1c->get_badge(Gen1::Enums::badges::CASCADE) == false);
-        REQUIRE(gen1c->get_badge(Gen1::Enums::badges::THUNDER) == false);
-        REQUIRE(gen1c->get_badge(Gen1::Enums::badges::RAINBOW) == false);
-        REQUIRE(gen1c->get_badge(Gen1::Enums::badges::SOUL) == false);
-        REQUIRE(gen1c->get_badge(Gen1::Enums::badges::MARSH) == false);
-        REQUIRE(gen1c->get_badge(Gen1::Enums::badges::VOLCANO) == false);
-        REQUIRE(gen1c->get_badge(Gen1::Enums::badges::EARTH) == false);
+        REQUIRE(!gen1c->get_badge(Gen1::Enums::badges::BOULDER));
+        REQUIRE(!gen1c->get_badge(Gen1::Enums::badges::CASCADE));
+        REQUIRE(!gen1c->get_badge(Gen1::Enums::badges::THUNDER));
+        REQUIRE(!gen1c->get_badge(Gen1::Enums::badges::RAINBOW));
+        REQUIRE(!gen1c->get_badge(Gen1::Enums::badges::SOUL));
+        REQUIRE(!gen1c->get_badge(Gen1::Enums::badges::MARSH));
+        REQUIRE(!gen1c->get_badge(Gen1::Enums::badges::VOLCANO));
+        REQUIRE(!gen1c->get_badge(Gen1::Enums::badges::EARTH));
     }
 
     SECTION("Options are correct")
