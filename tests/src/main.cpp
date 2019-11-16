@@ -45,6 +45,16 @@ TEST_CASE("Generation 1 class gets correct information")
         REQUIRE(gen1->get_pokedex_seen(150));
     }
 
+    SECTION("Total of Pokemons Owned is 151")
+    {
+        REQUIRE(gen1->get_pokedex_owned_total() == 151);
+    }
+
+    SECTION("Total of Pokemons Seen is 151")
+    {
+        REQUIRE(gen1->get_pokedex_seen_total() == 151);
+    }
+
     SECTION("Money is 390890")
     {
         REQUIRE(gen1->get_money() == 390890);
@@ -452,6 +462,12 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
     {
         REQUIRE(!gen1c->get_pokedex_owned(65));
         REQUIRE(!gen1c->get_pokedex_seen(65));
+    }
+
+    SECTION("Total of Pokemons Seen and Owned is 150")
+    {
+        REQUIRE(gen1c->get_pokedex_owned_total() == 150);
+        REQUIRE(gen1c->get_pokedex_seen_total() == 150);
     }
 
     SECTION("Money changes are correct")
