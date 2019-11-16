@@ -520,34 +520,34 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
     }
 
     SECTION("PC items are correct")
-	{
-		auto item0 = gen1c->get_item_pc(0);
-		auto item1 = gen1c->get_item_pc(1);
-		auto item2 = gen1c->get_item_pc(49);
+    {
+        auto item0 = gen1c->get_item_pc(0);
+        auto item1 = gen1c->get_item_pc(1);
+        auto item2 = gen1c->get_item_pc(49);
 
-		REQUIRE(item0->index == Gen1::Enums::item::FULL_RESTORE);
-		REQUIRE(item0->count == 2);
+        REQUIRE(item0->index == Gen1::Enums::item::FULL_RESTORE);
+        REQUIRE(item0->count == 2);
 
-		REQUIRE(item1->index == Gen1::Enums::item::ANTIDOTE);
-		REQUIRE(item1->count == 3);
+        REQUIRE(item1->index == Gen1::Enums::item::ANTIDOTE);
+        REQUIRE(item1->count == 3);
 
-		REQUIRE(item2->index == Gen1::Enums::item::SAFARI_BALL);
-		REQUIRE(item2->count == 10);
-	}
+        REQUIRE(item2->index == Gen1::Enums::item::SAFARI_BALL);
+        REQUIRE(item2->count == 10);
+    }
 
-	SECTION("Bag items are correct")
-	{
-		auto item0 = gen1c->get_item_bag(0);
-		auto item1 = gen1c->get_item_bag(1);
-		auto item2 = gen1c->get_item_bag(19);
+    SECTION("Bag items are correct")
+    {
+        auto item0 = gen1c->get_item_bag(0);
+        auto item1 = gen1c->get_item_bag(1);
+        auto item2 = gen1c->get_item_bag(19);
 
-		REQUIRE(item0->index == Gen1::Enums::item::FULL_RESTORE);
-		REQUIRE(item0->count == 2);
+        REQUIRE(item0->index == Gen1::Enums::item::FULL_RESTORE);
+        REQUIRE(item0->count == 2);
 
-		REQUIRE(item1->index == Gen1::Enums::item::ANTIDOTE);
-		REQUIRE(item1->count == 3);
+        REQUIRE(item1->index == Gen1::Enums::item::ANTIDOTE);
+        REQUIRE(item1->count == 3);
 
-		REQUIRE(item2->index == Gen1::Enums::item::SAFARI_BALL);
-		REQUIRE(item2->count == 10);
-	}
+        REQUIRE(item2->index == Gen1::Enums::item::SAFARI_BALL);
+        REQUIRE(item2->count == 10);
+    }
 }
