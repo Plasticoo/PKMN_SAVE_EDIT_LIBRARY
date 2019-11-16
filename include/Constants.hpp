@@ -70,7 +70,7 @@ namespace GEN1
         };
 
         constexpr std::array<std::uint8_t, 4> LOOKUP_TABLE = {
-            0x3, 0x4, 0x6, 0x7
+            0x7, 0x30, 0x40, 0x80
         };
 
         constexpr std::uint8_t OPTION_TEXT_SPEED_MASK = 0x7;

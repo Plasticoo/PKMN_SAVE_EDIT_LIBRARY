@@ -14,7 +14,7 @@ namespace Enums
     };
 
     enum options_flags {
-        TEXT_SPEED_FAST = 0x0,
+        TEXT_SPEED_FAST,
         TEXT_SPEED_NORMAL,
         TEXT_SPEED_SLOW,
 
@@ -30,6 +30,7 @@ namespace Enums
 
         BATTLE_EFFECTS_ON,
         BATTLE_EFFECTS_OFF,
+        UNKNOWN
     };
 
     enum badges {

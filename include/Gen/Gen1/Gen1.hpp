@@ -44,7 +44,7 @@ struct IGen1 {
     virtual auto set_current_pc_box(std::uint8_t const index) -> void = 0;
     virtual auto get_badge(enum Enums::badges const badge) const -> bool = 0;
     virtual auto set_badge(enum Enums::badges const badge, bool const completed) -> void = 0;
-    virtual auto get_option(enum Enums::options const flag) const -> std::uint8_t = 0;
+    virtual auto get_option(enum Enums::options const flag) const -> enum Enums::options_flags = 0;
     virtual auto set_option(enum Enums::options const flag, enum Enums::options_flags const flag_option) -> void = 0;
     virtual auto get_pikachu_friendship() const -> std::uint8_t = 0;
     virtual auto set_pikachu_friendship(std::uint8_t const value) -> void = 0;
@@ -564,13 +564,47 @@ struct Gen1: IGen1 {
 	 *  @param flag Option to get.
 	 *  @return Chosen option value.
 	 */
-    auto get_option(enum Enums::options const flag) const -> std::uint8_t override
+    auto get_option(enum Enums::options const flag) const -> enum Enums::options_flags override
     {
         if (!this->options) {
-            return 0;
+            return Enums::options_flags::UNKNOWN;
         }
 
-        return options[0] & C::GEN1::OPTIONS::LOOKUP_TABLE[flag];
+        auto flag_value = options[0] & C::GEN1::OPTIONS::LOOKUP_TABLE[flag];
+
+        if (flag == Enums::options::TEXT_SPEED) {
+            if (flag_value == 0b001) {
+                return Enums::options_flags::TEXT_SPEED_FAST;
+            } else if (flag_value == 0b011) {
+                return Enums::options_flags::TEXT_SPEED_NORMAL;
+            } else if (flag_value == 0b101) {
+                return Enums::options_flags::TEXT_SPEED_SLOW;
+            }
+        } else if (flag == Enums::options::SOUND) {
+            if (flag_value == 0b000000) {
+                return Enums::options_flags::SOUND_MONO;
+            } else if (flag_value == 0b010000) {
+                return Enums::options_flags::SOUND_STEREO;
+            } else if (flag_value == 0b100000) {
+                return Enums::options_flags::SOUND_EARPHONE2;
+            } else if (flag_value == 0b110000) {
+                return Enums::options_flags::SOUND_EARPHONE3;
+            }
+        } else if (flag == Enums::options::BATTLE_STYLE) {
+            if (flag_value == 0b0000000) {
+                return Enums::options_flags::BATTLE_STYLE_SWITCH;
+            } else if (flag_value == 0b1000000) {
+                return Enums::options_flags::BATTLE_STYLE_SET;
+            }
+        } else if (flag == Enums::options::BATTLE_EFFECTS) {
+            if (flag_value == 0b00000000) {
+                return Enums::options_flags::BATTLE_EFFECTS_ON;
+            } else if (flag_value == 0b10000000) {
+                return Enums::options_flags::BATTLE_EFFECTS_OFF;
+            }
+        }
+
+        return Enums::options_flags::UNKNOWN;
     }
 
     /**
@@ -591,7 +625,7 @@ struct Gen1: IGen1 {
                 clear_bit<std::uint8_t>(this->options[0], 0);
                 clear_bit<std::uint8_t>(this->options[0], 1);
                 clear_bit<std::uint8_t>(this->options[0], 2);
-                this->options[0] = this->options[0] & C::GEN1::OPTIONS::FLAGS_LOOKUP_TABLE[flag_option];
+                this->options[0] = this->options[0] | C::GEN1::OPTIONS::FLAGS_LOOKUP_TABLE[flag_option];
             }
         } else if (flag == Enums::options::SOUND) {
             if (flag_option == Enums::options_flags::SOUND_EARPHONE1 ||
@@ -602,18 +636,19 @@ struct Gen1: IGen1 {
                 flag_option == Enums::options_flags::SOUND_STEREO) {
                 clear_bit<std::uint8_t>(this->options[0], 4);
                 clear_bit<std::uint8_t>(this->options[0], 5);
-                this->options[0] = this->options[0] & C::GEN1::OPTIONS::FLAGS_LOOKUP_TABLE[flag_option];
+                this->options[0] = this->options[0] | C::GEN1::OPTIONS::FLAGS_LOOKUP_TABLE[flag_option];
             }
         } else if (flag == Enums::options::BATTLE_STYLE) {
             if (flag_option == Enums::options_flags::BATTLE_STYLE_SET ||
                 flag_option == Enums::options_flags::BATTLE_STYLE_SWITCH) {
-                // TODO
+                clear_bit<std::uint8_t>(this->options[0], 6);
+                this->options[0] = this->options[0] | C::GEN1::OPTIONS::FLAGS_LOOKUP_TABLE[flag_option];
             }
         } else if (flag == Enums::options::BATTLE_EFFECTS) {
             if (flag_option == Enums::options_flags::BATTLE_EFFECTS_ON ||
                 flag_option == Enums::options_flags::BATTLE_EFFECTS_OFF) {
                 clear_bit<std::uint8_t>(this->options[0], 7);
-                this->options[0] = this->options[0] & C::GEN1::OPTIONS::FLAGS_LOOKUP_TABLE[flag_option];
+                this->options[0] = this->options[0] | C::GEN1::OPTIONS::FLAGS_LOOKUP_TABLE[flag_option];
             }
         }
 

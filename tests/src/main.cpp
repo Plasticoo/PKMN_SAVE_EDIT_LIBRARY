@@ -8,11 +8,15 @@
 #include <cstdio>
 #include <iostream>
 
+std::filesystem::path file_;
+std::uintmax_t file_size_;
+std::string rom_type;
+
 TEST_CASE("Generation 1 class gets correct information")
 {
-    auto file_ = std::filesystem::path("../../saves/yellow.sav");
-    auto file_size_ = std::filesystem::file_size(file_);
-    std::string rom_type = Gen1::get_rom_type(file_size_);
+    file_ = std::filesystem::path("../../saves/yellow.sav");
+    file_size_ = std::filesystem::file_size(file_);
+    rom_type = Gen1::get_rom_type(file_size_);
 
     auto gen1 = Gen1::make_templated(rom_type, file_);
 
@@ -162,10 +166,10 @@ TEST_CASE("Generation 1 class gets correct information")
 
     SECTION("Options are all set")
     {
-        REQUIRE(gen1->get_option(Gen1::Enums::options::TEXT_SPEED) == 1);
-        REQUIRE(gen1->get_option(Gen1::Enums::options::SOUND) == 0);
-        REQUIRE(gen1->get_option(Gen1::Enums::options::BATTLE_STYLE) == 0);
-        REQUIRE(gen1->get_option(Gen1::Enums::options::BATTLE_EFFECTS) == 1);
+        REQUIRE(gen1->get_option(Gen1::Enums::options::TEXT_SPEED) == Gen1::Enums::options_flags::TEXT_SPEED_FAST);
+        REQUIRE(gen1->get_option(Gen1::Enums::options::SOUND) == Gen1::Enums::options_flags::SOUND_EARPHONE3);
+        REQUIRE(gen1->get_option(Gen1::Enums::options::BATTLE_STYLE) == Gen1::Enums::options_flags::BATTLE_STYLE_SET);
+        REQUIRE(gen1->get_option(Gen1::Enums::options::BATTLE_EFFECTS) == Gen1::Enums::options_flags::BATTLE_EFFECTS_ON);
     }
 
     SECTION("Pikachu friendship is 103")
@@ -389,10 +393,6 @@ TEST_CASE("Generation 1 class gets correct information")
 
 TEST_CASE("Generation I save changes are reflected correctly in new save file")
 {
-    auto file_ = std::filesystem::path("../../saves/yellow.sav");
-    auto file_size_ = std::filesystem::file_size(file_);
-    std::string rom_type = Gen1::get_rom_type(file_size_);
-
     auto gen1 = Gen1::make_templated(rom_type, file_);
 
     // make changes
@@ -513,10 +513,10 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
 
     SECTION("Options are correct")
     {
-        REQUIRE(gen1c->get_option(Gen1::Enums::options::TEXT_SPEED) == 0);
-		REQUIRE(gen1c->get_option(Gen1::Enums::options::SOUND) == 1);
-		REQUIRE(gen1c->get_option(Gen1::Enums::options::BATTLE_STYLE) == 1);
-		REQUIRE(gen1c->get_option(Gen1::Enums::options::BATTLE_EFFECTS) == 0);
+        REQUIRE(gen1c->get_option(Gen1::Enums::options::TEXT_SPEED) == Gen1::Enums::options_flags::TEXT_SPEED_SLOW);
+        REQUIRE(gen1c->get_option(Gen1::Enums::options::SOUND) == Gen1::Enums::options_flags::SOUND_STEREO);
+        REQUIRE(gen1c->get_option(Gen1::Enums::options::BATTLE_STYLE) == Gen1::Enums::options_flags::BATTLE_STYLE_SWITCH);
+        REQUIRE(gen1c->get_option(Gen1::Enums::options::BATTLE_EFFECTS) == Gen1::Enums::options_flags::BATTLE_EFFECTS_OFF);
     }
 
     SECTION("PC items are correct")
