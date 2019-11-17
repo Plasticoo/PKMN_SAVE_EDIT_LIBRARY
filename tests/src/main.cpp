@@ -436,6 +436,8 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
     gen1->set_option(Gen1::Enums::options::BATTLE_STYLE, Gen1::Enums::options_flags::BATTLE_STYLE_SWITCH);
     gen1->set_option(Gen1::Enums::options::BATTLE_EFFECTS, Gen1::Enums::options_flags::BATTLE_EFFECTS_OFF);
 
+    gen1->set_pikachu_friendship(100);
+
     gen1->set_item_pc(0, Gen1::Enums::item::FULL_RESTORE, 2);
     gen1->set_item_pc(1, Gen1::Enums::item::ANTIDOTE, 3);
     gen1->set_item_pc(49, Gen1::Enums::item::SAFARI_BALL, 10);
@@ -539,6 +541,11 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
         REQUIRE(gen1c->get_option(Gen1::Enums::options::SOUND) == Gen1::Enums::options_flags::SOUND_STEREO);
         REQUIRE(gen1c->get_option(Gen1::Enums::options::BATTLE_STYLE) == Gen1::Enums::options_flags::BATTLE_STYLE_SWITCH);
         REQUIRE(gen1c->get_option(Gen1::Enums::options::BATTLE_EFFECTS) == Gen1::Enums::options_flags::BATTLE_EFFECTS_OFF);
+    }
+
+    SECTION("Pikachu friendship is correct")
+    {
+        REQUIRE(gen1c->get_pikachu_friendship() == 100);
     }
 
     SECTION("PC items are correct")
