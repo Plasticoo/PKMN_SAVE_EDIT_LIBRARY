@@ -44,6 +44,7 @@ struct IGen1 {
     virtual auto set_current_pc_box(std::uint8_t const index) -> void = 0;
     virtual auto get_badge(enum Enums::badges const badge) const -> bool = 0;
     virtual auto set_badge(enum Enums::badges const badge, bool const completed) -> void = 0;
+    virtual auto get_trainer_id() -> std::uint16_t = 0;
     virtual auto get_option(enum Enums::options const flag) const -> enum Enums::options_flags = 0;
     virtual auto set_option(enum Enums::options const flag, enum Enums::options_flags const flag_option) -> void = 0;
     virtual auto get_pikachu_friendship() const -> std::uint8_t = 0;
@@ -557,6 +558,19 @@ struct Gen1: IGen1 {
                 this->badges[0] ^= (-0 ^ this->badges[0]) & (1UL << badge);
             }
         }
+    }
+
+    /**
+     *  @brief Get Player Trainer ID.
+	 *  @return Player Trainer ID.
+	 */
+    auto get_trainer_id() -> std::uint16_t override
+    {
+        if (this->player_trainer_id) {
+            return Utils::swap_endian<std::uint16_t>(*this->player_trainer_id);
+        }
+
+        return 0;
     }
 
     /**

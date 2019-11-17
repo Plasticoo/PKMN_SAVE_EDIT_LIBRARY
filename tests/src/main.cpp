@@ -172,6 +172,11 @@ TEST_CASE("Generation 1 class gets correct information")
         REQUIRE(gen1->get_badge(Gen1::Enums::badges::EARTH));
     }
 
+    SECTION("Player Trainer ID is 17178")
+    {
+        REQUIRE(gen1->get_trainer_id() == 17178);
+    }
+
     SECTION("Options are all set")
     {
         REQUIRE(gen1->get_option(Gen1::Enums::options::TEXT_SPEED) == Gen1::Enums::options_flags::TEXT_SPEED_FAST);
