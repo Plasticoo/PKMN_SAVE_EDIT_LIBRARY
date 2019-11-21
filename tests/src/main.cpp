@@ -409,7 +409,7 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
     auto gen1 = Gen1::make_templated(rom_type, file_);
 
     // make changes
-    gen1->set_player_name("JOHN");
+    // gen1->set_player_name("JOHN");
     gen1->set_rival_name("MATT");
 
     gen1->set_pokedex_owned(65, false);
@@ -461,7 +461,7 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
 
     SECTION("New names are correct")
     {
-        REQUIRE(gen1c->get_player_name() == "JOHN");
+        //REQUIRE(gen1c->get_player_name() == "JOHN");
         REQUIRE(gen1c->get_rival_name() == "MATT");
     }
 
