@@ -240,10 +240,6 @@ struct Gen1: IGen1 {
         }
 
         this->player_name[size] = 'P';
-
-        while (size < 11) {
-            this->player_name[++size] = 0x0;
-        }
     }
 
     /**
