@@ -21,8 +21,8 @@ namespace Structs
         std::uint8_t seconds; /**< Seconds played. */
         std::uint8_t frames; /**< Frames per second. */
     };
+	static_assert(sizeof(struct pkmn_time) == 5, "struct pkmn_time should be 5 bytes");
 
-#pragma pack(push, 1)
     /**
 	 * @brief Structure that represents a pokemon in the party.
 	 */
@@ -49,10 +49,9 @@ namespace Structs
         std::uint16_t def; /**< Alternative Defense value. */
         std::uint16_t speed; /**< Alternative Speed value. */
         std::uint16_t special; /**< Alternative Special value. */
-    };
-#pragma pack(pop)
+    } __attribute__((packed));
+    static_assert(sizeof(struct pkmn_data_party) == 44, "struct pkmn_data_party should be 44 bytes");
 
-#pragma pack(push, 1)
     /**
 	 * @brief Structure that represents a pokemon in a PC Box.
 	 */
@@ -73,8 +72,8 @@ namespace Structs
         std::uint16_t special_ev; /**< Special effort value. */
         std::uint16_t iv; /**< Individual value. */
         std::uint8_t moves_pp[4]; /**< Power Points for each move. */
-    };
-#pragma pack(pop)
+    } __attribute__((packed));
+    static_assert(sizeof(struct pkmn_data_box) == 33, "struct pkmn_data_box should be 33 bytes");
 
     /**
 	 * @brief Structure that represents a Pokemon Party.
@@ -86,7 +85,8 @@ namespace Structs
         struct pkmn_data_party pokemon[6]; /**< Pokemon Data for each Pokemon. */
         std::uint8_t original_trainer_name[6][11]; /**< Original Trainer Name for each Pokemon. */
         std::uint8_t pokemon_name[6][11]; /**< Pokemon Name for each Pokemon. */
-    };
+    } __attribute__((packed));
+	static_assert(sizeof(struct pkmn_party) == 404, "struct pkmn_party should be 404 bytes");
 
     /**
 	 * @brief Structure that represents a Pokemon PC Box.
@@ -98,7 +98,8 @@ namespace Structs
         struct pkmn_data_box pokemon[20]; /**< Pokemon Data for each Pokemon. */
         std::uint8_t original_trainer_name[20][11]; /**< Original Trainer Name for each Pokemon. */
         std::uint8_t pokemon_name[20][11]; /**< Pokemon Name for each Pokemon. */
-    };
+    } __attribute__((packed));
+	static_assert(sizeof(struct pkmn_box) == 1122, "struct pkmn_box should be 1122 bytes");
 
     /**
 	 * @brief Structure that represents an item.
@@ -106,7 +107,8 @@ namespace Structs
     struct item {
         std::uint8_t index; /**< Item ID. */
         std::uint8_t count; /** Item count. */
-    };
+    } __attribute__((packed));
+	static_assert(sizeof(struct item) == 2, "struct item should be 2 bytes");
 
     /**
 	 * @brief Structure that represents the player bag.
@@ -115,7 +117,8 @@ namespace Structs
         std::uint8_t count; /**< Count of unique items. */
         struct item item[20]; /**< Item information for each item. */
         std::uint8_t terminator; /**< Terminator byte. */
-    };
+    } __attribute__((packed));
+	static_assert(sizeof(struct items_bag) == 42, "struct items_bag should be 42 bytes");
 
     /**
 	 * @brief Structure that represents the player PC Item box.
@@ -124,7 +127,8 @@ namespace Structs
         std::uint8_t count; /**< Count of unique items. */
         struct item item[50]; /**< Item information for each item. */
         std::uint8_t terminator; /**< Terminator byte. */
-    };
+    } __attribute__((packed));
+	static_assert(sizeof(struct items_pc) == 102, "struct items_pc should be 102 bytes");
 }
 }
 
