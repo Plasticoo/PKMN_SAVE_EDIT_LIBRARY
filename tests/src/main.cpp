@@ -8,17 +8,11 @@
 #include <cstdio>
 #include <iostream>
 
-std::filesystem::path file_;
-std::uintmax_t file_size_;
-std::string rom_type;
+std::string const file_name = "../../saves/yellow.sav";
 
 TEST_CASE("Generation 1 class gets correct information")
 {
-    file_ = std::filesystem::path("../../saves/yellow.sav");
-    file_size_ = std::filesystem::file_size(file_);
-    rom_type = Gen1::get_rom_type(file_size_);
-
-    auto gen1 = Gen1::make_templated(rom_type, file_);
+	auto gen1 = Gen1::make_templated(file_name);
 
     SECTION("File is loaded correctly and has correct size")
     {
@@ -406,7 +400,7 @@ TEST_CASE("Generation 1 class gets correct information")
 
 TEST_CASE("Generation I save changes are reflected correctly in new save file")
 {
-    auto gen1 = Gen1::make_templated(rom_type, file_);
+    auto gen1 = Gen1::make_templated(file_name);
 
     // make changes
     gen1->set_player_name("JOHN");
@@ -452,12 +446,7 @@ TEST_CASE("Generation I save changes are reflected correctly in new save file")
     // save changes
     gen1->save_changes("../../saves/yellow_test.sav");
 
-    // TODO: test changes
-    auto file2_ = std::filesystem::path("../../saves/yellow_test.sav");
-    auto file_size2_ = std::filesystem::file_size(file2_);
-    std::string rom_type2 = Gen1::get_rom_type(file_size2_);
-
-    auto gen1c = Gen1::make_templated(rom_type2, file2_);
+    auto gen1c = Gen1::make_templated("../../saves/yellow_test.sav");
 
     SECTION("New names are correct")
     {

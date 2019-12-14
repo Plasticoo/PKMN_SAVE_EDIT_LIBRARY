@@ -1069,5 +1069,15 @@ auto make_templated(std::string const& type_str, std::filesystem::path const& fi
     return factory.at(type)();
 }
 
+auto make_templated(std::string const& file)
+{
+	auto fsfile = std::filesystem::path(file);
+	auto fsize = std::filesystem::file_size(fsfile);
+
+	auto rom_type = get_rom_type(fsize);
+
+	return make_templated(rom_type, fsfile);
+}
+
 }
 #endif
