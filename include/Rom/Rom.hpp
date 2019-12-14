@@ -16,7 +16,7 @@ enum class RomType {
     Unknown
 };
 
-RomType get_string_romtype(std::string const& s)
+inline auto get_romtype(std::string const& s) -> RomType
 {
     if (s == "Rom32kb") {
         return RomType::Rom32kb;

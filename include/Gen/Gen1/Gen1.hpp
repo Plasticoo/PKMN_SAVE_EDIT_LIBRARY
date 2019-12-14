@@ -1026,7 +1026,7 @@ struct Gen1: IGen1 {
     struct Structs::pkmn_box* pc_box[12];
 };
 
-auto get_rom_type(std::uint32_t file_size) -> std::string
+inline auto get_rom_type(std::uint32_t file_size) -> std::string
 {
     if (file_size == 0x8000) {
         return "Rom32kb";
@@ -1058,9 +1058,9 @@ using base_of_t = typename base_of<C>::type;
 //     return factory.at(type)();
 // }
 
-auto make_templated(std::string const& type_str, std::filesystem::path const& file) -> std::unique_ptr<base_of_t<Gen1>>
+inline auto make_templated(std::string const& type_str, std::filesystem::path const& file) -> std::unique_ptr<base_of_t<Gen1>>
 {
-    RomType type = get_string_romtype(type_str);
+    auto type = get_romtype(type_str);
     const std::map<RomType, std::function<std::unique_ptr<base_of_t<Gen1>>()>> factory{
         { RomType::Rom32kb, [&file] { return std::make_unique<Gen1<Rom32kb>>(file); } },
         { RomType::Rom64kb, [&file] { return std::make_unique<Gen1<Rom64kb>>(file); } },
@@ -1069,7 +1069,7 @@ auto make_templated(std::string const& type_str, std::filesystem::path const& fi
     return factory.at(type)();
 }
 
-auto make_templated(std::string const& file)
+inline auto make_templated(std::string const& file)
 {
 	auto fsfile = std::filesystem::path(file);
 	auto fsize = std::filesystem::file_size(fsfile);
