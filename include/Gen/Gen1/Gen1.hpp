@@ -23,6 +23,7 @@ struct IGen1 {
     virtual auto set_checksum() -> void = 0;
     virtual auto get_rom_size() const -> std::uint32_t = 0;
     virtual auto load_file(std::filesystem::path const& file) -> void = 0;
+	virtual auto save_changes(std::string const& file_name) const -> bool = 0;
     virtual auto save_changes(std::filesystem::path const& file_name) const -> bool = 0;
     virtual auto get_player_name() const -> std::string = 0;
     virtual auto set_player_name(std::string const& name) -> void = 0;
@@ -167,6 +168,34 @@ struct Gen1: IGen1 {
         this->pc_box[9] = (struct Structs::pkmn_box*)&this->m_rom->data[0x6000 + (1122 * 3)];
         this->pc_box[10] = (struct Structs::pkmn_box*)&this->m_rom->data[0x6000 + (1122 * 4)];
         this->pc_box[11] = (struct Structs::pkmn_box*)&this->m_rom->data[0x6000 + (1122 * 5)];
+    }
+
+    /**
+	 *  @brief Save changes made to Rom information in memory to a file.
+	 *
+	 *  @param file_name Path to file.
+	 *
+	 *  @return True if everything worked.
+	 */
+    auto save_changes(std::string const& file_name) const -> bool override
+    {
+        std::ofstream out;
+
+        if (this->m_rom == nullptr) {
+            return false;
+        }
+
+        out.open(file_name, std::ios::out | std::ios::binary);
+
+        if (!out.is_open()) {
+            return false;
+        }
+
+        for (auto i = 0; i < C::GEN1::SIZES::FILE; i++) {
+            out.write((char*)&this->m_rom->data[i], 1);
+        }
+
+        return true;
     }
 
     /**
